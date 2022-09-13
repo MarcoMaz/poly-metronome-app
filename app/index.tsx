@@ -72,7 +72,7 @@ playButton.addEventListener('click', () => {
 })
 
 const showTempo = document.getElementById('showTempo');
-const inputTempo = document.getElementById('showTempo');
+const inputTempo = document.getElementById('tempo');
 
 inputTempo.addEventListener('input', (event) => {
   tempo = (event.target as HTMLInputElement).value as unknown as number;
