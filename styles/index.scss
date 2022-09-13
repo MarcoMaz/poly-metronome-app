@@ -1,0 +1,9 @@
+$color-white: blue;
+
+body {
+  color: $color-white;
+
+  &:before {
+    border: 1px solid red;
+  }
+}
