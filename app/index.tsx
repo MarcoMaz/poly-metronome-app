@@ -1,103 +1,144 @@
-var audioContext: AudioContext = null;
-var isPlaying = false;          // Are we currently playing?
-var current16thNote: number;            // What note is currently last scheduled?
-var againstBeat = 3;
-var baseBeat = 4;
-var tempo = 120.0;              // Tempo (in beats per minute)
-var lookahead = 25.0;           // How frequently to call scheduling function (in milliseconds)
-var scheduleAheadTime = 0.1;    // How far ahead to schedule audio (sec). This is calculated from lookahead, and overlaps with next interval (in case the timer is late)
-var nextNoteTime = 0.0;         // when the next note is due.
-var noteLength = 0.05;          // length of "beep" (in seconds)
-var notesInQueue = [];          // the notes that have been put into the web audio, and may or may not have played yet. {note, time}
-var timerWorker: Worker = null;         // The Web Worker used to fire timer messages
+let audioContext: AudioContext = null;
+let timerWorker: Worker = null; // The Web Worker used to fire timer messages       
 
-const nextNote = () => {
-  var secondsPerBeat = 60.0 / tempo;
-  nextNoteTime += 0.25 * secondsPerBeat;
+class App {
+  isPlaying: boolean;
 
-  current16thNote++;
-  if (current16thNote == againstBeat * baseBeat) current16thNote = 0;
-}
+  constructor(){
+    this.isPlaying = false;
+  }
 
-const scheduleNote = ( beatNumber: number, time: number ) => {
-  notesInQueue.push( { note: beatNumber, time: time } );
+  init() {
+    audioContext = new AudioContext();
+    timerWorker = new Worker(new URL('../workers/worker.tsx', import.meta.url));
+    timerWorker.onmessage = (e) => (e.data == "tick") ? engine.scheduler() : console.log("message: " + e.data);
+    timerWorker.postMessage({"interval": engine.lookahead});
+  }
 
-  console.log('beatNumber', beatNumber);
-
-  if (beatNumber % baseBeat !== 0 && beatNumber % againstBeat !== 0) return; // we're not playing non-8th 16th notes
-
-  // create an oscillator
-  var osc = audioContext.createOscillator();
-  osc.connect( audioContext.destination );
-  if (beatNumber % (baseBeat * againstBeat) === 0) osc.frequency.value = 880.0;
-  else if (beatNumber % againstBeat === 0) osc.frequency.value = 220.0;
-  else if (beatNumber % baseBeat === 0) osc.frequency.value = 440.0;
-
-  osc.start( time );
-  osc.stop( time + noteLength );
-}
-
-const scheduler = () => {
-  while (nextNoteTime < audioContext.currentTime + scheduleAheadTime ) {
-    scheduleNote( current16thNote, nextNoteTime );
-    nextNote();
+  play() {
+    this.isPlaying = !this.isPlaying;
+  
+    if (this.isPlaying) {
+      if (engine) {
+        engine.current16thNote = 0;
+        engine.nextNoteTime = audioContext.currentTime;
+      }
+      timerWorker.postMessage("start");
+      if (view) view.playButton.innerHTML = 'stop';
+    } else {
+      timerWorker.postMessage("stop");
+      if (view) view.playButton.innerHTML = 'play';
+    }
   }
 }
 
-const play = () => {
-  isPlaying = !isPlaying;
+class View {
+  playButton: HTMLButtonElement;
+  BPMlabel: HTMLElement;
+  BPMslider: HTMLElement;
+  baseBeatLabel: HTMLElement;
+  baseBeatSlider: HTMLElement;
 
-  if (isPlaying) {
-    current16thNote = 0;
-    nextNoteTime = audioContext.currentTime;
-    timerWorker.postMessage("start");
-    playButton.innerHTML = 'stop';
-  } else {
-    timerWorker.postMessage("stop");
-    playButton.innerHTML = 'play';
+  againstBeatLabel: HTMLElement;
+  againstBeatSlider: HTMLElement;
+
+  constructor() {
+    this.playButton = document.querySelector('.play');
+    this.BPMlabel = document.getElementById('showTempo');
+    this.BPMslider = document.getElementById('tempo');
+    this.againstBeatLabel = document.getElementById('againstBeatLabel');
+    this.againstBeatSlider = document.getElementById('againstBeatSlider');
+    this.baseBeatLabel = document.getElementById('baseBeatLabel');
+    this.baseBeatSlider = document.getElementById('baseBeatSlider');
+
+    this.playButton.addEventListener('click', () => {
+      app.play();
+    })
+
+    this.BPMslider.addEventListener('input', (event) => {
+      metronome.tempo = (event.target as HTMLInputElement).value as unknown as number;
+      this.BPMlabel.innerText = `${metronome.tempo}`;
+    })
+    
+    this.againstBeatSlider.addEventListener('input', (event) => {
+      metronome.againstBeat = (event.target as HTMLInputElement).value as unknown as number;
+      this.againstBeatLabel.innerText = `${metronome.againstBeat}`;
+    })
+
+    this.baseBeatSlider.addEventListener('input', (event) => {
+      metronome.baseBeat = (event.target as HTMLInputElement).value as unknown as number;
+      this.baseBeatLabel.innerText = `${metronome.baseBeat}`;
+    })
   }
 }
 
-const init = () => {
-  audioContext = new AudioContext();
-  timerWorker = new Worker(new URL('../workers/worker.tsx', import.meta.url));
-  timerWorker.onmessage = (e) => (e.data == "tick") ? scheduler() : console.log("message: " + e.data);
-  timerWorker.postMessage({"interval": lookahead});
+class Metronome {
+  againstBeat: number;
+  baseBeat: number;
+  tempo: number;
+
+  constructor(){
+    this.againstBeat = 3;
+    this.baseBeat = 4;
+    this.tempo = 120.0;  
+  }
 }
 
-const playButton = document.querySelector('.play');
+class Engine {
+  current16thNote: number;
+  lookahead: number;
+  scheduleAheadTime: number;
+  nextNoteTime: number;
+  noteLength: number;
+  notesInQueue: any[];
 
-playButton.addEventListener('click', () => {
-  play();
-})
+  constructor(){
+    this.current16thNote = 0;        // What note is currently last scheduled?
+    this.lookahead = 25.0;           // How frequently to call scheduling function (in milliseconds)
+    this.scheduleAheadTime = 0.1;    // How far ahead to schedule audio (sec). This is calculated from lookahead, and overlaps with next interval (in case the timer is late)
+    this.nextNoteTime = 0.0;         // when the next note is due.
+    this.noteLength = 0.05;          // length of "beep" (in seconds)
+    this.notesInQueue = [];          // the notes that have been put into the web audio, and may or may not have played yet. {note, time}    
+  }
 
-const showTempo = document.getElementById('showTempo');
-const inputTempo = document.getElementById('tempo');
+  nextNote() {
+    let secondsPerBeat = 60.0 / metronome.tempo;
+    engine.nextNoteTime += 0.25 * secondsPerBeat;
+  
+    engine.current16thNote++;
+    if (engine.current16thNote == metronome.againstBeat * metronome.baseBeat) engine.current16thNote = 0;
+  }
+  
+  scheduleNote( beatNumber: number, time: number ) {
+    this.notesInQueue.push( { note: beatNumber, time: time } );
+  
+    console.log('beatNumber', beatNumber);
+  
+    if (beatNumber % metronome.baseBeat !== 0 && beatNumber % metronome.againstBeat !== 0) return; // we're not playing non-8th 16th notes
+  
+    // create an oscillator
+    let osc = audioContext.createOscillator();
+    osc.connect( audioContext.destination );
+    if (beatNumber % (metronome.baseBeat * metronome.againstBeat) === 0) osc.frequency.value = 880.0;
+    else if (beatNumber % metronome.againstBeat === 0) osc.frequency.value = 220.0;
+    else if (beatNumber % metronome.baseBeat === 0) osc.frequency.value = 440.0;
+  
+    osc.start( time );
+    osc.stop( time + this.noteLength );
+  }
+  
+  scheduler() {
+    while (this.nextNoteTime < audioContext.currentTime + this.scheduleAheadTime ) {
+      this.scheduleNote( this.current16thNote, this.nextNoteTime );
+      this.nextNote();
+    }
+  }
+}
 
-inputTempo.addEventListener('input', (event) => {
-  tempo = (event.target as HTMLInputElement).value as unknown as number;
-  console.log('tempo is ', tempo);
-  showTempo.innerText = `${tempo}`;
-})
+const view = new View();
+const metronome = new Metronome();
+const engine = new Engine();
 
-const showAgainstBeat = document.getElementById('againstBeat');
-const inputAgainstBeat = document.getElementById('againstSlider');
+const app = new App();
 
-inputAgainstBeat.addEventListener('input', (event) => {
-  againstBeat = (event.target as HTMLInputElement).value as unknown as number;
-  showAgainstBeat.innerText = `${againstBeat}`;
-  console.log('againstBeat', againstBeat);
-})
-
-const showBaseBeat = document.getElementById('baseBeat');
-const inputBaseBeat = document.getElementById('baseSlider');
-
-inputBaseBeat.addEventListener('input', (event) => {
-  baseBeat = (event.target as HTMLInputElement).value as unknown as number;
-  showBaseBeat.innerText = `${baseBeat}`;
-  console.log('baseBeat', baseBeat);
-})
-
-
-
-window.addEventListener("load", init );
+window.addEventListener("load", app.init );
