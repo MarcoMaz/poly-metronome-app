@@ -1,5 +1,7 @@
 # Distribution folders
-dist/
+/dist
 
 # Packages folders
 node_modules
+
+#production
