@@ -1,5 +1,10 @@
 let audioContext: AudioContext = null;
-let timerWorker: Worker = null; // The Web Worker used to fire timer messages       
+let timerWorker: Worker = null; // The Web Worker used to fire timer messages
+
+let canvas: HTMLCanvasElement;
+let canvasContext: CanvasRenderingContext2D;
+
+var last16thNoteDrawn = -1; // the last "box" we drew on the screen
 
 class App {
   isPlaying: boolean;
@@ -9,7 +14,21 @@ class App {
   }
 
   init() {
+    const container = document.createElement( 'div' );
+    container.className = "container";
+    canvas = document.createElement( 'canvas' );
+    canvasContext = canvas.getContext( '2d' );
+    canvas.width = window.innerWidth; 
+    canvas.height = window.innerHeight; 
+    document.body.appendChild( container );
+    container.appendChild(canvas);    
+    canvasContext.strokeStyle = "#ffffff";
+    canvasContext.lineWidth = 2;
+
     audioContext = new AudioContext();
+
+    window.requestAnimationFrame(draw);    // start the drawing loop.
+
     timerWorker = new Worker(new URL('../workers/worker.tsx', import.meta.url));
     timerWorker.onmessage = (e) => (e.data == "tick") ? engine.scheduler() : console.log("message: " + e.data);
     timerWorker.postMessage({"interval": engine.lookahead});
@@ -112,7 +131,7 @@ class Engine {
   scheduleNote( beatNumber: number, time: number ) {
     this.notesInQueue.push( { note: beatNumber, time: time } );
   
-    console.log('beatNumber', beatNumber);
+    // console.log('beatNumber', beatNumber);
   
     if (beatNumber % metronome.baseBeat !== 0 && beatNumber % metronome.againstBeat !== 0) return; // we're not playing non-8th 16th notes
   
@@ -133,6 +152,57 @@ class Engine {
       this.nextNote();
     }
   }
+}
+
+const draw = () => {
+  let currentNote = last16thNoteDrawn;
+  let currentTime = audioContext.currentTime;
+
+  const RECT_WIDTH = 100;
+  
+  while (engine.notesInQueue.length && engine.notesInQueue[0].time < currentTime) {
+    currentNote = engine.notesInQueue[0].note;
+    engine.notesInQueue.splice(0, 1);
+  }  
+  
+  // We only need to draw if the note has moved.
+  if (last16thNoteDrawn != currentNote) {
+    const RECT_BASE_SIZE = Math.floor( canvas.width / 18 );
+    
+    canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // AgainstBeat
+    for (let i = 0; i < metronome.againstBeat; i++) {
+      const againstBeatRectX = RECT_BASE_SIZE + ( i * RECT_WIDTH );
+      const againstBeatRectY = 10;
+      const againstBeatRectWidth = 10;
+      const againstBeatRectHeight = RECT_BASE_SIZE / 2;
+
+      if (currentNote % metronome.baseBeat === 0){
+        canvasContext.fillStyle = (currentNote / metronome.baseBeat ===  i) ? 'yellow' : 'purple'   
+      } else {
+        canvasContext.fillStyle = 'purple'
+      }
+      canvasContext.fillRect( againstBeatRectX, againstBeatRectY, againstBeatRectWidth, againstBeatRectHeight );
+    }
+
+    // BaseBeat
+    for (let j = 0; j < metronome.baseBeat; j++) {
+      const baseBeatRectX = RECT_BASE_SIZE + ( (j * RECT_WIDTH) / metronome.baseBeat * metronome.againstBeat );
+      const baseBeatRectY = RECT_BASE_SIZE;
+      const baseBeatRectWidth = 10;
+      const baseBeatRectHeight = RECT_BASE_SIZE / 2;
+
+      if (currentNote % metronome.againstBeat === 0){
+        canvasContext.fillStyle = (currentNote / metronome.againstBeat ===  j) ? 'red' : 'blue'   
+      } else {
+        canvasContext.fillStyle = 'blue'
+      }
+      canvasContext.fillRect( baseBeatRectX, baseBeatRectY, baseBeatRectWidth, baseBeatRectHeight );
+    }
+    last16thNoteDrawn = currentNote;
+  }
+  window.requestAnimationFrame(draw);
 }
 
 const view = new View();
