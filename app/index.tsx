@@ -60,6 +60,7 @@ class View {
 
   againstBeatLabel: HTMLElement;
   againstBeatSlider: HTMLElement;
+  switchBeatsButton: HTMLElement;
 
   constructor() {
     this.playButton = document.querySelector('.play');
@@ -69,6 +70,10 @@ class View {
     this.againstBeatSlider = document.getElementById('againstBeatSlider');
     this.baseBeatLabel = document.getElementById('baseBeatLabel');
     this.baseBeatSlider = document.getElementById('baseBeatSlider');
+    this.switchBeatsButton = document.getElementById('switchBeatsButton');
+
+    console.log('this.againstBeat', this.againstBeatLabel)
+    console.log('this.baseBeat', this.baseBeatLabel);
 
     this.playButton.addEventListener('click', () => {
       app.play();
@@ -87,6 +92,12 @@ class View {
     this.baseBeatSlider.addEventListener('input', (event) => {
       metronome.baseBeat = (event.target as HTMLInputElement).value as unknown as number;
       this.baseBeatLabel.innerText = `${metronome.baseBeat}`;
+    })
+
+    this.switchBeatsButton.addEventListener('click', () => {
+      [metronome.againstBeat, metronome.baseBeat] = [metronome.baseBeat, metronome.againstBeat];
+      this.baseBeatLabel.innerText = `${metronome.baseBeat}`;
+      this.againstBeatLabel.innerText = `${metronome.againstBeat}`;
     })
   }
 }
@@ -159,6 +170,8 @@ const draw = () => {
   let currentTime = audioContext.currentTime;
 
   const RECT_WIDTH = 100;
+  const ACTIVE_BEAT_COLOR_CURRENT = 'blue';
+  const ACTIVE_BEAT_COLOR_OTHER = 'lightblue';
   
   while (engine.notesInQueue.length && engine.notesInQueue[0].time < currentTime) {
     currentNote = engine.notesInQueue[0].note;
@@ -179,9 +192,9 @@ const draw = () => {
       const againstBeatRectHeight = RECT_BASE_SIZE / 2;
 
       if (currentNote % metronome.baseBeat === 0){
-        canvasContext.fillStyle = (currentNote / metronome.baseBeat ===  i) ? 'yellow' : 'purple'   
+        canvasContext.fillStyle = (currentNote / metronome.baseBeat ===  i) ? ACTIVE_BEAT_COLOR_CURRENT : ACTIVE_BEAT_COLOR_OTHER
       } else {
-        canvasContext.fillStyle = 'purple'
+        canvasContext.fillStyle = ACTIVE_BEAT_COLOR_OTHER
       }
       canvasContext.fillRect( againstBeatRectX, againstBeatRectY, againstBeatRectWidth, againstBeatRectHeight );
     }
@@ -194,9 +207,9 @@ const draw = () => {
       const baseBeatRectHeight = RECT_BASE_SIZE / 2;
 
       if (currentNote % metronome.againstBeat === 0){
-        canvasContext.fillStyle = (currentNote / metronome.againstBeat ===  j) ? 'red' : 'blue'   
+        canvasContext.fillStyle = (currentNote / metronome.againstBeat ===  j) ? ACTIVE_BEAT_COLOR_CURRENT : ACTIVE_BEAT_COLOR_OTHER  
       } else {
-        canvasContext.fillStyle = 'blue'
+        canvasContext.fillStyle = ACTIVE_BEAT_COLOR_OTHER
       }
       canvasContext.fillRect( baseBeatRectX, baseBeatRectY, baseBeatRectWidth, baseBeatRectHeight );
     }
