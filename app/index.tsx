@@ -22,8 +22,6 @@ class App {
     canvas.height = window.innerHeight; 
     document.body.appendChild( container );
     container.appendChild(canvas);    
-    canvasContext.strokeStyle = "#ffffff";
-    canvasContext.lineWidth = 2;
 
     audioContext = new AudioContext();
 
@@ -61,6 +59,8 @@ class View {
   againstBeatLabel: HTMLElement;
   againstBeatSlider: HTMLElement;
   switchBeatsButton: HTMLElement;
+  radioButtons: any;
+  selectedGUI: string;
 
   constructor() {
     this.playButton = document.querySelector('.play');
@@ -71,9 +71,8 @@ class View {
     this.baseBeatLabel = document.getElementById('baseBeatLabel');
     this.baseBeatSlider = document.getElementById('baseBeatSlider');
     this.switchBeatsButton = document.getElementById('switchBeatsButton');
-
-    console.log('this.againstBeat', this.againstBeatLabel)
-    console.log('this.baseBeat', this.baseBeatLabel);
+    this.radioButtons = document.querySelectorAll('input[name="view-radio-btn"]');  
+    this.selectedGUI = 'view-square';
 
     this.playButton.addEventListener('click', () => {
       app.play();
@@ -99,6 +98,12 @@ class View {
       this.baseBeatLabel.innerText = `${metronome.baseBeat}`;
       this.againstBeatLabel.innerText = `${metronome.againstBeat}`;
     })
+
+    for (const radioButton of this.radioButtons) {
+      radioButton.addEventListener('change', () => {
+        if(radioButton.checked) this.selectedGUI = radioButton.value      
+      });
+    }
   }
 }
 
@@ -141,9 +146,7 @@ class Engine {
   
   scheduleNote( beatNumber: number, time: number ) {
     this.notesInQueue.push( { note: beatNumber, time: time } );
-  
-    // console.log('beatNumber', beatNumber);
-  
+    
     if (beatNumber % metronome.baseBeat !== 0 && beatNumber % metronome.againstBeat !== 0) return; // we're not playing non-8th 16th notes
   
     // create an oscillator
@@ -169,7 +172,6 @@ const draw = () => {
   let currentNote = last16thNoteDrawn;
   let currentTime = audioContext.currentTime;
 
-  const RECT_WIDTH = 100;
   const ACTIVE_BEAT_COLOR_CURRENT = 'blue';
   const ACTIVE_BEAT_COLOR_OTHER = 'lightblue';
   
@@ -179,40 +181,63 @@ const draw = () => {
   }  
   
   // We only need to draw if the note has moved.
-  if (last16thNoteDrawn != currentNote) {
-    const RECT_BASE_SIZE = Math.floor( canvas.width / 18 );
+  if (last16thNoteDrawn != currentNote) {    
     
+    // General constants
+    const HORIZONTAL_GAP_BETWEEN_ELEMENTS = 100;
+    const VERTICAL_GAP_BETWEEN_ELEMENTS = 10;
+
+    // Rect
+    const ELEMENT_BASE_SIZE = Math.floor( canvas.width / 18 );
+    const RECT_WIDTH = view.selectedGUI === 'view-square' ?  21 : 1;
+    
+    // Dot
+    const DOT_RADIUS = 10;
+    const DOT_START_ANGLE = 0;
+    const DOT_END_ANGLE = 2 * Math.PI;
+
     canvasContext.clearRect(0, 0, canvas.width, canvas.height);
-    
+
     // AgainstBeat
     for (let i = 0; i < metronome.againstBeat; i++) {
-      const againstBeatRectX = RECT_BASE_SIZE + ( i * RECT_WIDTH );
-      const againstBeatRectY = 10;
-      const againstBeatRectWidth = 10;
-      const againstBeatRectHeight = RECT_BASE_SIZE / 2;
+
+      const AGAINST_BEAT_ELEMENT_X = ELEMENT_BASE_SIZE + ( i * HORIZONTAL_GAP_BETWEEN_ELEMENTS );
 
       if (currentNote % metronome.baseBeat === 0){
         canvasContext.fillStyle = (currentNote / metronome.baseBeat ===  i) ? ACTIVE_BEAT_COLOR_CURRENT : ACTIVE_BEAT_COLOR_OTHER
       } else {
         canvasContext.fillStyle = ACTIVE_BEAT_COLOR_OTHER
       }
-      canvasContext.fillRect( againstBeatRectX, againstBeatRectY, againstBeatRectWidth, againstBeatRectHeight );
+
+      if (view.selectedGUI === 'view-square' || view.selectedGUI === 'view-pipelines') {
+        canvasContext.fillRect( AGAINST_BEAT_ELEMENT_X, VERTICAL_GAP_BETWEEN_ELEMENTS, RECT_WIDTH, ELEMENT_BASE_SIZE / 2 );
+      } else {
+        canvasContext.beginPath();
+        canvasContext.arc(AGAINST_BEAT_ELEMENT_X, VERTICAL_GAP_BETWEEN_ELEMENTS, DOT_RADIUS, DOT_START_ANGLE, DOT_END_ANGLE);
+        canvasContext.fill();  
+      }
     }
 
     // BaseBeat
     for (let j = 0; j < metronome.baseBeat; j++) {
-      const baseBeatRectX = RECT_BASE_SIZE + ( (j * RECT_WIDTH) / metronome.baseBeat * metronome.againstBeat );
-      const baseBeatRectY = RECT_BASE_SIZE;
-      const baseBeatRectWidth = 10;
-      const baseBeatRectHeight = RECT_BASE_SIZE / 2;
 
+      const BASE_BEAT_ELEMENT_X = ELEMENT_BASE_SIZE + ( (j * HORIZONTAL_GAP_BETWEEN_ELEMENTS) / metronome.baseBeat * metronome.againstBeat );
+      
       if (currentNote % metronome.againstBeat === 0){
         canvasContext.fillStyle = (currentNote / metronome.againstBeat ===  j) ? ACTIVE_BEAT_COLOR_CURRENT : ACTIVE_BEAT_COLOR_OTHER  
       } else {
         canvasContext.fillStyle = ACTIVE_BEAT_COLOR_OTHER
       }
-      canvasContext.fillRect( baseBeatRectX, baseBeatRectY, baseBeatRectWidth, baseBeatRectHeight );
+      
+      if (view.selectedGUI === 'view-square' || view.selectedGUI === 'view-pipelines') {
+        canvasContext.fillRect( BASE_BEAT_ELEMENT_X, ELEMENT_BASE_SIZE, RECT_WIDTH, ELEMENT_BASE_SIZE / 2 );
+      } else {
+        canvasContext.beginPath();
+        canvasContext.arc(BASE_BEAT_ELEMENT_X, ELEMENT_BASE_SIZE, DOT_RADIUS, DOT_START_ANGLE, DOT_END_ANGLE);
+        canvasContext.fill();  
+      }
     }
+
     last16thNoteDrawn = currentNote;
   }
   window.requestAnimationFrame(draw);
