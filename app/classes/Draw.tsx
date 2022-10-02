@@ -8,7 +8,12 @@ import {
   canvasContext,
 } from '../index';
 
-export const Draw = () => {
+/**
+ *  This function draws the beats on the screen.
+ * @constructor
+ */
+
+const Draw = () => {
   let currentNote = last16thNoteDrawn;
   const { currentTime } = audioContext;
 
@@ -24,7 +29,6 @@ export const Draw = () => {
     engine.notesInQueue.splice(0, 1);
   }
 
-  // We only need to draw if the note has moved.
   if (last16thNoteDrawn !== currentNote) {
     // General constants
     const HORIZONTAL_GAP_BETWEEN_ELEMENTS = 100;
@@ -46,7 +50,7 @@ export const Draw = () => {
     canvasContext.clearRect(0, 0, canvas.width, canvas.height);
 
     // AgainstBeat
-    for (let i = 0; i < metronome.againstBeat; i++) {
+    for (let i = 0; i < metronome.againstBeat; i += 1) {
       const AGAINST_BEAT_ELEMENT_X =
         ELEMENT_BASE_SIZE + i * HORIZONTAL_GAP_BETWEEN_ELEMENTS;
 
@@ -98,7 +102,7 @@ export const Draw = () => {
     }
 
     // BaseBeat
-    for (let j = 0; j < metronome.baseBeat; j++) {
+    for (let j = 0; j < metronome.baseBeat; j += 1) {
       const BASE_BEAT_ELEMENT_X =
         ELEMENT_BASE_SIZE +
         ((j * HORIZONTAL_GAP_BETWEEN_ELEMENTS) / metronome.baseBeat) *
@@ -152,8 +156,8 @@ export const Draw = () => {
         canvasContext.fill();
       }
     }
-
-    // last16thNoteDrawn = currentNote;
   }
   window.requestAnimationFrame(Draw);
 };
+
+export default Draw;

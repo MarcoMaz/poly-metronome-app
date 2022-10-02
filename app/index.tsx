@@ -1,18 +1,27 @@
-import { Engine } from './classes/Engine';
-import { View } from './classes/View';
-import { Metronome } from './classes/Metronome';
-import { Draw } from './classes/Draw';
+/* eslint-disable no-console */
+/* eslint-disable import/no-mutable-exports */
+import Engine from './classes/Engine';
+import View from './classes/View';
+import Metronome from './classes/Metronome';
+import Draw from './classes/Draw';
 
 export let audioContext: AudioContext = null;
 export let canvas: HTMLCanvasElement;
 export let canvasContext: CanvasRenderingContext2D;
 export const last16thNoteDrawn = -1; // the last "box" we drew on the screen
-
-let timerWorker: Worker = null; // The Web Worker used to fire timer messages
+let timerWorker: Worker = null;
 
 export const view = new View();
 export const metronome = new Metronome();
 export const engine = new Engine();
+
+/**
+ *  This class represents the app itself.
+ *
+ * @constructor
+ * @param {boolean} isPlaying    - Wheter of not the app is playing.
+ */
+
 class App {
   isPlaying: boolean;
 
@@ -20,6 +29,7 @@ class App {
     this.isPlaying = false;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   init() {
     const container = document.createElement('div');
     container.className = 'container';
@@ -32,7 +42,7 @@ class App {
 
     audioContext = new AudioContext();
 
-    window.requestAnimationFrame(Draw); // start the drawing loop.
+    window.requestAnimationFrame(Draw);
 
     timerWorker = new Worker(new URL('../workers/worker.tsx', import.meta.url));
     timerWorker.onmessage = (e) =>

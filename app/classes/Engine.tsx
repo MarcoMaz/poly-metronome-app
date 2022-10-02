@@ -1,6 +1,19 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { metronome, engine, audioContext } from '../index';
 
-export class Engine {
+/**
+ *  This class represents the math behind the metronome's calculations.
+ *
+ * @constructor
+ * @param {number} current16thNote    - The last scheduled note.
+ * @param {number} lookahead          - The scheduler's call (in milliseconds)
+ * @param {number} scheduleAheadTime  - The scheduled audio (in seconds) calculated from lookahead. It overlaps with next interval (in case the timer is late).
+ * @param {number} nextNoteTime       - The next note's due.
+ * @param {number} noteLength         - The "beep"'s length (in seconds).
+ * @param {any[]} notesInQueue        - The notes put into the web audio, and may or may not have played yet. {note, time}
+ */
+
+class Engine {
   current16thNote: number;
 
   lookahead: number;
@@ -14,19 +27,20 @@ export class Engine {
   notesInQueue: any[];
 
   constructor() {
-    this.current16thNote = 0; // What note is currently last scheduled?
-    this.lookahead = 25.0; // How frequently to call scheduling function (in milliseconds)
-    this.scheduleAheadTime = 0.1; // How far ahead to schedule audio (sec). This is calculated from lookahead, and overlaps with next interval (in case the timer is late)
-    this.nextNoteTime = 0.0; // when the next note is due.
-    this.noteLength = 0.05; // length of "beep" (in seconds)
-    this.notesInQueue = []; // the notes that have been put into the web audio, and may or may not have played yet. {note, time}
+    this.current16thNote = 0;
+    this.lookahead = 25.0;
+    this.scheduleAheadTime = 0.1;
+    this.nextNoteTime = 0.0;
+    this.noteLength = 0.05;
+    this.notesInQueue = [];
   }
 
+  // eslint-disable-next-line class-methods-use-this
   nextNote() {
     const secondsPerBeat = 60.0 / metronome.tempo;
     engine.nextNoteTime += 0.25 * secondsPerBeat;
 
-    engine.current16thNote++;
+    engine.current16thNote += 1;
     if (engine.current16thNote === metronome.againstBeat * metronome.baseBeat)
       engine.current16thNote = 0;
   }
@@ -38,9 +52,8 @@ export class Engine {
       beatNumber % metronome.baseBeat !== 0 &&
       beatNumber % metronome.againstBeat !== 0
     )
-      return; // we're not playing non-8th 16th notes
+      return;
 
-    // create an oscillator
     const osc = audioContext.createOscillator();
     osc.connect(audioContext.destination);
     if (beatNumber % (metronome.baseBeat * metronome.againstBeat) === 0)
@@ -63,3 +76,5 @@ export class Engine {
     }
   }
 }
+
+export default Engine;

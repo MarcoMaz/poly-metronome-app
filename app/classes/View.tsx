@@ -1,6 +1,22 @@
 import { app, metronome } from '../index';
 
-export class View {
+/**
+ * This class represents the UI of the metronome.
+ *
+ * @constructor
+ * @param {HTMLButtonElement} playButton                - The play button.
+ * @param {HTMLElement} BPMlabel                        - The input label of the BPM.
+ * @param {HTMLElement} BPMslider                       - The input slider of the BPM.
+ * @param {HTMLElement} baseBeatLabel                   - The input label of the baseBeat.
+ * @param {HTMLElement} baseBeatSlider                  - The input slider of the baseBeat.
+ * @param {HTMLElement} againstBeatLabel                - The input label of the againstBeat.
+ * @param {HTMLElement} againstBeatSlider               - The input slider of the againstBeat.
+ * @param {HTMLElement} switchBeatsButton               - The button toggling baseBeat and againstBeat.
+ * @param {NodeListOf<HTMLInputElement>} radioButtons   - The collections of radio buttons handling the GUI.
+ * @param {string} selectedGUI:                         - The selected GUI.
+ */
+
+class View {
   playButton: HTMLButtonElement;
 
   BPMlabel: HTMLElement;
@@ -17,7 +33,7 @@ export class View {
 
   switchBeatsButton: HTMLElement;
 
-  radioButtons: any;
+  radioButtons: NodeListOf<HTMLInputElement>;
 
   selectedGUI: string;
 
@@ -66,10 +82,12 @@ export class View {
       this.againstBeatLabel.innerText = `${metronome.againstBeat}`;
     });
 
-    for (const radioButton of this.radioButtons) {
+    this.radioButtons.forEach((radioButton: HTMLInputElement) => {
       radioButton.addEventListener('change', () => {
         if (radioButton.checked) this.selectedGUI = radioButton.value;
       });
-    }
+    });
   }
 }
+
+export default View;
