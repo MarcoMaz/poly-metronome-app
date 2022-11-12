@@ -13,14 +13,12 @@
     <title>My Awesome application</title>
   </head>
   <body>
-    <div id="controls">
-      <div>
-        <button type="button" class="play">play</button>
-      </div>
-      <div id="tempoBox">Tempo: 
-        <span id="showTempo">120</span>BPM
+    <div id="controls">      
+      <button type="button" class="app__toggle">play</button>
+      <div> 
+        <span class="bpm__label">120</span>BPM
         <input 
-          id="tempo" 
+          class="bpm__slider" 
           type="range" 
           min="30.0" 
           max="300.0" 
@@ -29,12 +27,12 @@
           >
       </div>
       <br/>
-      <span id="againstBeatLabel">3</span>
-      <input id="againstBeatSlider" type="range" min="2" max="9" step="1" value="3">
+      <span class="against-beat__label">3</span>
+      <input class="against-beat__slider" type="range" min="2" max="9" step="1" value="3">
       <em>against</em>
-      <span id="baseBeatLabel">4</span>
-      <input id="baseBeatSlider" type="range" min="2" max="9" step="1" value="4">
-      <button id="switchBeatsButton" type="'button">Switch Beats</button>
+      <span class="base-beat__label">4</span>
+      <input class="base-beat__slider" type="range" min="2" max="9" step="1" value="4">
+      <button class="toggle-beats" type="'button">Switch Beats</button>
     </div>
     <div>
       <div>
@@ -42,17 +40,24 @@
         <label for="view-square">Square (default)</label>
       </div>
       <div>
-        <input type="radio" id="view-pipelines" name="view-radio-btn" value="view-pipelines">
+        <input type="radio" id="view-pipelines" name="view-radio-btn" value="view-pipelines" >
         <label for="view-pipelines">Pipelines</label>
       </div>
       <div>
-        <input type="radio" id="view-grid" name="view-radio-btn" value="view-grid">
+        <input type="radio" id="view-grid" name="view-radio-btn" value="view-grid" >
         <label for="view-grid">Grid</label>
       </div>
       <div>
         <input type="radio" id="view-dots" name="view-radio-btn" value="view-dots">
         <label for="view-dots">Dots</label>
       </div>
+    </div>
+    <canvas>
+
+    </canvas>
+
+    <div class="-warning">
+      This is NOT a polyrhythm!
     </div>
   </body>
 </html>

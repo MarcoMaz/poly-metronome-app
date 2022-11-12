@@ -19,7 +19,7 @@ const dirNode = 'node_modules';
 
 module.exports = {
   entry: [
-    path.join(dirApp, 'index.tsx'),
+    path.join(dirApp, 'index.ts'),
     path.join(dirStyles, 'index.scss')
   ],
 
