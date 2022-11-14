@@ -20,8 +20,12 @@ import Observable from "./Observable";
 const APP_TOGGLE = ".app__toggle";
 const BPM_LABEL = ".bpm__label";
 const BPM_SLIDER = ".bpm__slider";
+const BPM_INPUT_NUMBER = ".bpm__inputNumber";
+const BPM_INPUT_NUMBER_STEP_FIVE = ".bpm__inputNumber--step-five";
+const AGAINST_BEAT_INPUT_NUMBER = ".against-beat__inputNumber";
 const AGAINST_BEAT_LABEL = ".against-beat__label";
 const AGAINST_BEAT_SLIDER = ".against-beat__slider";
+const BASE_BEAT_INPUT_NUMBER = ".base-beat__inputNumber";
 const BASE_BEAT_LABEL = ".base-beat__label";
 const BASE_BEAT_SLIDER = ".base-beat__slider";
 const TOGGLE_BEATS = ".toggle-beats";
@@ -33,15 +37,24 @@ class View {
   private appToggle: HTMLButtonElement;
 
   private BPMlabel: HTMLElement;
-  private BPMslider: HTMLElement;
 
-  private baseBeatLabel: HTMLElement;
+  private BPMslider: HTMLInputElement;
 
-  private baseBeatSlider: HTMLElement;
+  private BPMinputNumber: HTMLInputElement;
+
+  private BPMinputNumberStepFive: HTMLInputElement;
+
+  private againstBeatInputNumber: HTMLInputElement;
 
   private againstBeatLabel: HTMLElement;
 
-  private againstBeatSlider: HTMLElement;
+  private againstBeatSlider: HTMLInputElement;
+
+  private baseBeatInputNumber: HTMLInputElement;
+
+  private baseBeatLabel: HTMLElement;
+
+  private baseBeatSlider: HTMLInputElement;
 
   private toggleBeats: HTMLElement;
 
@@ -62,9 +75,21 @@ class View {
 
     this.BPMslider = document.querySelector(BPM_SLIDER);
 
+    this.BPMinputNumber = document.querySelector(BPM_INPUT_NUMBER);
+
+    this.BPMinputNumberStepFive = document.querySelector(
+      BPM_INPUT_NUMBER_STEP_FIVE
+    );
+
+    this.againstBeatInputNumber = document.querySelector(
+      AGAINST_BEAT_INPUT_NUMBER
+    );
+
     this.againstBeatLabel = document.querySelector(AGAINST_BEAT_LABEL);
 
     this.againstBeatSlider = document.querySelector(AGAINST_BEAT_SLIDER);
+
+    this.baseBeatInputNumber = document.querySelector(BASE_BEAT_INPUT_NUMBER);
 
     this.baseBeatLabel = document.querySelector(BASE_BEAT_LABEL);
 
@@ -93,38 +118,69 @@ class View {
     });
 
     this.BPMslider.addEventListener("input", (event) => {
-      this.metronome.tempo = (event.target as HTMLInputElement)
-        .value as unknown as number;
+      let eventTarget = event.target as HTMLInputElement;
+
+      this.metronome.tempo = eventTarget.value as unknown as number;
       this.BPMlabel.innerText = `${this.metronome.tempo}`;
+
+      this.BPMinputNumber.value = eventTarget.value;
+      this.BPMinputNumberStepFive.value = eventTarget.value;
+    });
+
+    this.BPMinputNumber.addEventListener("change", (event) => {
+      let eventTarget = event.target as HTMLInputElement;
+      this.updateBpmUi(eventTarget);
+      this.BPMinputNumberStepFive.value = eventTarget.value;
+    });
+
+    this.BPMinputNumberStepFive.addEventListener("change", (event) => {
+      let eventTarget = event.target as HTMLInputElement;
+      this.updateBpmUi(eventTarget);
+      this.BPMinputNumber.value = eventTarget.value;
+    });
+
+    this.againstBeatInputNumber.addEventListener("change", (event) => {
+      let eventTarget = event.target as HTMLInputElement;
+
+      this.isPoly(eventTarget.value, this.metronome.baseBeat);
+      this.updateBeatUi(eventTarget, 'against');
     });
 
     this.againstBeatSlider.addEventListener("input", (event) => {
-      let input = event.target as HTMLInputElement;
+      let eventTarget = event.target as HTMLInputElement;
 
-      this.isPoly(input.value, this.metronome.baseBeat);
+      this.isPoly(eventTarget.value, this.metronome.baseBeat);
 
-      this.metronome.againstBeat = (event.target as HTMLInputElement)
-        .value as unknown as number;
-
+      this.metronome.againstBeat = eventTarget.value as unknown as number;
       this.againstBeatLabel.innerText = `${this.metronome.againstBeat}`;
+      this.againstBeatInputNumber.value = eventTarget.value;
+    });
 
-      this.observable.notify(this.metronome.againstBeat);
+    this.baseBeatInputNumber.addEventListener("change", (event) => {
+      let eventTarget = event.target as HTMLInputElement;
+
+      this.isPoly(eventTarget.value, this.metronome.againstBeat);
+      this.updateBeatUi(eventTarget, 'base');
     });
 
     this.baseBeatSlider.addEventListener("input", (event) => {
-      let input = event.target as HTMLInputElement;
+      let eventTarget = event.target as HTMLInputElement;
 
-      this.isPoly(input.value, this.metronome.againstBeat);
+      this.isPoly(eventTarget.value, this.metronome.againstBeat);
 
-      this.metronome.baseBeat = (event.target as HTMLInputElement)
-        .value as unknown as number;
+      this.metronome.baseBeat = eventTarget.value as unknown as number;
       this.baseBeatLabel.innerText = `${this.metronome.baseBeat}`;
+      this.baseBeatInputNumber.value = eventTarget.value;
     });
 
     this.toggleBeats.addEventListener("click", () => {
       [this.metronome.againstBeat, this.metronome.baseBeat] = [
         this.metronome.baseBeat,
         this.metronome.againstBeat,
+      ];
+      [this.againstBeatInputNumber.value, this.baseBeatInputNumber.value] = [
+        this.baseBeatInputNumber.value,
+        this.againstBeatInputNumber.value,
       ];
       this.baseBeatLabel.innerText = `${this.metronome.baseBeat}`;
       this.againstBeatLabel.innerText = `${this.metronome.againstBeat}`;
@@ -161,6 +217,71 @@ class View {
 
   private hideWarning(): void {
     this.warning.classList.remove(SHOW);
+  }
+
+  private updateBpmUi(event: HTMLInputElement): void {
+    this.metronome.tempo = event.value as unknown as number;
+    this.BPMlabel.innerText = `${this.metronome.tempo}`;
+    this.BPMslider.value = event.value;
+
+    if ((event.value as unknown as number) <= 30) {
+      this.metronome.tempo = 30;
+      this.BPMinputNumber.value = "30";
+      this.BPMinputNumberStepFive.value = "30";
+      this.BPMlabel.innerText = "30";
+      this.BPMslider.value = "30";
+    }
+
+    if ((event.value as unknown as number) > 300) {
+      this.metronome.tempo = 300;
+      this.BPMinputNumber.value = "300";
+      this.BPMinputNumberStepFive.value = "300";
+      this.BPMlabel.innerText = "300";
+      this.BPMslider.value = "300";
+    }
+  }
+
+  private updateBeatUi(
+    event: HTMLInputElement,
+    type: "against" | "base"
+  ): void {
+    if (type === "base") {
+      this.metronome.baseBeat = event.value as unknown as number;
+      this.baseBeatLabel.innerText = `${this.metronome.baseBeat}`;
+      this.baseBeatSlider.value = event.value;
+    } else {
+      this.metronome.againstBeat = event.value as unknown as number;
+      this.againstBeatLabel.innerText = `${this.metronome.againstBeat}`;
+      this.againstBeatSlider.value = event.value;
+    }
+
+    if ((event.value as unknown as number) <= 1) {
+      if (type === "base") {
+        this.metronome.baseBeat = 2;
+        this.baseBeatInputNumber.value = "2";
+        this.baseBeatLabel.innerText = "2";
+        this.baseBeatSlider.value = "2";
+      } else {
+        this.metronome.againstBeat = 2;
+        this.againstBeatInputNumber.value = "2";
+        this.againstBeatLabel.innerText = "2";
+        this.againstBeatSlider.value = "2";
+      }
+    }
+
+    if ((event.value as unknown as number) > 9) {
+      if (type === "base") {
+        this.metronome.baseBeat = 9;
+        this.baseBeatInputNumber.value = "9";
+        this.baseBeatLabel.innerText = "9";
+        this.baseBeatSlider.value = "9";
+      }
+    } else {
+      this.metronome.againstBeat = 9;
+      this.againstBeatInputNumber.value = "9";
+      this.againstBeatLabel.innerText = "9";
+      this.againstBeatSlider.value = "9";
+    }
   }
 }
 

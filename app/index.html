@@ -14,8 +14,16 @@
   </head>
   <body>
     <div id="controls">      
-      <button type="button" class="app__toggle">play</button>
+      <button type="button" class="app__toggle">play</button><br/>
       <div> 
+        <div>
+          <span>+/- 1</span><br />
+          <input type="number" class="bpm__inputNumber" min="30" max="300" step="1" value="120"/><br />
+        </div>
+        <div>
+          <span>+/- 5</span><br />
+          <input type="number" class="bpm__inputNumber--step-five" min="30" max="300" step="5" value="120"/><br />
+        </div>
         <span class="bpm__label">120</span>BPM
         <input 
           class="bpm__slider" 
@@ -27,11 +35,19 @@
           >
       </div>
       <br/>
+      <div>
+        <span>+/- 1</span><br />
+        <input type="number" class="against-beat__inputNumber" min="2" max="9" step="1" value="3"/>
+      </div>
       <span class="against-beat__label">3</span>
       <input class="against-beat__slider" type="range" min="2" max="9" step="1" value="3">
       <em>against</em>
       <span class="base-beat__label">4</span>
       <input class="base-beat__slider" type="range" min="2" max="9" step="1" value="4">
+      <div>
+        <span>+/- 1</span><br />
+        <input type="number" class="base-beat__inputNumber" min="2" max="9" step="1" value="4"/>
+      </div>
       <button class="toggle-beats" type="'button">Switch Beats</button>
     </div>
     <div>
@@ -53,9 +69,7 @@
       </div>
     </div>
     <canvas>
-
     </canvas>
-
     <div class="-warning">
       This is NOT a polyrhythm!
     </div>
