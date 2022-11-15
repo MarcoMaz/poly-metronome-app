@@ -18,6 +18,7 @@ import Observable from "./Observable";
  */
 
 const APP_TOGGLE = ".app__toggle";
+const BUTTON_TAP = ".tap";
 const BPM_LABEL = ".bpm__label";
 const BPM_SLIDER = ".bpm__slider";
 const BPM_INPUT_NUMBER = ".bpm__inputNumber";
@@ -35,6 +36,22 @@ const SHOW = "-show";
 
 class View {
   private appToggle: HTMLButtonElement;
+
+  private tap: HTMLElement;
+
+  private newTap: number;
+
+  private lastTap: number;
+
+  private counterTap: number;
+
+  private differenceBetweenTaps: number;
+
+  private avgbpm: number;
+
+  private previousTap: number;
+
+  private elapsedTime: number;
 
   private BPMlabel: HTMLElement;
 
@@ -71,6 +88,22 @@ class View {
   constructor(public metronome: Metronome, public observable: Observable) {
     this.appToggle = document.querySelector(APP_TOGGLE);
 
+    this.tap = document.querySelector(BUTTON_TAP);
+
+    this.newTap = 0;
+
+    this.lastTap = 0;
+    
+    this.counterTap = 0;
+    
+    this.differenceBetweenTaps = 0;
+    
+    this.avgbpm = 0;
+    
+    this.previousTap = 0;
+    
+    this.elapsedTime = 0;
+
     this.BPMlabel = document.querySelector(BPM_LABEL);
 
     this.BPMslider = document.querySelector(BPM_SLIDER);
@@ -102,6 +135,8 @@ class View {
     this.warning = document.querySelector(WARNING);
 
     this.GUIselected = "view-square";
+
+    this.tap.addEventListener("click", () => this.tapTempo());
 
     this.appToggle.addEventListener("click", () => {
       if (this.appToggle.innerHTML === "play") {
@@ -143,7 +178,7 @@ class View {
       let eventTarget = event.target as HTMLInputElement;
 
       this.isPoly(eventTarget.value, this.metronome.baseBeat);
-      this.updateBeatUi(eventTarget, 'against');
+      this.updateBeatUi(eventTarget, "against");
     });
 
     this.againstBeatSlider.addEventListener("input", (event) => {
@@ -160,7 +195,7 @@ class View {
       let eventTarget = event.target as HTMLInputElement;
 
       this.isPoly(eventTarget.value, this.metronome.againstBeat);
-      this.updateBeatUi(eventTarget, 'base');
+      this.updateBeatUi(eventTarget, "base");
     });
 
     this.baseBeatSlider.addEventListener("input", (event) => {
@@ -281,6 +316,37 @@ class View {
       this.againstBeatInputNumber.value = "9";
       this.againstBeatLabel.innerText = "9";
       this.againstBeatSlider.value = "9";
+    }
+  }
+
+  private tapTempo(): void {
+    if (this.lastTap === 0) {
+      this.newTap = new Date().getTime();
+      this.counterTap = 0;
+    }
+
+    this.lastTap = new Date().getTime();
+    this.elapsedTime = new Date().getTime() - this.previousTap;
+    this.previousTap = this.lastTap;
+    this.differenceBetweenTaps = this.lastTap - this.newTap;
+
+    if (this.differenceBetweenTaps !== 0) {
+      this.avgbpm = Math.round(
+        (60000 * this.counterTap) / this.differenceBetweenTaps
+      );
+    } else {
+      this.avgbpm = 30;
+    }
+    this.counterTap++;
+
+    this.metronome.tempo = this.avgbpm;
+    this.BPMlabel.innerText = `${this.metronome.tempo}`;
+    this.BPMinputNumber.value = `${this.metronome.tempo}`;
+    this.BPMinputNumberStepFive.value = `${this.metronome.tempo}`;
+    this.BPMslider.value = `${this.metronome.tempo}`;
+
+    if (this.elapsedTime > 3000) {
+      this.lastTap = 0;
     }
   }
 }
