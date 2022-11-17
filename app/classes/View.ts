@@ -1,3 +1,4 @@
+import Engine from "./Engine";
 import Metronome from "./Metronome";
 import Observable from "./Observable";
 
@@ -19,6 +20,7 @@ import Observable from "./Observable";
 
 const APP_TOGGLE = ".app__toggle";
 const BUTTON_TAP = ".tap";
+const VOLUME_SLIDER = ".volume";
 const BPM_LABEL = ".bpm__label";
 const BPM_SLIDER = ".bpm__slider";
 const BPM_INPUT_NUMBER = ".bpm__inputNumber";
@@ -38,6 +40,8 @@ class View {
   private appToggle: HTMLButtonElement;
 
   private tap: HTMLElement;
+
+  private volumeSlider: HTMLInputElement;
 
   private newTap: number;
 
@@ -85,10 +89,12 @@ class View {
 
   private onPause?: () => void;
 
-  constructor(public metronome: Metronome, public observable: Observable) {
+  constructor(public metronome: Metronome, public engine: Engine, public observable: Observable) {
     this.appToggle = document.querySelector(APP_TOGGLE);
 
     this.tap = document.querySelector(BUTTON_TAP);
+
+    this.volumeSlider = document.querySelector(VOLUME_SLIDER);    
 
     this.newTap = 0;
 
@@ -137,6 +143,12 @@ class View {
     this.GUIselected = "view-square";
 
     this.tap.addEventListener("click", () => this.tapTempo());
+
+    this.volumeSlider.addEventListener('input', (event) => {
+      let eventTarget = event.target as HTMLInputElement;      
+
+      this.engine.gainNode.gain.value = eventTarget.value as unknown as number;
+    });
 
     this.appToggle.addEventListener("click", () => {
       if (this.appToggle.innerHTML === "play") {

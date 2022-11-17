@@ -27,6 +27,8 @@ class Engine {
 
   public state: any;
 
+  public gainNode: GainNode;
+
   constructor(public metronome: Metronome, public audioContext: AudioContext) {
     this.current16thNote = 0;
     this.lookahead = 25.0;
@@ -34,15 +36,19 @@ class Engine {
     this.nextNoteTime = 0.0;
     this.noteLength = 0.05;
     this.notesInQueue = [];
+    this.gainNode = this.audioContext.createGain();
   }
 
   private nextNote(): void {
     const secondsPerBeat = 60.0 / this.metronome.tempo;
     this.nextNoteTime += 0.25 * secondsPerBeat;
 
-    this.current16thNote += 1;    
+    this.current16thNote += 1;
 
-    if (this.current16thNote === (this.metronome.againstBeat * this.metronome.baseBeat))
+    if (
+      this.current16thNote ===
+      this.metronome.againstBeat * this.metronome.baseBeat
+    )
       this.current16thNote = 0;
   }
 
@@ -56,10 +62,13 @@ class Engine {
       return;
 
     const osc = this.audioContext.createOscillator();
-    osc.connect(this.audioContext.destination);
+    osc.connect(this.gainNode).connect(this.audioContext.destination);
 
-
-    if (beatNumber % (this.metronome.againstBeat * this.metronome.baseBeat) === 0) osc.frequency.value = 880.0;
+    if (
+      beatNumber % (this.metronome.againstBeat * this.metronome.baseBeat) ===
+      0
+    )
+      osc.frequency.value = 880.0;
     else if (beatNumber % this.metronome.againstBeat === 0)
       osc.frequency.value = 220.0;
     else if (beatNumber % this.metronome.baseBeat === 0)
@@ -78,7 +87,7 @@ class Engine {
       this.nextNote();
     }
   }
-  
+
   // public udpate(state: any): void {
   //   console.log("ENGINE");
   // }

@@ -46,7 +46,7 @@ class App {
     this.engine = new Engine(this.metronome, this.audioContext);
 
     // Connect the Observable
-    this.view = new View(this.metronome, this.observable);
+    this.view = new View(this.metronome, this.engine, this.observable);
     this.view.setOnPlay(() => {
       app.play();
       this.canvas.playAnimation();
