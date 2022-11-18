@@ -1,5 +1,4 @@
 import Metronome from "./Metronome";
-import Observable from "./Observable";
 
 /**
  * This class represents the UI of the metronome.
@@ -33,6 +32,7 @@ class View {
   private appToggle: HTMLButtonElement;
 
   private BPMlabel: HTMLElement;
+
   private BPMslider: HTMLElement;
 
   private baseBeatLabel: HTMLElement;
@@ -55,7 +55,7 @@ class View {
 
   private onPause?: () => void;
 
-  constructor(public metronome: Metronome, public observable: Observable) {
+  constructor(public metronome: Metronome) {
     this.appToggle = document.querySelector(APP_TOGGLE);
 
     this.BPMlabel = document.querySelector(BPM_LABEL);
@@ -107,8 +107,6 @@ class View {
         .value as unknown as number;
 
       this.againstBeatLabel.innerText = `${this.metronome.againstBeat}`;
-
-      this.observable.notify(this.metronome.againstBeat);
     });
 
     this.baseBeatSlider.addEventListener("input", (event) => {
