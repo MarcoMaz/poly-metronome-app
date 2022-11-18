@@ -25,8 +25,6 @@ class Engine {
 
   public notesInQueue: any[];
 
-  public state: any;
-
   public gainNode: GainNode;
 
   constructor(public metronome: Metronome, public audioContext: AudioContext) {

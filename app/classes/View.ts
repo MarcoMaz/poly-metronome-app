@@ -1,6 +1,5 @@
 import Engine from "./Engine";
 import Metronome from "./Metronome";
-import Observable from "./Observable";
 
 /**
  * This class represents the UI of the metronome.
@@ -89,7 +88,7 @@ class View {
 
   private onPause?: () => void;
 
-  constructor(public metronome: Metronome, public engine: Engine, public observable: Observable) {
+  constructor(public metronome: Metronome, public engine: Engine) {
     this.appToggle = document.querySelector(APP_TOGGLE);
 
     this.tap = document.querySelector(BUTTON_TAP);
