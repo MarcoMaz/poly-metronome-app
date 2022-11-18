@@ -87,10 +87,6 @@ class Engine {
       this.nextNote();
     }
   }
-
-  // public udpate(state: any): void {
-  //   console.log("ENGINE");
-  // }
 }
 
 export default Engine;

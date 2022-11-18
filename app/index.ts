@@ -1,11 +1,7 @@
-/* eslint-disable no-console */
 import Engine from "./classes/Engine";
 import View from "./classes/View";
 import Metronome from "./classes/Metronome";
 import Canvas from "./classes/Canvas/Canvas";
-import Observable from "./classes/Observable";
-
-let timerWorker: Worker = null;
 
 /**
  *  This class represents the app itself.
@@ -20,16 +16,22 @@ class App {
   private engine: Engine;
   private view: View;
   private canvas: Canvas;
-  private observable: Observable;
   private audioContext: AudioContext;
+  private timerWorker: Worker;
 
   constructor() {
-    this.metronome;
-    this.engine;
-    this.view;
     this.isPlaying = false;
-    this.canvas;
-    this.audioContext = null;
+    this.metronome = new Metronome(3, 4, 120);
+    this.audioContext = new AudioContext();
+    this.engine = new Engine(this.metronome, this.audioContext);
+    this.view = new View(this.metronome);
+    this.canvas = new Canvas(
+      this.metronome,
+      this.engine,
+      this.audioContext,
+      this.view
+    );
+    this.init();
   }
 
   public init(): void {
@@ -46,7 +48,7 @@ class App {
     this.engine = new Engine(this.metronome, this.audioContext);
 
     // Connect the Observable
-    this.view = new View(this.metronome, this.engine, this.observable);
+    this.view = new View(this.metronome, this.observable);
     this.view.setOnPlay(() => {
       app.play();
       this.canvas.playAnimation();
@@ -57,38 +59,26 @@ class App {
       this.canvas.stopAnimation();
     });
 
-    this.canvas = new Canvas(
-      this.metronome,
-      this.engine,
-      this.audioContext,
-      this.view
-      );
-      this.canvas.render();
+    this.timerWorker = new Worker(
+      new URL("../workers/worker.ts", import.meta.url)
+    );
 
-    timerWorker = new Worker(new URL("../workers/worker.ts", import.meta.url));
-
-    timerWorker.onmessage = (e) =>
+    this.canvas.render();
+    this.timerWorker.onmessage = (e: { data: string }) =>
       e.data === "tick"
         ? this.engine.scheduler()
         : console.log(`message: ${e.data}`);
 
-    timerWorker.postMessage({ interval: this.engine.lookahead });
-
-    // Register two ovservables (Who should I notify/update?)
-    // this.observable.registerObserver(this.engine.udpate);
-    // this.observable.registerObserver(this.metronome.update);
-
+    this.timerWorker.postMessage({ interval: this.engine.lookahead });
   }
 
   public play(): void {
     this.isPlaying = true;
 
     if (this.isPlaying) {
-      if (this.engine) {
-        this.engine.current16thNote = 0;
-        this.engine.nextNoteTime = this.audioContext.currentTime;
-      }
-      timerWorker.postMessage("start");
+      this.engine.current16thNote = 0;
+      this.engine.nextNoteTime = this.audioContext.currentTime;
+      this.timerWorker.postMessage("start");
     }
   }
 
@@ -96,8 +86,8 @@ class App {
     this.isPlaying = false;
 
     if (!this.isPlaying) {
-      timerWorker.postMessage("stop");
-      timerWorker.postMessage({ interval: 0 });
+      this.timerWorker.postMessage("stop");
+      this.timerWorker.postMessage({ interval: 0 });
     }
   }
 }
@@ -105,5 +95,3 @@ class App {
 export default App;
 
 export const app = new App();
-
-window.addEventListener("load", app.init);
