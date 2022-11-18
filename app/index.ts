@@ -24,7 +24,7 @@ class App {
     this.metronome = new Metronome(3, 4, 120);
     this.audioContext = new AudioContext();
     this.engine = new Engine(this.metronome, this.audioContext);
-    this.view = new View(this.metronome);
+    this.view = new View(this.metronome, this.engine);
     this.canvas = new Canvas(
       this.metronome,
       this.engine,
@@ -39,16 +39,6 @@ class App {
     container.className = "container";
     document.body.appendChild(container);
 
-    this.audioContext = new AudioContext();
-
-    // Create an observable
-    this.observable = new Observable();
-
-    this.metronome = new Metronome(3, 4, 120);
-    this.engine = new Engine(this.metronome, this.audioContext);
-
-    // Connect the Observable
-    this.view = new View(this.metronome, this.observable);
     this.view.setOnPlay(() => {
       app.play();
       this.canvas.playAnimation();
