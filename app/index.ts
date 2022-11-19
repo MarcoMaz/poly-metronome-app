@@ -1,5 +1,5 @@
 import Engine from "./classes/Engine";
-import View from "./classes/View";
+import View from "./classes/View/View";
 import Metronome from "./classes/Metronome";
 import Canvas from "./classes/Canvas/Canvas";
 
@@ -39,12 +39,12 @@ class App {
     container.className = "container";
     document.body.appendChild(container);
 
-    this.view.setOnPlay(() => {
+    this.view.appController.setOnPlay(() => {
       app.play();
       this.canvas.playAnimation();
     });
 
-    this.view.setOnPause(() => {
+    this.view.appController.setOnPause(() => {
       app.pause();
       this.canvas.stopAnimation();
     });

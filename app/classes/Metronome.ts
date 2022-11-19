@@ -19,10 +19,6 @@ class Metronome {
     this.baseBeat = baseBeat;
     this.tempo = tempo;
   }
-
-  // public update(state: any): void {
-  //   console.log("METRONOME");
-  // }
 }
 
 export default Metronome;

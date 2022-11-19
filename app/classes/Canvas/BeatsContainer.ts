@@ -1,7 +1,9 @@
 import Engine from "../Engine";
 import Metronome from "../Metronome";
-import View from "../View";
+import View from "../View/View";
 import Shape from "./Shape";
+
+const BASE_NUMBER = 18;
 
 class BeatsContainer {
   againstBeat: number;
@@ -20,12 +22,12 @@ class BeatsContainer {
     public myCanvas: HTMLCanvasElement,
     public myCanvasContext: CanvasRenderingContext2D
   ) {
-    this.elementBaseSize = Math.floor(this.myCanvas.width / 18);
+    this.elementBaseSize = Math.floor(this.myCanvas.width / BASE_NUMBER);
     this.animation = 0;
     this.currentNote = 0;
   }
 
-  public reset(): void {    
+  public reset(): void {
     this.myCanvasContext.clearRect(
       0,
       0,
@@ -36,10 +38,10 @@ class BeatsContainer {
     window.cancelAnimationFrame(this.animation);
   }
 
-  public render(): void {    
+  public render(): void {
     this.reset();
 
-    this.animation = window.requestAnimationFrame(() => this.render());    
+    this.animation = window.requestAnimationFrame(() => this.render());
 
     // AgainstBeat
     for (let i = 0; i < this.metronome.againstBeat; i += 1) {
@@ -49,7 +51,7 @@ class BeatsContainer {
         this.elementBaseSize,
         i,
         "against",
-        this.view.GUIselected
+        this.view.selectionOptions.selected
       );
       this.againstBeatSquare.render();
     }
@@ -62,21 +64,21 @@ class BeatsContainer {
         this.elementBaseSize,
         j,
         "base",
-        this.view.GUIselected
+        this.view.selectionOptions.selected
       );
       this.baseBeatSquare.render();
     }
   }
 
-  public playAnimation(): void {  
+  public playAnimation(): void {
     this.reset();
-      
+
     this.animation = window.requestAnimationFrame(() => this.playAnimation());
 
     while (
       this.engine.notesInQueue.length &&
       this.engine.notesInQueue[0].time < this.audioContext.currentTime
-    ) {      
+    ) {
       this.currentNote = this.engine.notesInQueue[0].note;
       this.engine.notesInQueue.splice(0, 1);
     }
@@ -88,7 +90,7 @@ class BeatsContainer {
         this.elementBaseSize,
         i,
         "against",
-        this.view.GUIselected,
+        this.view.selectionOptions.selected,
         this.currentNote
       );
       this.againstBeatSquare.animate();
@@ -101,16 +103,15 @@ class BeatsContainer {
         this.elementBaseSize,
         j,
         "base",
-        this.view.GUIselected,
+        this.view.selectionOptions.selected,
         this.currentNote
       );
       this.baseBeatSquare.animate();
     }
-
   }
 
   public stopAnimation(): void {
-    window.cancelAnimationFrame(this.animation);    
+    window.cancelAnimationFrame(this.animation);
 
     this.render();
   }

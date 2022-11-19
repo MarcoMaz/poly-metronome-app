@@ -1,6 +1,6 @@
 import Engine from "../Engine";
 import Metronome from "../Metronome";
-import View from "../View";
+import View from "../View/View";
 import BeatsContainer from "./BeatsContainer";
 
 class Canvas {

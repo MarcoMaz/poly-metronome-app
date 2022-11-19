@@ -4,13 +4,18 @@ import Metronome from "./Metronome";
  *  This class represents the math behind the metronome's calculations.
  *
  * @constructor
- * @param {number} current16thNote    - The last scheduled note.
- * @param {number} lookahead          - The scheduler's call (in milliseconds)
- * @param {number} scheduleAheadTime  - The scheduled audio (in seconds) calculated from lookahead. It overlaps with next interval (in case the timer is late).
- * @param {number} nextNoteTime       - The next note's due.
- * @param {number} noteLength         - The "beep"'s length (in seconds).
- * @param {any[]} notesInQueue        - The notes put into the web audio, and may or may not have played yet. {note, time}
+ * @param {number} current16thNote      - The last scheduled note.
+ * @param {number} lookahead            - The scheduler's call (in milliseconds)
+ * @param {number} scheduleAheadTime    - The scheduled audio (in seconds) calculated from lookahead. It overlaps with next interval (in case the timer is late).
+ * @param {number} nextNoteTime         - The next note's due.
+ * @param {number} noteLength           - The "beep"'s length (in seconds).
+ * @param {NotesInQueue[]} notesInQueue - The notes put into the web audio, and may or may not have played yet. {note, time}
  */
+
+interface NotesInQueue {
+  note: number;
+  time: number;
+}
 
 class Engine {
   public current16thNote: number;
@@ -23,7 +28,7 @@ class Engine {
 
   private noteLength: number;
 
-  public notesInQueue: any[];
+  public notesInQueue: NotesInQueue[];
 
   public gainNode: GainNode;
 

@@ -33,7 +33,9 @@ class Shape {
     type: string,
     currentNote?: number
   ) {
-    (this.size = size), (this.index = index), (this.beatType = beatType);
+    this.size = size;
+    this.index = index;
+    this.beatType = beatType;
     this.type = type;
     this.currentNote = currentNote;
   }
@@ -129,11 +131,10 @@ class Shape {
 
   public animate(): void {
     let metronomeType: number;
-    if (this.beatType === "against") {
-      metronomeType = this.metronome.baseBeat;
-    } else {
-      metronomeType = this.metronome.againstBeat;
-    }
+
+    this.beatType === "against"
+      ? (metronomeType = this.metronome.baseBeat)
+      : (metronomeType = this.metronome.againstBeat);
 
     if (this.currentNote % metronomeType === 0) {
       this.myCanvasContext.fillStyle =
