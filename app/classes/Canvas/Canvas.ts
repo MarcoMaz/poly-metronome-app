@@ -15,6 +15,7 @@ class Canvas {
     public view: View
   ) {
     this.canvas = document.querySelector("canvas");
+    this.canvas.classList.add('canvas-metronome');
     this.canvas.width = window.innerWidth;
     this.canvas.height = window.innerHeight;
     this.canvasContext = this.canvas.getContext("2d");

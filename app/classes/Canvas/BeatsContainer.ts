@@ -25,6 +25,8 @@ class BeatsContainer {
     this.elementBaseSize = Math.floor(this.myCanvas.width / BASE_NUMBER);
     this.animation = 0;
     this.currentNote = 0;
+
+    window.addEventListener('resize', () => this.resize())
   }
 
   public reset(): void {
@@ -114,6 +116,11 @@ class BeatsContainer {
     window.cancelAnimationFrame(this.animation);
 
     this.render();
+  }
+
+  public resize(): void {
+    this.myCanvas.width = window.innerWidth;
+    this.myCanvas.height = window.innerHeight;
   }
 }
 

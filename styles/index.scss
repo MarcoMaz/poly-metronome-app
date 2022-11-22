@@ -1,3 +1,8 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
 #controls {
   font-family: arial;
   font-size: 24px;
@@ -48,7 +53,6 @@ body,
 html {
   margin: 0;
   height: 100%;
-  position: relative;
 }
 
 body {
@@ -68,5 +72,60 @@ body {
 
   &.-show {
     display: block;
+  }
+}
+
+/* ORIGINAL CANVAS */
+.canvas-metronome {
+  border: 1px solid;
+}
+
+/* CANVAS INSPECTOR STYLE */
+.canvas-inspector {
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 999;
+  width: 200px;
+  height: 200px;
+
+  &.-show {
+    background: lightgray;
+  }
+
+  &__toggle-button {
+    background: blue;
+    color: white;
+    padding: 20px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  .grid-select,
+  .divX,
+  .divY {
+    display: none;
+  }
+
+  .grid-select.-show,
+  .divX.-show,
+  .divY.-show {
+    display: block;
+    position: absolute;
+    left: 16px;
+  }
+
+  .grid-select.-show {
+    top: 80px;
+  }
+
+  .divX.-show {
+    top: 120px;
+  }
+
+  .divY.-show {
+    top: 140px;
   }
 }

@@ -2,6 +2,7 @@ import Engine from "./classes/Engine";
 import View from "./classes/View/View";
 import Metronome from "./classes/Metronome";
 import Canvas from "./classes/Canvas/Canvas";
+import CanvasInspector from "./CanvasInspector/CanvasInspector";
 
 /**
  *  This class represents the app itself.
@@ -15,9 +16,10 @@ class App {
   private metronome: Metronome;
   private engine: Engine;
   private view: View;
-  private canvas: Canvas;
+  public canvas: Canvas;
   private audioContext: AudioContext;
   private timerWorker: Worker;
+  private canvasInspector: CanvasInspector;
 
   constructor() {
     this.isPlaying = false;
@@ -60,6 +62,7 @@ class App {
         : console.log(`message: ${e.data}`);
 
     this.timerWorker.postMessage({ interval: this.engine.lookahead });
+    this.canvasInspector = new CanvasInspector();
   }
 
   public play(): void {
