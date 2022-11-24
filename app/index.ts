@@ -37,10 +37,6 @@ class App {
   }
 
   public init(): void {
-    const container = document.createElement("div");
-    container.className = "container";
-    document.body.appendChild(container);
-
     this.view.appController.setOnPlay(() => {
       app.play();
       this.canvas.playAnimation();
@@ -62,7 +58,7 @@ class App {
         : console.log(`message: ${e.data}`);
 
     this.timerWorker.postMessage({ interval: this.engine.lookahead });
-    this.canvasInspector = new CanvasInspector();
+    // this.canvasInspector = new CanvasInspector();
   }
 
   public play(): void {

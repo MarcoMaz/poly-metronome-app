@@ -16,8 +16,12 @@ class Canvas {
   ) {
     this.canvas = document.querySelector("canvas");
     this.canvas.classList.add('canvas-metronome');
-    this.canvas.width = window.innerWidth;
-    this.canvas.height = window.innerHeight;
+    // this.canvas.width = window.innerWidth;
+    // this.canvas.height = window.innerHeight;
+
+    this.canvas.width = 500
+    this.canvas.height = 200
+    this.canvas.style.border = "1px solid"
     this.canvasContext = this.canvas.getContext("2d");
     this.beatsContainer = new BeatsContainer(
       this.metronome,

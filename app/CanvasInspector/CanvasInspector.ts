@@ -142,7 +142,7 @@ class CanvasInspector {
   }
 
   private hideInspector(): void {
-    this.gridContext.reset(); // Clear the context!
+    // this.gridContext.reset(); // Clear the context!
 
     this.toggleButton.innerText = INSPECTOR_TOGGLE_BUTTON_TEXT_SHOW;
     this.canvasInspector.classList.remove(SHOW);
@@ -152,7 +152,7 @@ class CanvasInspector {
   }
 
   private makeGrid(): void {
-    this.gridContext.reset(); // Clear the context!
+    // this.gridContext.reset(); // Clear the context!
 
     for (var x = 0; x <= this.grid.width; x += this.gridCellSize) {
       this.gridContext.moveTo(0.5 + x, 0);
