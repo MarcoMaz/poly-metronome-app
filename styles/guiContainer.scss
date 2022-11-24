@@ -1,3 +1,14 @@
 .gui-container {
-  background: blue;
+  &__tab-selection {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__tab {
+    border: 0;
+
+    &.-selected {
+      border-bottom: 1px solid black;
+    }
+  }
 }

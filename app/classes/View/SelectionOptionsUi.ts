@@ -1,17 +1,28 @@
-const SELECTION_OPTIONS = 'input[name="view-radio-btn"]';
+const SELECTION_OPTIONS = ".gui-container__tab";
+const SELECTED_CLASS = "-selected";
 
 class SelectionOptionsUi {
-  private options: NodeListOf<HTMLInputElement>;
+  private options: NodeListOf<HTMLButtonElement>;
   public selected: string;
 
   constructor() {
     this.options = document.querySelectorAll(SELECTION_OPTIONS);
-    this.selected = "view-square";
+    this.selected = "square";
 
-    this.options.forEach((option: HTMLInputElement) => {
-      option.addEventListener("change", () => {
-        if (option.checked) this.selected = option.value;
+    Array.from(this.options).forEach((option) => {
+      option.addEventListener("click", () => {
+        if (!option.classList.contains(SELECTED_CLASS)) {
+          this.deselectAllTabs();
+          option.classList.add(SELECTED_CLASS);
+          this.selected = option.dataset.guiContainerTab;
+        }
       });
+    });
+  }
+
+  private deselectAllTabs(): void {
+    Array.from(this.options).forEach((option) => {
+      option.classList.remove(SELECTED_CLASS);
     });
   }
 }

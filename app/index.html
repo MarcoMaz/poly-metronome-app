@@ -13,6 +13,25 @@
   </head>
   <body>
     <div class="app">
+      <div class="gui-container">
+        <ol class="gui-container__tab-selection">
+          <li>
+            <button class="gui-container__tab -selected" data-gui-container-tab="square" type="button">Square</button>
+          </li>
+          <li>
+            <button class="gui-container__tab" data-gui-container-tab="pipelines" type="button">Pipelines</button>
+          </li>
+          <li>
+            <button class="gui-container__tab" data-gui-container-tab="grid" type="button">Grid</button>
+          </li>
+          <li>
+            <button class="gui-container__tab" data-gui-container-tab="dots" type="button">Dots</button>
+          </li>
+        </ol>
+        <canvas class="gui__canvas"></canvas>
+      </div>
+
+
       <div class="beats-container">
         <span>+/- 1</span>
         <input
@@ -54,46 +73,6 @@
       </div>
       <div class="gui-container">
         <button class="toggle-beats" type="'button">Switch Beats</button>
-        <canvas></canvas>
-        <div>
-          <div>
-            <input
-              type="radio"
-              id="view-square"
-              name="view-radio-btn"
-              value="view-square"
-              checked
-            />
-            <label for="view-square">Square (default)</label>
-          </div>
-          <div>
-            <input
-              type="radio"
-              id="view-pipelines"
-              name="view-radio-btn"
-              value="view-pipelines"
-            />
-            <label for="view-pipelines">Pipelines</label>
-          </div>
-          <div>
-            <input
-              type="radio"
-              id="view-grid"
-              name="view-radio-btn"
-              value="view-grid"
-            />
-            <label for="view-grid">Grid</label>
-          </div>
-          <div>
-            <input
-              type="radio"
-              id="view-dots"
-              name="view-radio-btn"
-              value="view-dots"
-            />
-            <label for="view-dots">Dots</label>
-          </div>
-        </div>
         <div class="-warning">This is NOT a polyrhythm!</div>
       </div>
       <div class="bpm-container">
@@ -139,7 +118,7 @@
         </div>
         <button type="button" class="app__toggle">play</button>
         <button type="button" class="tap">Tap</button>
-      </div>
-    </div>      
+      </div> 
+    </div>
   </body>
 </html>

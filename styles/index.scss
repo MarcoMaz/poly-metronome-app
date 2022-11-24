@@ -6,10 +6,18 @@
 @import './bpmContainer.scss';
 @import './controllersContainer.scss';
 
-body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  font-family: Arial, Helvetica, "sans-serif";
+$border: 1px solid black;
+
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  background: none;
+  border: $border;
+  padding: 0.5rem 1rem;
 }
 
 /*

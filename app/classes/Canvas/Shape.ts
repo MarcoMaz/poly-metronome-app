@@ -96,26 +96,26 @@ class Shape {
     }
 
     switch (this.type) {
-      case "view-square":
+      case "square":
         rectWidth = 21;
         rectHeight = this.size / 2;
         this.myCanvasContext.fillRect(rectX, rectY, rectWidth, rectHeight);
         this.myCanvasContext.fill();
         break;
-      case "view-pipelines":
+      case "pipelines":
         rectWidth = 1;
         rectHeight = this.size / 2;
         this.myCanvasContext.fillRect(rectX, rectY, rectWidth, rectHeight);
         this.myCanvasContext.fill();
         break;
-      case "view-grid":
+      case "grid":
         this.myCanvasContext.beginPath();
         this.myCanvasContext.rect(gridX, gridY, gridWidth, gridHeight);
         this.myCanvasContext.strokeStyle = GRID_BORDER_COLOR;
         this.myCanvasContext.fill();
         this.myCanvasContext.stroke();
         break;
-      case "view-dots":
+      case "dots":
         this.myCanvasContext.beginPath();
         this.myCanvasContext.arc(
           dotX,
@@ -200,24 +200,24 @@ class Shape {
     }
 
     switch (this.type) {
-      case "view-square":
+      case "square":
         rectWidth = 21;
         rectHeight = this.size / 2;
         this.myCanvasContext.fillRect(rectX, rectY, rectWidth, rectHeight);
         break;
-      case "view-pipelines":
+      case "pipelines":
         rectWidth = 1;
         rectHeight = this.size / 2;
         this.myCanvasContext.fillRect(rectX, rectY, rectWidth, rectHeight);
         break;
-      case "view-grid":
+      case "grid":
         this.myCanvasContext.beginPath();
         this.myCanvasContext.rect(gridX, gridY, gridWidth, gridHeight);
         this.myCanvasContext.strokeStyle = GRID_BORDER_COLOR;
         this.myCanvasContext.fill();
         this.myCanvasContext.stroke();
         break;
-      case "view-dots":
+      case "dots":
         this.myCanvasContext.beginPath();
         this.myCanvasContext.arc(
           dotX,
