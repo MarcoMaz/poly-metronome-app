@@ -30,51 +30,29 @@
         </ol>
         <canvas class="gui__canvas"></canvas>
       </div>
+      <div class="gui-controllers">
+        <div class="gui-controllers__warning">This is NOT a polyrhythm!</div>
+        <div class="gui-controllers__beats-container">
+          <div class="gui-controllers__beats">
+            <div class="gui-controllers__beat">
+              <button type="button" class="gui-controllers__against-beat gui-controllers__plus">+</button>
+              <input type="number" class="gui-controllers__against-beat gui-controllers__value" min="2" max="9" step="1" value="3" />
+              <button type="button" class="gui-controllers__against-beat gui-controllers__minus">-</button>
+            </div>
+            <div class="gui-controllers__dots">:</div>
+            <div class="gui-controllers__beat">
+              <button type="button" class="gui-controllers__base-beat gui-controllers__plus">+</button>
+              <input type="number" class="gui-controllers__base-beat gui-controllers__value" min="2" max="9" step="1" value="4" />
+              <button type="button" class="gui-controllers__base-beat gui-controllers__minus">-</button>
+            </div>
+          </div>
+          <button class="toggle-beats" type="'button">Switch Beats</button>
+        </div>
+        <div class="gui-controllers__bpm">bpm</div>
+      </div>
 
 
-      <div class="beats-container">
-        <span>+/- 1</span>
-        <input
-          type="number"
-          class="against-beat__inputNumber"
-          min="2"
-          max="9"
-          step="1"
-          value="3"
-        />
-        <span class="against-beat__label">3</span>
-        <input
-          class="against-beat__slider"
-          type="range"
-          min="2"
-          max="9"
-          step="1"
-          value="3"
-        />
-        vs
-        <span class="base-beat__label">4</span>
-        <input
-          class="base-beat__slider"
-          type="range"
-          min="2"
-          max="9"
-          step="1"
-          value="4"
-        />
-        <span>+/- 1</span><br />
-        <input
-          type="number"
-          class="base-beat__inputNumber"
-          min="2"
-          max="9"
-          step="1"
-          value="4"
-        />
-      </div>
-      <div class="gui-container">
-        <button class="toggle-beats" type="'button">Switch Beats</button>
-        <div class="-warning">This is NOT a polyrhythm!</div>
-      </div>
+      <!---->
       <div class="bpm-container">
         <span>+/- 1</span><br />
         <input

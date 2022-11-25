@@ -1,0 +1,66 @@
+.gui-controllers {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  // Reset
+
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    appearance: auto;
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type=number] {
+    appearance: auto;
+    -moz-appearance: textfield;
+  }
+
+  button,
+  input {
+    border: 0;
+  }
+
+  &__warning {
+    background-color: yellow;
+    border: 1px dashed black;
+    display: none;
+    text-align: center;
+    width: 100%;
+
+    &.-show {
+      display: block;
+    }
+  }
+
+  &__beats-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__beats {
+    align-items: center;
+    display: flex;
+  }
+
+  &__beat {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__value {
+    text-align: center;
+    width: 50%;
+  }
+
+  &__bpm {
+    background: green;
+  }
+}

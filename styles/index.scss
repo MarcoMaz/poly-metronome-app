@@ -1,12 +1,13 @@
+$border: 1px solid black;
+
 @import './normalize.scss';
 @import './scheme.scss';
 @import './viewports.scss';
 @import './beatsContainer.scss';
+@import './guiControllers.scss';
 @import './guiContainer.scss';
 @import './bpmContainer.scss';
 @import './controllersContainer.scss';
-
-$border: 1px solid black;
 
 ol {
   margin: 0;
@@ -80,22 +81,6 @@ html {
 
 body {
   overflow: auto;
-}
-
-.-warning {
-  background: red;
-  border: 1px dashed black;
-  color: white;
-  display: none;
-  padding: 20px;
-  position: absolute;
-  top: 50vh;
-  left: calc(50vw - 250px);
-  width: 500px;
-
-  &.-show {
-    display: block;
-  }
 }
 */
 

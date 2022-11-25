@@ -1,74 +1,92 @@
 import Metronome from "../Metronome";
 import WarningUi from "./WarningUi";
 
-const AGAINST_BEAT_INPUT_NUMBER = ".against-beat__inputNumber";
-const AGAINST_BEAT_LABEL = ".against-beat__label";
-const AGAINST_BEAT_SLIDER = ".against-beat__slider";
-const BASE_BEAT_INPUT_NUMBER = ".base-beat__inputNumber";
-const BASE_BEAT_LABEL = ".base-beat__label";
-const BASE_BEAT_SLIDER = ".base-beat__slider";
+const AGAINST_BEAT_PLUS =
+  ".gui-controllers__against-beat.gui-controllers__plus";
+const AGAINST_BEAT_VALUE =
+  ".gui-controllers__against-beat.gui-controllers__value";
+const AGAINST_BEAT_MINUS =
+  ".gui-controllers__against-beat.gui-controllers__minus";
+
+const BASE_BEAT_PLUS = ".gui-controllers__base-beat.gui-controllers__plus";
+const BASE_BEAT_VALUE = ".gui-controllers__base-beat.gui-controllers__value";
+const BASE_BEAT_MINUS = ".gui-controllers__base-beat.gui-controllers__minus";
+
 const TOGGLE_BEATS = ".toggle-beats";
+
 const BEAT_MIN = 2;
 const BEAT_MAX = 9;
 
 class BeatsUi {
-  private againstBeatInputNumber: HTMLInputElement;
+  private againstBeatPlus: HTMLButtonElement;
+  private againstBeatValue: HTMLInputElement;
+  private againstBeatMinus: HTMLButtonElement;
 
-  private againstBeatLabel: HTMLElement;
-
-  private againstBeatSlider: HTMLInputElement;
-
-  private baseBeatInputNumber: HTMLInputElement;
-
-  private baseBeatLabel: HTMLElement;
-
-  private baseBeatSlider: HTMLInputElement;
+  private baseBeatPlus: HTMLButtonElement;
+  private baseBeatValue: HTMLInputElement;
+  private baseBeatMinus: HTMLButtonElement;
 
   private toggleBeats: HTMLButtonElement;
 
   constructor(public warning: WarningUi, public metronome: Metronome) {
-    this.againstBeatInputNumber = document.querySelector(
-      AGAINST_BEAT_INPUT_NUMBER
-    );
+    this.againstBeatPlus = document.querySelector(AGAINST_BEAT_PLUS);
+    this.againstBeatValue = document.querySelector(AGAINST_BEAT_VALUE);
+    this.againstBeatMinus = document.querySelector(AGAINST_BEAT_MINUS);
 
-    this.againstBeatLabel = document.querySelector(AGAINST_BEAT_LABEL);
-
-    this.againstBeatSlider = document.querySelector(AGAINST_BEAT_SLIDER);
-
-    this.baseBeatInputNumber = document.querySelector(BASE_BEAT_INPUT_NUMBER);
-
-    this.baseBeatLabel = document.querySelector(BASE_BEAT_LABEL);
-
-    this.baseBeatSlider = document.querySelector(BASE_BEAT_SLIDER);
+    this.baseBeatPlus = document.querySelector(BASE_BEAT_PLUS);
+    this.baseBeatValue = document.querySelector(BASE_BEAT_VALUE);
+    this.baseBeatMinus = document.querySelector(BASE_BEAT_MINUS);
 
     this.toggleBeats = document.querySelector(TOGGLE_BEATS);
 
-    this.againstBeatInputNumber.addEventListener("change", (event) => {
-      let eventTarget = event.target as HTMLInputElement;
-      this.warning.isPoly(eventTarget.value, this.metronome.baseBeat);
-      this.updateUi(eventTarget, "against");
+    this.againstBeatPlus.addEventListener("click", () => {
+      this.metronome.againstBeat += 1;
+      this.againstBeatValue.valueAsNumber += 1;
+
+      this.warning.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
+      this.checkLimits(this.metronome.againstBeat, "against");
     });
 
-    this.baseBeatInputNumber.addEventListener("change", (event) => {
-      let eventTarget = event.target as HTMLInputElement;
-      this.warning.isPoly(eventTarget.value, this.metronome.againstBeat);
-      this.updateUi(eventTarget, "base");
+    this.againstBeatMinus.addEventListener("click", () => {
+      this.metronome.againstBeat -= 1;
+      this.againstBeatValue.valueAsNumber -= 1;
+
+      this.warning.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
+      this.checkLimits(this.metronome.againstBeat, "against");
     });
 
-    this.againstBeatSlider.addEventListener("input", (event) => {
+    this.againstBeatValue.addEventListener("change", (event) => {
       let eventTarget = event.target as HTMLInputElement;
-      this.warning.isPoly(eventTarget.value, this.metronome.baseBeat);
-      this.metronome.againstBeat = eventTarget.value as unknown as number;
-      this.againstBeatLabel.innerText = `${this.metronome.againstBeat}`;
-      this.againstBeatInputNumber.value = eventTarget.value;
+      this.metronome.againstBeat = eventTarget.valueAsNumber;
+      this.againstBeatValue.valueAsNumber = eventTarget.valueAsNumber;
+
+      this.warning.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
+      this.checkLimits(eventTarget.valueAsNumber, "against");
     });
 
-    this.baseBeatSlider.addEventListener("input", (event) => {
+    this.baseBeatPlus.addEventListener("click", () => {
+      this.metronome.baseBeat += 1;
+      this.baseBeatValue.valueAsNumber += 1;
+
+      this.warning.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
+      this.checkLimits(this.metronome.baseBeat, "base");
+    });
+
+    this.baseBeatMinus.addEventListener("click", () => {
+      this.metronome.baseBeat -= 1;
+      this.baseBeatValue.valueAsNumber -= 1;
+
+      this.warning.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
+      this.checkLimits(this.metronome.baseBeat, "base");
+    });
+
+    this.baseBeatValue.addEventListener("change", (event) => {
       let eventTarget = event.target as HTMLInputElement;
-      this.warning.isPoly(eventTarget.value, this.metronome.againstBeat);
-      this.metronome.baseBeat = eventTarget.value as unknown as number;
-      this.baseBeatLabel.innerText = `${this.metronome.baseBeat}`;
-      this.baseBeatInputNumber.value = eventTarget.value;
+      this.metronome.baseBeat = eventTarget.valueAsNumber;
+      this.baseBeatValue.valueAsNumber = eventTarget.valueAsNumber;
+
+      this.warning.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
+      this.checkLimits(eventTarget.valueAsNumber, "base");
     });
 
     this.toggleBeats.addEventListener("click", () => {
@@ -76,55 +94,29 @@ class BeatsUi {
         this.metronome.baseBeat,
         this.metronome.againstBeat,
       ];
-      [this.againstBeatInputNumber.value, this.baseBeatInputNumber.value] = [
-        this.baseBeatInputNumber.value,
-        this.againstBeatInputNumber.value,
-      ];
-      this.baseBeatLabel.innerText = `${this.metronome.baseBeat}`;
-      this.againstBeatLabel.innerText = `${this.metronome.againstBeat}`;
+      [this.againstBeatValue.valueAsNumber, this.baseBeatValue.valueAsNumber] =
+        [this.baseBeatValue.valueAsNumber, this.againstBeatValue.valueAsNumber];
     });
   }
 
-  private updateUi(
-    event: HTMLInputElement,
-    type: "against" | "base"
-  ): void {
-    if (type === "base") {
-      this.metronome.baseBeat = event.value as unknown as number;
-      this.baseBeatLabel.innerText = `${this.metronome.baseBeat}`;
-      this.baseBeatSlider.value = event.value;
-    } else {
-      this.metronome.againstBeat = event.value as unknown as number;
-      this.againstBeatLabel.innerText = `${this.metronome.againstBeat}`;
-      this.againstBeatSlider.value = event.value;
-    }
-
-    if ((event.value as unknown as number) <= BEAT_MIN - 1) {
-      if (type === "base") {
-        this.metronome.baseBeat = BEAT_MIN;
-        this.baseBeatInputNumber.value = `${BEAT_MIN}`;
-        this.baseBeatLabel.innerText = `${BEAT_MIN}`;
-        this.baseBeatSlider.value = `${BEAT_MIN}`;
+  private checkLimits(element: number, type: "against" | "base"): void {
+    if (element > BEAT_MAX) {
+      if (type === "against") {
+        this.metronome.againstBeat = BEAT_MAX;
+        this.againstBeatValue.valueAsNumber = BEAT_MAX;
       } else {
-        this.metronome.againstBeat = BEAT_MIN;
-        this.againstBeatInputNumber.value = `${BEAT_MIN}`;
-        this.againstBeatLabel.innerText = `${BEAT_MIN}`;
-        this.againstBeatSlider.value = `${BEAT_MIN}`;
+        this.metronome.baseBeat = BEAT_MAX;
+        this.baseBeatValue.valueAsNumber = BEAT_MAX;
       }
     }
-
-    if ((event.value as unknown as number) > BEAT_MAX) {
-      if (type === "base") {
-        this.metronome.baseBeat = BEAT_MAX;
-        this.baseBeatInputNumber.value = `${BEAT_MAX}`;
-        this.baseBeatLabel.innerText = `${BEAT_MAX}`;
-        this.baseBeatSlider.value = `${BEAT_MAX}`;
+    if (element <= BEAT_MIN - 1) {
+      if (type === "against") {
+        this.metronome.againstBeat = BEAT_MIN;
+        this.againstBeatValue.valueAsNumber = BEAT_MIN;
+      } else {
+        this.metronome.baseBeat = BEAT_MIN;
+        this.baseBeatValue.valueAsNumber = BEAT_MIN;
       }
-    } else {
-      this.metronome.againstBeat = BEAT_MAX;
-      this.againstBeatInputNumber.value = `${BEAT_MAX}`;
-      this.againstBeatLabel.innerText = `${BEAT_MAX}`;
-      this.againstBeatSlider.value = `${BEAT_MAX}`;
     }
   }
 }

@@ -1,4 +1,4 @@
-const WARNING = ".-warning";
+const WARNING = '.gui-controllers__warning';
 const SHOW = "-show";
 
 class WarningUi {
