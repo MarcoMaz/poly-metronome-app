@@ -1,5 +1,7 @@
 import Metronome from "../../Metronome";
 
+const BASE_NUMBER = 18;
+
 //// GENERAL
 const ACTIVE_BEAT_COLOR_OTHER = "lightblue";
 const ACTIVE_BEAT_COLOR_CURRENT = "blue";
@@ -27,13 +29,12 @@ class Shape {
   constructor(
     public myCanvasContext: CanvasRenderingContext2D,
     public metronome: Metronome,
-    size: number,
     index: number,
     beatType: "base" | "against",
     type: string,
     currentNote?: number
   ) {
-    this.size = size;
+    this.size = 16;
     this.index = index;
     this.beatType = beatType;
     this.type = type;

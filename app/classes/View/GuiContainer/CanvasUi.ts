@@ -3,9 +3,7 @@ import Metronome from "../../Metronome";
 import View from "../View";
 import Shape from "./Shape";
 
-const BASE_NUMBER = 18;
-
-class BeatsContainer {
+class CanvasUi {
   againstBeat: number;
   animation: number;
   baseBeat: number;
@@ -13,30 +11,25 @@ class BeatsContainer {
   elementBaseSize: number;
   againstBeatSquare: Shape;
   baseBeatSquare: Shape;
+  canvas: HTMLCanvasElement;
+  canvasContext: CanvasRenderingContext2D;
 
   constructor(
     public metronome: Metronome,
     public engine: Engine,
     public view: View,
-    public audioContext: AudioContext,
-    public myCanvas: HTMLCanvasElement,
-    public myCanvasContext: CanvasRenderingContext2D
+    public audioContext: AudioContext
   ) {
-    this.elementBaseSize = Math.floor(this.myCanvas.width / BASE_NUMBER);
+    this.canvas = document.querySelector("canvas");
+    this.canvasContext = this.canvas.getContext("2d");
     this.animation = 0;
     this.currentNote = 0;
 
-    window.addEventListener('resize', () => this.resize())
+    // window.addEventListener("resize", () => this.resize());
   }
 
   public reset(): void {
-    this.myCanvasContext.clearRect(
-      0,
-      0,
-      this.myCanvas.width,
-      this.myCanvas.height
-    );
-
+    this.canvasContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
     window.cancelAnimationFrame(this.animation);
   }
 
@@ -48,9 +41,8 @@ class BeatsContainer {
     // AgainstBeat
     for (let i = 0; i < this.metronome.againstBeat; i += 1) {
       this.againstBeatSquare = new Shape(
-        this.myCanvasContext,
+        this.canvasContext,
         this.metronome,
-        this.elementBaseSize,
         i,
         "against",
         this.view.tabSelection.selected
@@ -61,9 +53,8 @@ class BeatsContainer {
     // BaseBeat
     for (let j = 0; j < this.metronome.baseBeat; j += 1) {
       this.baseBeatSquare = new Shape(
-        this.myCanvasContext,
+        this.canvasContext,
         this.metronome,
-        this.elementBaseSize,
         j,
         "base",
         this.view.tabSelection.selected
@@ -87,9 +78,8 @@ class BeatsContainer {
 
     for (let i = 0; i < this.metronome.againstBeat; i++) {
       this.againstBeatSquare = new Shape(
-        this.myCanvasContext,
+        this.canvasContext,
         this.metronome,
-        this.elementBaseSize,
         i,
         "against",
         this.view.tabSelection.selected,
@@ -100,9 +90,8 @@ class BeatsContainer {
 
     for (let j = 0; j < this.metronome.baseBeat; j += 1) {
       this.baseBeatSquare = new Shape(
-        this.myCanvasContext,
+        this.canvasContext,
         this.metronome,
-        this.elementBaseSize,
         j,
         "base",
         this.view.tabSelection.selected,
@@ -118,10 +107,10 @@ class BeatsContainer {
     this.render();
   }
 
-  public resize(): void {
-    this.myCanvas.width = window.innerWidth;
-    this.myCanvas.height = window.innerHeight;
-  }
+  // public resize(): void {
+  //   this.canvas.width = window.innerWidth;
+  //   this.canvas.height = window.innerHeight;
+  // }
 }
 
-export default BeatsContainer;
+export default CanvasUi;

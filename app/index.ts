@@ -1,8 +1,9 @@
 import Engine from "./classes/Engine";
 import View from "./classes/View/View";
 import Metronome from "./classes/Metronome";
-import Canvas from "./classes/View/GuiContainer/Canvas";
 import CanvasInspector from "./CanvasInspector/CanvasInspector";
+import BeatsContainer from "./classes/View/GuiContainer/CanvasUi";
+import CanvasUi from "./classes/View/GuiContainer/CanvasUi";
 
 /**
  *  This class represents the app itself.
@@ -16,10 +17,10 @@ class App {
   private metronome: Metronome;
   private engine: Engine;
   private view: View;
-  public canvas: Canvas;
   private audioContext: AudioContext;
   private timerWorker: Worker;
   private canvasInspector: CanvasInspector;
+  private canvas: CanvasUi;
 
   constructor() {
     this.isPlaying = false;
@@ -27,12 +28,13 @@ class App {
     this.audioContext = new AudioContext();
     this.engine = new Engine(this.metronome, this.audioContext);
     this.view = new View(this.metronome, this.engine);
-    this.canvas = new Canvas(
+    this.canvas = new CanvasUi(
       this.metronome,
       this.engine,
+      this.view,
       this.audioContext,
-      this.view
     );
+
     this.init();
   }
 
