@@ -23,6 +23,7 @@
 
   button,
   input {
+    background-color: $primary;
     border: 0;
   }
 
@@ -69,5 +70,9 @@
   &__bpm-plus,
   &__bpm-value {
     flex-direction: column;
+  }
+
+  &__bpm-value {
+    color: black;
   }
 }

@@ -1,8 +1,12 @@
-$border: 1px solid black;
 
+@import './fonts.scss';
+@import './colors.scss';
 @import './normalize.scss';
 @import './scheme.scss';
 @import './viewports.scss';
+
+$border: 5px solid $dark;
+
 @import './guiControllers.scss';
 @import './guiContainer.scss';
 @import './controllersContainer.scss';
@@ -16,11 +20,16 @@ ol {
 button {
   background: none;
   border: $border;
+  border-width: 1px;
+  color: $light;
+  cursor: pointer;
   padding: 0.5rem 1rem;
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  background: $primary;
+  color: $light;
+  font-family: "Roboto Condensed";
 }
 
 /*

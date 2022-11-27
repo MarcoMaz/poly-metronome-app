@@ -108,13 +108,8 @@ module.exports = {
       },
 
       {
-        test: /\.(jpe?g|png|gif|svg|woff2?|fnt|webp)$/,
-        loader: 'file-loader',
-        options: {
-          name() {
-            return '[hash].[ext]';
-          },
-        },
+        test: /\.(jpe?g|png|gif|svg|woff2|woff|fnt|webp)$/,
+        type: 'asset/resource',
       },
 
       {
