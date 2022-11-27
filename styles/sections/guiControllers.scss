@@ -21,21 +21,23 @@
     -moz-appearance: textfield;
   }
 
-  button,
   input {
     background-color: $primary;
     border: 0;
   }
 
   &__warning {
-    background-color: yellow;
-    border: 1px dashed black;
-    display: none;
+    background-color: red;
+    border: 5px dashed white;
+    color: white;
+    height: 4rem;
+    padding: 1rem 0.5rem;
     text-align: center;
+    visibility: hidden;
     width: 100%;
 
     &.-show {
-      display: block;
+      visibility: visible;
     }
   }
 
@@ -54,6 +56,24 @@
     align-items: center;
     display: flex;
     flex-direction: column;
+    font-size: 2rem;
+
+    button {
+      border: 0;
+    }
+  }
+
+  &__beat-value,
+  &__bpm-value--number {
+    position: relative;
+  }
+
+  &__beat-value {
+    left: 6px;
+  }
+
+  &__bpm-value--number {
+    left: 4px;
   }
 
   &__value {
@@ -64,6 +84,11 @@
   &__bpm {
     align-items: center;
     display: flex;
+    font-size: 2rem;
+
+    button {
+      border: 0;
+    }
   }
 
   &__bpm-minus,

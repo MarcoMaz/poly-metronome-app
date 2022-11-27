@@ -12,7 +12,7 @@ const BASE_BEAT_PLUS = ".gui-controllers__base-beat.gui-controllers__beat-plus";
 const BASE_BEAT_VALUE = ".gui-controllers__base-beat.gui-controllers__beat-value";
 const BASE_BEAT_MINUS = ".gui-controllers__base-beat.gui-controllers__beat-minus";
 
-const TOGGLE_BEATS = ".toggle-beats";
+const SWITCH_BEATS = ".gui-controllers__switch-beats";
 
 const BEAT_MIN = 2;
 const BEAT_MAX = 9;
@@ -26,7 +26,7 @@ class BeatsUi {
   private baseBeatValue: HTMLInputElement;
   private baseBeatMinus: HTMLButtonElement;
 
-  private toggleBeats: HTMLButtonElement;
+  private switchBeats: HTMLButtonElement;
 
   constructor(public warning: WarningUi, public metronome: Metronome) {
     this.againstBeatPlus = document.querySelector(AGAINST_BEAT_PLUS);
@@ -37,7 +37,7 @@ class BeatsUi {
     this.baseBeatValue = document.querySelector(BASE_BEAT_VALUE);
     this.baseBeatMinus = document.querySelector(BASE_BEAT_MINUS);
 
-    this.toggleBeats = document.querySelector(TOGGLE_BEATS);
+    this.switchBeats = document.querySelector(SWITCH_BEATS);
 
     this.againstBeatPlus.addEventListener("click", () => {
       this.metronome.againstBeat += 1;
@@ -89,7 +89,7 @@ class BeatsUi {
       this.checkLimits(eventTarget.valueAsNumber, "base");
     });
 
-    this.toggleBeats.addEventListener("click", () => {
+    this.switchBeats.addEventListener("click", () => {
       [this.metronome.againstBeat, this.metronome.baseBeat] = [
         this.metronome.baseBeat,
         this.metronome.againstBeat,
