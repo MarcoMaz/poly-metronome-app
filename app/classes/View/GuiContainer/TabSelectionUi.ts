@@ -1,7 +1,7 @@
 const SELECTION_OPTIONS = ".gui-container__tab";
 const SELECTED_CLASS = "-selected";
 
-class SelectionOptionsUi {
+class TabSelectionUi {
   private options: NodeListOf<HTMLButtonElement>;
   public selected: string;
 
@@ -27,4 +27,4 @@ class SelectionOptionsUi {
   }
 }
 
-export default SelectionOptionsUi;
+export default TabSelectionUi;

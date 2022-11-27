@@ -1,16 +1,16 @@
-import Metronome from "../Metronome";
+import Metronome from "../../Metronome";
 import WarningUi from "./WarningUi";
 
 const AGAINST_BEAT_PLUS =
-  ".gui-controllers__against-beat.gui-controllers__plus";
+  ".gui-controllers__against-beat.gui-controllers__beat-plus";
 const AGAINST_BEAT_VALUE =
-  ".gui-controllers__against-beat.gui-controllers__value";
+  ".gui-controllers__against-beat.gui-controllers__beat-value";
 const AGAINST_BEAT_MINUS =
-  ".gui-controllers__against-beat.gui-controllers__minus";
+  ".gui-controllers__against-beat.gui-controllers__beat-minus";
 
-const BASE_BEAT_PLUS = ".gui-controllers__base-beat.gui-controllers__plus";
-const BASE_BEAT_VALUE = ".gui-controllers__base-beat.gui-controllers__value";
-const BASE_BEAT_MINUS = ".gui-controllers__base-beat.gui-controllers__minus";
+const BASE_BEAT_PLUS = ".gui-controllers__base-beat.gui-controllers__beat-plus";
+const BASE_BEAT_VALUE = ".gui-controllers__base-beat.gui-controllers__beat-value";
+const BASE_BEAT_MINUS = ".gui-controllers__base-beat.gui-controllers__beat-minus";
 
 const TOGGLE_BEATS = ".toggle-beats";
 

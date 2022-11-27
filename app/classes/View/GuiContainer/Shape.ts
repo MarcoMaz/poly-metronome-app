@@ -1,4 +1,4 @@
-import Metronome from "../Metronome";
+import Metronome from "../../Metronome";
 
 //// GENERAL
 const ACTIVE_BEAT_COLOR_OTHER = "lightblue";

@@ -1,6 +1,6 @@
-import Engine from "../Engine";
-import Metronome from "../Metronome";
-import View from "../View/View";
+import Engine from "../../Engine";
+import Metronome from "../../Metronome";
+import View from "../View";
 import Shape from "./Shape";
 
 const BASE_NUMBER = 18;
@@ -53,7 +53,7 @@ class BeatsContainer {
         this.elementBaseSize,
         i,
         "against",
-        this.view.selectionOptions.selected
+        this.view.tabSelection.selected
       );
       this.againstBeatSquare.render();
     }
@@ -66,7 +66,7 @@ class BeatsContainer {
         this.elementBaseSize,
         j,
         "base",
-        this.view.selectionOptions.selected
+        this.view.tabSelection.selected
       );
       this.baseBeatSquare.render();
     }
@@ -92,7 +92,7 @@ class BeatsContainer {
         this.elementBaseSize,
         i,
         "against",
-        this.view.selectionOptions.selected,
+        this.view.tabSelection.selected,
         this.currentNote
       );
       this.againstBeatSquare.animate();
@@ -105,7 +105,7 @@ class BeatsContainer {
         this.elementBaseSize,
         j,
         "base",
-        this.view.selectionOptions.selected,
+        this.view.tabSelection.selected,
         this.currentNote
       );
       this.baseBeatSquare.animate();

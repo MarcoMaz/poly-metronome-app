@@ -16,87 +16,143 @@
       <div class="gui-container">
         <ol class="gui-container__tab-selection">
           <li>
-            <button class="gui-container__tab -selected" data-gui-container-tab="square" type="button">Square</button>
+            <button
+              class="gui-container__tab -selected"
+              data-gui-container-tab="square"
+              type="button"
+            >
+              Square
+            </button>
           </li>
           <li>
-            <button class="gui-container__tab" data-gui-container-tab="pipelines" type="button">Pipelines</button>
+            <button
+              class="gui-container__tab"
+              data-gui-container-tab="pipelines"
+              type="button"
+            >
+              Pipelines
+            </button>
           </li>
           <li>
-            <button class="gui-container__tab" data-gui-container-tab="grid" type="button">Grid</button>
+            <button
+              class="gui-container__tab"
+              data-gui-container-tab="grid"
+              type="button"
+            >
+              Grid
+            </button>
           </li>
           <li>
-            <button class="gui-container__tab" data-gui-container-tab="dots" type="button">Dots</button>
+            <button
+              class="gui-container__tab"
+              data-gui-container-tab="dots"
+              type="button"
+            >
+              Dots
+            </button>
           </li>
         </ol>
-        <canvas class="gui__canvas"></canvas>
+        <canvas class="gui-container__canvas"></canvas>
       </div>
       <div class="gui-controllers">
         <div class="gui-controllers__warning">This is NOT a polyrhythm!</div>
         <div class="gui-controllers__beats-container">
           <div class="gui-controllers__beats">
             <div class="gui-controllers__beat">
-              <button type="button" class="gui-controllers__against-beat gui-controllers__plus">+</button>
-              <input type="number" class="gui-controllers__against-beat gui-controllers__value" min="2" max="9" step="1" value="3" />
-              <button type="button" class="gui-controllers__against-beat gui-controllers__minus">-</button>
+              <button
+                type="button"
+                class="gui-controllers__against-beat gui-controllers__beat-plus"
+              >
+                +
+              </button>
+              <input
+                type="number"
+                class="gui-controllers__against-beat gui-controllers__beat-value"
+                min="2"
+                max="9"
+                step="1"
+                value="3"
+              />
+              <button
+                type="button"
+                class="gui-controllers__against-beat gui-controllers__beat-minus"
+              >
+                -
+              </button>
             </div>
             <div class="gui-controllers__dots">:</div>
             <div class="gui-controllers__beat">
-              <button type="button" class="gui-controllers__base-beat gui-controllers__plus">+</button>
-              <input type="number" class="gui-controllers__base-beat gui-controllers__value" min="2" max="9" step="1" value="4" />
-              <button type="button" class="gui-controllers__base-beat gui-controllers__minus">-</button>
+              <button
+                type="button"
+                class="gui-controllers__base-beat gui-controllers__beat-plus"
+              >
+                +
+              </button>
+              <input
+                type="number"
+                class="gui-controllers__base-beat gui-controllers__beat-value"
+                min="2"
+                max="9"
+                step="1"
+                value="4"
+              />
+              <button
+                type="button"
+                class="gui-controllers__base-beat gui-controllers__beat-minus"
+              >
+                -
+              </button>
             </div>
           </div>
           <button class="toggle-beats" type="'button">Switch Beats</button>
         </div>
-        <div class="gui-controllers__bpm">bpm</div>
-      </div>
-
-
-      <!---->
-      <div class="bpm-container">
-        <span>+/- 1</span><br />
-        <input
-          type="number"
-          class="bpm__inputNumber"
-          min="30"
-          max="300"
-          step="1"
-          value="120"
-        />
-        <span>+/- 5</span><br />
-        <input
-          type="number"
-          class="bpm__inputNumber--step-five"
-          min="30"
-          max="300"
-          step="5"
-          value="120"
-        />
-        <span class="bpm__label">120</span>BPM
-        <input
-          class="bpm__slider"
-          type="range"
-          min="30.0"
-          max="300.0"
-          step="1"
-          value="120"
-        />
+        <div class="gui-controllers__bpm">
+          <div class="gui-controllers__bpm gui-controllers__bpm-minus">
+            <button
+              type="button"
+              class="gui-controllers__bpm gui-controllers__bpm-minus--1"
+            >
+              -1
+            </button>
+            <button
+              type="button"
+              class="gui-controllers__bpm gui-controllers__bpm-minus--5"
+            >
+              -5
+            </button>
+          </div>
+          <div class="gui-controllers__bpm gui-controllers__bpm-value">
+            <input
+              type="number"
+              class="gui-controllers__bpm gui-controllers__bpm-value--number"
+              min="30"
+              max="300"
+              step="1"
+              value="120"
+            />
+            <span>BPM</span>
+          </div>
+          <div class="gui-controllers__bpm gui-controllers__bpm-plus">
+            <button
+              type="button"
+              class="gui-controllers__bpm gui-controllers__bpm-plus--1"
+            >
+              +1
+            </button>
+            <button
+              type="button"
+              class="gui-controllers__bpm gui-controllers__bpm-plus--5"
+            >
+              +5
+            </button>
+          </div>
+        </div>
       </div>
       <div class="controllers-container">
-        <div>
-          Volume
-          <input
-            type="range"
-            class="volume"
-            min="0"
-            max="1"
-            step="0.01"
-            value="0.5"
-          />
-        </div>
-        <button type="button" class="app__toggle">play</button>
-        <button type="button" class="tap">Tap</button>
-      </div> 
+        <button type="button" class="controllers__sound">Sound:</button>
+        <button type="button" class="controllers__play">Play</button>
+        <button type="button" class="controllers__tap">Tap</button>
+      </div>
     </div>
   </body>
 </html>

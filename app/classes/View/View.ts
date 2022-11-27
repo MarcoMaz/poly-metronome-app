@@ -1,42 +1,37 @@
 import Engine from "../Engine";
 import Metronome from "../Metronome";
-import AppControllerUi from "./AppControllerUi";
-import BeatsUi from "./BeatsUi";
-import BpmUi from "./BpmUi";
-import SelectionOptionsUi from "./SelectionOptionsUi";
-import TapUi from "./TapUi";
-import VolumeUi from "./VolumeUi";
-import WarningUi from "./WarningUi";
+import controllersContainerUi from "./ControllersContainer/controllersContainerUi";
+import BeatsUi from "./GuiControllers/BeatsUi";
+import BpmUi from "./GuiControllers/BpmUi";
+import TabSelectionUi from "./GuiContainer/TabSelectionUi";
+import WarningUi from "./GuiControllers/WarningUi";
 
 class View {
-  public selectionOptions: SelectionOptionsUi;
+  public tabSelection: TabSelectionUi;
 
   private warning: WarningUi;
 
-  private volume: VolumeUi;
+  private beats: BeatsUi;
 
   private bpm: BpmUi;
 
-  private beats: BeatsUi;
-
-  private tap: TapUi;
-
-  public appController: AppControllerUi;
+  public controllers: controllersContainerUi;
 
   constructor(public metronome: Metronome, public engine: Engine) {
+    // guiContainer (tabSelection + canvas)
+    this.tabSelection = new TabSelectionUi();
+
+    // guiControllers (warning + beats + bpm)
+    this.warning = new WarningUi();
+    this.beats = new BeatsUi(this.warning, this.metronome);
     this.bpm = new BpmUi(this.metronome);
 
-    this.tap = new TapUi(this.metronome, this.bpm);
-
-    this.selectionOptions = new SelectionOptionsUi();
-
-    this.warning = new WarningUi();
-
-    this.beats = new BeatsUi(this.warning, this.metronome);
-
-    this.volume = new VolumeUi(this.engine);
-
-    this.appController = new AppControllerUi();
+    // controllersContainer (sound + play + tap)
+    this.controllers = new controllersContainerUi(
+      this.engine,
+      this.metronome,
+      this.bpm
+    );
   }
 }
 

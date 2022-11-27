@@ -1,7 +1,7 @@
 import Engine from "./classes/Engine";
 import View from "./classes/View/View";
 import Metronome from "./classes/Metronome";
-import Canvas from "./classes/Canvas/Canvas";
+import Canvas from "./classes/View/GuiContainer/Canvas";
 import CanvasInspector from "./CanvasInspector/CanvasInspector";
 
 /**
@@ -37,12 +37,12 @@ class App {
   }
 
   public init(): void {
-    this.view.appController.setOnPlay(() => {
+    this.view.controllers.setOnPlay(() => {
       app.play();
       this.canvas.playAnimation();
     });
 
-    this.view.appController.setOnPause(() => {
+    this.view.controllers.setOnPause(() => {
       app.pause();
       this.canvas.stopAnimation();
     });

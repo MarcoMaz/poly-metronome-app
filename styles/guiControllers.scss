@@ -16,7 +16,7 @@
   }
 
   /* Firefox */
-  input[type=number] {
+  input[type="number"] {
     appearance: auto;
     -moz-appearance: textfield;
   }
@@ -61,6 +61,13 @@
   }
 
   &__bpm {
-    background: green;
+    align-items: center;
+    display: flex;
+  }
+
+  &__bpm-minus,
+  &__bpm-plus,
+  &__bpm-value {
+    flex-direction: column;
   }
 }

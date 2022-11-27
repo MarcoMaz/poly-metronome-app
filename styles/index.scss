@@ -3,10 +3,8 @@ $border: 1px solid black;
 @import './normalize.scss';
 @import './scheme.scss';
 @import './viewports.scss';
-@import './beatsContainer.scss';
 @import './guiControllers.scss';
 @import './guiContainer.scss';
-@import './bpmContainer.scss';
 @import './controllersContainer.scss';
 
 ol {
@@ -19,6 +17,10 @@ button {
   background: none;
   border: $border;
   padding: 0.5rem 1rem;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /*
