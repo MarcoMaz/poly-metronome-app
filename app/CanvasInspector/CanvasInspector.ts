@@ -2,7 +2,7 @@ const INSPECTOR = "canvas-inspector";
 const INSPECTOR_TOGGLE_BUTTON = "canvas-inspector__toggle-button";
 const INSPECTOR_TOGGLE_BUTTON_TEXT_SHOW = "Show grid";
 const INSPECTOR_TOGGLE_BUTTON_TEXT_HIDE = "Hide grid";
-const CANVAS = ".canvas-metronome";
+const CANVAS = ".gui-container__canvas";
 const SELECT = "grid-select";
 const OPTION_0 = "--select a value";
 const OPTION_1 = "10";
@@ -21,7 +21,7 @@ class CanvasInspector {
   originalCanvasHeight: number;
 
   grid: HTMLCanvasElement;
-  gridContext: CanvasRenderingContext2D;
+  gridContext: any;
   gridTop: number;
   gridCellSize: number;
 
@@ -37,6 +37,7 @@ class CanvasInspector {
   divY: HTMLDivElement;
   cursorX: number;
   cursorY: number;
+  gridLeft: number;
 
   constructor() {
     this.canvasInspector = document.createElement("div");
@@ -98,6 +99,8 @@ class CanvasInspector {
     this.grid.style.position = "absolute";
     this.gridTop = this.originalCanvas.getBoundingClientRect().top;
     this.grid.style.top = `${this.gridTop}px`;
+    this.gridLeft = this.originalCanvas.getBoundingClientRect().left;
+    this.grid.style.left = `${this.gridLeft}px`;
 
     this.grid.height = this.originalCanvasHeight;
     this.grid.width = this.originalCanvasWidth;
@@ -142,8 +145,7 @@ class CanvasInspector {
   }
 
   private hideInspector(): void {
-    // this.gridContext.reset(); // Clear the context!
-
+    this.gridContext.reset(); // Clear the context!
     this.toggleButton.innerText = INSPECTOR_TOGGLE_BUTTON_TEXT_SHOW;
     this.canvasInspector.classList.remove(SHOW);
     this.select.classList.remove(SHOW);
@@ -152,8 +154,7 @@ class CanvasInspector {
   }
 
   private makeGrid(): void {
-    // this.gridContext.reset(); // Clear the context!
-
+    this.gridContext.reset(); // Clear the context!
     for (var x = 0; x <= this.grid.width; x += this.gridCellSize) {
       this.gridContext.moveTo(0.5 + x, 0);
       this.gridContext.lineTo(0.5 + x, this.grid.height);
@@ -164,14 +165,14 @@ class CanvasInspector {
     }
     this.gridContext.stroke();
     this.gridContext.strokeStyle = "black";
-  }
+  } 
 
   private resize(): void {
-    this.grid.width = window.innerWidth;
-    this.grid.height = window.innerHeight;
     this.gridTop = this.originalCanvas.getBoundingClientRect().top;
     this.grid.style.top = `${this.gridTop}px`;
-
+    this.gridLeft = this.originalCanvas.getBoundingClientRect().left;
+    this.grid.style.left = `${this.gridLeft}px`;
+    
     if (this.isToggleButtonClicked === false) {
       this.isToggleButtonClicked = false;
       this.hideInspector();

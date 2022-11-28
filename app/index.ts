@@ -2,7 +2,6 @@ import Engine from "./classes/Engine";
 import View from "./classes/View/View";
 import Metronome from "./classes/Metronome";
 import CanvasInspector from "./CanvasInspector/CanvasInspector";
-import BeatsContainer from "./classes/View/GuiContainer/CanvasUi";
 import CanvasUi from "./classes/View/GuiContainer/CanvasUi";
 
 /**
@@ -60,7 +59,7 @@ class App {
         : console.log(`message: ${e.data}`);
 
     this.timerWorker.postMessage({ interval: this.engine.lookahead });
-    // this.canvasInspector = new CanvasInspector();
+    this.canvasInspector = new CanvasInspector();
   }
 
   public play(): void {

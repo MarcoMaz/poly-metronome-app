@@ -49,18 +49,16 @@ body {
 }
 
 /* CANVAS INSPECTOR STYLE */
-
-/*
 .canvas-inspector {
   position: fixed;
   right: 0;
-  top: 0;
-  z-index: 999;
+  top: 50vh;
   width: 200px;
   height: 200px;
 
   &.-show {
     background: lightgray;
+    color: black;
   }
 
   &__toggle-button {
@@ -99,4 +97,3 @@ body {
     top: 140px;
   }
 }
-*/

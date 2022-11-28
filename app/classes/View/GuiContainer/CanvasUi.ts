@@ -3,6 +3,10 @@ import Metronome from "../../Metronome";
 import View from "../View";
 import Shape from "./Shape";
 
+const MOBILE_VIEWPORT = 0;
+const TABLET_VIEWPORT = 700;
+const DESKTOP_VIEWPORT = 1000;
+
 class CanvasUi {
   againstBeat: number;
   animation: number;
@@ -12,7 +16,7 @@ class CanvasUi {
   againstBeatSquare: Shape;
   baseBeatSquare: Shape;
   canvas: HTMLCanvasElement;
-  canvasContext: CanvasRenderingContext2D;
+  canvasContext: any;
 
   constructor(
     public metronome: Metronome,
@@ -25,11 +29,12 @@ class CanvasUi {
     this.animation = 0;
     this.currentNote = 0;
 
-    // window.addEventListener("resize", () => this.resize());
+    this.resize();
+    window.addEventListener("resize", () => this.resize());
   }
 
   public reset(): void {
-    this.canvasContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.canvasContext.reset();
     window.cancelAnimationFrame(this.animation);
   }
 
@@ -107,10 +112,18 @@ class CanvasUi {
     this.render();
   }
 
-  // public resize(): void {
-  //   this.canvas.width = window.innerWidth;
-  //   this.canvas.height = window.innerHeight;
-  // }
+  public resize(): void {
+    if (window.innerWidth >= MOBILE_VIEWPORT && window.innerWidth < TABLET_VIEWPORT) {      
+      this.canvas.width = 400;
+      this.canvas.height = 200;  
+    } else if (window.innerWidth >= TABLET_VIEWPORT && window.innerWidth < DESKTOP_VIEWPORT) {      
+      this.canvas.width = 650;
+      this.canvas.height = 200;  
+    } else {      
+      this.canvas.width = 900;
+      this.canvas.height = 200;  
+    }
+  }
 }
 
 export default CanvasUi;

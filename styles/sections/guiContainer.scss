@@ -19,19 +19,5 @@
   &__canvas {
     align-self: center;
     border: 1px solid black;
-    height: 200px;
-    width: 400px;
-  }
-}
-
-@include tablet-viewport {
-  .gui-container__canvas {
-    width: 700px;
-  }
-}
-
-@include desktop-viewport {
-  .gui-container__canvas {
-    width: 900px;
   }
 }

@@ -1,7 +1,5 @@
 import Metronome from "../../Metronome";
 
-const BASE_NUMBER = 18;
-
 //// GENERAL
 const ACTIVE_BEAT_COLOR_OTHER = "lightblue";
 const ACTIVE_BEAT_COLOR_CURRENT = "blue";
@@ -41,10 +39,8 @@ class Shape {
     this.currentNote = currentNote;
   }
 
-  public render(): void {
-    this.myCanvasContext.fillStyle = INACTIVE_BEAT_COLOR;
-
-    // Rect / Pipeline
+  public createShape(): void {
+    // Squares / Pipelines
     let rectX: number;
     let rectY: number;
     let rectHeight: number;
@@ -54,14 +50,14 @@ class Shape {
     let gridX: number;
     let gridY: number;
     let gridWidth: number;
-    const gridHeight: number = this.size / 2;
+    let gridHeight: number;
 
     // Dots
     let dotX: number;
     let dotY: number;
 
     if (this.beatType === "against") {
-      // Rect
+      // Squares / Pipelines
       rectX = this.size + this.index * HORIZONTAL_GAP_BETWEEN_ELEMENTS;
       rectY = VERTICAL_GAP_BETWEEN_ELEMENTS;
 
@@ -69,12 +65,13 @@ class Shape {
       gridX = this.size + this.index * GRID_CELL_SIZE;
       gridY = VERTICAL_GAP_BETWEEN_GRID_CELLS;
       gridWidth = GRID_CELL_SIZE;
+      gridHeight = this.size;
 
       // Dots
       dotX = rectX;
       dotY = rectY;
     } else {
-      // Rect
+      // Squares / Pipelines
       rectX =
         this.size +
         ((this.index * HORIZONTAL_GAP_BETWEEN_ELEMENTS) /
@@ -90,6 +87,7 @@ class Shape {
       gridY = this.size;
       gridWidth =
         (GRID_CELL_SIZE / this.metronome.baseBeat) * this.metronome.againstBeat;
+      gridHeight = this.size;
 
       // Dots
       dotX = rectX;
@@ -130,6 +128,11 @@ class Shape {
     }
   }
 
+  public render(): void {
+    this.myCanvasContext.fillStyle = INACTIVE_BEAT_COLOR;
+    this.createShape();
+  }
+
   public animate(): void {
     let metronomeType: number;
 
@@ -145,91 +148,7 @@ class Shape {
     } else {
       this.myCanvasContext.fillStyle = ACTIVE_BEAT_COLOR_OTHER;
     }
-
-    // Rect
-    let rectX: number;
-    let rectY: number;
-    let rectWidth: number;
-    let rectHeight: number;
-
-    // Grid
-    let gridX: number;
-    let gridY: number;
-    let gridWidth: number;
-    let gridHeight: number;
-
-    // Dots
-    let dotX: number;
-    let dotY: number;
-
-    if (this.beatType === "against") {
-      // Rect
-      rectX = this.size + this.index * HORIZONTAL_GAP_BETWEEN_ELEMENTS;
-      rectY = VERTICAL_GAP_BETWEEN_ELEMENTS;
-
-      // Grid
-      gridX = this.size + this.index * GRID_CELL_SIZE;
-      gridY = VERTICAL_GAP_BETWEEN_GRID_CELLS;
-      gridWidth = GRID_CELL_SIZE;
-      gridHeight = this.size / 2;
-
-      // Dots
-      dotX = rectX;
-      dotY = rectY;
-    } else {
-      // Rect
-      rectX =
-        this.size +
-        ((this.index * HORIZONTAL_GAP_BETWEEN_ELEMENTS) /
-          this.metronome.baseBeat) *
-          this.metronome.againstBeat;
-      rectY = this.size;
-
-      // Grid
-      gridX =
-        this.size +
-        ((this.index * GRID_CELL_SIZE) / this.metronome.baseBeat) *
-          this.metronome.againstBeat;
-      gridY = this.size;
-      gridWidth =
-        (GRID_CELL_SIZE / this.metronome.baseBeat) * this.metronome.againstBeat;
-      gridHeight = this.size / 2;
-
-      // Dots
-      dotX = rectX;
-      dotY = rectY;
-    }
-
-    switch (this.type) {
-      case "square":
-        rectWidth = 21;
-        rectHeight = this.size / 2;
-        this.myCanvasContext.fillRect(rectX, rectY, rectWidth, rectHeight);
-        break;
-      case "pipelines":
-        rectWidth = 1;
-        rectHeight = this.size / 2;
-        this.myCanvasContext.fillRect(rectX, rectY, rectWidth, rectHeight);
-        break;
-      case "grid":
-        this.myCanvasContext.beginPath();
-        this.myCanvasContext.rect(gridX, gridY, gridWidth, gridHeight);
-        this.myCanvasContext.strokeStyle = GRID_BORDER_COLOR;
-        this.myCanvasContext.fill();
-        this.myCanvasContext.stroke();
-        break;
-      case "dots":
-        this.myCanvasContext.beginPath();
-        this.myCanvasContext.arc(
-          dotX,
-          dotY,
-          DOT_RADIUS,
-          DOT_START_ANGLE,
-          DOT_END_ANGLE
-        );
-        this.myCanvasContext.fill();
-        break;
-    }
+    this.createShape();
   }
 }
 
