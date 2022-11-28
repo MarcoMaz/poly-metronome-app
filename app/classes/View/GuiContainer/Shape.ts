@@ -58,6 +58,13 @@ class Shape {
         this.myCanvasContext.fillRect(rectX, rectY, rectWidth, rectHeight);
         this.myCanvasContext.fill();
         break;
+      case "pipelines":
+        rectX = (this.size + padding) * this.index
+        rectWidth = this.size / 2;
+        rectHeight = this.size * 2;
+        this.myCanvasContext.fillRect(rectX, rectY, rectWidth, rectHeight);
+        this.myCanvasContext.fill();
+        break;
     }
   }
 
