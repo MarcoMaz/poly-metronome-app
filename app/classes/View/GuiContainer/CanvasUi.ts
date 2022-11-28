@@ -3,9 +3,9 @@ import Metronome from "../../Metronome";
 import View from "../View";
 import Shape from "./Shape";
 
-const MOBILE_VIEWPORT = 0;
-const TABLET_VIEWPORT = 700;
-const DESKTOP_VIEWPORT = 1000;
+export const MOBILE_VIEWPORT = 0;
+export const TABLET_VIEWPORT = 700;
+export const DESKTOP_VIEWPORT = 1000;
 
 class CanvasUi {
   againstBeat: number;
@@ -46,6 +46,7 @@ class CanvasUi {
     // AgainstBeat
     for (let i = 0; i < this.metronome.againstBeat; i += 1) {
       this.againstBeatSquare = new Shape(
+        this.canvas,
         this.canvasContext,
         this.metronome,
         i,
@@ -58,6 +59,7 @@ class CanvasUi {
     // BaseBeat
     for (let j = 0; j < this.metronome.baseBeat; j += 1) {
       this.baseBeatSquare = new Shape(
+        this.canvas,
         this.canvasContext,
         this.metronome,
         j,
@@ -83,6 +85,7 @@ class CanvasUi {
 
     for (let i = 0; i < this.metronome.againstBeat; i++) {
       this.againstBeatSquare = new Shape(
+        this.canvas,
         this.canvasContext,
         this.metronome,
         i,
@@ -95,6 +98,7 @@ class CanvasUi {
 
     for (let j = 0; j < this.metronome.baseBeat; j += 1) {
       this.baseBeatSquare = new Shape(
+        this.canvas,
         this.canvasContext,
         this.metronome,
         j,
@@ -114,14 +118,14 @@ class CanvasUi {
 
   public resize(): void {
     if (window.innerWidth >= MOBILE_VIEWPORT && window.innerWidth < TABLET_VIEWPORT) {      
-      this.canvas.width = 400;
-      this.canvas.height = 200;  
+      this.canvas.width = 350;
+      this.canvas.height = 100;  
     } else if (window.innerWidth >= TABLET_VIEWPORT && window.innerWidth < DESKTOP_VIEWPORT) {      
-      this.canvas.width = 650;
-      this.canvas.height = 200;  
+      this.canvas.width = 450;
+      this.canvas.height = 100;  
     } else {      
-      this.canvas.width = 900;
-      this.canvas.height = 200;  
+      this.canvas.width = 600;
+      this.canvas.height = 150;  
     }
   }
 }

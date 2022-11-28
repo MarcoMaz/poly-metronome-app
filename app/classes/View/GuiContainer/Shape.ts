@@ -1,4 +1,104 @@
 import Metronome from "../../Metronome";
+import { DESKTOP_VIEWPORT, MOBILE_VIEWPORT, TABLET_VIEWPORT } from "./CanvasUi";
+
+//// GENERAL
+const ACTIVE_BEAT_COLOR_OTHER = "lightblue";
+const ACTIVE_BEAT_COLOR_CURRENT = "blue";
+const INACTIVE_BEAT_COLOR = "lightgray";
+// const HORIZONTAL_GAP_BETWEEN_ELEMENTS = 100;
+// const VERTICAL_GAP_BETWEEN_ELEMENTS = 10;
+
+class Shape {
+  size: number;
+  index: number;
+  beatType: string;
+  currentNote: number;
+  type: string;
+
+  constructor(
+    public canvas: HTMLCanvasElement,
+    public myCanvasContext: CanvasRenderingContext2D,
+    public metronome: Metronome,
+    index: number,
+    beatType: "base" | "against",
+    type: string,
+    currentNote?: number
+  ) {
+    this.index = index;
+    this.beatType = beatType;
+    this.type = type;
+    this.currentNote = currentNote;
+  }
+  
+  public createShape(): void {
+    this.resize();
+
+    // Squares / Pipelines
+    let rectX: number;
+    let rectY: number;
+    let rectHeight: number;
+    let rectWidth: number;
+    let padding: number;
+    
+    if (this.beatType === "against") {
+      // Squares / Pipelines
+      padding = (this.canvas.width / this.metronome.againstBeat) - this.size;
+      rectY = 0;
+    } else {
+      // Squares / Pipelines
+      padding = (this.canvas.width / this.metronome.baseBeat) - this.size;
+      rectY = this.canvas.height - this.size * 2;
+    }
+    
+    switch (this.type) {
+      case "square":
+        rectX = (this.size + padding) * this.index
+        rectWidth = this.size * 2;
+        rectHeight = rectWidth;
+        this.myCanvasContext.fillRect(rectX, rectY, rectWidth, rectHeight);
+        this.myCanvasContext.fill();
+        break;
+    }
+  }
+
+  public render(): void {
+    this.myCanvasContext.fillStyle = INACTIVE_BEAT_COLOR;
+    this.createShape();
+  }
+
+  public animate(): void {
+    let metronomeType: number;
+
+    this.beatType === "against"
+      ? (metronomeType = this.metronome.baseBeat)
+      : (metronomeType = this.metronome.againstBeat);
+
+    if (this.currentNote % metronomeType === 0) {
+      this.myCanvasContext.fillStyle =
+        this.currentNote / metronomeType === this.index
+          ? ACTIVE_BEAT_COLOR_CURRENT
+          : ACTIVE_BEAT_COLOR_OTHER;
+    } else {
+      this.myCanvasContext.fillStyle = ACTIVE_BEAT_COLOR_OTHER;
+    }
+    this.createShape();
+  }
+
+  public resize(): void {
+    if (window.innerWidth >= MOBILE_VIEWPORT && window.innerWidth < TABLET_VIEWPORT) {    
+      this.size = 16;  
+    } else if (window.innerWidth >= TABLET_VIEWPORT && window.innerWidth < DESKTOP_VIEWPORT) {      
+      this.size = 20;
+    } else {     
+      this.size = 32; 
+    }
+  }
+}
+
+export default Shape;
+
+/*
+import Metronome from "../../Metronome";
 
 //// GENERAL
 const ACTIVE_BEAT_COLOR_OTHER = "lightblue";
@@ -25,6 +125,7 @@ class Shape {
   type: string;
 
   constructor(
+    public canvas: HTMLCanvasElement,
     public myCanvasContext: CanvasRenderingContext2D,
     public metronome: Metronome,
     index: number,
@@ -153,3 +254,4 @@ class Shape {
 }
 
 export default Shape;
+*/
