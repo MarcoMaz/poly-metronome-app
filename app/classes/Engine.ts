@@ -9,6 +9,7 @@ import Metronome from "./Metronome";
  * @param {number} scheduleAheadTime    - The scheduled audio (in seconds) calculated from lookahead. It overlaps with next interval (in case the timer is late).
  * @param {number} nextNoteTime         - The next note's due.
  * @param {number} noteLength           - The "beep"'s length (in seconds).
+ * @param {GainNode} gainNode           - The "beep"'s volume.
  * @param {NotesInQueue[]} notesInQueue - The notes put into the web audio, and may or may not have played yet. {note, time}
  */
 
@@ -49,7 +50,7 @@ class Engine {
     this.current16thNote += 1;
 
     if (
-      this.current16thNote ===
+      this.current16thNote >=
       this.metronome.againstBeat * this.metronome.baseBeat
     )
       this.current16thNote = 0;

@@ -25,7 +25,7 @@ class Shape {
 
   constructor(
     public canvas: HTMLCanvasElement,
-    public myCanvasContext: CanvasRenderingContext2D,
+    public canvasContext: CanvasRenderingContext2D,
     public metronome: Metronome,
     index: number,
     beatType: "base" | "against",
@@ -99,45 +99,45 @@ class Shape {
         rectWidth = this.size * 2;
         rectHeight = rectWidth;
 
-        this.myCanvasContext.fillRect(rectX, rectY, rectWidth, rectHeight);
-        this.myCanvasContext.fill();
+        this.canvasContext.fillRect(rectX, rectY, rectWidth, rectHeight);
+        this.canvasContext.fill();
         break;
       case "pipelines":
         rectX = (this.size + padding) * this.index;
         rectWidth = this.size / 2;
         rectHeight = this.size * 2;
 
-        this.myCanvasContext.fillRect(rectX, rectY, rectWidth, rectHeight);
-        this.myCanvasContext.fill();
+        this.canvasContext.fillRect(rectX, rectY, rectWidth, rectHeight);
+        this.canvasContext.fill();
         break;
       case "grid":
         gridHeight = this.canvas.height / 2;
 
-        this.myCanvasContext.beginPath();
-        this.myCanvasContext.rect(gridX, gridY, gridWidth, gridHeight);
-        this.myCanvasContext.strokeStyle = GRID_BORDER_COLOR;
-        this.myCanvasContext.fill();
-        this.myCanvasContext.stroke();
+        this.canvasContext.beginPath();
+        this.canvasContext.rect(gridX, gridY, gridWidth, gridHeight);
+        this.canvasContext.strokeStyle = GRID_BORDER_COLOR;
+        this.canvasContext.fill();
+        this.canvasContext.stroke();
         break;
       case "dots":
         dotX = (this.size + padding) * this.index + this.size;
         dotRadius = this.size;
 
-        this.myCanvasContext.beginPath();
-        this.myCanvasContext.arc(
+        this.canvasContext.beginPath();
+        this.canvasContext.arc(
           dotX,
           dotY,
           dotRadius,
           DOT_START_ANGLE,
           DOT_END_ANGLE
         );
-        this.myCanvasContext.fill();
+        this.canvasContext.fill();
         break;
     }
   }
 
   public render(): void {
-    this.myCanvasContext.fillStyle = INACTIVE_BEAT_COLOR;
+    this.canvasContext.fillStyle = INACTIVE_BEAT_COLOR;
     this.createShape();
   }
 
@@ -149,12 +149,12 @@ class Shape {
       : (metronomeType = this.metronome.againstBeat);
 
     if (this.currentNote % metronomeType === 0) {
-      this.myCanvasContext.fillStyle =
+      this.canvasContext.fillStyle =
         this.currentNote / metronomeType === this.index
           ? ACTIVE_BEAT_COLOR_CURRENT
           : ACTIVE_BEAT_COLOR_OTHER;
     } else {
-      this.myCanvasContext.fillStyle = ACTIVE_BEAT_COLOR_OTHER;
+      this.canvasContext.fillStyle = ACTIVE_BEAT_COLOR_OTHER;
     }
     this.createShape();
   }

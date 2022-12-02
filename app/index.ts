@@ -1,7 +1,6 @@
 import Engine from "./classes/Engine";
 import View from "./classes/View/View";
 import Metronome from "./classes/Metronome";
-import CanvasInspector from "./CanvasInspector/CanvasInspector";
 import CanvasUi from "./classes/View/GuiContainer/CanvasUi";
 
 /**
@@ -18,7 +17,6 @@ class App {
   private view: View;
   private audioContext: AudioContext;
   private timerWorker: Worker;
-  private canvasInspector: CanvasInspector;
   private canvas: CanvasUi;
 
   constructor() {
@@ -31,7 +29,7 @@ class App {
       this.metronome,
       this.engine,
       this.view,
-      this.audioContext,
+      this.audioContext
     );
 
     this.init();
@@ -59,7 +57,6 @@ class App {
         : console.log(`message: ${e.data}`);
 
     this.timerWorker.postMessage({ interval: this.engine.lookahead });
-    this.canvasInspector = new CanvasInspector();
   }
 
   public play(): void {
@@ -68,6 +65,7 @@ class App {
     if (this.isPlaying) {
       this.engine.current16thNote = 0;
       this.engine.nextNoteTime = this.audioContext.currentTime;
+      this.engine.nextNoteTime += 0.01; // adds a small delay to the click
       this.timerWorker.postMessage("start");
     }
   }

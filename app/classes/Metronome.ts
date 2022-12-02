@@ -3,7 +3,6 @@
  * @constructor
  * @param {number} againstBeat  - The beat playing against the default beat.
  * @param {number} baseBeat     - The default beat.
- * @param {number} LCMbeats     - The LCM between against and base beat.
  * @param {number} tempo        - The tempo (in BPM = Beats Per Minute).
  */
 
