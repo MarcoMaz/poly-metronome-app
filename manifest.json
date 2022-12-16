@@ -1,6 +1,6 @@
 {
-  "name": "Boilerplate TS",
-  "short_name": "boilerplate-ts",
+  "name": "Polyrhythmic Metronome PWA",
+  "short_name": "polyrhythmic-metronome-pwa",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#fdfdfd",
@@ -8,12 +8,12 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/images/android-chrome-192x192.png",
+      "src": "/images/android-chrome_192x192.png",
       "type": "image/png", "sizes": "192x192",
       "purpose": "any"
     },
     {
-      "src": "/images/android-chrome-512x512.png",
+      "src": "/images/android-chrome_512x512.png",
       "type": "image/png", "sizes": "512x512",
       "purpose": "maskable"
     }
