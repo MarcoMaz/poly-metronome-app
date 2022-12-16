@@ -1,5 +1,6 @@
 {
   "name": "poly-metronome-app",
+  "homepage": "https://MarcoMaz.github.io/poly-metronome-app",
   "version": "1.0.0",
   "scripts": {
     "build": "webpack --progress --config webpack.config.build.js",
@@ -8,6 +9,7 @@
   },
   "author": "Marco Mazzai",
   "devDependencies": {
+    "gh-pages": "^3.2.2",
     "@typescript-eslint/eslint-plugin": "^5.31.0",
     "@typescript-eslint/parser": "^5.31.0",
     "babel-loader": "^8.2.2",
