@@ -1,17 +1,17 @@
 {
   "name": "poly-metronome-app",
-  "homepage": "https://MarcoMaz.github.io/poly-metronome-app",
+  "repository": "https://MarcoMaz.github.io/poly-metronome-app",
   "version": "1.0.0",
+  "private": true,
   "scripts": {
     "build": "webpack --progress --config webpack.config.build.js",
     "development": "webpack serve --progress --config webpack.config.development.js",
     "start": "npm run development",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "author": "Marco Mazzai",
   "devDependencies": {
-    "gh-pages": "^3.2.2",
     "@typescript-eslint/eslint-plugin": "^5.31.0",
     "@typescript-eslint/parser": "^5.31.0",
     "babel-loader": "^8.2.2",
@@ -24,6 +24,7 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.2.1",
     "file-loader": "^6.2.0",
+    "gh-pages": "^3.2.2",
     "glslify-loader": "^2.0.0",
     "html-webpack-plugin": "^5.5.0",
     "image-minimizer-webpack-plugin": "^2.2.0",
@@ -50,7 +51,7 @@
     "typescript": "^4.7.4",
     "webpack": "^5.33.2",
     "webpack-cli": "^4.6.0",
-    "webpack-dev-server": "^3.11.2",
+    "webpack-dev-server": "^4.11.1",
     "webpack-merge": "^5.7.3"
   },
   "dependencies": {
