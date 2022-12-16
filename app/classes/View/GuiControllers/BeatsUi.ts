@@ -1,21 +1,39 @@
 import Metronome from "../../Metronome";
 import WarningUi from "./WarningUi";
 
-const AGAINST_BEAT_PLUS =
+// Against Beat Selectors
+const AGAINST_BEAT_PLUS_SELECTOR =
   ".gui-controllers__against-beat.gui-controllers__beat-plus";
-const AGAINST_BEAT_VALUE =
+const AGAINST_BEAT_VALUE_SELECTOR =
   ".gui-controllers__against-beat.gui-controllers__beat-value";
-const AGAINST_BEAT_MINUS =
+const AGAINST_BEAT_MINUS_SELECTOR =
   ".gui-controllers__against-beat.gui-controllers__beat-minus";
 
-const BASE_BEAT_PLUS = ".gui-controllers__base-beat.gui-controllers__beat-plus";
-const BASE_BEAT_VALUE = ".gui-controllers__base-beat.gui-controllers__beat-value";
-const BASE_BEAT_MINUS = ".gui-controllers__base-beat.gui-controllers__beat-minus";
+// Base Beat Selectors
+const BASE_BEAT_PLUS_SELECTOR = ".gui-controllers__base-beat.gui-controllers__beat-plus";
+const BASE_BEAT_VALUE_SELECTOR = ".gui-controllers__base-beat.gui-controllers__beat-value";
+const BASE_BEAT_MINUS_SELECTOR = ".gui-controllers__base-beat.gui-controllers__beat-minus";
 
-const SWITCH_BEATS = ".gui-controllers__switch-beats";
+// Switch Beat Selector
+const SWITCH_BEATS_SELECTOR = ".gui-controllers__switch-beats";
 
+// Min and Max Beats' values
 const BEAT_MIN = 2;
 const BEAT_MAX = 9;
+
+/**
+ * This class represents the UI controlling the beats.
+ * 
+ * @name BeatsUi
+ * 
+ * @param {HTMLButtonElement} againstBeatPlus   - The plus button controlling the against beat.
+ * @param {HTMLInputElement} againstBeatValue   - The input value of the against beat.
+ * @param {HTMLButtonElement} againstBeatMinus  - The minus button controlling the against beat.
+ * @param {HTMLButtonElement} baseBeatPlus      - The plus button controlling the base beat.
+ * @param {HTMLInputElement} baseBeatValue      - The input value of the base beat.
+ * @param {HTMLButtonElement} baseBeatMinus     - The minus button controlling the base beat.
+ * @param {HTMLButtonElement} switchBeats       - The button switching the beats. 
+ */
 
 class BeatsUi {
   private againstBeatPlus: HTMLButtonElement;
@@ -28,23 +46,27 @@ class BeatsUi {
 
   private switchBeats: HTMLButtonElement;
 
+  /**
+   * Define DOM Elements and Variables.
+   */
   constructor(public warning: WarningUi, public metronome: Metronome) {
-    this.againstBeatPlus = document.querySelector(AGAINST_BEAT_PLUS);
-    this.againstBeatValue = document.querySelector(AGAINST_BEAT_VALUE);
-    this.againstBeatMinus = document.querySelector(AGAINST_BEAT_MINUS);
+    this.againstBeatPlus = document.querySelector(AGAINST_BEAT_PLUS_SELECTOR);
+    this.againstBeatValue = document.querySelector(AGAINST_BEAT_VALUE_SELECTOR);
+    this.againstBeatMinus = document.querySelector(AGAINST_BEAT_MINUS_SELECTOR);
 
-    this.baseBeatPlus = document.querySelector(BASE_BEAT_PLUS);
-    this.baseBeatValue = document.querySelector(BASE_BEAT_VALUE);
-    this.baseBeatMinus = document.querySelector(BASE_BEAT_MINUS);
+    this.baseBeatPlus = document.querySelector(BASE_BEAT_PLUS_SELECTOR);
+    this.baseBeatValue = document.querySelector(BASE_BEAT_VALUE_SELECTOR);
+    this.baseBeatMinus = document.querySelector(BASE_BEAT_MINUS_SELECTOR);
 
-    this.switchBeats = document.querySelector(SWITCH_BEATS);
+    this.switchBeats = document.querySelector(SWITCH_BEATS_SELECTOR);
 
+    // Register events
     this.againstBeatPlus.addEventListener("click", () => {
       this.metronome.againstBeat += 1;
       this.againstBeatValue.valueAsNumber += 1;
 
       this.warning.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
-      this.checkLimits(this.metronome.againstBeat, "against");
+      this.checkBeatsLimits(this.metronome.againstBeat, "against");
     });
 
     this.againstBeatMinus.addEventListener("click", () => {
@@ -52,7 +74,7 @@ class BeatsUi {
       this.againstBeatValue.valueAsNumber -= 1;
 
       this.warning.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
-      this.checkLimits(this.metronome.againstBeat, "against");
+      this.checkBeatsLimits(this.metronome.againstBeat, "against");
     });
 
     this.againstBeatValue.addEventListener("change", (event) => {
@@ -61,7 +83,7 @@ class BeatsUi {
       this.againstBeatValue.valueAsNumber = eventTarget.valueAsNumber;
 
       this.warning.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
-      this.checkLimits(eventTarget.valueAsNumber, "against");
+      this.checkBeatsLimits(eventTarget.valueAsNumber, "against");
     });
 
     this.baseBeatPlus.addEventListener("click", () => {
@@ -69,7 +91,7 @@ class BeatsUi {
       this.baseBeatValue.valueAsNumber += 1;
 
       this.warning.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
-      this.checkLimits(this.metronome.baseBeat, "base");
+      this.checkBeatsLimits(this.metronome.baseBeat, "base");
     });
 
     this.baseBeatMinus.addEventListener("click", () => {
@@ -77,7 +99,7 @@ class BeatsUi {
       this.baseBeatValue.valueAsNumber -= 1;
 
       this.warning.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
-      this.checkLimits(this.metronome.baseBeat, "base");
+      this.checkBeatsLimits(this.metronome.baseBeat, "base");
     });
 
     this.baseBeatValue.addEventListener("change", (event) => {
@@ -86,7 +108,7 @@ class BeatsUi {
       this.baseBeatValue.valueAsNumber = eventTarget.valueAsNumber;
 
       this.warning.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
-      this.checkLimits(eventTarget.valueAsNumber, "base");
+      this.checkBeatsLimits(eventTarget.valueAsNumber, "base");
     });
 
     this.switchBeats.addEventListener("click", () => {
@@ -99,7 +121,13 @@ class BeatsUi {
     });
   }
 
-  private checkLimits(element: number, type: "against" | "base"): void {
+  /**
+   * @name checkBeatsLimits
+   * @description
+   * Check the beats' limits. If the number is too big or too low, resets to minimum and maximum.
+   *
+   */
+  private checkBeatsLimits(element: number, type: "against" | "base"): void {
     if (element > BEAT_MAX) {
       if (type === "against") {
         this.metronome.againstBeat = BEAT_MAX;

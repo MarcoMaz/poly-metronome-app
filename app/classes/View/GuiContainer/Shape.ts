@@ -16,6 +16,19 @@ const SIZE_DESKTOP = 32;
 const DOT_START_ANGLE = 0;
 const DOT_END_ANGLE = 2 * Math.PI;
 
+/**
+ * This class represents the shape of the beats' sequence.
+ * 
+ * @name Shape
+ * 
+ * @param {number} size         - The shape's size.
+ * @param {number} index        - The shape's index.
+ * @param {string} beatType     - The shape's type of beat. Either 'against' or 'base'.
+ * @param {number} currentNote  - The current note being played. Optional.
+ * @param {string} type         - The shape's type. Square (default), pipelines, grid or dots.
+ * 
+ */
+
 class Shape {
   size: number;
   index: number;
@@ -23,6 +36,9 @@ class Shape {
   currentNote: number;
   type: string;
 
+  /**
+   * Define DOM Elements and Variables.
+   */
   constructor(
     public canvas: HTMLCanvasElement,
     public canvasContext: CanvasRenderingContext2D,
@@ -38,6 +54,12 @@ class Shape {
     this.currentNote = currentNote;
   }
 
+  /**
+   * @name resize
+   * @description
+   * Change the shape's size based on the window viewport.
+   * 
+   */
   public resize(): void {
     if (
       window.innerWidth >= MOBILE_VIEWPORT &&
@@ -54,6 +76,12 @@ class Shape {
     }
   }
 
+  /**
+   * @name createShape
+   * @description
+   * Create the shape based on its type.
+   * 
+   */
   public createShape(): void {
     this.resize();
 
@@ -136,12 +164,24 @@ class Shape {
     }
   }
 
-  public render(): void {
+  /**
+   * @name renderShape
+   * @description
+   * Render the shape.
+   * 
+   */
+  public renderShape(): void {
     this.canvasContext.fillStyle = INACTIVE_BEAT_COLOR;
     this.createShape();
   }
 
-  public animate(): void {
+  /**
+   * @name animateShape
+   * @description
+   * Animate the shape.
+   * 
+   */
+  public animateShape(): void {
     let metronomeType: number;
 
     this.beatType === "against"

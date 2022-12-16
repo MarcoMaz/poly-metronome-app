@@ -1,9 +1,12 @@
 /**
  *  This class represents the metronome itself.
- * @constructor
+ * 
+ * @name Metronome
+ * 
  * @param {number} againstBeat  - The beat playing against the default beat.
  * @param {number} baseBeat     - The default beat.
  * @param {number} tempo        - The tempo (in BPM = Beats Per Minute).
+ * 
  */
 
 class Metronome {
@@ -13,6 +16,9 @@ class Metronome {
 
   public tempo: number;
 
+  /**
+  * Define the Variables
+  */
   constructor(againstBeat: number, baseBeat: number, tempo: number) {
     this.againstBeat = againstBeat;
     this.baseBeat = baseBeat;

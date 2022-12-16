@@ -3,11 +3,17 @@ import View from "./classes/View/View";
 import Metronome from "./classes/Metronome";
 import CanvasUi from "./classes/View/GuiContainer/CanvasUi";
 
+const SMALL_SOUND_DELAY = 0.01;
+
+const START_MESSAGE = "start";
+const STOP_MESSAGE = "stop";
+
 /**
  *  This class represents the app itself.
  *
- * @constructor
- * @param {boolean} isPlaying    - Wheter of not the app is playing.
+ * @name  App
+ *
+ * @param {boolean} isPlaying - Wheter of not the app is playing.
  */
 
 class App {
@@ -19,6 +25,9 @@ class App {
   private timerWorker: Worker;
   private canvas: CanvasUi;
 
+  /**
+   * Define variables.
+   */
   constructor() {
     this.isPlaying = false;
     this.metronome = new Metronome(3, 4, 120);
@@ -32,8 +41,15 @@ class App {
       this.audioContext
     );
 
+    // starts the app on load.
     this.init();
   }
+
+  /**
+   * @name init
+   * @description
+   * Sets the initial setup of the app
+   */
 
   public init(): void {
     this.view.controllers.setOnPlay(() => {
@@ -59,22 +75,32 @@ class App {
     this.timerWorker.postMessage({ interval: this.engine.lookahead });
   }
 
+  /**
+   * @name play
+   * @description
+   * Play the app.
+   */
   public play(): void {
     this.isPlaying = true;
 
     if (this.isPlaying) {
       this.engine.current16thNote = 0;
       this.engine.nextNoteTime = this.audioContext.currentTime;
-      this.engine.nextNoteTime += 0.01; // adds a small delay to the click
-      this.timerWorker.postMessage("start");
+      this.engine.nextNoteTime += SMALL_SOUND_DELAY; // adds a small delay to avoid the "beep" to click.
+      this.timerWorker.postMessage(START_MESSAGE);
     }
   }
 
+  /**
+   * @name pause
+   * @description
+   * Pause the app.
+   */
   public pause(): void {
     this.isPlaying = false;
 
     if (!this.isPlaying) {
-      this.timerWorker.postMessage("stop");
+      this.timerWorker.postMessage(STOP_MESSAGE);
       this.timerWorker.postMessage({ interval: 0 });
     }
   }

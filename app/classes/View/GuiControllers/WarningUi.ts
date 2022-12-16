@@ -1,13 +1,32 @@
-const WARNING = '.gui-controllers__warning';
-const SHOW = "-show";
+// Warning selectors
+const WARNING_SELECTOR = ".gui-controllers__warning";
+const SHOW_CLASS = "-show";
+
+/**
+ * This class represents the UI controlling the warning.
+ *
+ * @name WarningUi
+ *
+ * @param {HTMLElement} warning  - The warning element.
+ * 
+ */
 
 class WarningUi {
   private warning: HTMLElement;
 
+  /**
+   * Define DOM Elements and Variables.
+   */
   constructor() {
-    this.warning = document.querySelector(WARNING);
+    this.warning = document.querySelector(WARNING_SELECTOR);
   }
 
+  /**
+   * @name isPoly
+   * @description
+   * Check if the relationship between the two beats is a polyrhythm.
+   *
+   */
   public isPoly(
     firstElement: number | string,
     secondElement: number | string
@@ -21,12 +40,24 @@ class WarningUi {
     maxNumber % minNumber === 0 ? this.show() : this.hide();
   }
 
+  /**
+   * @name show
+   * @description
+   * Show the warning.
+   *
+   */
   private show(): void {
-    this.warning.classList.add(SHOW);
+    this.warning.classList.add(SHOW_CLASS);
   }
 
+  /**
+   * @name hide
+   * @description
+   * Hide the warning.
+   *
+   */
   private hide(): void {
-    this.warning.classList.remove(SHOW);
+    this.warning.classList.remove(SHOW_CLASS);
   }
 }
 
