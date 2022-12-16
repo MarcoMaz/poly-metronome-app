@@ -5,7 +5,9 @@
   "scripts": {
     "build": "webpack --progress --config webpack.config.build.js",
     "development": "webpack serve --progress --config webpack.config.development.js",
-    "start": "npm run development"
+    "start": "npm run development",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "author": "Marco Mazzai",
   "devDependencies": {
