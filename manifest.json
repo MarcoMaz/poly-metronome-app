@@ -1,7 +1,11 @@
 {
   "name": "Polyrhythmic Metronome PWA",
   "short_name": "polyrhythmic-metronome-pwa",
-  "start_url": "/",
+  "start_url": "/inde.html",
+  "serviceworker": {
+    "src": "/serviceWorker.js",
+    "scope": "/"
+  },
   "display": "standalone",
   "background_color": "#fdfdfd",
   "theme_color": "#db4938",
