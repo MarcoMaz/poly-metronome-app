@@ -56,6 +56,10 @@ module.exports = {
         {
           from: 'manifest.json',
           to: ''
+        },
+        {
+          from: 'serviceWorker.js',
+          to: ''
         }
       ],
     }),
