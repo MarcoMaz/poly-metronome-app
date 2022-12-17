@@ -1,4 +1,4 @@
-const boilerplateTs = "poly-metronome-app"
+const cacheName = "poly-metronome-app"
 const assets = [
   "/",
   "/index.html",
@@ -17,7 +17,7 @@ const assets = [
 
 self.addEventListener("install", installEvent => {
   installEvent.waitUntil(
-    caches.open(boilerplateTs).then(cache => {
+    caches.open(cacheName).then(cache => {
       cache.addAll(assets)
     })
   )
