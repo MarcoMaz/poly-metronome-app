@@ -8,6 +8,12 @@ const SMALL_SOUND_DELAY = 0.01;
 const START_MESSAGE = "start";
 const STOP_MESSAGE = "stop";
 
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/serviceWorker.js')
+  })
+}
+
 /**
  *  This class represents the app itself.
  *
