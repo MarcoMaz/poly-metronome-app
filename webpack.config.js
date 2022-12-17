@@ -52,6 +52,10 @@ module.exports = {
         {
           from: './app/images',
           to: 'images'
+        },
+        {
+          from: 'manifest.json',
+          to: ''
         }
       ],
     }),
