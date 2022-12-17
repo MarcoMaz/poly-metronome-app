@@ -1,4 +1,4 @@
-const boilerplateTs = "boilerplate-ts"
+const boilerplateTs = "poly-metronome-app"
 const assets = [
   "/",
   "/index.html",
