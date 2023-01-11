@@ -8,11 +8,6 @@ module.exports = merge(config, {
 
   devtool: 'inline-source-map',
 
-  devServer: {
-    writeToDisk: true,
-    disableHostCheck: true
-  },
-
   output: {
     path: path.resolve(__dirname, 'dist')
   }

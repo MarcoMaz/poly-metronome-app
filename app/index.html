@@ -59,7 +59,7 @@
         <div class="gui-controllers__warning">This is NOT a polyrhythm!</div>
         <div class="gui-controllers__beats-container">
           <div class="gui-controllers__beats">
-            <div class="gui-controllers__beat">
+            <div class="gui-controllers__beat gui-controllers__against-beat">
               <button
                 type="button"
                 class="gui-controllers__against-beat gui-controllers__beat-plus"
@@ -82,7 +82,7 @@
               </button>
             </div>
             <div class="gui-controllers__dots">:</div>
-            <div class="gui-controllers__beat">
+            <div class="gui-controllers__beat gui-controllers__base-beat">
               <button
                 type="button"
                 class="gui-controllers__base-beat gui-controllers__beat-plus"
@@ -130,8 +130,7 @@
               max="300"
               step="1"
               value="120"
-            />
-            <span>BPM</span>
+            />BPM
           </div>
           <div class="gui-controllers__bpm gui-controllers__bpm-plus">
             <button

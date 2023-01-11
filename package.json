@@ -8,7 +8,8 @@
     "development": "webpack serve --progress --config webpack.config.development.js",
     "start": "npm run development",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "test": "jest"
   },
   "author": "Marco Mazzai",
   "devDependencies": {
@@ -35,6 +36,8 @@
     "imagemin-optipng": "^8.0.0",
     "imagemin-pngquant": "^9.0.2",
     "imagemin-svgo": "^9.0.0",
+    "jest": "^29.3.1",
+    "jsdom": "^20.0.3",
     "mini-css-extract-plugin": "^1.5.0",
     "postcss-loader": "^5.2.0",
     "prettier": "^2.7.1",
