@@ -45,32 +45,33 @@ class BpmUi {
     this.bpmValue = document.querySelector(BPM_VALUE_SELECTOR);
 
     // Register events
-    this.bpmMinusOne.addEventListener("click", () => {
-      this.metronome.tempo -= 1;
-      this.bpmValue.valueAsNumber -= 1;
-      this.checkBpmLimits();
-    });
-    this.bpmMinusFive.addEventListener("click", () => {
-      this.metronome.tempo -= 5;
-      this.bpmValue.valueAsNumber -= 5;
-      this.checkBpmLimits();
-    });
-    this.bpmPlusOne.addEventListener("click", () => {
-      this.metronome.tempo += 1;
-      this.bpmValue.valueAsNumber += 1;
-      this.checkBpmLimits();
-    });
-    this.bpmPlusFive.addEventListener("click", () => {
-      this.metronome.tempo += 5;
-      this.bpmValue.valueAsNumber += 5;
-      this.checkBpmLimits();
-    });
-    this.bpmValue.addEventListener("change", (event) => {
-      let eventTarget = event.target as HTMLInputElement;
-      this.metronome.tempo = eventTarget.valueAsNumber;
-      this.bpmValue.valueAsNumber = eventTarget.valueAsNumber;
-      this.checkBpmLimits();
-    });
+    if (this.bpmMinusOne && this.bpmValue) {
+      this.bpmMinusOne.addEventListener("click", () => {
+        this.metronome.tempo -= 1;
+        this.bpmValue.value = this.metronome.tempo.toString();
+      });
+    }
+    // this.bpmMinusFive.addEventListener("click", () => {
+    //   this.metronome.tempo -= 5;
+    //   this.bpmValue.valueAsNumber -= 5;
+    //   this.checkBpmLimits();
+    // });
+    // this.bpmPlusOne.addEventListener("click", () => {
+    //   this.metronome.tempo += 1;
+    //   this.bpmValue.valueAsNumber += 1;
+    //   this.checkBpmLimits();
+    // });
+    // this.bpmPlusFive.addEventListener("click", () => {
+    //   this.metronome.tempo += 5;
+    //   this.bpmValue.valueAsNumber += 5;
+    //   this.checkBpmLimits();
+    // });
+    // this.bpmValue.addEventListener("change", (event) => {
+    //   let eventTarget = event.target as HTMLInputElement;
+    //   this.metronome.tempo = eventTarget.valueAsNumber;
+    //   this.bpmValue.valueAsNumber = eventTarget.valueAsNumber;
+    //   this.checkBpmLimits();
+    // });
   }
 
   /**
