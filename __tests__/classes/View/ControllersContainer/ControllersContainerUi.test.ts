@@ -1,5 +1,6 @@
 import { htmlPage } from "../../../setup";
 
+<<<<<<< HEAD:__tests__/classes/View/ControllersContainer/ControllersContainerUi.test.ts
 import { controllersContainerUi } from "../../../../app/classes/View/ControllersContainer/controllersContainerUi";
 
 const {
@@ -9,6 +10,15 @@ const {
 } = controllersContainerUi.selectors;
 
 const { SOUND_RESET_LABEL, PLAY_BUTTON_LABEL } = controllersContainerUi.labels;
+=======
+import {
+  CONTROLLERS_CONTAINER_SELECTOR,
+  SOUND_BUTTON_SELECTOR,
+  PLAY_BUTTON_SELECTOR,
+  SOUND_RESET_LABEL,
+  PLAY_BUTTON_LABEL
+} from "../../../../app/classes/View/ControllersContainer/ControllersContainerUi";
+>>>>>>> b1ade173ef06f16f7b6ebac0e8e16df4b1a1d798:__tests__/classes/View/ControllersContainer/ControllersContainerUi.test.ts
 
 describe("Controllers Container", () => {
   it("should exists", () => {
