@@ -1,15 +1,16 @@
 import Engine from "../../Engine";
 
-// Sound On / Off
-const SOUND_BUTTON_SELECTOR = ".controllers__sound";
-const SOUND_ON = "Sound: ON";
-const SOUND_OFF = "Sound: OFF";
-const SOUND_RESET = "Sound: ";
+// Selectors
+export const CONTROLLERS_CONTAINER_SELECTOR = ".controllers-container"
+export const SOUND_BUTTON_SELECTOR = ".controllers__sound";
+export const PLAY_BUTTON_SELECTOR = ".controllers__play";
 
-// Play / Stop
-const PLAY_BUTTON_SELECTOR = ".controllers__play";
-const PLAY = "Play";
-const STOP = "Stop";
+// Labels
+export const SOUND_RESET_LABEL = "Sound:";
+export const PLAY_BUTTON_LABEL = "Play";
+const SOUND_ON_LABEL = "Sound: ON";
+const SOUND_OFF_LABEL = "Sound: OFF";
+const STOP_BUTTON_LABEL = "Stop";
 
 /**
  * This class represents the UI controlling the app functionality.
@@ -23,6 +24,7 @@ const STOP = "Stop";
  */
 
 class ControllersContainerUi {
+  private element: HTMLDivElement;
   private soundButton: HTMLButtonElement;
   private playButton: HTMLButtonElement;
   private isSoundMuted: boolean;
@@ -34,33 +36,34 @@ class ControllersContainerUi {
    * Define DOM Elements and Variables
    */
   constructor(public engine: Engine) {
-    this.soundButton = document.querySelector(SOUND_BUTTON_SELECTOR);
-    this.playButton = document.querySelector(PLAY_BUTTON_SELECTOR);
+    this.element = document.querySelector(CONTROLLERS_CONTAINER_SELECTOR);
+    this.soundButton = this.element.querySelector(SOUND_BUTTON_SELECTOR);
+    this.playButton = this.element.querySelector(PLAY_BUTTON_SELECTOR);
     this.isSoundMuted = true;
 
     // Register events
     this.playButton.addEventListener("click", () => {
-      if (this.playButton.innerHTML === PLAY) {
-        this.playButton.innerHTML = STOP;
-        this.soundButton.innerHTML = SOUND_ON;
+      if (this.playButton.innerHTML === PLAY_BUTTON_LABEL) {
+        this.playButton.innerHTML = STOP_BUTTON_LABEL;
+        this.soundButton.innerHTML = SOUND_ON_LABEL;
         if (this.onPlay) this.onPlay();
         this.soundOn();
       } else {
-        this.playButton.innerHTML = PLAY;
-        this.soundButton.innerHTML = SOUND_RESET;
+        this.playButton.innerHTML = PLAY_BUTTON_LABEL;
+        this.soundButton.innerHTML = SOUND_RESET_LABEL;
         if (this.onPause) this.onPause();
         this.soundOff();
       }
     });
 
     this.soundButton.addEventListener("click", () => {
-      if (this.playButton.innerHTML === STOP) {
+      if (this.playButton.innerHTML === STOP_BUTTON_LABEL) {
         if (this.isSoundMuted === false) {
-          this.soundButton.innerHTML = SOUND_ON;
+          this.soundButton.innerHTML = SOUND_ON_LABEL;
           this.soundOn();
           this.isSoundMuted = true;
         } else {
-          this.soundButton.innerHTML = SOUND_OFF;
+          this.soundButton.innerHTML = SOUND_OFF_LABEL;
           this.soundOff();
           this.isSoundMuted = false;
         }
