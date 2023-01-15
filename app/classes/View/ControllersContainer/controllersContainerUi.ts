@@ -1,6 +1,5 @@
 import Engine from "../../Engine";
 
-<<<<<<< HEAD
 export const controllersContainerUi = {
   selectors: {
     CONTROLLERS_CONTAINER_SELECTOR: ".controllers-container",
@@ -15,19 +14,6 @@ export const controllersContainerUi = {
     STOP_BUTTON_LABEL: "Stop",
   },
 };
-=======
-// Selectors
-export const CONTROLLERS_CONTAINER_SELECTOR = ".controllers-container"
-export const SOUND_BUTTON_SELECTOR = ".controllers__sound";
-export const PLAY_BUTTON_SELECTOR = ".controllers__play";
-
-// Labels
-export const SOUND_RESET_LABEL = "Sound:";
-export const PLAY_BUTTON_LABEL = "Play";
-const SOUND_ON_LABEL = "Sound: ON";
-const SOUND_OFF_LABEL = "Sound: OFF";
-const STOP_BUTTON_LABEL = "Stop";
->>>>>>> b1ade173ef06f16f7b6ebac0e8e16df4b1a1d798
 
 /**
  * This class represents the UI controlling the app functionality.
@@ -53,7 +39,6 @@ class ControllersContainerUi {
    * Define DOM Elements and Variables
    */
   constructor(public engine: Engine) {
-<<<<<<< HEAD
     const {
       CONTROLLERS_CONTAINER_SELECTOR,
       SOUND_BUTTON_SELECTOR,
@@ -68,8 +53,6 @@ class ControllersContainerUi {
       STOP_BUTTON_LABEL,
     } = controllersContainerUi.labels;
 
-=======
->>>>>>> b1ade173ef06f16f7b6ebac0e8e16df4b1a1d798
     this.element = document.querySelector(CONTROLLERS_CONTAINER_SELECTOR);
     this.soundButton = this.element.querySelector(SOUND_BUTTON_SELECTOR);
     this.playButton = this.element.querySelector(PLAY_BUTTON_SELECTOR);
