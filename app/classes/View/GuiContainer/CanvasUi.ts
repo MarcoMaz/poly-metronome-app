@@ -3,6 +3,8 @@ import Metronome from "../../Metronome";
 import View from "../View";
 import Shape from "./Shape";
 
+export const CANVAS_SELECTOR = ".gui-container__canvas";
+
 // Viewports
 export const MOBILE_VIEWPORT = 0;
 export const TABLET_VIEWPORT = 700;
@@ -18,9 +20,9 @@ const CANVAS_PIXEL_HEIGHT_DESKTOP = 150;
 
 /**
  * This class represents the UI controlling the canvas.
- * 
+ *
  * @name CanvasUi
- * 
+ *
  * @param {number} animation          - The canvas' animation.
  * @param {number} currentNote        - The current (16th) note playing.
  * @param {Shape} againstBeatSquare   - The shape representing the beats against the default beat.
@@ -47,7 +49,7 @@ class CanvasUi {
     public view: View,
     public audioContext: AudioContext
   ) {
-    this.canvas = document.querySelector("canvas");
+    this.canvas = document.querySelector(CANVAS_SELECTOR);
     this.canvasContext = this.canvas.getContext("2d");
     this.animation = 0;
     this.currentNote = 0;

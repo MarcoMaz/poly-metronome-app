@@ -1,47 +1,30 @@
-import { htmlPage } from "../../../setup"; 
+import { htmlPage } from "../../../setup";
+import { tabSelectionUi } from "../../../../app/classes/View/GuiContainer/TabSelectionUi";
+
+const { TAB_SELECTION_SELECTOR } = tabSelectionUi.selectors;
+const { TAB_SELECTED_CLASS } = tabSelectionUi.classes;
 
 describe("Gui Container", () => {
-  it("should exists", () => {
-    const guiContainer = htmlPage.querySelector(".gui-container");
-    expect(guiContainer).toBeTruthy();
-  });
-
-  it("is a DIV element", () => {
-    const guiContainer = htmlPage.querySelector(".gui-container");
-    expect(guiContainer.tagName).toBe("DIV");
-  });
-
-  it("contains 2 children", () => {
-    const guiContainer = htmlPage.querySelector(".gui-container");
-    expect(guiContainer.children.length).toBe(2);
-  });
-
   describe("Tab Selection", () => {
     it("should exists", () => {
-      const tabSelection = htmlPage.querySelector(
-        ".gui-container__tab-selection"
-      );
+      const tabSelection = htmlPage.querySelector(TAB_SELECTION_SELECTOR);
       expect(tabSelection).toBeTruthy();
     });
 
     it("is a OL element", () => {
-      const tabSelection = htmlPage.querySelector(
-        ".gui-container__tab-selection"
-      );
+      const tabSelection = htmlPage.querySelector(TAB_SELECTION_SELECTOR);
       expect(tabSelection.tagName).toBe("OL");
     });
 
     it("contains 4 children", () => {
-      const tabSelection = htmlPage.querySelector(
-        ".gui-container__tab-selection"
-      );
+      const tabSelection = htmlPage.querySelector(TAB_SELECTION_SELECTOR);
       expect(tabSelection.children.length).toBe(4);
     });
 
     describe("Tab", () => {
       it("is a LI element with a BUTTON inside", () => {
         const tab = Array.prototype.slice.call(
-          htmlPage.querySelector(".gui-container__tab-selection")
+          htmlPage.querySelector(TAB_SELECTION_SELECTOR)
         );
         tab.forEach(
           (element: { querySelectorAll: (arg0: string) => string }) => {
@@ -75,21 +58,9 @@ describe("Gui Container", () => {
         const button = htmlPage.querySelector(
           '[data-gui-container-tab="square"]'
         );
-        const hasActiveClass = button.classList.contains("-selected");
+        const hasActiveClass = button.classList.contains(TAB_SELECTED_CLASS);
         expect(hasActiveClass).toBe(true);
       });
-    });
-  });
-
-  describe("Canvas", () => {
-    it("should exists", () => {
-      const canvas = htmlPage.querySelector(".gui-container__canvas");
-      expect(canvas).toBeTruthy();
-    });
-
-    it("is a CANVAS element", () => {
-      const canvas = htmlPage.querySelector("canvas");
-      expect(canvas.tagName).toBe("CANVAS");
     });
   });
 });
