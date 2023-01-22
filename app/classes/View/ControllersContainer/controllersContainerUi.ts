@@ -1,25 +1,20 @@
 import Engine from "../../Engine";
 
-export const controllersContainerUi = {
-  selectors: {
-    CONTROLLERS_CONTAINER_SELECTOR: ".controllers-container",
-    SOUND_BUTTON_SELECTOR: ".controllers__sound",
-    PLAY_BUTTON_SELECTOR: ".controllers__play",
-  },
-  labels: {
-    SOUND_ON_LABEL: "Sound: ON",
-    SOUND_OFF_LABEL: "Sound: OFF",
-    SOUND_RESET_LABEL: "Sound:",
-    PLAY_BUTTON_LABEL: "Play",
-    STOP_BUTTON_LABEL: "Stop",
-  },
-};
+const CONTROLLERS_CONTAINER_SELECTOR = ".controllers-container";
+const SOUND_BUTTON_SELECTOR = ".controllers__sound";
+const PLAY_BUTTON_SELECTOR = ".controllers__play";
+const SOUND_ON_LABEL = "Sound: ON";
+const SOUND_OFF_LABEL = "Sound: OFF";
+const SOUND_RESET_LABEL = "Sound:";
+const PLAY_BUTTON_LABEL = "Play";
+const STOP_BUTTON_LABEL = "Stop";
 
 /**
  * This class represents the UI controlling the app functionality.
  *
  * @name ControllersContainerUi
  *
+ * @param {HTMLDivElement} element        - The parent element container.
  * @param {HTMLButtonElement} soundButton - The button controlling if the app is muted or not.
  * @param {HTMLButtonElement} playButton  - The button controlling if the app is playing or not.
  * @param {boolean} isSoundMuted          - Wheter or not the sound is muted.
@@ -39,20 +34,6 @@ class ControllersContainerUi {
    * Define DOM Elements and Variables
    */
   constructor(public engine: Engine) {
-    const {
-      CONTROLLERS_CONTAINER_SELECTOR,
-      SOUND_BUTTON_SELECTOR,
-      PLAY_BUTTON_SELECTOR,
-    } = controllersContainerUi.selectors;
-
-    const {
-      SOUND_ON_LABEL,
-      SOUND_OFF_LABEL,
-      SOUND_RESET_LABEL,
-      PLAY_BUTTON_LABEL,
-      STOP_BUTTON_LABEL,
-    } = controllersContainerUi.labels;
-
     this.element = document.querySelector(CONTROLLERS_CONTAINER_SELECTOR);
     this.soundButton = this.element.querySelector(SOUND_BUTTON_SELECTOR);
     this.playButton = this.element.querySelector(PLAY_BUTTON_SELECTOR);

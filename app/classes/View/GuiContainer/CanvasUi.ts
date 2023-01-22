@@ -3,7 +3,7 @@ import Metronome from "../../Metronome";
 import View from "../View";
 import Shape from "./Shape";
 
-export const CANVAS_SELECTOR = ".gui-container__canvas";
+const CANVAS_SELECTOR = ".gui-container__canvas";
 
 // Viewports
 export const MOBILE_VIEWPORT = 0;

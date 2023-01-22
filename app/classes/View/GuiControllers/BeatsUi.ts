@@ -1,6 +1,8 @@
 import Metronome from "../../Metronome";
 import WarningUi from "./WarningUi";
 
+const BEAT_CONTAINER = "gui-controllers__beat";
+
 // Against Beat Selectors
 const AGAINST_BEAT_PLUS_SELECTOR =
   ".gui-controllers__against-beat.gui-controllers__beat-plus";
@@ -10,9 +12,12 @@ const AGAINST_BEAT_MINUS_SELECTOR =
   ".gui-controllers__against-beat.gui-controllers__beat-minus";
 
 // Base Beat Selectors
-const BASE_BEAT_PLUS_SELECTOR = ".gui-controllers__base-beat.gui-controllers__beat-plus";
-const BASE_BEAT_VALUE_SELECTOR = ".gui-controllers__base-beat.gui-controllers__beat-value";
-const BASE_BEAT_MINUS_SELECTOR = ".gui-controllers__base-beat.gui-controllers__beat-minus";
+const BASE_BEAT_PLUS_SELECTOR =
+  ".gui-controllers__base-beat.gui-controllers__beat-plus";
+const BASE_BEAT_VALUE_SELECTOR =
+  ".gui-controllers__base-beat.gui-controllers__beat-value";
+const BASE_BEAT_MINUS_SELECTOR =
+  ".gui-controllers__base-beat.gui-controllers__beat-minus";
 
 // Switch Beat Selector
 const SWITCH_BEATS_SELECTOR = ".gui-controllers__switch-beats";
@@ -23,42 +28,47 @@ const BEAT_MAX = 9;
 
 /**
  * This class represents the UI controlling the beats.
- * 
+ *
  * @name BeatsUi
- * 
+ *
+ * @param {HTMLDivElement} element              - The parent element container.
  * @param {HTMLButtonElement} againstBeatPlus   - The plus button controlling the against beat.
  * @param {HTMLInputElement} againstBeatValue   - The input value of the against beat.
  * @param {HTMLButtonElement} againstBeatMinus  - The minus button controlling the against beat.
  * @param {HTMLButtonElement} baseBeatPlus      - The plus button controlling the base beat.
  * @param {HTMLInputElement} baseBeatValue      - The input value of the base beat.
  * @param {HTMLButtonElement} baseBeatMinus     - The minus button controlling the base beat.
- * @param {HTMLButtonElement} switchBeats       - The button switching the beats. 
+ * @param {HTMLButtonElement} switchBeats       - The button switching the beats.
  */
 
 class BeatsUi {
+  private element: HTMLDivElement;
   private againstBeatPlus: HTMLButtonElement;
   private againstBeatValue: HTMLInputElement;
   private againstBeatMinus: HTMLButtonElement;
-
   private baseBeatPlus: HTMLButtonElement;
   private baseBeatValue: HTMLInputElement;
   private baseBeatMinus: HTMLButtonElement;
-
   private switchBeats: HTMLButtonElement;
 
   /**
    * Define DOM Elements and Variables.
    */
   constructor(public warning: WarningUi, public metronome: Metronome) {
-    this.againstBeatPlus = document.querySelector(AGAINST_BEAT_PLUS_SELECTOR);
-    this.againstBeatValue = document.querySelector(AGAINST_BEAT_VALUE_SELECTOR);
-    this.againstBeatMinus = document.querySelector(AGAINST_BEAT_MINUS_SELECTOR);
-
-    this.baseBeatPlus = document.querySelector(BASE_BEAT_PLUS_SELECTOR);
-    this.baseBeatValue = document.querySelector(BASE_BEAT_VALUE_SELECTOR);
-    this.baseBeatMinus = document.querySelector(BASE_BEAT_MINUS_SELECTOR);
-
-    this.switchBeats = document.querySelector(SWITCH_BEATS_SELECTOR);
+    this.element = document.querySelector(BEAT_CONTAINER);
+    this.againstBeatPlus = this.element.querySelector(
+      AGAINST_BEAT_PLUS_SELECTOR
+    );
+    this.againstBeatValue = this.element.querySelector(
+      AGAINST_BEAT_VALUE_SELECTOR
+    );
+    this.againstBeatMinus = this.element.querySelector(
+      AGAINST_BEAT_MINUS_SELECTOR
+    );
+    this.baseBeatPlus = this.element.querySelector(BASE_BEAT_PLUS_SELECTOR);
+    this.baseBeatValue = this.element.querySelector(BASE_BEAT_VALUE_SELECTOR);
+    this.baseBeatMinus = this.element.querySelector(BASE_BEAT_MINUS_SELECTOR);
+    this.switchBeats = this.element.querySelector(SWITCH_BEATS_SELECTOR);
 
     // Register events
     this.againstBeatPlus.addEventListener("click", () => {

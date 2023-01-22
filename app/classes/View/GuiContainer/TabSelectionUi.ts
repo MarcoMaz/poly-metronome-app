@@ -1,23 +1,16 @@
-export const tabSelectionUi = {
-  selectors: {
-    TAB_SELECTION_SELECTOR: ".gui-container__tab-selection",
-    TAB_SELECTOR: ".gui-container__tab"
-  },
-  classes: {
-    TAB_SELECTED_CLASS: "-selected"
-  },
-  variables: {
-    TAB_SELECTED_DEFAULT: "square"
-  }
-}
+const TAB_SELECTION_SELECTOR = ".gui-container__tab-selection";
+const TAB_SELECTOR = ".gui-container__tab";
+const TAB_SELECTED_CLASS = "-selected";
+const TAB_SELECTED_DEFAULT = "square";
 
 /**
  * This class represents the UI controlling the Tab Selection
  *
  * @name TabSelectionUi
  *
- * @param {NodeListOf<HTMLButtonElement>} options - the collections of selectable options.
- * @param {string} selected                       - the current selection.
+ * @param {HTMLOListElement} element              - The parent element container.
+ * @param {NodeListOf<HTMLButtonElement>} options - The collections of selectable options.
+ * @param {string} selected                       - The current selection.
  */
 
 class TabSelectionUi {
@@ -29,19 +22,6 @@ class TabSelectionUi {
    * Define DOM Elements and Variables.
    */
   constructor() {
-    const {
-      TAB_SELECTION_SELECTOR,
-      TAB_SELECTOR
-    } = tabSelectionUi.selectors;
-
-    const {
-      TAB_SELECTED_CLASS
-    } = tabSelectionUi.classes
-
-    const {
-      TAB_SELECTED_DEFAULT
-    } = tabSelectionUi.variables
-
     this.element = document.querySelector(TAB_SELECTION_SELECTOR);
     this.options = this.element.querySelectorAll(TAB_SELECTOR);
     this.selected = TAB_SELECTED_DEFAULT;
@@ -66,7 +46,7 @@ class TabSelectionUi {
    */
   private deselectAllTabs(): void {
     Array.from(this.options).forEach((option) => {
-      option.classList.remove(tabSelectionUi.classes.TAB_SELECTED_CLASS);
+      option.classList.remove(TAB_SELECTED_CLASS);
     });
   }
 }

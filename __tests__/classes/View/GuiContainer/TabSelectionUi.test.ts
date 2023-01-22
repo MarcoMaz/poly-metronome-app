@@ -1,8 +1,7 @@
 import { htmlPage } from "../../../setup";
-import { tabSelectionUi } from "../../../../app/classes/View/GuiContainer/TabSelectionUi";
 
-const { TAB_SELECTION_SELECTOR } = tabSelectionUi.selectors;
-const { TAB_SELECTED_CLASS } = tabSelectionUi.classes;
+const TAB_SELECTION_SELECTOR = ".gui-container__tab-selection";
+const TAB_SELECTED_CLASS = "-selected";
 
 describe("Gui Container", () => {
   describe("Tab Selection", () => {

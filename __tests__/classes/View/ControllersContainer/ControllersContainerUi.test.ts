@@ -1,14 +1,8 @@
 import { htmlPage } from "../../../setup";
 
-import { controllersContainerUi } from "../../../../app/classes/View/ControllersContainer/controllersContainerUi";
-
-const {
-  CONTROLLERS_CONTAINER_SELECTOR,
-  SOUND_BUTTON_SELECTOR,
-  PLAY_BUTTON_SELECTOR,
-} = controllersContainerUi.selectors;
-
-const { SOUND_RESET_LABEL, PLAY_BUTTON_LABEL } = controllersContainerUi.labels;
+const CONTROLLERS_CONTAINER_SELECTOR = ".controllers-container";
+const SOUND_BUTTON_SELECTOR = ".controllers__sound";
+const PLAY_BUTTON_SELECTOR = ".controllers__play";
 
 describe("Controllers Container", () => {
   it("should exists", () => {
@@ -45,7 +39,7 @@ describe("Controllers Container", () => {
 
     it("should have the correct label", () => {
       const soundButton = htmlPage.querySelector(SOUND_BUTTON_SELECTOR);
-      expect(soundButton.textContent.trim()).toBe(SOUND_RESET_LABEL);
+      expect(soundButton.textContent.trim()).toBe("Sound:");
     });
   });
   describe("Play Button", () => {
@@ -61,7 +55,7 @@ describe("Controllers Container", () => {
 
     it("should have the correct label", () => {
       const playButton = htmlPage.querySelector(PLAY_BUTTON_SELECTOR);
-      expect(playButton.textContent.trim()).toBe(PLAY_BUTTON_LABEL);
+      expect(playButton.textContent.trim()).toBe("Play");
     });
   });
 });

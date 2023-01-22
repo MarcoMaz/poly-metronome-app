@@ -1,15 +1,24 @@
 import Metronome from "../../Metronome";
 
+// BPM Selector
+const BPM_SELECTOR =
+  ".gui-controllers__bpm";
+
 // BPM Minus Selectors
-const BPM_MINUS_1_SELECTOR = ".gui-controllers__bpm.gui-controllers__bpm-minus--1";
-const BPM_MINUS_5_SELECTOR = ".gui-controllers__bpm.gui-controllers__bpm-minus--5";
+const BPM_MINUS_1_SELECTOR =
+  ".gui-controllers__bpm.gui-controllers__bpm-minus--1";
+const BPM_MINUS_5_SELECTOR =
+  ".gui-controllers__bpm.gui-controllers__bpm-minus--5";
 
 // BPM Plus Selectors
-const BPM_PLUS_1_SELECTOR = ".gui-controllers__bpm.gui-controllers__bpm-plus--1";
-const BPM_PLUS_5_SELECTOR = ".gui-controllers__bpm.gui-controllers__bpm-plus--5";
+const BPM_PLUS_1_SELECTOR =
+  ".gui-controllers__bpm.gui-controllers__bpm-plus--1";
+const BPM_PLUS_5_SELECTOR =
+  ".gui-controllers__bpm.gui-controllers__bpm-plus--5";
 
 // BPM Value Selectors
-const BPM_VALUE_SELECTOR = ".gui-controllers__bpm.gui-controllers__bpm-value--number";
+const BPM_VALUE_SELECTOR =
+  ".gui-controllers__bpm.gui-controllers__bpm-value--number";
 
 // Min and Max BPM's values
 export const BPM_MIN = 30;
@@ -17,17 +26,19 @@ const BPM_MAX = 300;
 
 /**
  * This class represents the UI controlling the Bpm.
- * 
+ *
  * @name BpmUi
- * 
+ *
+ * @param {HTMLDivElement} element          - The parent element container.
  * @param {HTMLButtonElement} bpmMinusOne   - The button subtracting one BPM.
- * @param {HTMLButtonElement} bpmMinusFive  - The button subtracting five BPMs. 
- * @param {HTMLButtonElement} bpmPlusOne    - The button adding one BPMs. 
- * @param {HTMLButtonElement} bpmPlusFive   - The button adding five BPMs. 
+ * @param {HTMLButtonElement} bpmMinusFive  - The button subtracting five BPMs.
+ * @param {HTMLButtonElement} bpmPlusOne    - The button adding one BPMs.
+ * @param {HTMLButtonElement} bpmPlusFive   - The button adding five BPMs.
  * @param {HTMLInputElement} bpmValue       - The input value of the BPM.
  */
 
 class BpmUi {
+  private element: HTMLDivElement;
   public bpmMinusOne: HTMLButtonElement;
   public bpmMinusFive: HTMLButtonElement;
   public bpmPlusOne: HTMLButtonElement;
@@ -38,11 +49,12 @@ class BpmUi {
    * Define DOM Elements and Variables.
    */
   constructor(public metronome: Metronome) {
-    this.bpmMinusOne = document.querySelector(BPM_MINUS_1_SELECTOR);
-    this.bpmMinusFive = document.querySelector(BPM_MINUS_5_SELECTOR);
-    this.bpmPlusOne = document.querySelector(BPM_PLUS_1_SELECTOR);
-    this.bpmPlusFive = document.querySelector(BPM_PLUS_5_SELECTOR);
-    this.bpmValue = document.querySelector(BPM_VALUE_SELECTOR);
+    this.element = document.querySelector(BPM_SELECTOR);
+    this.bpmMinusOne = this.element.querySelector(BPM_MINUS_1_SELECTOR);
+    this.bpmMinusFive = this.element.querySelector(BPM_MINUS_5_SELECTOR);
+    this.bpmPlusOne = this.element.querySelector(BPM_PLUS_1_SELECTOR);
+    this.bpmPlusFive = this.element.querySelector(BPM_PLUS_5_SELECTOR);
+    this.bpmValue = this.element.querySelector(BPM_VALUE_SELECTOR);
 
     // Register events
     if (this.bpmMinusOne && this.bpmValue) {
@@ -51,27 +63,27 @@ class BpmUi {
         this.bpmValue.value = this.metronome.tempo.toString();
       });
     }
-    // this.bpmMinusFive.addEventListener("click", () => {
-    //   this.metronome.tempo -= 5;
-    //   this.bpmValue.valueAsNumber -= 5;
-    //   this.checkBpmLimits();
-    // });
-    // this.bpmPlusOne.addEventListener("click", () => {
-    //   this.metronome.tempo += 1;
-    //   this.bpmValue.valueAsNumber += 1;
-    //   this.checkBpmLimits();
-    // });
-    // this.bpmPlusFive.addEventListener("click", () => {
-    //   this.metronome.tempo += 5;
-    //   this.bpmValue.valueAsNumber += 5;
-    //   this.checkBpmLimits();
-    // });
-    // this.bpmValue.addEventListener("change", (event) => {
-    //   let eventTarget = event.target as HTMLInputElement;
-    //   this.metronome.tempo = eventTarget.valueAsNumber;
-    //   this.bpmValue.valueAsNumber = eventTarget.valueAsNumber;
-    //   this.checkBpmLimits();
-    // });
+    this.bpmMinusFive.addEventListener("click", () => {
+      this.metronome.tempo -= 5;
+      this.bpmValue.valueAsNumber -= 5;
+      this.checkBpmLimits();
+    });
+    this.bpmPlusOne.addEventListener("click", () => {
+      this.metronome.tempo += 1;
+      this.bpmValue.valueAsNumber += 1;
+      this.checkBpmLimits();
+    });
+    this.bpmPlusFive.addEventListener("click", () => {
+      this.metronome.tempo += 5;
+      this.bpmValue.valueAsNumber += 5;
+      this.checkBpmLimits();
+    });
+    this.bpmValue.addEventListener("change", (event) => {
+      let eventTarget = event.target as HTMLInputElement;
+      this.metronome.tempo = eventTarget.valueAsNumber;
+      this.bpmValue.valueAsNumber = eventTarget.valueAsNumber;
+      this.checkBpmLimits();
+    });
   }
 
   /**
