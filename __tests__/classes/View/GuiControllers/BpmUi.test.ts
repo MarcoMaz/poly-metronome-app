@@ -6,7 +6,7 @@ const BPM_MINUS_5_SELECTOR = ".gui-controllers__bpm.gui-controllers__bpm-minus--
 const BPM_PLUS_1_SELECTOR = ".gui-controllers__bpm.gui-controllers__bpm-plus--1";
 const BPM_PLUS_5_SELECTOR = ".gui-controllers__bpm.gui-controllers__bpm-plus--5";
 const BPM_VALUE_SELECTOR = ".gui-controllers__bpm.gui-controllers__bpm-value--number";
-const BPM_VALUE_SELECTOR_LABEL = ".gui-controllers__bpm.gui-controllers__bpm-value > span";
+const BPM_VALUE_SELECTOR_LABEL = ".gui-controllers__bpm.gui-controllers__bpm-value > label";
 
 describe("Gui Controllers", () => {
   describe("BPM", () => {

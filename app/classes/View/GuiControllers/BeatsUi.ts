@@ -1,7 +1,7 @@
 import Metronome from "../../Metronome";
 import WarningUi from "./WarningUi";
 
-const BEAT_CONTAINER = "gui-controllers__beat";
+const BEAT_CONTAINER = ".gui-controllers__beats-container";
 
 // Against Beat Selectors
 const AGAINST_BEAT_PLUS_SELECTOR =

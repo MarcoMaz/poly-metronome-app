@@ -6,3 +6,9 @@
     width: 7rem;
   }
 }
+
+.controllers__sound {
+  &:disabled:hover {
+    cursor: default;
+  }
+}

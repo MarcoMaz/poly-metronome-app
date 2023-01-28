@@ -37,7 +37,9 @@ class ControllersContainerUi {
     this.element = document.querySelector(CONTROLLERS_CONTAINER_SELECTOR);
     this.soundButton = this.element.querySelector(SOUND_BUTTON_SELECTOR);
     this.playButton = this.element.querySelector(PLAY_BUTTON_SELECTOR);
-    this.isSoundMuted = true;
+    this.isSoundMuted = true;    
+
+    this.soundButton.setAttribute('disabled', 'true')
 
     // Register events
     this.playButton.addEventListener("click", () => {
@@ -45,11 +47,13 @@ class ControllersContainerUi {
         this.playButton.innerHTML = STOP_BUTTON_LABEL;
         this.soundButton.innerHTML = SOUND_ON_LABEL;
         if (this.onPlay) this.onPlay();
+        this.soundButton.removeAttribute('disabled')
         this.soundOn();
       } else {
         this.playButton.innerHTML = PLAY_BUTTON_LABEL;
         this.soundButton.innerHTML = SOUND_RESET_LABEL;
         if (this.onPause) this.onPause();
+        this.soundButton.setAttribute('disabled', 'true')
         this.soundOff();
       }
     });
@@ -64,6 +68,7 @@ class ControllersContainerUi {
           this.soundButton.innerHTML = SOUND_OFF_LABEL;
           this.soundOff();
           this.isSoundMuted = false;
+
         }
       }
       return;
