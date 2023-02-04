@@ -1,19 +1,20 @@
-let timerID: string | number | NodeJS.Timer = null;
+let timerID = null;
 let interval = 100;
 
 self.onmessage = (e) => {
   if (e.data == "start") {
     console.log("---->//WORKER: starting");
-    timerID = setInterval(function () {
+
+    timerID = setInterval(() => {
       postMessage("tick");
     }, interval);
   } else if (e.data.interval) {
+    console.log("----WORKER: on load ----");
     interval = e.data.interval;
-    console.log("----WORKER: on load ---- the interval is " + interval);
 
     if (timerID) {
       clearInterval(timerID);
-      timerID = setInterval(function () {
+      timerID = setInterval(() => {
         postMessage("tick");
       }, interval);
     }
@@ -23,5 +24,3 @@ self.onmessage = (e) => {
     timerID = null;
   }
 };
-
-postMessage("hi there");

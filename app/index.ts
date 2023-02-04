@@ -8,10 +8,10 @@ const SMALL_SOUND_DELAY = 0.01;
 const START_MESSAGE = "start";
 const STOP_MESSAGE = "stop";
 
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./serviceWorker.js')
-  })
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./serviceWorker.js");
+  });
 }
 
 /**
@@ -68,9 +68,7 @@ class App {
       this.canvas.stopAnimation();
     });
 
-    this.timerWorker = new Worker(
-      new URL("../workers/worker.ts", import.meta.url)
-    );
+    this.timerWorker = new Worker("../workers/worker.js");
 
     this.canvas.render();
     this.timerWorker.onmessage = (e: { data: string }) =>
