@@ -9,7 +9,8 @@
     "start": "yarn development",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d dist",
-    "test": "jest --verbose --runInBand --detectOpenHandles --forceExit"
+    "test:unit": "jest --verbose --runInBand --detectOpenHandles --forceExit",
+    "test:e2e": "npx cypress open"
   },
   "author": "Marco Mazzai",
   "devDependencies": {
@@ -52,6 +53,7 @@
     "@babel/core": "^7.18.10",
     "@types/jest": "^29.2.5",
     "css-minimizer-webpack-plugin": "^4.2.2",
+    "cypress": "^12.5.1",
     "encoding-down": "^7.1.0",
     "jest-environment-jsdom": "^29.3.1",
     "ts-jest": "^29.0.5",
