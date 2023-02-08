@@ -27,18 +27,25 @@ Inspired by [Chris Wilson's Metronome](https://github.com/cwilso/metronome).
 - PWA
 
 ## Tested with
-Tbd
+- Jest (Unit Tests)
+- Cypress (E2E Tests)
 
 ## Installation
 1. Clone the repo
  `git clone https://github.com/MarcoMaz/poly-metronome-app.git`
 2. Install the dependencies
-`npm install`
+`yarn`
 3. Run the metronome
-`npm start`
+`yarn start`
 
 ## Testing
-After installing the project, run `npm run test`.
+
+### Unit Tests
+1. Run `yarn test:unit`
+
+### E2E Tests
+1. Run `yarn start`
+2. In another shell run `yarn test:e2e`
 
 ## Screenshot
 Tbd

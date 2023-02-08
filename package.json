@@ -10,7 +10,7 @@
     "predeploy": "yarn build",
     "deploy": "gh-pages -d dist",
     "test:unit": "jest --verbose --runInBand --detectOpenHandles --forceExit",
-    "test:e2e": "npx cypress open"
+    "test:e2e": "npx cypress open --project ./__tests__/e2e-tests"
   },
   "author": "Marco Mazzai",
   "devDependencies": {

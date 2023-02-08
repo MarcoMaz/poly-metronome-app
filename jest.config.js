@@ -8,5 +8,8 @@ module.exports = {
     TextEncoder: require("util").TextEncoder,
     TextDecoder: require("util").TextDecoder,
   },
-  testPathIgnorePatterns: ["<rootDir>/__tests__/setup.ts"]
+  testPathIgnorePatterns: [
+    "<rootDir>/__tests__/unit-tests/setup.ts",
+    "<rootDir>/__tests__/e2e-tests/",
+  ],
 };

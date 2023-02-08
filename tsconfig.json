@@ -13,8 +13,14 @@
     ],
   },
   "exclude": [
-    "cypress/**/*.ts",
+    "__tests__/e2e-tests/cypress/**/*.ts",
     "cypress.config.ts",
     "node_modules/cypress*/*.ts"
   ]
 }
+
+// "exclude": [
+//   "cypress/**/*.ts",
+//   "cypress.config.ts",
+//   "node_modules/cypress*/*.ts"
+// ]
