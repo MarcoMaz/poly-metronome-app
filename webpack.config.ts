@@ -1,6 +1,8 @@
 import * as path from "path";
 import webpack from "webpack";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import CopyWebpackPlugin from "copy-webpack-plugin";
 
 const dirApp = path.join(__dirname, "app");
 
@@ -44,12 +46,51 @@ export const commonConfig: webpack.Configuration = {
           },
         ],
       },
+      // Load Fonts
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        type: "asset/resource",
+        generator: {
+          filename: "[name].[ext]",
+        },
+      },
+      // Load Images
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: "asset/resource",
+      },
     ],
   },
   plugins: [
+    // Create an HTML file
+    new HtmlWebpackPlugin({
+      filename: "index.html",
+      template: "app/index.html",
+    }),
     // Output the scss with its original name
     new MiniCssExtractPlugin({
       filename: "[name].css",
+    }),
+    // Copy the files as they are
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: "./app/images",
+          to: "images",
+        },
+        {
+          from: "manifest.json",
+          to: "",
+        },
+        {
+          from: "serviceWorker.js",
+          to: "",
+        },
+        {
+          from: "./workers/worker.js",
+          to: "workers",
+        },
+      ],
     }),
   ],
   output: {
