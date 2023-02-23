@@ -3,10 +3,11 @@ import View from "./classes/View/View";
 import Metronome from "./classes/Metronome";
 import CanvasUi from "./classes/View/GuiContainer/CanvasUi";
 
-const SMALL_SOUND_DELAY = 0.01;
-
-const START_MESSAGE = "start";
-const STOP_MESSAGE = "stop";
+import {
+  APP_SOUND_DELAY,
+  WORKER_START_MESSAGE,
+  WORKER_STOP_MESSAGE,
+} from "./classes/base/constants";
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
@@ -90,8 +91,8 @@ class App {
     if (this.isPlaying) {
       this.engine.current16thNote = 0;
       this.engine.nextNoteTime = this.audioContext.currentTime;
-      this.engine.nextNoteTime += SMALL_SOUND_DELAY; // adds a small delay to avoid the "beep" to click.
-      this.timerWorker.postMessage(START_MESSAGE);
+      this.engine.nextNoteTime += APP_SOUND_DELAY; // adds a small delay to avoid the "beep" to click.
+      this.timerWorker.postMessage(WORKER_START_MESSAGE);
     }
   }
 
@@ -104,7 +105,7 @@ class App {
     this.isPlaying = false;
 
     if (!this.isPlaying) {
-      this.timerWorker.postMessage(STOP_MESSAGE);
+      this.timerWorker.postMessage(WORKER_STOP_MESSAGE);
       this.timerWorker.postMessage({ interval: 0 });
     }
   }

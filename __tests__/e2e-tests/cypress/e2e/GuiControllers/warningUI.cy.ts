@@ -1,12 +1,12 @@
 import {
+  AGAINST_BEAT_VALUE_SELECTOR,
+  BASE_BEAT_VALUE_SELECTOR,
+  BEAT_MAX,
+  BEAT_MIN,
   URL,
-  GUI_CONTROLLERS_AGAINST_BEAT_INPUT,
-  GUI_CONTROLLERS_BASE_BEAT_INPUT,
-  MIN_RATIO,
-  MAX_RATIO,
   WARNING_SELECTOR,
-  SHOW_CLASS,
-} from "../../constants";
+  WARNING_SHOW_CLASS,
+} from "../../../../../app/classes/base/constants";
 
 const isPoly = (firstElement: number, secondElement: number): boolean => {
   if (firstElement === secondElement) {
@@ -21,8 +21,8 @@ const isPoly = (firstElement: number, secondElement: number): boolean => {
 const getInvalidCombinations = (): Array<[number, number]> => {
   const combinations: Array<[number, number]> = [];
 
-  for (let i = MIN_RATIO; i <= MAX_RATIO; i++) {
-    for (let j = MIN_RATIO; j <= MAX_RATIO; j++) {
+  for (let i = BEAT_MIN; i <= BEAT_MAX; i++) {
+    for (let j = BEAT_MIN; j <= BEAT_MAX; j++) {
       if (!isPoly(i, j)) {
         combinations.push([i, j]);
       }
@@ -43,20 +43,20 @@ describe("Warning", () => {
     invalidCombinations.forEach((combination) => {
       const [againstBeat, baseBeat] = combination;
 
-      cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT)
+      cy.get(AGAINST_BEAT_VALUE_SELECTOR)
         .clear()
         .type(againstBeat.toString())
         .type("{enter}");
 
-      cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT)
+      cy.get(BASE_BEAT_VALUE_SELECTOR)
         .clear()
         .type(baseBeat.toString())
         .type("{enter}");
 
       if (isPoly(againstBeat, baseBeat)) {
-        cy.get(WARNING_SELECTOR).should("not.have.class", SHOW_CLASS);
+        cy.get(WARNING_SELECTOR).should("not.have.class", WARNING_SHOW_CLASS);
       } else {
-        cy.get(WARNING_SELECTOR).should("have.class", SHOW_CLASS);
+        cy.get(WARNING_SELECTOR).should("have.class", WARNING_SHOW_CLASS);
       }
     });
   });

@@ -1,6 +1,8 @@
 import { htmlPage } from "../../../setup";
 
-const CANVAS_SELECTOR = ".gui-container__canvas";
+import {
+  CANVAS_SELECTOR
+} from '../../../../../app/classes/base/constants'
 
 describe("Gui Container", () => {
   describe("Canvas", () => {

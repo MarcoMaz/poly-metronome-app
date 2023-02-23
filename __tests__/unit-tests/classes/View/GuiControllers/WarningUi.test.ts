@@ -1,6 +1,6 @@
 import { htmlPage } from "../../../setup";
 
-const WARNING_SELECTOR = ".gui-controllers__warning";
+import { WARNING_SELECTOR } from "../../../../../app/classes/base/constants";
 
 describe("Gui Controllers", () => {
   describe("Warning", () => {

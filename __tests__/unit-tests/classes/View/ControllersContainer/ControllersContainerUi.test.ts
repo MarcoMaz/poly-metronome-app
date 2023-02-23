@@ -1,8 +1,10 @@
 import { htmlPage } from "../../../setup";
 
-const CONTROLLERS_CONTAINER_SELECTOR = ".controllers-container";
-const SOUND_BUTTON_SELECTOR = ".controllers__sound";
-const PLAY_BUTTON_SELECTOR = ".controllers__play";
+import {
+  CONTROLLERS_CONTAINER_SELECTOR,
+  SOUND_BUTTON_SELECTOR,
+  PLAY_BUTTON_SELECTOR
+} from '../../../../../app/classes/base/constants'
 
 describe("Controllers Container", () => {
   it("should exists", () => {

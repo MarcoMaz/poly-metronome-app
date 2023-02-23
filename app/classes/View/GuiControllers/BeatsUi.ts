@@ -1,30 +1,18 @@
 import Metronome from "../../Metronome";
 import WarningUi from "./WarningUi";
 
-const BEAT_CONTAINER = ".gui-controllers__beats-container";
-
-// Against Beat Selectors
-const AGAINST_BEAT_PLUS_SELECTOR =
-  ".gui-controllers__against-beat.gui-controllers__beat-plus";
-const AGAINST_BEAT_VALUE_SELECTOR =
-  ".gui-controllers__against-beat.gui-controllers__beat-value";
-const AGAINST_BEAT_MINUS_SELECTOR =
-  ".gui-controllers__against-beat.gui-controllers__beat-minus";
-
-// Base Beat Selectors
-const BASE_BEAT_PLUS_SELECTOR =
-  ".gui-controllers__base-beat.gui-controllers__beat-plus";
-const BASE_BEAT_VALUE_SELECTOR =
-  ".gui-controllers__base-beat.gui-controllers__beat-value";
-const BASE_BEAT_MINUS_SELECTOR =
-  ".gui-controllers__base-beat.gui-controllers__beat-minus";
-
-// Switch Beat Selector
-const SWITCH_BEATS_SELECTOR = ".gui-controllers__switch-beats";
-
-// Min and Max Beats' values
-const BEAT_MIN = 2;
-const BEAT_MAX = 9;
+import {
+  BEATS_CONTAINER,
+  AGAINST_BEAT_PLUS_SELECTOR,
+  AGAINST_BEAT_VALUE_SELECTOR,
+  AGAINST_BEAT_MINUS_SELECTOR,
+  BASE_BEAT_PLUS_SELECTOR,
+  BASE_BEAT_VALUE_SELECTOR,
+  BASE_BEAT_MINUS_SELECTOR,
+  SWITCH_BEATS_SELECTOR,
+  BEAT_MIN,
+  BEAT_MAX,
+} from "../../base/constants";
 
 /**
  * This class represents the UI controlling the beats.
@@ -55,7 +43,7 @@ class BeatsUi {
    * Define DOM Elements and Variables.
    */
   constructor(public warning: WarningUi, public metronome: Metronome) {
-    this.element = document.querySelector(BEAT_CONTAINER);
+    this.element = document.querySelector(BEATS_CONTAINER);
     this.againstBeatPlus = this.element.querySelector(
       AGAINST_BEAT_PLUS_SELECTOR
     );

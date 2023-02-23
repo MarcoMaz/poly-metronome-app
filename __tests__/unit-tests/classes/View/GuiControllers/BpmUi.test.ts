@@ -1,12 +1,14 @@
 import { htmlPage } from "../../../setup";
 
-const BPM_SELECTOR = ".gui-controllers__bpm";
-const BPM_MINUS_1_SELECTOR = ".gui-controllers__bpm.gui-controllers__bpm-minus--1";
-const BPM_MINUS_5_SELECTOR = ".gui-controllers__bpm.gui-controllers__bpm-minus--5";
-const BPM_PLUS_1_SELECTOR = ".gui-controllers__bpm.gui-controllers__bpm-plus--1";
-const BPM_PLUS_5_SELECTOR = ".gui-controllers__bpm.gui-controllers__bpm-plus--5";
-const BPM_VALUE_SELECTOR = ".gui-controllers__bpm.gui-controllers__bpm-value--number";
-const BPM_VALUE_SELECTOR_LABEL = ".gui-controllers__bpm.gui-controllers__bpm-value > label";
+import {
+  BPM_SELECTOR,
+  BPM_MINUS_1_SELECTOR,
+  BPM_MINUS_5_SELECTOR,
+  BPM_PLUS_1_SELECTOR,
+  BPM_PLUS_5_SELECTOR,
+  BPM_VALUE_SELECTOR,
+  BPM_VALUE_SELECTOR_LABEL,
+} from "../../../../../app/classes/base/constants";
 
 describe("Gui Controllers", () => {
   describe("BPM", () => {
@@ -85,7 +87,7 @@ describe("Gui Controllers", () => {
         expect(input.getAttribute("step")).toBe("1");
       });
       it("should have the correct label", () => {
-        const input = htmlPage.querySelector(BPM_VALUE_SELECTOR_LABEL);        
+        const input = htmlPage.querySelector(BPM_VALUE_SELECTOR_LABEL);
         expect(input.textContent.trim()).toBe("BPM");
       });
     });

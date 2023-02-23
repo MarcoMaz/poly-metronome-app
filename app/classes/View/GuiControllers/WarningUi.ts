@@ -1,14 +1,11 @@
-// Warning selectors
-const WARNING_SELECTOR = ".gui-controllers__warning";
-const SHOW_CLASS = "-show";
-
+import { WARNING_SELECTOR, WARNING_SHOW_CLASS } from "../../base/constants";
 /**
  * This class represents the UI controlling the warning.
  *
  * @name WarningUi
  *
  * @param {HTMLElement} warning  - The warning element.
- * 
+ *
  */
 
 class WarningUi {
@@ -47,7 +44,7 @@ class WarningUi {
    *
    */
   private show(): void {
-    this.warning.classList.add(SHOW_CLASS);
+    this.warning.classList.add(WARNING_SHOW_CLASS);
   }
 
   /**
@@ -57,7 +54,7 @@ class WarningUi {
    *
    */
   private hide(): void {
-    this.warning.classList.remove(SHOW_CLASS);
+    this.warning.classList.remove(WARNING_SHOW_CLASS);
   }
 }
 

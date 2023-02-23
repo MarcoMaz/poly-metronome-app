@@ -1,28 +1,15 @@
 import Metronome from "../../Metronome";
 
-// BPM Selector
-const BPM_SELECTOR =
-  ".gui-controllers__bpm";
-
-// BPM Minus Selectors
-const BPM_MINUS_1_SELECTOR =
-  ".gui-controllers__bpm.gui-controllers__bpm-minus--1";
-const BPM_MINUS_5_SELECTOR =
-  ".gui-controllers__bpm.gui-controllers__bpm-minus--5";
-
-// BPM Plus Selectors
-const BPM_PLUS_1_SELECTOR =
-  ".gui-controllers__bpm.gui-controllers__bpm-plus--1";
-const BPM_PLUS_5_SELECTOR =
-  ".gui-controllers__bpm.gui-controllers__bpm-plus--5";
-
-// BPM Value Selectors
-const BPM_VALUE_SELECTOR =
-  ".gui-controllers__bpm.gui-controllers__bpm-value--number";
-
-// Min and Max BPM's values
-export const BPM_MIN = 30;
-const BPM_MAX = 300;
+import {
+  BPM_SELECTOR,
+  BPM_MINUS_1_SELECTOR,
+  BPM_MINUS_5_SELECTOR,
+  BPM_PLUS_1_SELECTOR,
+  BPM_PLUS_5_SELECTOR,
+  BPM_VALUE_SELECTOR,
+  BPM_MIN,
+  BPM_MAX,
+} from "../../base/constants";
 
 /**
  * This class represents the UI controlling the Bpm.

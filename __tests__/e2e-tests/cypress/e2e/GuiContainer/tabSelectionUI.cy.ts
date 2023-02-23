@@ -1,12 +1,12 @@
 import {
-  URL,
-  TAB_SELECTION_SQUARE,
-  TAB_SELECTION_PIPELINES,
-  TAB_SELECTION_GRID,
-  TAB_SELECTION_DOTS,
-  TAB_SELECTED_CLASS,
   PLAY_BUTTON_SELECTOR,
-} from "../../constants";
+  TAB_SELECTED_CLASS,
+  TAB_SELECTION_DOTS,
+  TAB_SELECTION_GRID,
+  TAB_SELECTION_PIPELINES,
+  TAB_SELECTION_SQUARE,
+  URL,
+} from "../../../../../app/classes/base/constants";
 
 describe("Tab Selection", () => {
   describe("on app loading", () => {

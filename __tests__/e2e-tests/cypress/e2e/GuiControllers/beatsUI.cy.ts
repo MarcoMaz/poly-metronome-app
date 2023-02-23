@@ -1,22 +1,22 @@
 import {
-  URL,
-  GUI_CONTROLLERS_AGAINST_BEAT_BUTTON_MINUS,
-  GUI_CONTROLLERS_AGAINST_BEAT_INPUT,
-  GUI_CONTROLLERS_AGAINST_BEAT_BUTTON_PLUS,
-  GUI_CONTROLLERS_BASE_BEAT_BUTTON_MINUS,
-  GUI_CONTROLLERS_BASE_BEAT_INPUT,
-  GUI_CONTROLLERS_BASE_BEAT_BUTTON_PLUS,
+  AGAINST_BEAT_PLUS_SELECTOR,
+  AGAINST_BEAT_VALUE_SELECTOR,
+  AGAINST_BEAT_MINUS_SELECTOR,
+  BASE_BEAT_PLUS_SELECTOR,
+  BASE_BEAT_VALUE_SELECTOR,
+  BASE_BEAT_MINUS_SELECTOR,
   PLAY_BUTTON_SELECTOR,
   SWITCH_BEATS_SELECTOR,
-} from "../../constants";
+  URL,
+} from "../../../../../app/classes/base/constants";
 
 describe("Against Beat", () => {
   describe("on app loading", () => {
     describe("Button +", () => {
       it("should add 1 to input value on click", () => {
         cy.visit(URL);
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_BUTTON_PLUS).click();
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT).should("have.value", "4");
+        cy.get(AGAINST_BEAT_PLUS_SELECTOR).click();
+        cy.get(AGAINST_BEAT_VALUE_SELECTOR).should("have.value", "4");
       });
     });
     describe("Input", () => {
@@ -24,34 +24,34 @@ describe("Against Beat", () => {
         cy.visit(URL);
       });
       it("Input should receive focus after click", () => {
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT).click().should("have.focus");
+        cy.get(AGAINST_BEAT_VALUE_SELECTOR).click().should("have.focus");
       });
       it("should set value to 2 after inputting a number < 2", () => {
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT)
+        cy.get(AGAINST_BEAT_VALUE_SELECTOR)
           .clear()
           .type("1{enter}")
           .should("have.value", "2");
       });
       it("should set value to 2 after inputting a number = 2", () => {
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT)
+        cy.get(AGAINST_BEAT_VALUE_SELECTOR)
           .clear()
           .type("2{enter}")
           .should("have.value", "2");
       });
       it("should set value to the number entered after inputting a number > 2 and < 9", () => {
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT)
+        cy.get(AGAINST_BEAT_VALUE_SELECTOR)
           .clear()
           .type("3{enter}")
           .should("have.value", "3");
       });
       it("should set value to 9 after inputting a number = 9", () => {
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT)
+        cy.get(AGAINST_BEAT_VALUE_SELECTOR)
           .clear()
           .type("9{enter}")
           .should("have.value", "9");
       });
       it("should set value to 9 after inputting a number > 9", () => {
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT)
+        cy.get(AGAINST_BEAT_VALUE_SELECTOR)
           .clear()
           .type("10{enter}")
           .should("have.value", "9");
@@ -60,8 +60,8 @@ describe("Against Beat", () => {
     describe("Button -", () => {
       it("should subtract 1 to input value on click", () => {
         cy.visit(URL);
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_BUTTON_MINUS).click();
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT).should("have.value", "2");
+        cy.get(AGAINST_BEAT_MINUS_SELECTOR).click();
+        cy.get(AGAINST_BEAT_VALUE_SELECTOR).should("have.value", "2");
       });
     });
   });
@@ -71,8 +71,8 @@ describe("Against Beat", () => {
       it("should add 1 to input value on click", () => {
         cy.visit(URL);
         cy.get(PLAY_BUTTON_SELECTOR).click();
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_BUTTON_PLUS).click();
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT).should("have.value", "4");
+        cy.get(AGAINST_BEAT_PLUS_SELECTOR).click();
+        cy.get(AGAINST_BEAT_VALUE_SELECTOR).should("have.value", "4");
       });
     });
     describe("Input", () => {
@@ -82,34 +82,34 @@ describe("Against Beat", () => {
       });
 
       it("Input should receive focus after click", () => {
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT).click().should("have.focus");
+        cy.get(AGAINST_BEAT_VALUE_SELECTOR).click().should("have.focus");
       });
       it("should set value to 2 after inputting a number < 2", () => {
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT)
+        cy.get(AGAINST_BEAT_VALUE_SELECTOR)
           .clear()
           .type("1{enter}")
           .should("have.value", "2");
       });
       it("should set value to 2 after inputting a number = 2", () => {
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT)
+        cy.get(AGAINST_BEAT_VALUE_SELECTOR)
           .clear()
           .type("2{enter}")
           .should("have.value", "2");
       });
       it("should set value to the number entered after inputting a number > 2 and < 9", () => {
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT)
+        cy.get(AGAINST_BEAT_VALUE_SELECTOR)
           .clear()
           .type("3{enter}")
           .should("have.value", "3");
       });
       it("should set value to 9 after inputting a number = 9", () => {
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT)
+        cy.get(AGAINST_BEAT_VALUE_SELECTOR)
           .clear()
           .type("9{enter}")
           .should("have.value", "9");
       });
       it("should set value to 9 after inputting a number > 9", () => {
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT)
+        cy.get(AGAINST_BEAT_VALUE_SELECTOR)
           .clear()
           .type("10{enter}")
           .should("have.value", "9");
@@ -118,8 +118,8 @@ describe("Against Beat", () => {
     describe("Button -", () => {
       it("should subtract 1 to input value on click", () => {
         cy.visit(URL);
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_BUTTON_MINUS).click();
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT).should("have.value", "2");
+        cy.get(AGAINST_BEAT_MINUS_SELECTOR).click();
+        cy.get(AGAINST_BEAT_VALUE_SELECTOR).should("have.value", "2");
       });
     });
   });
@@ -129,9 +129,9 @@ describe("Against Beat", () => {
       it("should add 1 to input value on click", () => {
         cy.visit(URL);
         cy.get(PLAY_BUTTON_SELECTOR).click();
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_BUTTON_PLUS).click();
+        cy.get(AGAINST_BEAT_PLUS_SELECTOR).click();
         cy.get(PLAY_BUTTON_SELECTOR).click();
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT).should("have.value", "4");
+        cy.get(AGAINST_BEAT_VALUE_SELECTOR).should("have.value", "4");
       });
     });
     describe("Input", () => {
@@ -141,43 +141,43 @@ describe("Against Beat", () => {
       });
 
       it("Input should receive focus after click", () => {
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT).click();
+        cy.get(AGAINST_BEAT_VALUE_SELECTOR).click();
         cy.get(PLAY_BUTTON_SELECTOR).click();
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT).should("not.have.focus");
+        cy.get(AGAINST_BEAT_VALUE_SELECTOR).should("not.have.focus");
       });
       it("should set value to 2 after inputting a number < 2", () => {
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT).clear().type("1{enter}");
+        cy.get(AGAINST_BEAT_VALUE_SELECTOR).clear().type("1{enter}");
         cy.get(PLAY_BUTTON_SELECTOR).click();
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT).should("have.value", "2");
+        cy.get(AGAINST_BEAT_VALUE_SELECTOR).should("have.value", "2");
       });
       it("should set value to 2 after inputting a number = 2", () => {
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT).clear().type("2{enter}");
+        cy.get(AGAINST_BEAT_VALUE_SELECTOR).clear().type("2{enter}");
         cy.get(PLAY_BUTTON_SELECTOR).click();
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT).should("have.value", "2");
+        cy.get(AGAINST_BEAT_VALUE_SELECTOR).should("have.value", "2");
       });
       it("should set value to the number entered after inputting a number > 2 and < 9", () => {
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT).clear().type("3{enter}");
+        cy.get(AGAINST_BEAT_VALUE_SELECTOR).clear().type("3{enter}");
         cy.get(PLAY_BUTTON_SELECTOR).click();
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT).should("have.value", "3");
+        cy.get(AGAINST_BEAT_VALUE_SELECTOR).should("have.value", "3");
       });
       it("should set value to 9 after inputting a number = 9", () => {
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT).clear().type("9{enter}");
+        cy.get(AGAINST_BEAT_VALUE_SELECTOR).clear().type("9{enter}");
         cy.get(PLAY_BUTTON_SELECTOR).click();
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT).should("have.value", "9");
+        cy.get(AGAINST_BEAT_VALUE_SELECTOR).should("have.value", "9");
       });
       it("should set value to 9 after inputting a number > 9", () => {
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT).clear().type("10{enter}");
+        cy.get(AGAINST_BEAT_VALUE_SELECTOR).clear().type("10{enter}");
         cy.get(PLAY_BUTTON_SELECTOR).click();
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT).should("have.value", "9");
+        cy.get(AGAINST_BEAT_VALUE_SELECTOR).should("have.value", "9");
       });
     });
     describe("Button -", () => {
       it("should subtract 1 to input value on click", () => {
         cy.visit(URL);
         cy.get(PLAY_BUTTON_SELECTOR).click();
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_BUTTON_MINUS).click();
+        cy.get(AGAINST_BEAT_MINUS_SELECTOR).click();
         cy.get(PLAY_BUTTON_SELECTOR).click();
-        cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT).should("have.value", "2");
+        cy.get(AGAINST_BEAT_VALUE_SELECTOR).should("have.value", "2");
       });
     });
   });
@@ -188,8 +188,8 @@ describe("Base Beat", () => {
     describe("Button +", () => {
       it("should add 1 to input value on click", () => {
         cy.visit(URL);
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_BUTTON_PLUS).click();
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT).should("have.value", "5");
+        cy.get(BASE_BEAT_PLUS_SELECTOR).click();
+        cy.get(BASE_BEAT_VALUE_SELECTOR).should("have.value", "5");
       });
     });
     describe("Input", () => {
@@ -197,34 +197,34 @@ describe("Base Beat", () => {
         cy.visit(URL);
       });
       it("Input should receive focus after click", () => {
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT).click().should("have.focus");
+        cy.get(BASE_BEAT_VALUE_SELECTOR).click().should("have.focus");
       });
       it("should set value to 2 after inputting a number < 2", () => {
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT)
+        cy.get(BASE_BEAT_VALUE_SELECTOR)
           .clear()
           .type("1{enter}")
           .should("have.value", "2");
       });
       it("should set value to 2 after inputting a number = 2", () => {
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT)
+        cy.get(BASE_BEAT_VALUE_SELECTOR)
           .clear()
           .type("2{enter}")
           .should("have.value", "2");
       });
       it("should set value to the number entered after inputting a number > 2 and < 9", () => {
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT)
+        cy.get(BASE_BEAT_VALUE_SELECTOR)
           .clear()
           .type("3{enter}")
           .should("have.value", "3");
       });
       it("should set value to 9 after inputting a number = 9", () => {
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT)
+        cy.get(BASE_BEAT_VALUE_SELECTOR)
           .clear()
           .type("9{enter}")
           .should("have.value", "9");
       });
       it("should set value to 9 after inputting a number > 9", () => {
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT)
+        cy.get(BASE_BEAT_VALUE_SELECTOR)
           .clear()
           .type("10{enter}")
           .should("have.value", "9");
@@ -233,8 +233,8 @@ describe("Base Beat", () => {
     describe("Button -", () => {
       it("should subtract 1 to input value on click", () => {
         cy.visit(URL);
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_BUTTON_MINUS).click();
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT).should("have.value", "3");
+        cy.get(BASE_BEAT_MINUS_SELECTOR).click();
+        cy.get(BASE_BEAT_VALUE_SELECTOR).should("have.value", "3");
       });
     });
   });
@@ -244,8 +244,8 @@ describe("Base Beat", () => {
       it("should add 1 to input value on click", () => {
         cy.visit(URL);
         cy.get(PLAY_BUTTON_SELECTOR).click();
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_BUTTON_PLUS).click();
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT).should("have.value", "5");
+        cy.get(BASE_BEAT_PLUS_SELECTOR).click();
+        cy.get(BASE_BEAT_VALUE_SELECTOR).should("have.value", "5");
       });
     });
     describe("Input", () => {
@@ -255,34 +255,34 @@ describe("Base Beat", () => {
       });
 
       it("Input should receive focus after click", () => {
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT).click().should("have.focus");
+        cy.get(BASE_BEAT_VALUE_SELECTOR).click().should("have.focus");
       });
       it("should set value to 2 after inputting a number < 2", () => {
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT)
+        cy.get(BASE_BEAT_VALUE_SELECTOR)
           .clear()
           .type("1{enter}")
           .should("have.value", "2");
       });
       it("should set value to 2 after inputting a number = 2", () => {
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT)
+        cy.get(BASE_BEAT_VALUE_SELECTOR)
           .clear()
           .type("2{enter}")
           .should("have.value", "2");
       });
       it("should set value to the number entered after inputting a number > 2 and < 9", () => {
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT)
+        cy.get(BASE_BEAT_VALUE_SELECTOR)
           .clear()
           .type("3{enter}")
           .should("have.value", "3");
       });
       it("should set value to 9 after inputting a number = 9", () => {
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT)
+        cy.get(BASE_BEAT_VALUE_SELECTOR)
           .clear()
           .type("9{enter}")
           .should("have.value", "9");
       });
       it("should set value to 9 after inputting a number > 9", () => {
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT)
+        cy.get(BASE_BEAT_VALUE_SELECTOR)
           .clear()
           .type("10{enter}")
           .should("have.value", "9");
@@ -291,8 +291,8 @@ describe("Base Beat", () => {
     describe("Button -", () => {
       it("should subtract 1 to input value on click", () => {
         cy.visit(URL);
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_BUTTON_MINUS).click();
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT).should("have.value", "3");
+        cy.get(BASE_BEAT_MINUS_SELECTOR).click();
+        cy.get(BASE_BEAT_VALUE_SELECTOR).should("have.value", "3");
       });
     });
   });
@@ -302,9 +302,9 @@ describe("Base Beat", () => {
       it("should add 1 to input value on click", () => {
         cy.visit(URL);
         cy.get(PLAY_BUTTON_SELECTOR).click();
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_BUTTON_PLUS).click();
+        cy.get(BASE_BEAT_PLUS_SELECTOR).click();
         cy.get(PLAY_BUTTON_SELECTOR).click();
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT).should("have.value", "5");
+        cy.get(BASE_BEAT_VALUE_SELECTOR).should("have.value", "5");
       });
     });
     describe("Input", () => {
@@ -314,43 +314,43 @@ describe("Base Beat", () => {
       });
 
       it("Input should receive focus after click", () => {
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT).click();
+        cy.get(BASE_BEAT_VALUE_SELECTOR).click();
         cy.get(PLAY_BUTTON_SELECTOR).click();
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT).should("not.have.focus");
+        cy.get(BASE_BEAT_VALUE_SELECTOR).should("not.have.focus");
       });
       it("should set value to 2 after inputting a number < 2", () => {
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT).clear().type("1{enter}");
+        cy.get(BASE_BEAT_VALUE_SELECTOR).clear().type("1{enter}");
         cy.get(PLAY_BUTTON_SELECTOR).click();
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT).should("have.value", "2");
+        cy.get(BASE_BEAT_VALUE_SELECTOR).should("have.value", "2");
       });
       it("should set value to 2 after inputting a number = 2", () => {
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT).clear().type("2{enter}");
+        cy.get(BASE_BEAT_VALUE_SELECTOR).clear().type("2{enter}");
         cy.get(PLAY_BUTTON_SELECTOR).click();
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT).should("have.value", "2");
+        cy.get(BASE_BEAT_VALUE_SELECTOR).should("have.value", "2");
       });
       it("should set value to the number entered after inputting a number > 2 and < 9", () => {
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT).clear().type("3{enter}");
+        cy.get(BASE_BEAT_VALUE_SELECTOR).clear().type("3{enter}");
         cy.get(PLAY_BUTTON_SELECTOR).click();
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT).should("have.value", "3");
+        cy.get(BASE_BEAT_VALUE_SELECTOR).should("have.value", "3");
       });
       it("should set value to 9 after inputting a number = 9", () => {
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT).clear().type("9{enter}");
+        cy.get(BASE_BEAT_VALUE_SELECTOR).clear().type("9{enter}");
         cy.get(PLAY_BUTTON_SELECTOR).click();
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT).should("have.value", "9");
+        cy.get(BASE_BEAT_VALUE_SELECTOR).should("have.value", "9");
       });
       it("should set value to 9 after inputting a number > 9", () => {
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT).clear().type("10{enter}");
+        cy.get(BASE_BEAT_VALUE_SELECTOR).clear().type("10{enter}");
         cy.get(PLAY_BUTTON_SELECTOR).click();
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT).should("have.value", "9");
+        cy.get(BASE_BEAT_VALUE_SELECTOR).should("have.value", "9");
       });
     });
     describe("Button -", () => {
       it("should subtract 1 to input value on click", () => {
         cy.visit(URL);
         cy.get(PLAY_BUTTON_SELECTOR).click();
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_BUTTON_MINUS).click();
+        cy.get(BASE_BEAT_MINUS_SELECTOR).click();
         cy.get(PLAY_BUTTON_SELECTOR).click();
-        cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT).should("have.value", "3");
+        cy.get(BASE_BEAT_VALUE_SELECTOR).should("have.value", "3");
       });
     });
   });
@@ -363,16 +363,16 @@ describe("Switch beats", () => {
       cy.get(SWITCH_BEATS_SELECTOR).click();
     });
     it("should switch the beats on click", () => {
-      cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT).should("have.value", "4");
-      cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT).should("have.value", "3");
+      cy.get(AGAINST_BEAT_VALUE_SELECTOR).should("have.value", "4");
+      cy.get(BASE_BEAT_VALUE_SELECTOR).should("have.value", "3");
     });
     it("should switch the beats the switch them again on two clicks", () => {
       cy.get(SWITCH_BEATS_SELECTOR).click();
-      cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT).should("have.value", "3");
-      cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT).should("have.value", "4");
+      cy.get(AGAINST_BEAT_VALUE_SELECTOR).should("have.value", "3");
+      cy.get(BASE_BEAT_VALUE_SELECTOR).should("have.value", "4");
     });
   });
-  
+
   describe("On app playing", () => {
     beforeEach(() => {
       cy.visit(URL);
@@ -381,13 +381,13 @@ describe("Switch beats", () => {
     });
 
     it("should switch the beats on click", () => {
-      cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT).should("have.value", "4");
-      cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT).should("have.value", "3");
+      cy.get(AGAINST_BEAT_VALUE_SELECTOR).should("have.value", "4");
+      cy.get(BASE_BEAT_VALUE_SELECTOR).should("have.value", "3");
     });
     it("should switch the beats the switch them again on two clicks", () => {
       cy.get(SWITCH_BEATS_SELECTOR).click();
-      cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT).should("have.value", "3");
-      cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT).should("have.value", "4");
+      cy.get(AGAINST_BEAT_VALUE_SELECTOR).should("have.value", "3");
+      cy.get(BASE_BEAT_VALUE_SELECTOR).should("have.value", "4");
     });
   });
 
@@ -400,14 +400,14 @@ describe("Switch beats", () => {
     it("should switch the beats on click", () => {
       cy.get(SWITCH_BEATS_SELECTOR).click();
       cy.get(PLAY_BUTTON_SELECTOR).click();
-      cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT).should("have.value", "4");
-      cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT).should("have.value", "3");
+      cy.get(AGAINST_BEAT_VALUE_SELECTOR).should("have.value", "4");
+      cy.get(BASE_BEAT_VALUE_SELECTOR).should("have.value", "3");
     });
     it("should switch the beats the switch them again on two clicks", () => {
       cy.get(SWITCH_BEATS_SELECTOR).click().click();
       cy.get(PLAY_BUTTON_SELECTOR).click();
-      cy.get(GUI_CONTROLLERS_AGAINST_BEAT_INPUT).should("have.value", "3");
-      cy.get(GUI_CONTROLLERS_BASE_BEAT_INPUT).should("have.value", "4");
+      cy.get(AGAINST_BEAT_VALUE_SELECTOR).should("have.value", "3");
+      cy.get(BASE_BEAT_VALUE_SELECTOR).should("have.value", "4");
     });
   });
 });

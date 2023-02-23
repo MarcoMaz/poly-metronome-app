@@ -1,6 +1,6 @@
 import { htmlPage } from "../../../setup";
 
-const TAP_BUTTON_SELECTOR = ".gui-controllers__tap";
+import { TAP_BUTTON_SELECTOR } from "../../../../../app/classes/base/constants";
 
 describe("Gui Controllers", () => {
   describe("Tap", () => {

@@ -3,21 +3,18 @@ import Metronome from "../../Metronome";
 import View from "../View";
 import Shape from "./Shape";
 
-const CANVAS_SELECTOR = ".gui-container__canvas";
-
-// Viewports
-export const MOBILE_VIEWPORT = 0;
-export const TABLET_VIEWPORT = 700;
-export const DESKTOP_VIEWPORT = 1000;
-
-// Canvas' sizes on Resize
-const CANVAS_PIXEL_WIDTH_PHONE = 350;
-const CANVAS_PIXEL_HEIGHT_PHONE = 100;
-const CANVAS_PIXEL_WIDTH_TABLET = 450;
-const CANVAS_PIXEL_HEIGHT_TABLET = 100;
-const CANVAS_PIXEL_WIDTH_DESKTOP = 600;
-const CANVAS_PIXEL_HEIGHT_DESKTOP = 150;
-
+import {
+  CANVAS_PIXEL_HEIGHT_DESKTOP,
+  CANVAS_PIXEL_HEIGHT_PHONE,
+  CANVAS_PIXEL_HEIGHT_TABLET,
+  CANVAS_PIXEL_WIDTH_DESKTOP,
+  CANVAS_PIXEL_WIDTH_PHONE,
+  CANVAS_PIXEL_WIDTH_TABLET,
+  CANVAS_SELECTOR,
+  DESKTOP_VIEWPORT,
+  MOBILE_VIEWPORT,
+  TABLET_VIEWPORT,
+} from '../../base/constants'
 /**
  * This class represents the UI controlling the canvas.
  *

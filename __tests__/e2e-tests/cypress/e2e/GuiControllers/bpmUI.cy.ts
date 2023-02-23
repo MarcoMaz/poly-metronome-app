@@ -1,12 +1,12 @@
 import {
-  URL,
   BPM_MINUS_1_SELECTOR,
   BPM_MINUS_5_SELECTOR,
   BPM_VALUE_SELECTOR,
   BPM_PLUS_1_SELECTOR,
   BPM_PLUS_5_SELECTOR,
-  PLAY_BUTTON_SELECTOR
-} from "../../constants";
+  PLAY_BUTTON_SELECTOR,
+  URL,
+} from '../../../../../app/classes/base/constants'
 
 describe("Bpm", () => {
   describe("on app loading", () => {

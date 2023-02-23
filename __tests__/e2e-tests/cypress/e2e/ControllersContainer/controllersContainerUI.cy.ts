@@ -1,8 +1,8 @@
 import {
-  URL,
   PLAY_BUTTON_SELECTOR,
   SOUND_BUTTON_SELECTOR,
-} from "../../constants";
+  URL
+} from '../../../../../app/classes/base/constants'
 
 describe("Sound Button", () => {
   describe("on app loading", () => {

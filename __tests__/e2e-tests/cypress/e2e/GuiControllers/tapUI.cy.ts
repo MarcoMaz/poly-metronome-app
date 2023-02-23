@@ -1,9 +1,9 @@
 import {
-  URL,
   BPM_VALUE_SELECTOR,
+  PLAY_BUTTON_SELECTOR,
   TAP_BUTTON_SELECTOR,
-  PLAY_BUTTON_SELECTOR
-} from "../../constants";
+  URL
+} from '../../../../../app/classes/base/constants'
 
 describe('Tap', () => {
   it("on app loading, it should change the BPM accordingly when the button is tapped", () => {

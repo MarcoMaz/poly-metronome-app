@@ -1,8 +1,9 @@
-const TAB_SELECTION_SELECTOR = ".gui-container__tab-selection";
-const TAB_SELECTOR = ".gui-container__tab";
-const TAB_SELECTED_CLASS = "-selected";
-const TAB_SELECTED_DEFAULT = "square";
-
+import {
+  TAB_SELECTION_SELECTOR,
+  TAB_SELECTOR,
+  TAB_SELECTED_CLASS,
+  TAB_SELECTED_DEFAULT,
+} from "../../base/constants";
 /**
  * This class represents the UI controlling the Tab Selection
  *

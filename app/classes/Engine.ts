@@ -1,18 +1,16 @@
 import Metronome from "./Metronome";
-
-const SIXTY_SECONDS = 60.0;
-const SMALL_DELAY = 0.25;
-
-// Sound frquencies
-const SOUND_BEAT_ONE = 880.0;
-const SOUND_BASE_BEAT = 440.0;
-const SOUND_AGAINST_BEAT = 220.0;
-
+import {
+  ENGINE_ONE_MINUTE_IN_SECONDS,
+  ENGINE_SMALL_DELAY,
+  ENGINE_FREQUENCIES_BEAT_ONE,
+  ENGINE_FREQUENCIES_BASE_BEAT,
+  ENGINE_FREQUENCIES_AGAINST_BEAT,
+} from "./base/constants";
 /**
  *  This class represents the math behind the metronome's calculations.
  *
  * @name Engine
- * 
+ *
  * @param {number} current16thNote      - The last scheduled note.
  * @param {number} lookahead            - The scheduler's call (in milliseconds).
  * @param {number} scheduleAheadTime    - The scheduled audio (in seconds) calculated from lookahead. It overlaps with next interval (in case the timer is late).
@@ -20,7 +18,7 @@ const SOUND_AGAINST_BEAT = 220.0;
  * @param {number} noteLength           - The "beep"'s length (in seconds).
  * @param {NotesInQueue[]} notesInQueue - The notes put into the web audio, and may or may not have played yet. {note, time}.
  * @param {GainNode} gainNode           - The "beep"'s volume.
- * 
+ *
  */
 
 interface NotesInQueue {
@@ -62,8 +60,8 @@ class Engine {
    * Calculate the next set of notes in the pipeline.
    */
   private nextNote(): void {
-    const secondsPerBeat = SIXTY_SECONDS / this.metronome.tempo;
-    this.nextNoteTime += SMALL_DELAY * secondsPerBeat;
+    const secondsPerBeat = ENGINE_ONE_MINUTE_IN_SECONDS / this.metronome.tempo;
+    this.nextNoteTime += ENGINE_SMALL_DELAY * secondsPerBeat;
 
     this.current16thNote += 1;
 
@@ -95,11 +93,11 @@ class Engine {
       beatNumber % (this.metronome.againstBeat * this.metronome.baseBeat) ===
       0
     )
-      osc.frequency.value = SOUND_BEAT_ONE;
+      osc.frequency.value = ENGINE_FREQUENCIES_BEAT_ONE;
     else if (beatNumber % this.metronome.againstBeat === 0)
-      osc.frequency.value = SOUND_AGAINST_BEAT;
+      osc.frequency.value = ENGINE_FREQUENCIES_BASE_BEAT;
     else if (beatNumber % this.metronome.baseBeat === 0)
-      osc.frequency.value = SOUND_BASE_BEAT;
+      osc.frequency.value = ENGINE_FREQUENCIES_AGAINST_BEAT;
 
     osc.start(time);
     osc.stop(time + this.noteLength);

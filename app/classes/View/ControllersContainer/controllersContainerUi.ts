@@ -1,13 +1,15 @@
 import Engine from "../../Engine";
 
-const CONTROLLERS_CONTAINER_SELECTOR = ".controllers-container";
-const SOUND_BUTTON_SELECTOR = ".controllers__sound";
-const PLAY_BUTTON_SELECTOR = ".controllers__play";
-const SOUND_ON_LABEL = "Sound: ON";
-const SOUND_OFF_LABEL = "Sound: OFF";
-const SOUND_RESET_LABEL = "Sound:";
-const PLAY_BUTTON_LABEL = "Play";
-const STOP_BUTTON_LABEL = "Stop";
+import {
+  CONTROLLERS_CONTAINER_SELECTOR,
+  PLAY_BUTTON_LABEL,
+  PLAY_BUTTON_SELECTOR,
+  SOUND_OFF_LABEL,
+  SOUND_ON_LABEL,
+  SOUND_BUTTON_SELECTOR,
+  SOUND_RESET_LABEL,
+  STOP_BUTTON_LABEL,
+} from '../../base/constants'
 
 /**
  * This class represents the UI controlling the app functionality.
