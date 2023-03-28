@@ -47,28 +47,39 @@ class BpmUi {
     if (this.bpmMinusOne && this.bpmValue) {
       this.bpmMinusOne.addEventListener("click", () => {
         this.metronome.tempo -= 1;
-        this.bpmValue.value = this.metronome.tempo.toString();
+        this.bpmValue.setAttribute("value", this.metronome.tempo.toString());
+        this.checkBpmLimits();
       });
     }
-    this.bpmMinusFive.addEventListener("click", () => {
-      this.metronome.tempo -= 5;
-      this.bpmValue.valueAsNumber -= 5;
-      this.checkBpmLimits();
-    });
-    this.bpmPlusOne.addEventListener("click", () => {
-      this.metronome.tempo += 1;
-      this.bpmValue.valueAsNumber += 1;
-      this.checkBpmLimits();
-    });
-    this.bpmPlusFive.addEventListener("click", () => {
-      this.metronome.tempo += 5;
-      this.bpmValue.valueAsNumber += 5;
-      this.checkBpmLimits();
-    });
+
+    if (this.bpmMinusFive && this.bpmValue) {
+      this.bpmMinusFive.addEventListener("click", () => {
+        this.metronome.tempo -= 5;
+        this.bpmValue.setAttribute("value", this.metronome.tempo.toString());
+        this.checkBpmLimits();
+      });
+    }
+
+    if (this.bpmPlusOne && this.bpmValue) {
+      this.bpmPlusOne.addEventListener("click", () => {
+        this.metronome.tempo += 1;
+        this.bpmValue.setAttribute("value", this.metronome.tempo.toString());
+        this.checkBpmLimits();
+      });
+    }
+    
+    if (this.bpmPlusFive && this.bpmValue) {
+      this.bpmPlusFive.addEventListener("click", () => {
+        this.metronome.tempo += 5;
+        this.bpmValue.setAttribute("value", this.metronome.tempo.toString());
+        this.checkBpmLimits();
+      });
+    }
+    
     this.bpmValue.addEventListener("change", (event) => {
       let eventTarget = event.target as HTMLInputElement;
       this.metronome.tempo = eventTarget.valueAsNumber;
-      this.bpmValue.valueAsNumber = eventTarget.valueAsNumber;
+      this.bpmValue.setAttribute("value", this.metronome.tempo.toString());
       this.checkBpmLimits();
     });
   }

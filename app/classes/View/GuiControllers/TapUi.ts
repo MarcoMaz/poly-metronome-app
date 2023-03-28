@@ -83,7 +83,7 @@ class TapUi {
     }
     this.counterTap += 1;
     this.metronome.tempo = this.avgBPM;
-    this.bpm.bpmValue.valueAsNumber = this.metronome.tempo;
+    this.bpm.bpmValue.setAttribute('value', this.metronome.tempo.toString())
 
     if (this.elapsedTime > TAP_THREE_SECONDS) this.lastTap = 0;
   }

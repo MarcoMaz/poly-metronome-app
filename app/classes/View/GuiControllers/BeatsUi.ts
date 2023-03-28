@@ -61,16 +61,20 @@ class BeatsUi {
     // Register events
     this.againstBeatPlus.addEventListener("click", () => {
       this.metronome.againstBeat += 1;
-      this.againstBeatValue.valueAsNumber += 1;
-
+      this.againstBeatValue.setAttribute(
+        "value",
+        this.metronome.againstBeat.toString()
+      );
       this.warning.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
       this.checkBeatsLimits(this.metronome.againstBeat, "against");
     });
 
     this.againstBeatMinus.addEventListener("click", () => {
       this.metronome.againstBeat -= 1;
-      this.againstBeatValue.valueAsNumber -= 1;
-
+      this.againstBeatValue.setAttribute(
+        "value",
+        this.metronome.againstBeat.toString()
+      );
       this.warning.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
       this.checkBeatsLimits(this.metronome.againstBeat, "against");
     });
@@ -78,24 +82,30 @@ class BeatsUi {
     this.againstBeatValue.addEventListener("change", (event) => {
       let eventTarget = event.target as HTMLInputElement;
       this.metronome.againstBeat = eventTarget.valueAsNumber;
-      this.againstBeatValue.valueAsNumber = eventTarget.valueAsNumber;
-
+      this.againstBeatValue.setAttribute(
+        "value",
+        this.metronome.againstBeat.toString()
+      );
       this.warning.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
       this.checkBeatsLimits(eventTarget.valueAsNumber, "against");
     });
 
     this.baseBeatPlus.addEventListener("click", () => {
       this.metronome.baseBeat += 1;
-      this.baseBeatValue.valueAsNumber += 1;
-
+      this.baseBeatValue.setAttribute(
+        "value",
+        this.metronome.baseBeat.toString()
+      );
       this.warning.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
       this.checkBeatsLimits(this.metronome.baseBeat, "base");
     });
 
     this.baseBeatMinus.addEventListener("click", () => {
       this.metronome.baseBeat -= 1;
-      this.baseBeatValue.valueAsNumber -= 1;
-
+      this.baseBeatValue.setAttribute(
+        "value",
+        this.metronome.baseBeat.toString()
+      );
       this.warning.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
       this.checkBeatsLimits(this.metronome.baseBeat, "base");
     });
@@ -103,8 +113,10 @@ class BeatsUi {
     this.baseBeatValue.addEventListener("change", (event) => {
       let eventTarget = event.target as HTMLInputElement;
       this.metronome.baseBeat = eventTarget.valueAsNumber;
-      this.baseBeatValue.valueAsNumber = eventTarget.valueAsNumber;
-
+      this.baseBeatValue.setAttribute(
+        "value",
+        this.metronome.baseBeat.toString()
+      );
       this.warning.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
       this.checkBeatsLimits(eventTarget.valueAsNumber, "base");
     });
