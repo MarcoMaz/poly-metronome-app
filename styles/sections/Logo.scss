@@ -1,0 +1,14 @@
+.Logo {
+  display: flex;
+  flex-direction: column;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+
+  span {
+    font-size: 1.5rem;
+    position: relative;
+    top: -0.625rem;
+  }
+}
