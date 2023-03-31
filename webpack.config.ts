@@ -46,14 +46,6 @@ export const commonConfig: webpack.Configuration = {
           },
         ],
       },
-      // Load Fonts
-      {
-        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-        type: "asset/resource",
-        generator: {
-          filename: "[name].[ext]",
-        },
-      },
       // Load Images
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
