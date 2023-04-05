@@ -1,0 +1,74 @@
+// Colors
+$colorBlack: #000000;
+$colorRed: #d62617;
+$colorWhite: #ffffff;
+
+// Radius
+$borderRadius: 0.5rem;
+
+.Modal {
+  display: none;
+  left: 0;
+  position: absolute;
+  top: 0;
+
+  &.-show,
+  &.-show .Modal__overlay {
+    display: block;
+  }
+
+  &__overlay {
+    background: $colorBlack;
+    display: none;
+    height: 100vh;
+    opacity: 70%;
+    position: absolute;
+    width: 100vw;
+    z-index: 1;
+  }
+
+  &__content {
+    background: $colorRed;
+    border-radius: $borderRadius;
+    color: $colorWhite;
+    display: flex;
+    flex-direction: column;
+    height: 16rem;
+    justify-content: space-between;
+    left: calc(50vw - 16rem);
+    padding: 1.25rem;
+    pointer-events: none;
+    position: relative;
+    top: calc(50vh - 8rem);
+    width: 32rem;
+    z-index: 2;
+  }
+
+  &__title,
+  &__message {
+    margin: 0;
+  }
+
+  &__supporting-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__message {
+    margin-bottom: 1rem;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  &__button {
+    align-self: flex-end;
+    border: 0.0625rem solid $colorWhite;
+    border-radius: $borderRadius;
+    color: $colorWhite;
+    pointer-events: auto;
+    text-transform: uppercase;
+    width: max-content;
+  }
+}

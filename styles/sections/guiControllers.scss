@@ -24,21 +24,6 @@
     border: 0;
   }
 
-  &__warning {
-    background-color: red;
-    border: 5px dashed white;
-    color: white;
-    height: 4rem;
-    padding: 1rem 0.5rem;
-    text-align: center;
-    visibility: hidden;
-    width: 100%;
-
-    &.-show {
-      visibility: visible;
-    }
-  }
-
   &__beats-container {
     align-items: center;
     display: flex;

@@ -4,8 +4,10 @@ import controllersContainerUi from "./ControllersContainer/ControllersContainerU
 import BeatsUi from "./GuiControllers/BeatsUi";
 import BpmUi from "./GuiControllers/BpmUi";
 import TabSelectionUi from "./GuiContainer/TabSelectionUi";
-import WarningUi from "./GuiControllers/WarningUi";
 import TapUi from "./GuiControllers/TapUi";
+
+// Refactor styling
+import Modal from "../Modal";
 
 /** 
  * This class controls the DOM elements with user interactions.
@@ -13,7 +15,7 @@ import TapUi from "./GuiControllers/TapUi";
  * @name View
  * 
  * @param {TabSelectionUi} tabSelection         - The UI controlling the tabs selection of the different type of metronome representation.
- * @param {WarningUi} warning                   - The UI controlling the warning which appears when the user selects a combination which is not a polyrhythm.
+ * @param {Modal} modal                         - The UI controlling the modal which appears when the user selects a combination which is not a polyrhythm.
  * @param {BeatsUi} beats                       - The UI controlling the representation of beats in the canvas.
  * @param {BpmUi} bpm                           - The UI controlling the bpm of the metronome.
  * @param {TapUi} tap                           - The UI controlling the "tap" button.
@@ -24,8 +26,6 @@ import TapUi from "./GuiControllers/TapUi";
 class View {
   public tabSelection: TabSelectionUi;
 
-  private warning: WarningUi;
-
   private beats: BeatsUi;
 
   private bpm: BpmUi;
@@ -34,6 +34,8 @@ class View {
 
   public controllers: controllersContainerUi;
 
+  private modal: Modal;
+
   /**
   * Define DOM Elements
   */
@@ -41,11 +43,12 @@ class View {
     // guiContainer (tabSelection + canvas)
     this.tabSelection = new TabSelectionUi();
 
-    // guiControllers (warning + beats + bpm + tap)
-    this.warning = new WarningUi();
-    this.beats = new BeatsUi(this.warning, this.metronome);
+    this.modal = new Modal();
+    // guiControllers (beats + bpm + tap)
+    this.beats = new BeatsUi(this.modal, this.metronome);
     this.bpm = new BpmUi(this.metronome);
     this.tap = new TapUi(this.metronome, this.bpm)
+
 
     // controllersContainer (sound + play)
     this.controllers = new controllersContainerUi(

@@ -76,9 +76,17 @@ export const TAP_BUTTON_SELECTOR = ".gui-controllers__tap";
 export const TAP_SIXTY_SECONDS = 60000;
 export const TAP_THREE_SECONDS = 3000;
 
-// Warning
-export const WARNING_SELECTOR = ".gui-controllers__warning";
-export const WARNING_SHOW_CLASS = "-show";
+// Modal
+export const MODAL_SELECTOR = ".Modal";
+export const MODAL_SHOW_CLASS = "-show";
+export const MODAL_OVERLAY_SELECTOR = ".Modal__overlay";
+export const MODAL_CONTENT_SELECTOR = ".Modal__content";
+export const MODAL_TITLE_SELECTOR = ".Modal__title";
+export const MODAL_SUPPORTING_TEXT_SELECTOR = ".Modal__supporting-text";
+export const MODAL_MESSAGES_SELECTOR = ".Modal__supporting-text > p";
+export const MODAL_FIRST_MESSAGE_SELECTOR = ".Modal__supporting-text p:nth-child(1)";
+export const MODAL_SECOND_MESSAGE_SELECTOR = ".Modal__supporting-text p:nth-child(2)";
+export const MODAL_BUTTON_SELECTOR = ".Modal__button";
 
 // Engine
 export const ENGINE_ONE_MINUTE_IN_SECONDS = 60.0;
@@ -89,8 +97,11 @@ export const ENGINE_FREQUENCIES_AGAINST_BEAT = 220.0;
 
 // App
 export const APP_SOUND_DELAY = 0.01;
-export const URL: string = "http://192.168.2.33:3000/";
+export const URL: string = "http://192.168.0.25:3000/";
 
 // WORKER
 export const WORKER_START_MESSAGE = "start";
 export const WORKER_STOP_MESSAGE = "stop";
+
+// KeyCodes
+export const ESC_KEY_CODE = 27;

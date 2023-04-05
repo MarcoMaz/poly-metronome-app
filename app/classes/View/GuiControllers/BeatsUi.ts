@@ -1,5 +1,5 @@
 import Metronome from "../../Metronome";
-import WarningUi from "./WarningUi";
+import Modal from "../../Modal";
 
 import {
   BEATS_CONTAINER,
@@ -42,7 +42,7 @@ class BeatsUi {
   /**
    * Define DOM Elements and Variables.
    */
-  constructor(public warning: WarningUi, public metronome: Metronome) {
+  constructor(public modal: Modal, public metronome: Metronome) {
     this.element = document.querySelector(BEATS_CONTAINER);
     this.againstBeatPlus = this.element.querySelector(
       AGAINST_BEAT_PLUS_SELECTOR
@@ -65,7 +65,7 @@ class BeatsUi {
         "value",
         this.metronome.againstBeat.toString()
       );
-      this.warning.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
+      this.modal.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
       this.checkBeatsLimits(this.metronome.againstBeat, "against");
     });
 
@@ -75,7 +75,7 @@ class BeatsUi {
         "value",
         this.metronome.againstBeat.toString()
       );
-      this.warning.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
+      this.modal.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
       this.checkBeatsLimits(this.metronome.againstBeat, "against");
     });
 
@@ -86,7 +86,7 @@ class BeatsUi {
         "value",
         this.metronome.againstBeat.toString()
       );
-      this.warning.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
+      this.modal.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
       this.checkBeatsLimits(eventTarget.valueAsNumber, "against");
     });
 
@@ -96,7 +96,7 @@ class BeatsUi {
         "value",
         this.metronome.baseBeat.toString()
       );
-      this.warning.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
+      this.modal.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
       this.checkBeatsLimits(this.metronome.baseBeat, "base");
     });
 
@@ -106,7 +106,7 @@ class BeatsUi {
         "value",
         this.metronome.baseBeat.toString()
       );
-      this.warning.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
+      this.modal.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
       this.checkBeatsLimits(this.metronome.baseBeat, "base");
     });
 
@@ -117,7 +117,7 @@ class BeatsUi {
         "value",
         this.metronome.baseBeat.toString()
       );
-      this.warning.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
+      this.modal.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
       this.checkBeatsLimits(eventTarget.valueAsNumber, "base");
     });
 
