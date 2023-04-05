@@ -8,6 +8,7 @@ import {
   PLAY_BUTTON_SELECTOR,
   SWITCH_BEATS_SELECTOR,
   URL,
+  MODAL_OVERLAY_SELECTOR,
 } from "../../../../../app/classes/base/constants";
 
 describe("Against Beat", () => {
@@ -130,6 +131,7 @@ describe("Against Beat", () => {
         cy.visit(URL);
         cy.get(PLAY_BUTTON_SELECTOR).click();
         cy.get(AGAINST_BEAT_PLUS_SELECTOR).click();
+        cy.get(MODAL_OVERLAY_SELECTOR).click();
         cy.get(PLAY_BUTTON_SELECTOR).click();
         cy.get(AGAINST_BEAT_VALUE_SELECTOR).should("have.value", "4");
       });
@@ -147,11 +149,13 @@ describe("Against Beat", () => {
       });
       it("should set value to 2 after inputting a number < 2", () => {
         cy.get(AGAINST_BEAT_VALUE_SELECTOR).clear().type("1{enter}");
+        cy.get(MODAL_OVERLAY_SELECTOR).click();
         cy.get(PLAY_BUTTON_SELECTOR).click();
         cy.get(AGAINST_BEAT_VALUE_SELECTOR).should("have.value", "2");
       });
       it("should set value to 2 after inputting a number = 2", () => {
         cy.get(AGAINST_BEAT_VALUE_SELECTOR).clear().type("2{enter}");
+        cy.get(MODAL_OVERLAY_SELECTOR).click();
         cy.get(PLAY_BUTTON_SELECTOR).click();
         cy.get(AGAINST_BEAT_VALUE_SELECTOR).should("have.value", "2");
       });
@@ -176,6 +180,7 @@ describe("Against Beat", () => {
         cy.visit(URL);
         cy.get(PLAY_BUTTON_SELECTOR).click();
         cy.get(AGAINST_BEAT_MINUS_SELECTOR).click();
+        cy.get(MODAL_OVERLAY_SELECTOR).click();
         cy.get(PLAY_BUTTON_SELECTOR).click();
         cy.get(AGAINST_BEAT_VALUE_SELECTOR).should("have.value", "2");
       });
@@ -320,6 +325,7 @@ describe("Base Beat", () => {
       });
       it("should set value to 2 after inputting a number < 2", () => {
         cy.get(BASE_BEAT_VALUE_SELECTOR).clear().type("1{enter}");
+        cy.get(MODAL_OVERLAY_SELECTOR).click();
         cy.get(PLAY_BUTTON_SELECTOR).click();
         cy.get(BASE_BEAT_VALUE_SELECTOR).should("have.value", "2");
       });
@@ -330,11 +336,13 @@ describe("Base Beat", () => {
       });
       it("should set value to the number entered after inputting a number > 2 and < 9", () => {
         cy.get(BASE_BEAT_VALUE_SELECTOR).clear().type("3{enter}");
+        cy.get(MODAL_OVERLAY_SELECTOR).click();
         cy.get(PLAY_BUTTON_SELECTOR).click();
         cy.get(BASE_BEAT_VALUE_SELECTOR).should("have.value", "3");
       });
       it("should set value to 9 after inputting a number = 9", () => {
         cy.get(BASE_BEAT_VALUE_SELECTOR).clear().type("9{enter}");
+        cy.get(MODAL_OVERLAY_SELECTOR).click();
         cy.get(PLAY_BUTTON_SELECTOR).click();
         cy.get(BASE_BEAT_VALUE_SELECTOR).should("have.value", "9");
       });
@@ -349,6 +357,7 @@ describe("Base Beat", () => {
         cy.visit(URL);
         cy.get(PLAY_BUTTON_SELECTOR).click();
         cy.get(BASE_BEAT_MINUS_SELECTOR).click();
+        cy.get(MODAL_OVERLAY_SELECTOR).click();
         cy.get(PLAY_BUTTON_SELECTOR).click();
         cy.get(BASE_BEAT_VALUE_SELECTOR).should("have.value", "3");
       });
