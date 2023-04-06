@@ -1,11 +1,11 @@
-import Metronome from "../../Metronome";
-import BpmUi from "./BpmUi";
+import Metronome from '../../Metronome';
+import BpmUi from './BpmUi';
 import {
   BPM_MIN,
   TAP_BUTTON_SELECTOR,
   TAP_SIXTY_SECONDS,
   TAP_THREE_SECONDS,
-} from "../../base/constants";
+} from '../../base/constants';
 
 /**
  * This class represents the UI controlling the Tap Button.
@@ -54,7 +54,7 @@ class TapUi {
     this.elapsedTime = 0;
 
     // Register events
-    this.tapButton.addEventListener("click", () => this.updateTempo());
+    this.tapButton.addEventListener('click', () => this.updateTempo());
   }
 
   /**
@@ -83,7 +83,8 @@ class TapUi {
     }
     this.counterTap += 1;
     this.metronome.tempo = this.avgBPM;
-    this.bpm.bpmValue.setAttribute('value', this.metronome.tempo.toString())
+    this.bpm.bpmValue.value = this.metronome.tempo.toString();
+    this.bpm.bpmValue.setAttribute('value', this.metronome.tempo.toString());
 
     if (this.elapsedTime > TAP_THREE_SECONDS) this.lastTap = 0;
   }
