@@ -20,7 +20,7 @@
   }
 
   input {
-    background-color: $primary;
+    background-color: $colorWhite;
     border: 0;
   }
 
@@ -81,6 +81,6 @@
   }
 
   &__bpm-value {
-    color: black;
+    color: $colorBlack;
   }
 }

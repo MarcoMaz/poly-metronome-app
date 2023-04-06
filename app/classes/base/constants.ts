@@ -23,10 +23,10 @@ export const TABLET_VIEWPORT = 700;
 export const DESKTOP_VIEWPORT = 1000;
 
 // Shape
-export const SHAPE_ACTIVE_BEAT_COLOR_OTHER = "lightblue";
-export const SHAPE_ACTIVE_BEAT_COLOR_CURRENT = "blue";
-export const SHAPE_INACTIVE_BEAT_COLOR = "lightgray";
-export const SHAPE_GRID_BORDER_COLOR = "black";
+export const SHAPE_ACTIVE_BEAT_COLOR_OTHER = "#d1d1d1";
+export const SHAPE_ACTIVE_BEAT_COLOR_CURRENT = "#151515";
+export const SHAPE_INACTIVE_BEAT_COLOR = "#EEEEEE";
+export const SHAPE_GRID_BORDER_COLOR = "#151515";
 export const SHAPE_SIZE_MOBILE = 16;
 export const SHAPE_SIZE_TABLET = 20;
 export const SHAPE_SIZE_DESKTOP = 32;
