@@ -1,5 +1,5 @@
-import Metronome from "../../Metronome";
-import Modal from "../../Modal";
+import Metronome from '../../Metronome';
+import Modal from '../../Modal';
 
 import {
   BEATS_CONTAINER,
@@ -12,7 +12,7 @@ import {
   SWITCH_BEATS_SELECTOR,
   BEAT_MIN,
   BEAT_MAX,
-} from "../../base/constants";
+} from '../../base/constants';
 
 /**
  * This class represents the UI controlling the beats.
@@ -59,75 +59,89 @@ class BeatsUi {
     this.switchBeats = this.element.querySelector(SWITCH_BEATS_SELECTOR);
 
     // Register events
-    this.againstBeatPlus.addEventListener("click", () => {
+    this.againstBeatPlus.addEventListener('click', () => {
       this.metronome.againstBeat += 1;
+      this.againstBeatValue.value = this.metronome.againstBeat.toString();
       this.againstBeatValue.setAttribute(
-        "value",
+        'value',
         this.metronome.againstBeat.toString()
       );
+
       this.modal.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
-      this.checkBeatsLimits(this.metronome.againstBeat, "against");
+      this.checkBeatsLimits(this.metronome.againstBeat, 'against');
     });
 
-    this.againstBeatMinus.addEventListener("click", () => {
+    this.againstBeatMinus.addEventListener('click', () => {
       this.metronome.againstBeat -= 1;
+      this.againstBeatValue.value = this.metronome.againstBeat.toString();
       this.againstBeatValue.setAttribute(
-        "value",
+        'value',
         this.metronome.againstBeat.toString()
       );
+
       this.modal.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
-      this.checkBeatsLimits(this.metronome.againstBeat, "against");
+      this.checkBeatsLimits(this.metronome.againstBeat, 'against');
     });
 
-    this.againstBeatValue.addEventListener("change", (event) => {
+    this.againstBeatValue.addEventListener('change', (event) => {
       let eventTarget = event.target as HTMLInputElement;
-      this.metronome.againstBeat = eventTarget.valueAsNumber;
-      this.againstBeatValue.setAttribute(
-        "value",
-        this.metronome.againstBeat.toString()
-      );
+      this.metronome.againstBeat = Number(eventTarget.value);
+      this.againstBeatValue.setAttribute('value', eventTarget.value);
+
       this.modal.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
-      this.checkBeatsLimits(eventTarget.valueAsNumber, "against");
+      this.checkBeatsLimits(this.metronome.againstBeat, 'against');
     });
 
-    this.baseBeatPlus.addEventListener("click", () => {
+    this.baseBeatPlus.addEventListener('click', () => {
       this.metronome.baseBeat += 1;
+      this.baseBeatValue.value = this.metronome.baseBeat.toString();
       this.baseBeatValue.setAttribute(
-        "value",
+        'value',
         this.metronome.baseBeat.toString()
       );
+
       this.modal.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
-      this.checkBeatsLimits(this.metronome.baseBeat, "base");
+      this.checkBeatsLimits(this.metronome.baseBeat, 'base');
     });
 
-    this.baseBeatMinus.addEventListener("click", () => {
+    this.baseBeatMinus.addEventListener('click', () => {
       this.metronome.baseBeat -= 1;
+      this.baseBeatValue.value = this.metronome.baseBeat.toString();
       this.baseBeatValue.setAttribute(
-        "value",
+        'value',
         this.metronome.baseBeat.toString()
       );
+
       this.modal.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
-      this.checkBeatsLimits(this.metronome.baseBeat, "base");
+      this.checkBeatsLimits(this.metronome.baseBeat, 'base');
     });
 
-    this.baseBeatValue.addEventListener("change", (event) => {
+    this.baseBeatValue.addEventListener('change', (event) => {
       let eventTarget = event.target as HTMLInputElement;
-      this.metronome.baseBeat = eventTarget.valueAsNumber;
-      this.baseBeatValue.setAttribute(
-        "value",
-        this.metronome.baseBeat.toString()
-      );
+      this.metronome.baseBeat = Number(eventTarget.value);
+      this.baseBeatValue.setAttribute('value', eventTarget.value);
+
       this.modal.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
-      this.checkBeatsLimits(eventTarget.valueAsNumber, "base");
+      this.checkBeatsLimits(this.metronome.baseBeat, 'base');
     });
 
-    this.switchBeats.addEventListener("click", () => {
+    this.switchBeats.addEventListener('click', () => {
       [this.metronome.againstBeat, this.metronome.baseBeat] = [
         this.metronome.baseBeat,
         this.metronome.againstBeat,
       ];
-      [this.againstBeatValue.valueAsNumber, this.baseBeatValue.valueAsNumber] =
-        [this.baseBeatValue.valueAsNumber, this.againstBeatValue.valueAsNumber];
+      [this.againstBeatValue.value, this.baseBeatValue.value] = [
+        this.baseBeatValue.value,
+        this.againstBeatValue.value,
+      ];
+      this.againstBeatValue.setAttribute(
+        'value',
+        this.metronome.againstBeat.toString()
+      );
+      this.baseBeatValue.setAttribute(
+        'value',
+        this.metronome.baseBeat.toString()
+      );
     });
   }
 
@@ -137,23 +151,27 @@ class BeatsUi {
    * Check the beats' limits. If the number is too big or too low, resets to minimum and maximum.
    *
    */
-  private checkBeatsLimits(element: number, type: "against" | "base"): void {
+  private checkBeatsLimits(element: number, type: 'against' | 'base'): void {
     if (element > BEAT_MAX) {
-      if (type === "against") {
+      if (type === 'against') {
         this.metronome.againstBeat = BEAT_MAX;
-        this.againstBeatValue.valueAsNumber = BEAT_MAX;
+        this.againstBeatValue.value = BEAT_MAX.toString();
+        this.againstBeatValue.setAttribute('value', BEAT_MAX.toString());
       } else {
         this.metronome.baseBeat = BEAT_MAX;
-        this.baseBeatValue.valueAsNumber = BEAT_MAX;
+        this.baseBeatValue.value = BEAT_MAX.toString();
+        this.baseBeatValue.setAttribute('value', BEAT_MAX.toString());
       }
     }
     if (element <= BEAT_MIN - 1) {
-      if (type === "against") {
+      if (type === 'against') {
         this.metronome.againstBeat = BEAT_MIN;
-        this.againstBeatValue.valueAsNumber = BEAT_MIN;
+        this.againstBeatValue.value = BEAT_MIN.toString();
+        this.againstBeatValue.setAttribute('value', BEAT_MIN.toString());
       } else {
         this.metronome.baseBeat = BEAT_MIN;
-        this.baseBeatValue.valueAsNumber = BEAT_MIN;
+        this.baseBeatValue.value = BEAT_MIN.toString();
+        this.baseBeatValue.setAttribute('value', BEAT_MIN.toString());
       }
     }
   }
