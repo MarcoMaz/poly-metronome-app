@@ -1,11 +1,11 @@
-import Metronome from '../Metronome';
-import BpmUi from './GuiControllers/BpmUi';
+import Metronome from './Metronome';
+import BpmUi from './View/GuiControllers/BpmUi';
 import {
   BPM_MIN,
   TAP_BUTTON_SELECTOR,
   TAP_SIXTY_SECONDS,
   TAP_THREE_SECONDS,
-} from '../base/constants';
+} from './base/constants';
 
 /**
  * This class represents the UI controlling the Tap chip.
@@ -54,7 +54,7 @@ class Tap {
     this.elapsedTime = 0;
 
     // Register events
-    this.tapChip.addEventListener('click', () => this.updateTempo());
+    this.tapChip.addEventListener('click', this.updateTempo.bind(this));
   }
 
   /**
