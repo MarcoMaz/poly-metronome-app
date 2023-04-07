@@ -28,9 +28,7 @@ class Modal {
     this.modal = document.querySelector(MODAL_SELECTOR);
     this.modalOverlay = this.modal.querySelector(MODAL_OVERLAY_SELECTOR);
     this.modalButton = this.modal.querySelector(MODAL_BUTTON_SELECTOR);
-    this.modalButton.addEventListener("click", () => {
-      this.hide();
-    });
+    this.modalButton.addEventListener("click", this.hide.bind(this));
     this.documentClickListener = this.handleDocumentClick.bind(this);
     this.handleDocumentKeyDown = this.handleDocumentKeyDown.bind(this);
   }

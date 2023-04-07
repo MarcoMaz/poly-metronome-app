@@ -59,11 +59,21 @@ $borderRadius: 0.5rem;
 
   &__button {
     align-self: flex-end;
+    background-color: inherit;
     border: 0.0625rem solid $colorWhite;
     border-radius: $borderRadius;
     color: $colorWhite;
+    padding: .25rem 1.25rem;
     pointer-events: auto;
     text-transform: uppercase;
     width: max-content;
+
+    &:hover {
+      background-color: lighten($color: $colorWarning, $amount: 20);
+    }
+
+    &:active {
+      background-color: lighten($color: $colorWarning, $amount: 35);
+    }
   }
 }
