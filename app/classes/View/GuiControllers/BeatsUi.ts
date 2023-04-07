@@ -9,7 +9,6 @@ import {
   BASE_BEAT_PLUS_SELECTOR,
   BASE_BEAT_VALUE_SELECTOR,
   BASE_BEAT_MINUS_SELECTOR,
-  SWITCH_BEATS_SELECTOR,
   BEAT_MIN,
   BEAT_MAX,
 } from '../../base/constants';
@@ -26,18 +25,16 @@ import {
  * @param {HTMLButtonElement} baseBeatPlus      - The plus button controlling the base beat.
  * @param {HTMLInputElement} baseBeatValue      - The input value of the base beat.
  * @param {HTMLButtonElement} baseBeatMinus     - The minus button controlling the base beat.
- * @param {HTMLButtonElement} switchBeats       - The button switching the beats.
  */
 
 class BeatsUi {
   private element: HTMLDivElement;
-  private againstBeatPlus: HTMLButtonElement;
-  private againstBeatValue: HTMLInputElement;
+  public againstBeatPlus: HTMLButtonElement;
+  public againstBeatValue: HTMLInputElement;
   private againstBeatMinus: HTMLButtonElement;
   private baseBeatPlus: HTMLButtonElement;
-  private baseBeatValue: HTMLInputElement;
+  public baseBeatValue: HTMLInputElement;
   private baseBeatMinus: HTMLButtonElement;
-  private switchBeats: HTMLButtonElement;
 
   /**
    * Define DOM Elements and Variables.
@@ -56,7 +53,6 @@ class BeatsUi {
     this.baseBeatPlus = this.element.querySelector(BASE_BEAT_PLUS_SELECTOR);
     this.baseBeatValue = this.element.querySelector(BASE_BEAT_VALUE_SELECTOR);
     this.baseBeatMinus = this.element.querySelector(BASE_BEAT_MINUS_SELECTOR);
-    this.switchBeats = this.element.querySelector(SWITCH_BEATS_SELECTOR);
 
     // Register events
     this.againstBeatPlus.addEventListener('click', () => {
@@ -123,25 +119,6 @@ class BeatsUi {
 
       this.modal.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
       this.checkBeatsLimits(this.metronome.baseBeat, 'base');
-    });
-
-    this.switchBeats.addEventListener('click', () => {
-      [this.metronome.againstBeat, this.metronome.baseBeat] = [
-        this.metronome.baseBeat,
-        this.metronome.againstBeat,
-      ];
-      [this.againstBeatValue.value, this.baseBeatValue.value] = [
-        this.baseBeatValue.value,
-        this.againstBeatValue.value,
-      ];
-      this.againstBeatValue.setAttribute(
-        'value',
-        this.metronome.againstBeat.toString()
-      );
-      this.baseBeatValue.setAttribute(
-        'value',
-        this.metronome.baseBeat.toString()
-      );
     });
   }
 

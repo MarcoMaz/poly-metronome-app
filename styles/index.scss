@@ -8,6 +8,7 @@ $border: 5px solid $colorBlack;
 // Refactor styling
 @import './sections/Logo.scss';
 @import './sections/Modal.scss';
+@import './sections/Chip.scss';
 
 
 @import './sections/guiControllers.scss';
@@ -18,29 +19,6 @@ ol {
   margin: 0;
   padding: 0;
   list-style: none;
-}
-
-.Chip {
-  background-color: $colorGray100;
-  border: 0;
-  border-radius: 6px;
-  color: $colorGray200;
-  cursor: pointer;
-  padding: 4px 20px;
-  width: fit-content;
-  
-  &:hover,
-  &:active {
-    color: $colorWhite;
-  }
-
-  &:hover {    
-    background-color: darken($color: $colorGray100, $amount: 20);
-  }
-  
-  &:active {
-    background-color: darken($color: $colorGray100, $amount: 35);
-  }
 }
 
 body {

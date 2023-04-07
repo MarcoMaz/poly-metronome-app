@@ -4,10 +4,11 @@ import controllersContainerUi from "./ControllersContainer/ControllersContainerU
 import BeatsUi from "./GuiControllers/BeatsUi";
 import BpmUi from "./GuiControllers/BpmUi";
 import TabSelectionUi from "./GuiContainer/TabSelectionUi";
-import Tap from "./Tap";
+import Tap from "../Tap";
 
 // Refactor styling
 import Modal from "../Modal";
+import SwitchBeats from "../SwitchBeats";
 
 /** 
  * This class controls the DOM elements with user interactions.
@@ -19,6 +20,7 @@ import Modal from "../Modal";
  * @param {BeatsUi} beats                       - The UI controlling the representation of beats in the canvas.
  * @param {BpmUi} bpm                           - The UI controlling the bpm of the metronome.
  * @param {Tap} tap                             - The UI controlling the "tap" chip.
+ * @param {SwitchBeats} switchBeats             - The UI controlling the "switchBeats" chip.
  * @param {controllersContainerUi} controllers  - The UI controlling the app functionality.
  *  
 */
@@ -35,6 +37,8 @@ class View {
   public controllers: controllersContainerUi;
 
   private modal: Modal;
+  
+  private switchBeats: SwitchBeats;
 
   /**
   * Define DOM Elements
@@ -48,7 +52,7 @@ class View {
     this.beats = new BeatsUi(this.modal, this.metronome);
     this.bpm = new BpmUi(this.metronome);
     this.tap = new Tap(this.metronome, this.bpm)
-
+    this.switchBeats = new SwitchBeats(this.metronome, this.beats);
 
     // controllersContainer (sound + play)
     this.controllers = new controllersContainerUi(

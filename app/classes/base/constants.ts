@@ -56,7 +56,6 @@ export const BASE_BEAT = ".gui-controllers__base-beat";
 export const BASE_BEAT_PLUS_SELECTOR = `${BASE_BEAT}.gui-controllers__beat-plus`;
 export const BASE_BEAT_VALUE_SELECTOR = `${BASE_BEAT}.gui-controllers__beat-value`;
 export const BASE_BEAT_MINUS_SELECTOR = `${BASE_BEAT}.gui-controllers__beat-minus`;
-export const SWITCH_BEATS_SELECTOR = ".gui-controllers__switch-beats";
 export const BEAT_MIN = 2;
 export const BEAT_MAX = 9;
 
@@ -104,6 +103,9 @@ export const MODAL_MESSAGES_SELECTOR = ".Modal__supporting-text > p";
 export const MODAL_FIRST_MESSAGE_SELECTOR = ".Modal__supporting-text p:nth-child(1)";
 export const MODAL_SECOND_MESSAGE_SELECTOR = ".Modal__supporting-text p:nth-child(2)";
 export const MODAL_BUTTON_SELECTOR = ".Modal__button";
+
+// SwitchBeats
+export const SWITCH_BEATS_SELECTOR = ".SwitchBeats";
 
 // KeyCodes
 export const ESC_KEY_CODE = 27;
