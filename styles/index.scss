@@ -20,12 +20,27 @@ ol {
   list-style: none;
 }
 
-button {
-  background: none;
-  border: $border;
-  border-width: 1px;
+.Chip {
+  background-color: $colorGray100;
+  border: 0;
+  border-radius: 6px;
+  color: $colorGray200;
   cursor: pointer;
-  padding: 0.5rem 1rem;
+  padding: 4px 20px;
+  width: fit-content;
+  
+  &:hover,
+  &:active {
+    color: $colorWhite;
+  }
+
+  &:hover {    
+    background-color: darken($color: $colorGray100, $amount: 20);
+  }
+  
+  &:active {
+    background-color: darken($color: $colorGray100, $amount: 35);
+  }
 }
 
 body {

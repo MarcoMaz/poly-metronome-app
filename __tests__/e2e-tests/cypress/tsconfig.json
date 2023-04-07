@@ -10,9 +10,3 @@
     "../node_modules/cypress/**/*.ts"
   ]
 }
-
-// "include": [
-//   "../cypress/**/*.ts",
-//   "../cypress.config.ts",
-//   "../node_modules/cypress/**/*.ts"
-// ]

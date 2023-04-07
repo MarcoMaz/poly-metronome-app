@@ -4,7 +4,7 @@ import controllersContainerUi from "./ControllersContainer/ControllersContainerU
 import BeatsUi from "./GuiControllers/BeatsUi";
 import BpmUi from "./GuiControllers/BpmUi";
 import TabSelectionUi from "./GuiContainer/TabSelectionUi";
-import TapUi from "./GuiControllers/TapUi";
+import Tap from "./Tap";
 
 // Refactor styling
 import Modal from "../Modal";
@@ -18,7 +18,7 @@ import Modal from "../Modal";
  * @param {Modal} modal                         - The UI controlling the modal which appears when the user selects a combination which is not a polyrhythm.
  * @param {BeatsUi} beats                       - The UI controlling the representation of beats in the canvas.
  * @param {BpmUi} bpm                           - The UI controlling the bpm of the metronome.
- * @param {TapUi} tap                           - The UI controlling the "tap" button.
+ * @param {Tap} tap                             - The UI controlling the "tap" chip.
  * @param {controllersContainerUi} controllers  - The UI controlling the app functionality.
  *  
 */
@@ -30,7 +30,7 @@ class View {
 
   private bpm: BpmUi;
 
-  private tap: TapUi;
+  private tap: Tap;
 
   public controllers: controllersContainerUi;
 
@@ -47,7 +47,7 @@ class View {
     // guiControllers (beats + bpm + tap)
     this.beats = new BeatsUi(this.modal, this.metronome);
     this.bpm = new BpmUi(this.metronome);
-    this.tap = new TapUi(this.metronome, this.bpm)
+    this.tap = new Tap(this.metronome, this.bpm)
 
 
     // controllersContainer (sound + play)

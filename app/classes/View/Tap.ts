@@ -1,18 +1,18 @@
-import Metronome from '../../Metronome';
-import BpmUi from './BpmUi';
+import Metronome from '../Metronome';
+import BpmUi from './GuiControllers/BpmUi';
 import {
   BPM_MIN,
   TAP_BUTTON_SELECTOR,
   TAP_SIXTY_SECONDS,
   TAP_THREE_SECONDS,
-} from '../../base/constants';
+} from '../base/constants';
 
 /**
- * This class represents the UI controlling the Tap Button.
+ * This class represents the UI controlling the Tap chip.
  *
- * @name TapUi
+ * @name Tap
  *
- * @param {HTMLButtonElement} tapButton   - The button controlling the tap function.
+ * @param {HTMLButtonElement} tapChip     - The chip controlling the tap function.
  * @param {number} newTap                 - The new tap in a sequence.
  * @param {number} lastTap                - The last tap in a sequence.
  * @param {number} counterTap             - The counter counting the tap.
@@ -23,8 +23,8 @@ import {
  *
  */
 
-class TapUi {
-  private tapButton: HTMLButtonElement;
+class Tap {
+  private tapChip: HTMLButtonElement;
   private newTap: number;
   private lastTap: number;
   private counterTap: number;
@@ -37,7 +37,7 @@ class TapUi {
    * Define DOM Elements and Variables.
    */
   constructor(public metronome: Metronome, public bpm: BpmUi) {
-    this.tapButton = document.querySelector(TAP_BUTTON_SELECTOR);
+    this.tapChip = document.querySelector(TAP_BUTTON_SELECTOR);
 
     this.newTap = 0;
 
@@ -54,7 +54,7 @@ class TapUi {
     this.elapsedTime = 0;
 
     // Register events
-    this.tapButton.addEventListener('click', () => this.updateTempo());
+    this.tapChip.addEventListener('click', () => this.updateTempo());
   }
 
   /**
@@ -90,4 +90,4 @@ class TapUi {
   }
 }
 
-export default TapUi;
+export default Tap;
