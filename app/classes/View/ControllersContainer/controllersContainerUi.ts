@@ -45,16 +45,16 @@ class ControllersContainerUi {
     this.playButton.addEventListener("click", () => {
       if (!app.isPlaying) {
         app.play();
-        this.playButton.innerHTML = STOP_BUTTON_LABEL;
-        this.soundButton.innerHTML = SOUND_ON_LABEL;
-        this.soundButton.removeAttribute('disabled');
-        this.soundOn();
+        this.playButton.innerHTML = STOP_BUTTON_LABEL;  // obsolete
+        this.soundButton.innerHTML = SOUND_ON_LABEL; // --
+        this.soundButton.removeAttribute('disabled'); // --
+        this.soundOn(); // --
       } else {
         app.pause();
         this.playButton.innerHTML = PLAY_BUTTON_LABEL;
-        this.soundButton.innerHTML = SOUND_RESET_LABEL;
-        this.soundButton.setAttribute('disabled', 'true')
-        this.soundOff();
+        this.soundButton.innerHTML = SOUND_RESET_LABEL; // --
+        this.soundButton.setAttribute('disabled', 'true') // --
+        this.soundOff(); // --
       }
     });
 

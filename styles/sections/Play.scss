@@ -1,0 +1,30 @@
+.Play {
+  align-items: center;
+  background: $colorBlack;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  height: 4rem;
+  justify-content: center;
+  width: 4rem;
+
+  &:hover {
+    background: lighten($color: $colorBlack, $amount: 20)
+  }
+
+  &:active {
+    background: lighten($color: $colorBlack, $amount: 35)
+  }
+
+  &__icon-play,
+  &__icon-stop {
+    display: none;
+    height: 1.5rem;
+    width: 1.5rem;
+
+    &.-show {
+      display: flex;
+    }
+  }
+}

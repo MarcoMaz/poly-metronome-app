@@ -9,6 +9,7 @@ import Tap from "../Tap";
 // Refactor styling
 import Modal from "../Modal";
 import SwitchBeats from "../SwitchBeats";
+import Play from "../Play";
 
 /** 
  * This class controls the DOM elements with user interactions.
@@ -39,6 +40,8 @@ class View {
   private modal: Modal;
   
   private switchBeats: SwitchBeats;
+  
+  private play: Play;
 
   /**
   * Define DOM Elements
@@ -53,6 +56,7 @@ class View {
     this.bpm = new BpmUi(this.metronome);
     this.tap = new Tap(this.metronome, this.bpm)
     this.switchBeats = new SwitchBeats(this.metronome, this.beats);
+    this.play = new Play();
 
     // controllersContainer (sound + play)
     this.controllers = new controllersContainerUi(
