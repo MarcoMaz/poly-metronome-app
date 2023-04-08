@@ -1,6 +1,6 @@
 import Engine from "../Engine";
 import Metronome from "../Metronome";
-import controllersContainerUi from "./ControllersContainer/ControllersContainerUi";
+import controllersContainerUi from "./ControllersContainer/controllersContainerUi";
 import BeatsUi from "./GuiControllers/BeatsUi";
 import BpmUi from "./GuiControllers/BpmUi";
 import TabSelectionUi from "./GuiContainer/TabSelectionUi";

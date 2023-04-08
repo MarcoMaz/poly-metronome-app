@@ -24,7 +24,7 @@ if ("serviceWorker" in navigator) {
  */
 
 class App {
-  private isPlaying: boolean;
+  public isPlaying: boolean;
   private metronome: Metronome;
   private engine: Engine;
   private view: View;
@@ -59,15 +59,7 @@ class App {
    */
 
   public init(): void {
-    this.view.controllers.setOnPlay(() => {
-      app.play();
-      this.canvas.playAnimation();
-    });
-
-    this.view.controllers.setOnPause(() => {
-      app.pause();
-      this.canvas.stopAnimation();
-    });
+    this.canvas.playAnimation();
 
     this.timerWorker = new Worker("../workers/worker.js");
 
@@ -87,6 +79,7 @@ class App {
    */
   public play(): void {
     this.isPlaying = true;
+    this.canvas.playAnimation();
 
     if (this.isPlaying) {
       this.engine.current16thNote = 0;
@@ -103,6 +96,7 @@ class App {
    */
   public pause(): void {
     this.isPlaying = false;
+    this.canvas.stopAnimation();
 
     if (!this.isPlaying) {
       this.timerWorker.postMessage(WORKER_STOP_MESSAGE);
