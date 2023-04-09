@@ -11,6 +11,7 @@ import Modal from "../Modal";
 import SwitchBeats from "../SwitchBeats";
 import Play from "../Play";
 import Mute from "../Mute";
+import PlayButton from "../Play";
 
 /** 
  * This class controls the DOM elements with user interactions.
@@ -42,9 +43,9 @@ class View {
   
   private switchBeats: SwitchBeats;
   
-  private play: Play;
-
   private mute: Mute;
+
+  private playButton: PlayButton;
 
   /**
   * Define DOM Elements
@@ -60,7 +61,7 @@ class View {
     this.tap = new Tap(this.metronome, this.bpm)
     this.switchBeats = new SwitchBeats(this.metronome, this.beats);
     this.mute = new Mute(this.engine);
-    this.play = new Play(this.mute, this.engine);
+    this.playButton = new PlayButton(this.mute, this.engine);
 
     // controllersContainer (sound + play)
     this.controllers = new controllersContainerUi(
