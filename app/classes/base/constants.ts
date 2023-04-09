@@ -5,8 +5,8 @@ export const PLAY_BUTTON_SELECTOR = ".controllers__play";
 export const SOUND_ON_LABEL = "Sound: ON";
 export const SOUND_OFF_LABEL = "Sound: OFF";
 export const SOUND_RESET_LABEL = "Sound:";
-export const PLAY_BUTTON_LABEL = "Play";
 export const STOP_BUTTON_LABEL = "Stop";
+export const PLAY_BUTTON_LABEL = "Play";
 
 // CanvasUi
 export const CANVAS_SELECTOR = ".gui-container__canvas";
@@ -106,6 +106,12 @@ export const MODAL_BUTTON_SELECTOR = ".Modal__button";
 
 // SwitchBeats
 export const SWITCH_BEATS_SELECTOR = ".SwitchBeats";
+
+// Mute
+export const MUTE_BUTTON_SELECTOR = ".Mute";
+export const MUTE_BUTTON_SOUND_ON_LABEL = "Sound: ON";
+export const MUTE_BUTTON_SOUND_OFF_LABEL = "Sound: OFF";
+export const MUTE_BUTTON_SOUND_RESET_LABEL = "Sound:";
 
 // KeyCodes
 export const ESC_KEY_CODE = 27;
