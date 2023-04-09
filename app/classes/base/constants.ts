@@ -1,13 +1,3 @@
-// ControllersContainer UI
-export const CONTROLLERS_CONTAINER_SELECTOR = ".controllers-container";
-export const SOUND_BUTTON_SELECTOR = ".controllers__sound";
-export const PLAY_BUTTON_SELECTOR = ".controllers__play";
-export const SOUND_ON_LABEL = "Sound: ON";
-export const SOUND_OFF_LABEL = "Sound: OFF";
-export const SOUND_RESET_LABEL = "Sound:";
-export const STOP_BUTTON_LABEL = "Stop";
-export const PLAY_BUTTON_LABEL = "Play";
-
 // CanvasUi
 export const CANVAS_SELECTOR = ".gui-container__canvas";
 export const CANVAS_PIXEL_WIDTH_PHONE = 350;
@@ -79,7 +69,7 @@ export const ENGINE_FREQUENCIES_AGAINST_BEAT = 220.0;
 
 // App
 export const APP_SOUND_DELAY = 0.01;
-export const URL: string = "http://192.168.0.25:3000/";
+export const URL: string = "http://192.168.0.56:3000/";
 
 // WORKER
 export const WORKER_START_MESSAGE = "start";
@@ -107,7 +97,13 @@ export const MODAL_BUTTON_SELECTOR = ".Modal__button";
 // SwitchBeats
 export const SWITCH_BEATS_SELECTOR = ".SwitchBeats";
 
-// Mute
+// PlayButton
+export const PLAY_BUTTON_SELECTOR = ".Play";
+export const PLAY_ICON_PLAY_SELECTOR = ".Play__icon-play";
+export const PLAY_ICON_STOP_SELECTOR = ".Play__icon-stop";
+export const PLAY_SHOW_CLASS = "-show";
+
+// MuteButton
 export const MUTE_BUTTON_SELECTOR = ".Mute";
 export const MUTE_BUTTON_SOUND_ON_LABEL = "Sound: ON";
 export const MUTE_BUTTON_SOUND_OFF_LABEL = "Sound: OFF";

@@ -2,10 +2,12 @@ import { app } from "../index";
 import Engine from "./Engine";
 import MuteButton from "./MuteButton";
 
-const PLAY_BUTTON_SELECTOR = ".Play";
-const PLAY_ICON_PLAY = ".Play__icon-play";
-const PLAY_ICON_STOP = ".Play__icon-stop";
-const PLAY_SHOW_CLASS = "-show";
+import {
+  PLAY_BUTTON_SELECTOR,
+  PLAY_ICON_PLAY_SELECTOR,
+  PLAY_ICON_STOP_SELECTOR,
+  PLAY_SHOW_CLASS,
+} from "./base/constants";
 
 /**
  * This class represents the UI controlling the play button.
@@ -23,12 +25,12 @@ class PlayButton {
   iconStop: HTMLImageElement;
 
   /**
-  * Define DOM Elements
-  */
+   * Define DOM Elements
+   */
   constructor(public mute: MuteButton, public engine: Engine) {
     this.element = document.querySelector(PLAY_BUTTON_SELECTOR);
-    this.iconPlay = this.element.querySelector(PLAY_ICON_PLAY);
-    this.iconStop = this.element.querySelector(PLAY_ICON_STOP);
+    this.iconPlay = this.element.querySelector(PLAY_ICON_PLAY_SELECTOR);
+    this.iconStop = this.element.querySelector(PLAY_ICON_STOP_SELECTOR);
     this.mute = new MuteButton(this.engine);
     this.element.addEventListener("click", this.togglePlay.bind(this));
   }

@@ -1,9 +1,11 @@
 import Engine from "./Engine";
 
-const MUTE_BUTTON_SELECTOR = ".Mute";
-const MUTE_BUTTON_SOUND_ON_LABEL = "Sound: ON";
-const MUTE_BUTTON_SOUND_OFF_LABEL = "Sound: OFF";
-const MUTE_BUTTON_SOUND_RESET_LABEL = "Sound:";
+import {
+  MUTE_BUTTON_SELECTOR,
+  MUTE_BUTTON_SOUND_ON_LABEL,
+  MUTE_BUTTON_SOUND_OFF_LABEL,
+  MUTE_BUTTON_SOUND_RESET_LABEL,
+} from "./base/constants";
 
 /**
  * This class represents the UI controlling the mute button.

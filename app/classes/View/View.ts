@@ -1,6 +1,5 @@
 import Engine from "../Engine";
 import Metronome from "../Metronome";
-import controllersContainerUi from "./ControllersContainer/controllersContainerUi";
 import BeatsUi from "./GuiControllers/BeatsUi";
 import BpmUi from "./GuiControllers/BpmUi";
 import TabSelectionUi from "./GuiContainer/TabSelectionUi";
@@ -9,7 +8,6 @@ import Tap from "../Tap";
 // Refactor styling
 import Modal from "../Modal";
 import SwitchBeats from "../SwitchBeats";
-import Mute from "../MuteButton";
 import PlayButton from "../PlayButton";
 import MuteButton from "../MuteButton";
 
@@ -37,8 +35,6 @@ class View {
 
   private tap: Tap;
 
-  public controllers: controllersContainerUi;
-
   private modal: Modal;
   
   private switchBeats: SwitchBeats;
@@ -62,11 +58,6 @@ class View {
     this.switchBeats = new SwitchBeats(this.metronome, this.beats);
     this.muteButton = new MuteButton(this.engine);
     this.playButton = new PlayButton(this.muteButton, this.engine);
-
-    // controllersContainer (sound + play)
-    this.controllers = new controllersContainerUi(
-      this.engine
-    );
   }
 }
 
