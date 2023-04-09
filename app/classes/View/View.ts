@@ -10,7 +10,7 @@ import Tap from "../Tap";
 import Modal from "../Modal";
 import SwitchBeats from "../SwitchBeats";
 import Play from "../Play";
-import Mute from "../Mute";
+import Mute from "../MuteButton";
 import PlayButton from "../Play";
 
 /** 

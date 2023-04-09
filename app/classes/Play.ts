@@ -1,6 +1,6 @@
 import { app } from "../index";
 import Engine from "./Engine";
-import Mute from "./Mute";
+import MuteButton from "./MuteButton";
 
 const PLAY_BUTTON_SELECTOR = ".Play";
 const PLAY_ICON_PLAY = ".Play__icon-play";
@@ -25,11 +25,11 @@ class PlayButton {
   /**
   * Define DOM Elements
   */
-  constructor(public mute: Mute, public engine: Engine) {
+  constructor(public mute: MuteButton, public engine: Engine) {
     this.element = document.querySelector(PLAY_BUTTON_SELECTOR);
     this.iconPlay = this.element.querySelector(PLAY_ICON_PLAY);
     this.iconStop = this.element.querySelector(PLAY_ICON_STOP);
-    this.mute = new Mute(this.engine);
+    this.mute = new MuteButton(this.engine);
     this.element.addEventListener("click", this.togglePlay.bind(this));
   }
 
