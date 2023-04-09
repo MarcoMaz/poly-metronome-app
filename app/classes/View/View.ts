@@ -9,9 +9,9 @@ import Tap from "../Tap";
 // Refactor styling
 import Modal from "../Modal";
 import SwitchBeats from "../SwitchBeats";
-import Play from "../Play";
 import Mute from "../MuteButton";
-import PlayButton from "../Play";
+import PlayButton from "../PlayButton";
+import MuteButton from "../MuteButton";
 
 /** 
  * This class controls the DOM elements with user interactions.
@@ -43,7 +43,7 @@ class View {
   
   private switchBeats: SwitchBeats;
   
-  private mute: Mute;
+  private muteButton: MuteButton;
 
   private playButton: PlayButton;
 
@@ -60,8 +60,8 @@ class View {
     this.bpm = new BpmUi(this.metronome);
     this.tap = new Tap(this.metronome, this.bpm)
     this.switchBeats = new SwitchBeats(this.metronome, this.beats);
-    this.mute = new Mute(this.engine);
-    this.playButton = new PlayButton(this.mute, this.engine);
+    this.muteButton = new MuteButton(this.engine);
+    this.playButton = new PlayButton(this.muteButton, this.engine);
 
     // controllersContainer (sound + play)
     this.controllers = new controllersContainerUi(
