@@ -10,6 +10,7 @@ $border: 5px solid $colorBlack;
 @import './sections/Modal.scss';
 @import './sections/Chip.scss';
 @import './sections/Play.scss';
+@import './sections/Mute.scss';
 
 @import './sections/guiControllers.scss';
 @import './sections/guiContainer.scss';
@@ -34,6 +35,11 @@ body {
   height: 100vh;
   justify-content: space-between;
   padding: 3rem;
+}
+
+.Footer {
+  display: grid;
+  grid-template-areas: "a b c"
 }
 
 @include tablet-viewport {

@@ -1,0 +1,16 @@
+.Mute {
+  grid-area: "a";
+  background: $colorWhite;
+  border: 0;
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
+
+  &:hover:not(:disabled) {
+    background: $colorGray100;
+  }
+
+  &:active:not(:disabled) {
+    background: $colorGray200;
+    color: $colorWhite;
+  }
+}

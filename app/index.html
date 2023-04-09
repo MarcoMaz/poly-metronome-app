@@ -155,13 +155,19 @@
       </div>
       <button class="Chip SwitchBeats" type="button">Switch beats</button>
       <button class="Chip Tap" type="button">Tap</button>
-      <footer>
+      <footer class="Footer">
+        <button type="button" class="Mute">Sound:</button>
         <button type="button" class="Play">
-          <img class="Play__icon-play -show" src="./images/play-icon.svg" alt="icon play"/>
-          <img class="Play__icon-stop" src="./images/stop-icon.svg" alt="icon stop"/>
-        </button>
-        <button type="button" class="Mute">
-          Sound:
+          <img
+            class="Play__icon-play -show"
+            src="./images/play-icon.svg"
+            alt="icon play"
+          />
+          <img
+            class="Play__icon-stop"
+            src="./images/stop-icon.svg"
+            alt="icon stop"
+          />
         </button>
       </footer>
       <div class="Modal">
@@ -170,7 +176,8 @@
           <h1 class="Modal__title">Are you sure?</h1>
           <div class="Modal__supporting-text">
             <p class="Modal__message">
-              This is not a polyrhythm, because there is no overlapping or interlocking between the two rhythms.
+              This is not a polyrhythm, because there is no overlapping or
+              interlocking between the two rhythms.
             </p>
             <p class="Modal__message">Please select at least another rhythm.</p>
           </div>
