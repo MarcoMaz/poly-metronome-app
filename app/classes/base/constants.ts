@@ -78,9 +78,9 @@ export const WORKER_STOP_MESSAGE = "stop";
 // Restyling
 //
 // Tap
-export const TAP_BUTTON_SELECTOR = ".Tap";
-export const TAP_SIXTY_SECONDS = 60000;
-export const TAP_THREE_SECONDS = 3000;
+export const TAP_CHIP_SELECTOR = ".Tap";
+export const TAP_CHIP_SIXTY_SECONDS = 60000;
+export const TAP_CHIP_THREE_SECONDS = 3000;
 
 // Modal
 export const MODAL_SELECTOR = ".Modal";
@@ -95,7 +95,7 @@ export const MODAL_SECOND_MESSAGE_SELECTOR = ".Modal__supporting-text p:nth-chil
 export const MODAL_BUTTON_SELECTOR = ".Modal__button";
 
 // SwitchBeats
-export const SWITCH_BEATS_SELECTOR = ".SwitchBeats";
+export const SWITCH_BEATS_CHIP_SELECTOR = ".SwitchBeats";
 
 // PlayButton
 export const PLAY_BUTTON_SELECTOR = ".Play";

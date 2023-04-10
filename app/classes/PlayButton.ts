@@ -14,25 +14,26 @@ import {
  *
  * @name PlayButton
  *
- * @param {HTMLButtonElement} element - The play button.
- * @param {HTMLImageElement} iconPlay - The icon play.
- * @param {HTMLImageElement} iconStop - The icon stop.
+ * @param {HTMLButtonElement} playButton  - The play button.
+ * @param {HTMLImageElement} iconPlay     - The icon play.
+ * @param {HTMLImageElement} iconStop     - The icon stop.
  */
 
 class PlayButton {
-  element: HTMLButtonElement;
+  playButton: HTMLButtonElement;
   iconPlay: HTMLImageElement;
   iconStop: HTMLImageElement;
 
   /**
-   * Define DOM Elements
+   * Define DOM Elements and Variables.
    */
   constructor(public mute: MuteButton, public engine: Engine) {
-    this.element = document.querySelector(PLAY_BUTTON_SELECTOR);
-    this.iconPlay = this.element.querySelector(PLAY_ICON_PLAY_SELECTOR);
-    this.iconStop = this.element.querySelector(PLAY_ICON_STOP_SELECTOR);
-    this.mute = new MuteButton(this.engine);
-    this.element.addEventListener("click", this.togglePlay.bind(this));
+    this.playButton = document.querySelector(PLAY_BUTTON_SELECTOR);
+    this.iconPlay = this.playButton.querySelector(PLAY_ICON_PLAY_SELECTOR);
+    this.iconStop = this.playButton.querySelector(PLAY_ICON_STOP_SELECTOR);
+
+    // Register events
+    this.playButton.addEventListener("click", this.togglePlay.bind(this));
   }
 
   /**
@@ -53,7 +54,7 @@ class PlayButton {
       this.iconPlay.classList.add(PLAY_SHOW_CLASS);
       this.iconStop.classList.remove(PLAY_SHOW_CLASS);
       app.pause();
-      this.mute.soundReset();
+      this.mute.resetSound();
     }
   }
 }

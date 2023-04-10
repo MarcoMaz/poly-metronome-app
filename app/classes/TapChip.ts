@@ -1,16 +1,16 @@
-import Metronome from './Metronome';
-import BpmUi from './View/GuiControllers/BpmUi';
+import Metronome from "./Metronome";
+import BpmUi from "./View/GuiControllers/BpmUi";
+
 import {
   BPM_MIN,
-  TAP_BUTTON_SELECTOR,
-  TAP_SIXTY_SECONDS,
-  TAP_THREE_SECONDS,
-} from './base/constants';
+  TAP_CHIP_SELECTOR,
+  TAP_CHIP_SIXTY_SECONDS,
+} from "./base/constants";
 
 /**
- * This class represents the UI controlling the Tap chip.
+ * This class represents the UI controlling the tap chip.
  *
- * @name Tap
+ * @name TapChip
  *
  * @param {HTMLButtonElement} tapChip     - The chip controlling the tap function.
  * @param {number} newTap                 - The new tap in a sequence.
@@ -23,7 +23,7 @@ import {
  *
  */
 
-class Tap {
+class TapChip {
   private tapChip: HTMLButtonElement;
   private newTap: number;
   private lastTap: number;
@@ -37,24 +37,17 @@ class Tap {
    * Define DOM Elements and Variables.
    */
   constructor(public metronome: Metronome, public bpm: BpmUi) {
-    this.tapChip = document.querySelector(TAP_BUTTON_SELECTOR);
-
+    this.tapChip = document.querySelector(TAP_CHIP_SELECTOR);
     this.newTap = 0;
-
     this.lastTap = 0;
-
     this.counterTap = 0;
-
     this.differenceBetweenTaps = 0;
-
     this.avgBPM = 0;
-
     this.previousTap = 0;
-
     this.elapsedTime = 0;
 
     // Register events
-    this.tapChip.addEventListener('click', this.updateTempo.bind(this));
+    this.tapChip.addEventListener("click", this.updateTempo.bind(this));
   }
 
   /**
@@ -65,29 +58,76 @@ class Tap {
    */
   private updateTempo(): void {
     if (this.lastTap === 0) {
-      this.newTap = new Date().getTime();
-      this.counterTap = 0;
+      this.handleFirstTap();
     }
 
+    this.handleSubsequentTap();
+    this.updateMetronomeTempo();
+    this.updateBpmUi();
+  }
+
+  /**
+   * @name updateTempo
+   * @description
+   * Update the tempo.
+   *
+   */
+  private handleFirstTap(): void {
+    this.newTap = new Date().getTime();
+    this.counterTap = 0;
+  }
+
+  /**
+   * @name handleSubsequentTap
+   * @description
+   * Handle the subsequent Ttp.
+   *
+   */
+  private handleSubsequentTap(): void {
     this.lastTap = new Date().getTime();
     this.elapsedTime = new Date().getTime() - this.previousTap;
     this.previousTap = this.lastTap;
     this.differenceBetweenTaps = this.lastTap - this.newTap;
+    this.updateAvgBPM();
+    this.counterTap += 1;
+  }
 
+  /**
+   * @name updateAvgBPM
+   * @description
+   * Update the average bpm.
+   *
+   */
+  private updateAvgBPM(): void {
     if (this.differenceBetweenTaps !== 0) {
       this.avgBPM = Math.round(
-        (TAP_SIXTY_SECONDS * this.counterTap) / this.differenceBetweenTaps
+        (TAP_CHIP_SIXTY_SECONDS * this.counterTap) / this.differenceBetweenTaps
       );
     } else {
       this.avgBPM = BPM_MIN;
     }
-    this.counterTap += 1;
-    this.metronome.tempo = this.avgBPM;
-    this.bpm.bpmValue.value = this.metronome.tempo.toString();
-    this.bpm.bpmValue.setAttribute('value', this.metronome.tempo.toString());
+  }
 
-    if (this.elapsedTime > TAP_THREE_SECONDS) this.lastTap = 0;
+  /**
+   * @name updateMetronomeTempo
+   * @description
+   * Update the metronome's tempo.
+   *
+   */
+  private updateMetronomeTempo(): void {
+    this.metronome.tempo = this.avgBPM;
+  }
+
+  /**
+   * @name updateBpmUi
+   * @description
+   * Update the ui of the bpm element.
+   *
+   */
+  private updateBpmUi(): void {
+    this.bpm.bpmValue.value = this.metronome.tempo.toString();
+    this.bpm.bpmValue.setAttribute("value", this.metronome.tempo.toString());
   }
 }
 
-export default Tap;
+export default TapChip;

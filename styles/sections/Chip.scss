@@ -6,17 +6,4 @@
   cursor: pointer;
   padding: .25rem 1.25rem;
   width: fit-content;
-
-  &:hover,
-  &:active {
-    color: $colorWhite;
-  }
-
-  &:hover {
-    background-color: darken($color: $colorGray100, $amount: 20);
-  }
-
-  &:active {
-    background-color: darken($color: $colorGray100, $amount: 35);
-  }
 }

@@ -11,7 +11,10 @@ import {
  *
  * @name Modal
  *
- * @param {HTMLElement} modal  - The modal element.
+ * @param {HTMLElement} modal             - The modal element.
+ * @param {HTMLElement} modalOverlay      - The modal overlay inside the modal.
+ * @param {HTMLButtonElement} modalButton - The modal button inside the modal.
+ * @param {void} documentClickListener    - The function listener attached to the document.
  *
  */
 
@@ -19,7 +22,6 @@ class Modal {
   private modal: HTMLElement;
   private modalOverlay: HTMLElement;
   private modalButton: HTMLButtonElement;
-  private documentClickListener: () => void;
 
   /**
    * Define DOM Elements and Variables.
@@ -28,8 +30,10 @@ class Modal {
     this.modal = document.querySelector(MODAL_SELECTOR);
     this.modalOverlay = this.modal.querySelector(MODAL_OVERLAY_SELECTOR);
     this.modalButton = this.modal.querySelector(MODAL_BUTTON_SELECTOR);
-    this.modalButton.addEventListener("click", this.hide.bind(this));
-    this.documentClickListener = this.handleDocumentClick.bind(this);
+
+    // Register events
+    this.modalButton.addEventListener("click", this.hideModal.bind(this));
+    this.handleDocumentClick = this.handleDocumentClick.bind(this);
     this.handleDocumentKeyDown = this.handleDocumentKeyDown.bind(this);
   }
 
@@ -49,30 +53,30 @@ class Modal {
     const maxNumber: number = Math.max(firstNumber, secondNumber);
     const minNumber: number = Math.min(firstNumber, secondNumber);
 
-    maxNumber % minNumber === 0 ? this.show() : this.hide();
+    maxNumber % minNumber === 0 ? this.showModal() : this.hideModal();
   }
 
   /**
-   * @name show
+   * @name showModal
    * @description
    * Show the modal.
    *
    */
-  private show(): void {
+  private showModal(): void {
     this.modal.classList.add(MODAL_SHOW_CLASS);
-    document.addEventListener("click", this.documentClickListener);
+    document.addEventListener("click", this.handleDocumentClick);
     document.addEventListener("keydown", this.handleDocumentKeyDown);
   }
 
   /**
-   * @name hide
+   * @name hideModal
    * @description
    * Hide the modal.
    *
    */
-  private hide(): void {
+  private hideModal(): void {
     this.modal.classList.remove(MODAL_SHOW_CLASS);
-    document.removeEventListener("click", this.documentClickListener);
+    document.removeEventListener("click", this.handleDocumentClick);
     document.removeEventListener("keydown", this.handleDocumentKeyDown);
   }
 
@@ -83,7 +87,7 @@ class Modal {
    *
    */
   private handleDocumentClick(event: Event): void {
-    if (event.target === this.modalOverlay) this.hide();
+    if (event.target === this.modalOverlay) this.hideModal();
   }
 
   /**
@@ -93,7 +97,7 @@ class Modal {
    *
    */
   private handleDocumentKeyDown(event: { keyCode: number }): void {
-    if (event.keyCode === ESC_KEY_CODE) this.hide();
+    if (event.keyCode === ESC_KEY_CODE) this.hideModal();
   }
 }
 

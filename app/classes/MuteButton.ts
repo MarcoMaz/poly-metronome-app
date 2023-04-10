@@ -12,22 +12,26 @@ import {
  *
  * @name MuteButton
  *
- * @param {HTMLButtonElement} element - The mute button.
- * @param {boolean} isMuted           - Wether the sound is muted or not.
+ * @param {HTMLButtonElement} muteButton  - The mute button.
+ * @param {boolean} isSoundMuted          - Wether the sound is muted or not.
  */
 
 class MuteButton {
-  element: HTMLButtonElement;
-  isMuted: boolean;
+  muteButton: HTMLButtonElement;
+  isSoundMuted: boolean;
 
   /**
-   * Define DOM Elements
+   * Define DOM Elements and Variables.
    */
   constructor(public engine: Engine) {
-    this.element = document.querySelector(MUTE_BUTTON_SELECTOR);
-    this.element.disabled = true;
-    this.isMuted = true;
-    this.element.addEventListener("click", this.toggleSound.bind(this));
+    this.muteButton = document.querySelector(MUTE_BUTTON_SELECTOR);
+    this.isSoundMuted = true;
+
+    // Set attributes
+    this.muteButton.disabled = true;
+
+    // Register events
+    this.muteButton.addEventListener("click", this.toggleSound.bind(this));
   }
 
   /**
@@ -37,7 +41,7 @@ class MuteButton {
    *
    */
   private toggleSound(): void {
-    this.isMuted ? this.soundOn() : this.soundOff();
+    this.isSoundMuted ? this.soundOn() : this.soundOff();
   }
 
   /**
@@ -47,9 +51,9 @@ class MuteButton {
    *
    */
   public soundOn(): void {
-    this.element.innerText = MUTE_BUTTON_SOUND_ON_LABEL;
-    this.element.removeAttribute("disabled");
-    this.soundUnmuted();
+    this.muteButton.innerText = MUTE_BUTTON_SOUND_ON_LABEL;
+    this.muteButton.removeAttribute("disabled");
+    this.unmuteSound();
   }
 
   /**
@@ -59,42 +63,42 @@ class MuteButton {
    *
    */
   private soundOff(): void {
-    this.element.innerText = MUTE_BUTTON_SOUND_OFF_LABEL;
-    this.element.removeAttribute("disabled");
-    this.soundMuted();
+    this.muteButton.innerText = MUTE_BUTTON_SOUND_OFF_LABEL;
+    this.muteButton.removeAttribute("disabled");
+    this.muteSound();
   }
 
   /**
-   * @name soundReset
+   * @name resetSound
    * @description
    * Reset the sound.
    *
    */
-  public soundReset(): void {
-    this.element.innerText = MUTE_BUTTON_SOUND_RESET_LABEL;
-    this.element.setAttribute("disabled", "true");
-    this.soundMuted();
+  public resetSound(): void {
+    this.muteButton.innerText = MUTE_BUTTON_SOUND_RESET_LABEL;
+    this.muteButton.setAttribute("disabled", "true");
+    this.muteSound();
   }
 
   /**
-   * @name soundMuted
+   * @name muteSound
    * @description
    * Mute the sound.
    *
    */
-  private soundMuted(): void {
-    this.isMuted = true;
+  private muteSound(): void {
+    this.isSoundMuted = true;
     this.engine.gainNode.gain.value = 0;
   }
 
   /**
-   * @name soundUnmuted
+   * @name unmuteSound
    * @description
    * Unmute the sound.
    *
    */
-  private soundUnmuted(): void {
-    this.isMuted = false;
+  private unmuteSound(): void {
+    this.isSoundMuted = false;
     this.engine.gainNode.gain.value = 1;
   }
 }

@@ -28,14 +28,14 @@ $borderRadius: 0.5rem;
     color: $colorWhite;
     display: flex;
     flex-direction: column;
-    height: 16rem;
+    height: 30vh;
     justify-content: space-between;
-    left: calc(50vw - 16rem);
+    left: calc(50vw - 40vw);
     padding: 1.25rem;
     pointer-events: none;
     position: relative;
-    top: calc(50vh - 8rem);
-    width: 32rem;
+    top: calc(50vh - 15vh);
+    width: 80vw;
     z-index: 2;
   }
 
@@ -67,13 +67,5 @@ $borderRadius: 0.5rem;
     pointer-events: auto;
     text-transform: uppercase;
     width: max-content;
-
-    &:hover {
-      background-color: lighten($color: $colorWarning, $amount: 20);
-    }
-
-    &:active {
-      background-color: lighten($color: $colorWarning, $amount: 35);
-    }
   }
 }
