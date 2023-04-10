@@ -1,11 +1,7 @@
 import Metronome from "./Metronome";
 import BpmUi from "./View/GuiControllers/BpmUi";
 
-import {
-  BPM_MIN,
-  TAP_CHIP_SELECTOR,
-  TAP_CHIP_SIXTY_SECONDS,
-} from "./base/constants";
+import { BPM_MIN, TAP_CHIP_SELECTOR, SIXTY_SECONDS } from "./base/constants";
 
 /**
  * This class represents the UI controlling the tap chip.
@@ -101,7 +97,7 @@ class TapChip {
   private updateAvgBPM(): void {
     if (this.differenceBetweenTaps !== 0) {
       this.avgBPM = Math.round(
-        (TAP_CHIP_SIXTY_SECONDS * this.counterTap) / this.differenceBetweenTaps
+        (SIXTY_SECONDS * this.counterTap) / this.differenceBetweenTaps
       );
     } else {
       this.avgBPM = BPM_MIN;

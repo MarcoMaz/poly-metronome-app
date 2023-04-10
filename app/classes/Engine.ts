@@ -1,6 +1,6 @@
 import Metronome from "./Metronome";
 import {
-  ENGINE_ONE_MINUTE_IN_SECONDS,
+  ONE_MINUTE_IN_SECONDS,
   ENGINE_SMALL_DELAY,
   ENGINE_FREQUENCIES_BEAT_ONE,
   ENGINE_FREQUENCIES_BASE_BEAT,
@@ -60,7 +60,7 @@ class Engine {
    * Calculate the next set of notes in the pipeline.
    */
   private nextNote(): void {
-    const secondsPerBeat = ENGINE_ONE_MINUTE_IN_SECONDS / this.metronome.tempo;
+    const secondsPerBeat = ONE_MINUTE_IN_SECONDS / this.metronome.tempo;
     this.nextNoteTime += ENGINE_SMALL_DELAY * secondsPerBeat;
 
     this.current16thNote += 1;

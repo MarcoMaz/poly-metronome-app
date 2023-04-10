@@ -61,7 +61,6 @@ export const BPM_MIN = 30;
 export const BPM_MAX = 300;
 
 // Engine
-export const ENGINE_ONE_MINUTE_IN_SECONDS = 60.0;
 export const ENGINE_SMALL_DELAY = 0.25;
 export const ENGINE_FREQUENCIES_BEAT_ONE = 880.0;
 export const ENGINE_FREQUENCIES_BASE_BEAT = 440.0;
@@ -79,8 +78,6 @@ export const WORKER_STOP_MESSAGE = "stop";
 //
 // Tap
 export const TAP_CHIP_SELECTOR = ".Tap";
-export const TAP_CHIP_SIXTY_SECONDS = 60000;
-export const TAP_CHIP_THREE_SECONDS = 3000;
 
 // Modal
 export const MODAL_SELECTOR = ".Modal";
@@ -111,3 +108,7 @@ export const MUTE_BUTTON_SOUND_RESET_LABEL = "Sound:";
 
 // KeyCodes
 export const ESC_KEY_CODE = 27;
+
+// Time Constants
+export const SIXTY_SECONDS = 60000;
+export const ONE_MINUTE_IN_SECONDS = 60.0;
