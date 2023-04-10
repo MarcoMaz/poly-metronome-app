@@ -81,7 +81,6 @@ export const TAP_CHIP_SELECTOR = ".Tap";
 
 // Modal
 export const MODAL_SELECTOR = ".Modal";
-export const MODAL_SHOW_CLASS = "-show";
 export const MODAL_OVERLAY_SELECTOR = ".Modal__overlay";
 export const MODAL_CONTENT_SELECTOR = ".Modal__content";
 export const MODAL_TITLE_SELECTOR = ".Modal__title";
@@ -98,7 +97,6 @@ export const SWITCH_BEATS_CHIP_SELECTOR = ".SwitchBeats";
 export const PLAY_BUTTON_SELECTOR = ".Play";
 export const PLAY_ICON_PLAY_SELECTOR = ".Play__icon-play";
 export const PLAY_ICON_STOP_SELECTOR = ".Play__icon-stop";
-export const PLAY_SHOW_CLASS = "-show";
 
 // MuteButton
 export const MUTE_BUTTON_SELECTOR = ".Mute";
@@ -109,6 +107,9 @@ export const MUTE_BUTTON_SOUND_RESET_LABEL = "Sound:";
 // KeyCodes
 export const ESC_KEY_CODE = 27;
 
-// Time Constants
+// Time constants
 export const SIXTY_SECONDS = 60000;
 export const ONE_MINUTE_IN_SECONDS = 60.0;
+
+// Shared constants
+export const SHOW_CLASS = "-show";

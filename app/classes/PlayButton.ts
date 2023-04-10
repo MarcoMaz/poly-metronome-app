@@ -6,7 +6,7 @@ import {
   PLAY_BUTTON_SELECTOR,
   PLAY_ICON_PLAY_SELECTOR,
   PLAY_ICON_STOP_SELECTOR,
-  PLAY_SHOW_CLASS,
+  SHOW_CLASS,
 } from "./base/constants";
 
 /**
@@ -46,13 +46,13 @@ class PlayButton {
     app.isPlaying = !app.isPlaying;
 
     if (app.isPlaying) {
-      this.iconPlay.classList.remove(PLAY_SHOW_CLASS);
-      this.iconStop.classList.add(PLAY_SHOW_CLASS);
+      this.iconPlay.classList.remove(SHOW_CLASS);
+      this.iconStop.classList.add(SHOW_CLASS);
       app.play();
       this.mute.soundOn();
     } else {
-      this.iconPlay.classList.add(PLAY_SHOW_CLASS);
-      this.iconStop.classList.remove(PLAY_SHOW_CLASS);
+      this.iconPlay.classList.add(SHOW_CLASS);
+      this.iconStop.classList.remove(SHOW_CLASS);
       app.pause();
       this.mute.resetSound();
     }

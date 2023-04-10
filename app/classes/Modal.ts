@@ -1,9 +1,9 @@
 import {
   MODAL_SELECTOR,
-  MODAL_SHOW_CLASS,
   MODAL_OVERLAY_SELECTOR,
   MODAL_BUTTON_SELECTOR,
   ESC_KEY_CODE,
+  SHOW_CLASS
 } from "./base/constants";
 
 /**
@@ -63,7 +63,7 @@ class Modal {
    *
    */
   private showModal(): void {
-    this.modal.classList.add(MODAL_SHOW_CLASS);
+    this.modal.classList.add(SHOW_CLASS);
     document.addEventListener("click", this.handleDocumentClick);
     document.addEventListener("keydown", this.handleDocumentKeyDown);
   }
@@ -75,7 +75,7 @@ class Modal {
    *
    */
   private hideModal(): void {
-    this.modal.classList.remove(MODAL_SHOW_CLASS);
+    this.modal.classList.remove(SHOW_CLASS);
     document.removeEventListener("click", this.handleDocumentClick);
     document.removeEventListener("keydown", this.handleDocumentKeyDown);
   }
