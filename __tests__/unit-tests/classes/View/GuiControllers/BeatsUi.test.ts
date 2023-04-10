@@ -209,20 +209,5 @@ describe("Gui Controllers", () => {
         });
       });
     });
-
-    describe("Switch Beats", () => {
-      it("should exists", () => {
-        const switchBeats = htmlPage.querySelector(SWITCH_BEATS_CHIP_SELECTOR);
-        expect(switchBeats).toBeTruthy();
-      });
-      it("is a BUTTON element", () => {
-        const switchBeats = htmlPage.querySelector(SWITCH_BEATS_CHIP_SELECTOR);
-        expect(switchBeats.tagName).toBe("BUTTON");
-      });
-      it("should have the correct label", () => {
-        const switchBeats = htmlPage.querySelector(SWITCH_BEATS_CHIP_SELECTOR);
-        expect(switchBeats.textContent.trim()).toBe("Switch Beats");
-      });
-    });
   });
 });

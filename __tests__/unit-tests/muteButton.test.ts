@@ -2,7 +2,7 @@ import { htmlPage } from "./setup";
 
 import { MUTE_BUTTON_SELECTOR } from "../../app/classes/base/constants";
 
-describe("MuteButton", () => {
+describe("Mute button", () => {
   it("should exists", () => {
     const muteButton = htmlPage.querySelector(MUTE_BUTTON_SELECTOR);
     expect(muteButton).toBeTruthy();

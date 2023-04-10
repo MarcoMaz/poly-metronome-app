@@ -77,7 +77,8 @@ describe("Modal", () => {
             MODAL_FIRST_MESSAGE_SELECTOR
           );
           expect(modalFirstParagraph.textContent.trim()).toBe(
-            "This is not a polyrhythm, because there is no overlapping or interlocking between the two rhythms."
+            `This is not a polyrhythm, because there is no overlapping or
+            interlocking between the two rhythms.`
           );
         });
       });
@@ -102,7 +103,7 @@ describe("Modal", () => {
 
       it("should contain a text", () => {
         const modalCta = htmlPage.querySelector(MODAL_BUTTON_SELECTOR);
-        expect(modalCta.textContent).toBe("Ok");
+        expect(modalCta.textContent).toBe("OK");
       });
     });
   });

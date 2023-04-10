@@ -6,7 +6,7 @@ import {
   PLAY_ICON_STOP_SELECTOR,
 } from "../../app/classes/base/constants";
 
-describe("PlayButton", () => {
+describe("Play button", () => {
   it("should exists", () => {
     const playButton = htmlPage.querySelector(PLAY_BUTTON_SELECTOR);
     expect(playButton).toBeTruthy();

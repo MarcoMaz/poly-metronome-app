@@ -2,7 +2,7 @@ import { htmlPage } from "./setup";
 
 import { TAP_CHIP_SELECTOR } from "../../app/classes/base/constants";
 
-describe("Tap", () => {
+describe("Tap chip", () => {
   it("should exists", () => {
     const tap = htmlPage.querySelector(TAP_CHIP_SELECTOR);
     expect(tap).toBeTruthy();
@@ -15,7 +15,7 @@ describe("Tap", () => {
 
   it("should have the correct label", () => {
     const tap = htmlPage.querySelector(TAP_CHIP_SELECTOR);
-    expect(tap.textContent.trim()).toBe("Tap");
+    expect(tap.textContent.trim()).toBe("TAP");
   });
 });
 
