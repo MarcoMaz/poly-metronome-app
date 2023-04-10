@@ -3,11 +3,10 @@ import {
   MUTE_BUTTON_SELECTOR,
   PLAY_ICON_PLAY_SELECTOR,
   PLAY_ICON_STOP_SELECTOR,
-  PLAY_SHOW_CLASS,
   URL,
 } from "../../../../app/classes/base/constants";
 
-describe("Play Button", () => {
+describe("Play button", () => {
   describe("on app loading", () => {
     beforeEach(() => {
       cy.visit(URL);
