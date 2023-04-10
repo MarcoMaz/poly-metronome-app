@@ -3,11 +3,11 @@ import Metronome from "../Metronome";
 import BeatsUi from "./GuiControllers/BeatsUi";
 import BpmUi from "./GuiControllers/BpmUi";
 import TabSelectionUi from "./GuiContainer/TabSelectionUi";
-import Tap from "../TapChip";
 
 // Refactor styling
 import Modal from "../Modal";
 import SwitchBeatsChip from "../SwitchBeatsChip";
+import TapChip from "../TapChip";
 import PlayButton from "../PlayButton";
 import MuteButton from "../MuteButton";
 
@@ -17,31 +17,26 @@ import MuteButton from "../MuteButton";
  * @name View
  * 
  * @param {TabSelectionUi} tabSelection         - The UI controlling the tabs selection of the different type of metronome representation.
- * @param {Modal} modal                         - The UI controlling the modal which appears when the user selects a combination which is not a polyrhythm.
- * @param {BeatsUi} beats                       - The UI controlling the representation of beats in the canvas.
  * @param {BpmUi} bpm                           - The UI controlling the bpm of the metronome.
- * @param {Tap} tap                             - The UI controlling the "tap" chip.
- * @param {SwitchBeatsChip} switchBeats             - The UI controlling the "switchBeats" chip.
+ * @param {BeatsUi} beats                       - The UI controlling the representation of beats in the canvas.
  * @param {controllersContainerUi} controllers  - The UI controlling the app functionality.
+ * @param {Modal} modal                         - The UI controlling the modal appearing when the user selects a combination which is not a polyrhythm.
+ * @param {SwitchBeatsChip} switchBeatsChip     - The UI controlling the switchBeats chip.
+ * @param {TapChip} tapChip                     - The UI controlling the tap chip.
+ * @param {PlayButton} playButton               - The UI controlling the play chip.
+ * @param {MuteButton} muteButton               - The UI controlling the mute chip.
  *  
 */
 
 class View {
   public tabSelection: TabSelectionUi;
-
-  private beats: BeatsUi;
-
   private bpm: BpmUi;
-
-  private tap: Tap;
-
+  private beats: BeatsUi;
   private modal: Modal;
-  
   private switchBeatsChip: SwitchBeatsChip;
-  
-  private muteButton: MuteButton;
-
+  private tapChip: TapChip;  
   private playButton: PlayButton;
+  private muteButton: MuteButton;
 
   /**
   * Define DOM Elements
@@ -54,10 +49,11 @@ class View {
     // guiControllers (beats + bpm + tap)
     this.beats = new BeatsUi(this.modal, this.metronome);
     this.bpm = new BpmUi(this.metronome);
-    this.tap = new Tap(this.metronome, this.bpm)
+
     this.switchBeatsChip = new SwitchBeatsChip(this.metronome, this.beats);
-    this.muteButton = new MuteButton(this.engine);
+    this.tapChip = new TapChip(this.metronome, this.bpm)
     this.playButton = new PlayButton(this.muteButton, this.engine);
+    this.muteButton = new MuteButton(this.engine);
   }
 }
 
