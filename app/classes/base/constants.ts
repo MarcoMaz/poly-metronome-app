@@ -100,9 +100,9 @@ export const PLAY_ICON_STOP_SELECTOR = ".Play__icon-stop";
 
 // MuteButton
 export const MUTE_BUTTON_SELECTOR = ".Mute";
-export const MUTE_BUTTON_SOUND_ON_LABEL = "Sound: ON";
-export const MUTE_BUTTON_SOUND_OFF_LABEL = "Sound: OFF";
-export const MUTE_BUTTON_SOUND_RESET_LABEL = "Sound:";
+export const MUTE_BUTTON_SOUND_ON_LABEL = "SOUND: ON";
+export const MUTE_BUTTON_SOUND_OFF_LABEL = "SOUND: OFF";
+export const MUTE_BUTTON_SOUND_RESET_LABEL = "SOUND:";
 
 // KeyCodes
 export const ESC_KEY_CODE = 27;

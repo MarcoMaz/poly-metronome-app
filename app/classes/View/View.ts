@@ -52,8 +52,8 @@ class View {
 
     this.switchBeatsChip = new SwitchBeatsChip(this.metronome, this.beats);
     this.tapChip = new TapChip(this.metronome, this.bpm)
-    this.playButton = new PlayButton(this.muteButton, this.engine);
     this.muteButton = new MuteButton(this.engine);
+    this.playButton = new PlayButton(this.muteButton, this.engine);
   }
 }
 
