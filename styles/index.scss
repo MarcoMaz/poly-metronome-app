@@ -34,12 +34,12 @@ body {
   flex-direction: column;
   height: 100vh;
   justify-content: space-between;
-  padding: 3rem;
+  padding: 2rem;
 }
 
 .Footer {
   display: grid;
-  grid-template-areas: "a b c"
+  grid-template-columns: repeat(3, 1fr);
 }
 
 @include tablet-viewport {
