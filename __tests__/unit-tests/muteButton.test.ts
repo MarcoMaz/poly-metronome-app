@@ -15,6 +15,6 @@ describe("Mute button", () => {
 
   it("should contain a text", () => {
     const muteButton = htmlPage.querySelector(MUTE_BUTTON_SELECTOR);
-    expect(muteButton.textContent.trim()).toBe("Sound:");
+    expect(muteButton.textContent.trim()).toBe("SOUND:");
   });
 });
