@@ -11,6 +11,8 @@ import TapChip from "../TapChip";
 import PlayButton from "../PlayButton";
 import MuteButton from "../MuteButton";
 
+import BeatsPicker from "../BeatsPicker";
+
 /** 
  * This class controls the DOM elements with user interactions.
  * 
@@ -37,6 +39,7 @@ class View {
   private tapChip: TapChip;  
   private playButton: PlayButton;
   private muteButton: MuteButton;
+  private beatsPicker: BeatsPicker;
 
   /**
   * Define DOM Elements
@@ -54,6 +57,8 @@ class View {
     this.tapChip = new TapChip(this.metronome, this.bpm)
     this.muteButton = new MuteButton(this.engine);
     this.playButton = new PlayButton(this.muteButton, this.engine);
+
+    this.beatsPicker = new BeatsPicker();
   }
 }
 
