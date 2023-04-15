@@ -1,31 +1,107 @@
-.beatPicker {
-  background: orange;
-  box-sizing: border-box;
-  height: 300px;
-  overflow: scroll;
-  position: relative;
-  width: 100%;
+// .beatPicker {
+//   background: orange;
+//   box-sizing: border-box;
+//   height: 300px;
+//   overflow: scroll;
+//   position: relative;
+//   width: 100%;
 
-  &__beats {
-    box-sizing: border-box;
+//   &__beats {
+//     box-sizing: border-box;
+//     position: absolute;
+//     top: 0;
+//     width: 100%;
+//   }
+
+//   &__item {
+//     align-items: center;
+//     background: lightblue;
+//     box-sizing: border-box;
+//     display: flex;
+//     height: 100px;
+//     justify-content: center;
+//     margin: 0 20px;
+//   }
+
+//   &__center {
+//     background-color: yellow;
+//     border-bottom: 1px solid;
+//     border-top: 1px solid;
+//   }
+// }
+.beatPicker {
+  // border: 1px solid;
+  position: relative;
+  width: fit-content;
+  z-index: 1;
+
+  &::before,
+  &::after {
+    content: " ";
+    height: calc(50% - 3.5ex);
+    pointer-events: none;
     position: absolute;
-    top: 0;
     width: 100%;
   }
-  
-  &__item {
-    align-items: center;
-    background: lightblue;
-    box-sizing: border-box;
-    display: flex;
-    height: 100px;
-    justify-content: center;
-    margin: 0 20px;
+
+  &::before {
+    background: linear-gradient(to bottom, #ffffff 0%, transparent 100%);
   }
 
-  &__center {
-    background-color: yellow;
-    border-bottom: 1px solid;
-    border-top: 1px solid;
+  &::after {
+    background: linear-gradient(to top, #ffffff 0%, transparent 100%);
+    bottom: 0;
+  }
+
+  &__beats {
+    color: #000;
+    font-size: 3.5rem;
+    font-weight: lighter;
+    max-block-size: 250px;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__item {
+    align-items: center;
+    display: flex;
+    height: 50px;
+    // outline: 1px dashed red;
+    scroll-snap-align: center;
+  }
+  &__aim {
+    border: 1px solid #d1d1d1;
+    border-radius: 6px;
+    box-sizing: content-box;
+    height: 50px;
+    left: -8.5px;
+    position: absolute;
+    top: calc(50% - 25px);
+    width: 50px;
+    z-index: -1;
+
+    &::before,
+    &::after {
+      content: " ";
+      position: absolute;
+      background: white;
+      top: 7px;
+      height: 37px;
+      width: 1px;
+    }
+
+    &::before {
+      left: -1px;
+    }
+
+    &::after {
+      right: -1px;
+    }
   }
 }
+
+// px --> Rem

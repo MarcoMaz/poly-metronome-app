@@ -41,52 +41,52 @@ class BeatsUi {
    */
   constructor(public modal: Modal, public metronome: Metronome) {
     this.element = document.querySelector(BEATS_CONTAINER);
-    this.againstBeatPlus = this.element.querySelector(
-      AGAINST_BEAT_PLUS_SELECTOR
-    );
-    this.againstBeatValue = this.element.querySelector(
-      AGAINST_BEAT_VALUE_SELECTOR
-    );
-    this.againstBeatMinus = this.element.querySelector(
-      AGAINST_BEAT_MINUS_SELECTOR
-    );
+    // this.againstBeatPlus = this.element.querySelector(
+    //   AGAINST_BEAT_PLUS_SELECTOR
+    // );
+    // this.againstBeatValue = this.element.querySelector(
+    //   AGAINST_BEAT_VALUE_SELECTOR
+    // );
+    // this.againstBeatMinus = this.element.querySelector(
+    //   AGAINST_BEAT_MINUS_SELECTOR
+    // );
     this.baseBeatPlus = this.element.querySelector(BASE_BEAT_PLUS_SELECTOR);
     this.baseBeatValue = this.element.querySelector(BASE_BEAT_VALUE_SELECTOR);
     this.baseBeatMinus = this.element.querySelector(BASE_BEAT_MINUS_SELECTOR);
 
     // Register events
-    this.againstBeatPlus.addEventListener('click', () => {
-      this.metronome.againstBeat += 1;
-      this.againstBeatValue.value = this.metronome.againstBeat.toString();
-      this.againstBeatValue.setAttribute(
-        'value',
-        this.metronome.againstBeat.toString()
-      );
+    // this.againstBeatPlus.addEventListener('click', () => {
+    //   this.metronome.againstBeat += 1;
+    //   this.againstBeatValue.value = this.metronome.againstBeat.toString();
+    //   this.againstBeatValue.setAttribute(
+    //     'value',
+    //     this.metronome.againstBeat.toString()
+    //   );
 
-      this.modal.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
-      this.checkBeatsLimits(this.metronome.againstBeat, 'against');
-    });
+    //   this.modal.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
+    //   this.checkBeatsLimits(this.metronome.againstBeat, 'against');
+    // });
 
-    this.againstBeatMinus.addEventListener('click', () => {
-      this.metronome.againstBeat -= 1;
-      this.againstBeatValue.value = this.metronome.againstBeat.toString();
-      this.againstBeatValue.setAttribute(
-        'value',
-        this.metronome.againstBeat.toString()
-      );
+    // this.againstBeatMinus.addEventListener('click', () => {
+    //   this.metronome.againstBeat -= 1;
+    //   this.againstBeatValue.value = this.metronome.againstBeat.toString();
+    //   this.againstBeatValue.setAttribute(
+    //     'value',
+    //     this.metronome.againstBeat.toString()
+    //   );
 
-      this.modal.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
-      this.checkBeatsLimits(this.metronome.againstBeat, 'against');
-    });
+    //   this.modal.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
+    //   this.checkBeatsLimits(this.metronome.againstBeat, 'against');
+    // });
 
-    this.againstBeatValue.addEventListener('change', (event) => {
-      let eventTarget = event.target as HTMLInputElement;
-      this.metronome.againstBeat = Number(eventTarget.value);
-      this.againstBeatValue.setAttribute('value', eventTarget.value);
+    // this.againstBeatValue.addEventListener('change', (event) => {
+    //   let eventTarget = event.target as HTMLInputElement;
+    //   this.metronome.againstBeat = Number(eventTarget.value);
+    //   this.againstBeatValue.setAttribute('value', eventTarget.value);
 
-      this.modal.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
-      this.checkBeatsLimits(this.metronome.againstBeat, 'against');
-    });
+    //   this.modal.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
+    //   this.checkBeatsLimits(this.metronome.againstBeat, 'against');
+    // });
 
     this.baseBeatPlus.addEventListener('click', () => {
       this.metronome.baseBeat += 1;
