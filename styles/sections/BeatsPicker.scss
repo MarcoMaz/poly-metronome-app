@@ -41,7 +41,24 @@
     height: 3rem;
     // outline: 1px dashed red;
     scroll-snap-align: center;
+
+    &:nth-of-type(1) {
+      margin-top: 6rem;
+    }
+
+    &:nth-last-child(2) {
+      margin-bottom: 6rem;
+    }
   }
+
+  span.beatPicker__item:last-of-type {
+    background-color: blue;
+  }
+
+  .beatPicker__item:last-child(1) {
+    background-color: blue;
+  }
+
   &__aim {
     border: .0625rem solid #d1d1d1;
     border-radius: .375rem;
