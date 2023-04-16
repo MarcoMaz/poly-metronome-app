@@ -20,9 +20,7 @@ class BeatsPicker {
     this.createElements(BEAT_MIN, BEAT_MAX, BEAT_PICKER_BEATS_SELECTOR);
     this.centerBeatOnLoad(this.metronome.againstBeat);
 
-    this.beatsContainer.addEventListener("scroll", () => {
-      this.getCenterBeat();
-    });
+    this.beatsContainer.addEventListener("scroll", this.getCenterBeat.bind(this));
   }
 
   private createElements(
@@ -113,8 +111,18 @@ class BeatsPicker {
 
 export default BeatsPicker;
 
-// Bind
-// Recurring positioning definitions
-// TODO: Fix how the index is counted. We are starting at 2. --> centerBeatOnLoad
-// TODO: Fix the selector and type. --> centerBeatOnLoad
-// Date elements is redundant --> getCenterBeat
+// ADESSO
+// 3. Clean it up.
+// 4. Fix the selector and type. --> centerBeatOnLoad
+// 5. Fix how the index is counted. We are starting at 2. --> centerBeatOnLoad ... trying maybe using padding and no extra spans?
+// 6. Redundant code (Recurring positioning definitions // elements is redundant --> getCenterBeat)
+// 7. Fix before and after
+// 8. Make aim bigger??
+
+// DOPO
+//
+// 1. Implement second picker
+// 2. Implement modal
+// 3. Switch beats is working
+// 4. Fix Unit Tests (write new tests?)
+// 5. Fix E2E Tests (write new tests?)
