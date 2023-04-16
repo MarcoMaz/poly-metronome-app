@@ -20,7 +20,14 @@ class BeatsPicker {
     this.createElements(BEAT_MIN, BEAT_MAX, BEAT_PICKER_BEATS_SELECTOR);
     this.centerBeatOnLoad(this.metronome.againstBeat);
 
-    this.beatsContainer.addEventListener("scroll", this.getCenterBeat.bind(this));
+    this.beatsContainer.addEventListener("scroll", () => {
+      this.getCenterBeat();
+    });
+  }
+
+  private createBeatPickerItemSpan(beat: number | null): string {
+    const content = beat === null ? "" : beat;
+    return `<span class="beatPicker__item">${content}</span>`;
   }
 
   private createElements(
@@ -28,42 +35,21 @@ class BeatsPicker {
     secondNumber: number,
     parentSelector: string
   ): void {
-    // Determine the minimum and maximum values of the range
-    const minNumber = Math.min(firstNumber, secondNumber);
-    const maxNumber = Math.max(firstNumber, secondNumber);
+    const missingNumbers: Array<number | null> = [
+      null,
+      null,
+      ...Array.from(
+        { length: secondNumber - firstNumber + 1 },
+        (_, i) => i + firstNumber
+      ),
+    ];
+    missingNumbers.push(null, null);
 
-    // Initialize an empty array to store the missing numbers
-    const missingNumbers: number[] = [];
+    const spans = missingNumbers.map(this.createBeatPickerItemSpan).join("");
 
-    // Loop through the range and add any missing numbers to the array
-    for (let i = minNumber; i <= maxNumber; i++) {
-      if (!missingNumbers.includes(i)) missingNumbers.push(i);
-    }
-
-    // Add two empty spans to the beginning and end of the missingNumbers array
-    missingNumbers.unshift(null);
-    missingNumbers.unshift(null);
-    missingNumbers.push(null);
-    missingNumbers.push(null);
-
-    // Generate a string of span elements for each number in the missing numbers array
-    const spans = missingNumbers
-      .map((beat) => {
-        if (beat === null) {
-          return `<span class="beatPicker__item"></span>`; // empty span
-        } else {
-          return `<span class="beatPicker__item">${beat}</span>`;
-        }
-      })
-      .join("");
-
-    // Get the parent element by its selector
     const parentElement = document.querySelector(parentSelector);
-
-    // Append the string of span elements to the parent element
     parentElement.innerHTML = spans;
 
-    // Add the aim span to the end of the parent element
     const beatPickerAimSpan = document.createElement("span");
     beatPickerAimSpan.classList.add(BEAT_PICKER_AIM_CLASS);
     parentElement.appendChild(beatPickerAimSpan);
@@ -71,49 +57,50 @@ class BeatsPicker {
 
   private centerBeatOnLoad(num: number): number {
     const centeredBeatCorrectIndex = num + 1;
-    const centerItem = this.element.querySelector(
-      `.beatPicker__item:nth-of-type(${centeredBeatCorrectIndex})`
+    const centerItemSelector = `${BEAT_PICKER_ITEM}:nth-of-type(${centeredBeatCorrectIndex})`;
+    const centerItem = this.beatsContainer.querySelector(
+      centerItemSelector
     ) as HTMLElement;
-    const centerItemTopPosition = centerItem.offsetTop;
-    const centerItemHeight = centerItem.offsetHeight;
-    const beatsConatinerHeight = this.beatsContainer.offsetHeight;
-    const centerItemPositionY =
-      centerItemTopPosition - beatsConatinerHeight / 2 + centerItemHeight / 2;
 
-    return (this.beatsContainer.scrollTop = centerItemPositionY);
+    if (!centerItem) {
+      return 0;
+    }
+
+    const centerItemPositionY =
+      centerItem.offsetTop -
+      this.beatsContainer.offsetHeight / 2 +
+      centerItem.offsetHeight / 2;
+
+    requestAnimationFrame(() => {
+      this.beatsContainer.scrollTop = centerItemPositionY;
+    });
+
+    return centerItemPositionY;
+  }
+
+  private getCenterItem(): Element | null {
+    const pickerBounds = this.element.getBoundingClientRect();
+    const centerLineY =
+      window.pageYOffset + pickerBounds.top + pickerBounds.height / 2;
+    return Array.from(this.element.querySelectorAll(BEAT_PICKER_ITEM)).find(
+      (item) => {
+        const itemBounds = item.getBoundingClientRect();
+        const itemTopY = window.pageYOffset + itemBounds.top;
+        const itemBottomY = window.pageYOffset + itemBounds.bottom;
+        return itemTopY <= centerLineY && itemBottomY >= centerLineY;
+      }
+    );
   }
 
   private getCenterBeat(): void {
-    // Get the height of the visible portion of the picker.
-    const beatsPickerHeight = this.element.clientHeight;
-    // Get the position of the top of the picker relative to the document.
-    const beatsPickerTopPosition =
-      this.element.getBoundingClientRect().top + window.scrollY;
-    // Get an array of all the date elements in the beatPicker.
-    const beatPickerItems = Array.from(
-      this.element.querySelectorAll(BEAT_PICKER_ITEM)
-    );
-
-    // Find the item element that is in the center of the visible portion of the beatPicker
-    const centerItem = beatPickerItems.find((item) => {
-      const itemTopPosition = item.getBoundingClientRect().top + window.scrollY;
-      const itemBottomPosition =
-        item.getBoundingClientRect().bottom + window.scrollY;
-      const isCenter =
-        itemTopPosition <= beatsPickerTopPosition + beatsPickerHeight / 2 &&
-        itemBottomPosition >= beatsPickerTopPosition + beatsPickerHeight / 2;
-      return isCenter;
-    });
-
-    this.metronome.againstBeat = Number(centerItem.textContent);
+    const centerItem = this.getCenterItem();
+    this.metronome.againstBeat = Number(centerItem?.textContent) ?? 0;
   }
 }
 
 export default BeatsPicker;
 
 // ADESSO
-// 3. Clean it up.
-// 4. Fix the selector and type. --> centerBeatOnLoad
 // 5. Fix how the index is counted. We are starting at 2. --> centerBeatOnLoad ... trying maybe using padding and no extra spans?
 // 6. Redundant code (Recurring positioning definitions // elements is redundant --> getCenterBeat)
 // 7. Fix before and after
