@@ -121,7 +121,12 @@ export default BeatsPicker;
 
 // DOPO
 //
+// If I select one slider the other one is disabled
+// touch event on mobile?
+//
 // 1. Implement modal
 // 2. Switch beats is working
 // 3. Fix Unit Tests (write new tests?)
 // 4. Fix E2E Tests (write new tests?)
+
+// Clean up (color, docs, ect.)

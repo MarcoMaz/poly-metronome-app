@@ -1,3 +1,11 @@
+.beatsPicker-container {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 10rem;
+}
+
 .beatPicker {
   // border: 1px solid;
   position: relative;
@@ -14,11 +22,11 @@
   }
 
   &::before {
-    background: linear-gradient(to bottom, #ffffff 0%, transparent 100%);
+    background: linear-gradient(to bottom, #ffffff 25%, transparent 100%);
   }
 
   &::after {
-    background: linear-gradient(to top, #ffffff 0%, transparent 100%);
+    background: linear-gradient(to top, #ffffff 25%, transparent 100%);
     bottom: 0;
   }
 
@@ -59,9 +67,13 @@
     background-color: blue;
   }
 
+  &__dots {
+    font-size: 3rem;
+  }
+
   &__aim {
-    border: .0625rem solid #d1d1d1;
-    border-radius: .375rem;
+    border: 0.0625rem solid #d1d1d1;
+    border-radius: 0.375rem;
     box-sizing: content-box;
     height: 3rem;
     left: calc(50% - 1.5rem);
