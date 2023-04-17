@@ -14,10 +14,10 @@ const BEAT_PICKER_AIM_CLASS = "beatPicker__aim";
 const BEATS_PICKER_OPEN_CLASS = "-open";
 
 class BeatsPicker {
-  private againstBeatPicker: HTMLElement;
-  private againstBeatPickerContainer: HTMLElement;
-  private baseBeatPicker: HTMLElement;
-  private baseBeatPickerContainer: HTMLElement;
+  public againstBeatPicker: HTMLElement;
+  public againstBeatPickerContainer: HTMLElement;
+  public baseBeatPicker: HTMLElement;
+  public baseBeatPickerContainer: HTMLElement;
 
   constructor(public modal: Modal, public metronome: Metronome) {
     this.againstBeatPicker = document.querySelector(
@@ -101,7 +101,7 @@ class BeatsPicker {
     parentElement.appendChild(beatPickerAimSpan);
   }
 
-  private centerBeatOnLoad(num: number, pickerElement: HTMLElement): number {
+  public centerBeatOnLoad(num: number, pickerElement: HTMLElement): number {
     const centerItemSelector = `${BEAT_PICKER_ITEM_SELECTOR}:nth-of-type(${
       num - 1
     })`;
@@ -125,7 +125,7 @@ class BeatsPicker {
     return centerItemPositionY;
   }
 
-  private getCenterItem(element: HTMLElement): Element | null {
+  public getCenterItem(element: HTMLElement): Element | null {
     const pickerBounds = element.getBoundingClientRect();
     const centerLineY =
       window.pageYOffset + pickerBounds.top + pickerBounds.height / 2;
@@ -152,8 +152,6 @@ class BeatsPicker {
 
 export default BeatsPicker;
 
-// 1. Implement modal
-// 2. Switch beats is working
 // 3. Fix Unit Tests (write new tests?)
 // 4. Fix E2E Tests (write new tests?)
 

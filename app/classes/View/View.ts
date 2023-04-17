@@ -53,12 +53,12 @@ class View {
     this.beats = new BeatsUi(this.modal, this.metronome);
     this.bpm = new BpmUi(this.metronome);
 
-    this.switchBeatsChip = new SwitchBeatsChip(this.metronome, this.beats);
+    this.beatsPicker = new BeatsPicker(this.modal, this.metronome);
+    this.switchBeatsChip = new SwitchBeatsChip(this.metronome, this.beatsPicker);
     this.tapChip = new TapChip(this.metronome, this.bpm)
     this.muteButton = new MuteButton(this.engine);
     this.playButton = new PlayButton(this.muteButton, this.engine);
 
-    this.beatsPicker = new BeatsPicker(this.modal, this.metronome);
   }
 }
 

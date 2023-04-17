@@ -1,5 +1,5 @@
+import BeatsPicker from "./BeatsPicker";
 import Metronome from "./Metronome";
-import BeatsUi from "./View/GuiControllers/BeatsUi";
 
 import { SWITCH_BEATS_CHIP_SELECTOR } from "./base/constants";
 
@@ -17,7 +17,7 @@ class SwitchBeatsChip {
   /**
    * Define DOM Elements and Variables.
    */
-  constructor(public metronome: Metronome, public beats: BeatsUi) {
+  constructor(public metronome: Metronome, public beatsPicker: BeatsPicker) {
     this.switchBeatsChip = document.querySelector(SWITCH_BEATS_CHIP_SELECTOR);
 
     // Register events
@@ -34,22 +34,29 @@ class SwitchBeatsChip {
    *
    */
   private handleSwitchBeatsClick(): void {
-    [this.metronome.againstBeat, this.metronome.baseBeat] = [
-      this.metronome.baseBeat,
-      this.metronome.againstBeat,
+    // Swap the picker properties
+    [this.beatsPicker.againstBeatPicker, this.beatsPicker.baseBeatPicker] = [
+      this.beatsPicker.baseBeatPicker,
+      this.beatsPicker.againstBeatPicker,
     ];
-    [this.beats.againstBeatValue.value, this.beats.baseBeatValue.value] = [
-      this.beats.baseBeatValue.value,
-      this.beats.againstBeatValue.value,
+    [this.beatsPicker.againstBeatPickerContainer, this.beatsPicker.baseBeatPickerContainer] = [
+      this.beatsPicker.baseBeatPickerContainer,
+      this.beatsPicker.againstBeatPickerContainer,
     ];
-    this.beats.againstBeatValue.setAttribute(
-      "value",
-      this.metronome.againstBeat.toString()
-    );
-    this.beats.baseBeatValue.setAttribute(
-      "value",
-      this.metronome.baseBeat.toString()
-    );
+
+    // Swap the open classes
+    this.beatsPicker.againstBeatPickerContainer.classList.toggle("-open");
+    this.beatsPicker.baseBeatPickerContainer.classList.toggle("-open");
+
+    // Center the previously centered items
+    const againstBeat = this.metronome.againstBeat;
+    const baseBeat = this.metronome.baseBeat;
+    this.beatsPicker.centerBeatOnLoad(againstBeat, this.beatsPicker.againstBeatPickerContainer);
+    this.beatsPicker.centerBeatOnLoad(baseBeat, this.beatsPicker.baseBeatPickerContainer);
+
+    // Update the metronome with the new centered items
+    this.metronome.againstBeat = baseBeat;
+    this.metronome.baseBeat = againstBeat;
   }
 }
 
