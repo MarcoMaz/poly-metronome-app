@@ -58,7 +58,7 @@ class View {
     this.muteButton = new MuteButton(this.engine);
     this.playButton = new PlayButton(this.muteButton, this.engine);
 
-    this.beatsPicker = new BeatsPicker(this.metronome);
+    this.beatsPicker = new BeatsPicker(this.modal, this.metronome);
   }
 }
 

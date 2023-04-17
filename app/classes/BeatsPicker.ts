@@ -1,6 +1,7 @@
 import { BEAT_MIN, BEAT_MAX } from "../classes/base/constants";
 
 import Metronome from "./Metronome";
+import Modal from "./Modal";
 
 const AGAINST_BEAT_PICKER_SELECTOR = ".beatPicker.beatPicker--againstBeat";
 const AGAINST_BEAT_PICKER_BEATS_SELECTOR = `${AGAINST_BEAT_PICKER_SELECTOR} > .beatPicker__beats`;
@@ -18,7 +19,7 @@ class BeatsPicker {
   private baseBeatPicker: HTMLElement;
   private baseBeatPickerContainer: HTMLElement;
 
-  constructor(public metronome: Metronome) {
+  constructor(public modal: Modal, public metronome: Metronome) {
     this.againstBeatPicker = document.querySelector(
       AGAINST_BEAT_PICKER_SELECTOR
     );
@@ -65,6 +66,7 @@ class BeatsPicker {
       this.getCenterBeat(picker);
       container.classList.add(classToAdd);
       otherContainer.classList.remove(classToAdd);
+      this.modal.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
     });
 
     container.addEventListener("click", () => {
@@ -150,10 +152,6 @@ class BeatsPicker {
 
 export default BeatsPicker;
 
-// DOPO
-//
-// touch event on mobile?
-//
 // 1. Implement modal
 // 2. Switch beats is working
 // 3. Fix Unit Tests (write new tests?)
