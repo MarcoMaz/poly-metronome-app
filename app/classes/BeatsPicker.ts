@@ -152,7 +152,6 @@ class BeatsPicker {
 
 export default BeatsPicker;
 
-// 3. Fix Unit Tests (write new tests?)
 // 4. Fix E2E Tests (write new tests?)
 
-// Clean up (color, docs, ect.)
+// Clean up (color, docs, SwitchBeatsChip, ect.)
