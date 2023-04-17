@@ -72,15 +72,21 @@
   }
 
   &__aim {
+    
     border: 0.0625rem solid #d1d1d1;
     border-radius: 0.375rem;
     box-sizing: content-box;
+    display: none;
     height: 3rem;
     left: calc(50% - 1.5rem);
     position: absolute;
     top: calc(50% - 1.5rem);
     width: 3rem;
     z-index: -1;
+
+    .-open & {
+      display: block;
+    }
 
     &::before,
     &::after {

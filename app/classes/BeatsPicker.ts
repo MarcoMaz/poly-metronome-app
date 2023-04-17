@@ -10,6 +10,8 @@ const BASE_BEAT_PICKER_BEATS_SELECTOR = `${BASE_BEAT_PICKER_SELECTOR} > .beatPic
 const BEAT_PICKER_ITEM_SELECTOR = ".beatPicker__item";
 const BEAT_PICKER_AIM_CLASS = "beatPicker__aim";
 
+const BEATS_PICKER_OPEN_CLASS = "-open";
+
 class BeatsPicker {
   private againstBeatPicker: HTMLElement;
   private againstBeatPickerContainer: HTMLElement;
@@ -30,17 +32,46 @@ class BeatsPicker {
 
     this.createElements(BEAT_MIN, BEAT_MAX, AGAINST_BEAT_PICKER_BEATS_SELECTOR);
     this.createElements(BEAT_MIN, BEAT_MAX, BASE_BEAT_PICKER_BEATS_SELECTOR);
-    this.centerBeatOnLoad(this.metronome.againstBeat, this.againstBeatPickerContainer);
-    this.centerBeatOnLoad(this.metronome.baseBeat, this.baseBeatPickerContainer);
-    
-    this.againstBeatPickerContainer.addEventListener("scroll", () => {
-      this.getCenterBeat(this.againstBeatPicker);
+    this.centerBeatOnLoad(
+      this.metronome.againstBeat,
+      this.againstBeatPickerContainer
+    );
+    this.centerBeatOnLoad(
+      this.metronome.baseBeat,
+      this.baseBeatPickerContainer
+    );
+
+    this.addContainerEventListeners(
+      this.againstBeatPickerContainer,
+      this.againstBeatPicker,
+      this.baseBeatPickerContainer,
+      BEATS_PICKER_OPEN_CLASS
+    );
+    this.addContainerEventListeners(
+      this.baseBeatPickerContainer,
+      this.baseBeatPicker,
+      this.againstBeatPickerContainer,
+      BEATS_PICKER_OPEN_CLASS
+    );
+  }
+
+  private addContainerEventListeners(
+    container: HTMLElement,
+    picker: HTMLElement,
+    otherContainer: HTMLElement,
+    classToAdd: string
+  ) {
+    container.addEventListener("scroll", () => {
+      this.getCenterBeat(picker);
+      container.classList.add(classToAdd);
+      otherContainer.classList.remove(classToAdd);
     });
-    
-    this.baseBeatPickerContainer.addEventListener("scroll", () => {
-      this.getCenterBeat(this.baseBeatPicker);
+
+    container.addEventListener("click", () => {
+      container.classList.add(classToAdd);
+      otherContainer.classList.remove(classToAdd);
     });
-      }
+  }
 
   private createBeatPickerItemSpan(beat: number): string {
     return `<span class="beatPicker__item">${beat}</span>`;
@@ -115,13 +146,12 @@ class BeatsPicker {
       this.metronome.baseBeat = Number(centerItem?.textContent) ?? 0;
     }
   }
-  }
+}
 
 export default BeatsPicker;
 
 // DOPO
 //
-// If I select one slider the other one is disabled
 // touch event on mobile?
 //
 // 1. Implement modal
