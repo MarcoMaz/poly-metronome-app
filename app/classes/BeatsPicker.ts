@@ -120,24 +120,35 @@ class BeatsPicker {
 
     requestAnimationFrame(() => {
       pickerElement.scrollTop = centerItemPositionY;
+      this.getCenterItem(pickerElement);
     });
 
     return centerItemPositionY;
   }
 
-  public getCenterItem(element: HTMLElement): Element | null {
+  public getCenterItem(element: HTMLElement): HTMLElement | null {
     const pickerBounds = element.getBoundingClientRect();
     const centerLineY =
       window.pageYOffset + pickerBounds.top + pickerBounds.height / 2;
 
-    return Array.from(element.querySelectorAll(BEAT_PICKER_ITEM_SELECTOR)).find(
-      (item) => {
-        const itemBounds = item.getBoundingClientRect();
-        const itemTopY = window.pageYOffset + itemBounds.top;
-        const itemBottomY = window.pageYOffset + itemBounds.bottom;
-        return itemTopY <= centerLineY && itemBottomY >= centerLineY;
-      }
-    );
+    const centerItem = Array.from(
+      element.querySelectorAll(BEAT_PICKER_ITEM_SELECTOR)
+    ).find((item) => {
+      const itemBounds = item.getBoundingClientRect();
+      const itemTopY = window.pageYOffset + itemBounds.top;
+      const itemBottomY = window.pageYOffset + itemBounds.bottom;
+      return itemTopY <= centerLineY && itemBottomY >= centerLineY;
+    }) as HTMLElement | undefined;
+
+    element.querySelectorAll(BEAT_PICKER_ITEM_SELECTOR).forEach((item) => {
+      item.classList.remove("-center");
+    });
+
+    if (centerItem) {
+      centerItem.classList.add("-center");
+    }
+
+    return centerItem || null;
   }
 
   private getCenterBeat(picker: HTMLElement): void {
