@@ -34,12 +34,19 @@ class SwitchBeatsChip {
    *
    */
   private handleSwitchBeatsClick(): void {
+    [this.metronome.againstBeat, this.metronome.baseBeat] = [
+      this.metronome.baseBeat,
+      this.metronome.againstBeat,
+    ];
     // Swap the picker properties
     [this.beatsPicker.againstBeatPicker, this.beatsPicker.baseBeatPicker] = [
       this.beatsPicker.baseBeatPicker,
       this.beatsPicker.againstBeatPicker,
     ];
-    [this.beatsPicker.againstBeatPickerContainer, this.beatsPicker.baseBeatPickerContainer] = [
+    [
+      this.beatsPicker.againstBeatPickerContainer,
+      this.beatsPicker.baseBeatPickerContainer,
+    ] = [
       this.beatsPicker.baseBeatPickerContainer,
       this.beatsPicker.againstBeatPickerContainer,
     ];
@@ -51,12 +58,14 @@ class SwitchBeatsChip {
     // Center the previously centered items
     const againstBeat = this.metronome.againstBeat;
     const baseBeat = this.metronome.baseBeat;
-    this.beatsPicker.centerBeatOnLoad(againstBeat, this.beatsPicker.againstBeatPickerContainer);
-    this.beatsPicker.centerBeatOnLoad(baseBeat, this.beatsPicker.baseBeatPickerContainer);
-
-    // Update the metronome with the new centered items
-    this.metronome.againstBeat = baseBeat;
-    this.metronome.baseBeat = againstBeat;
+    this.beatsPicker.centerBeatOnLoad(
+      againstBeat,
+      this.beatsPicker.againstBeatPickerContainer
+    );
+    this.beatsPicker.centerBeatOnLoad(
+      baseBeat,
+      this.beatsPicker.baseBeatPickerContainer
+    );
   }
 }
 
