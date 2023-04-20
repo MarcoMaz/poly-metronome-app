@@ -10,24 +10,24 @@ const BASE_BEAT_PICKER_BEATS_SELECTOR = `${BASE_BEAT_PICKER_SELECTOR} > .beatPic
 
 const BEAT_PICKER_ITEM_SELECTOR = ".beatPicker__item";
 const BEAT_PICKER_AIM_CLASS = "beatPicker__aim";
-
 const BEATS_PICKER_OPEN_CLASS = "-open";
+const BEATS_PICKER_CENTER_CLASS = "-center";
 
 class BeatsPicker {
   public againstBeatPicker: HTMLElement;
-  public againstBeatPickerContainer: HTMLElement;
+  public againstBeatPickerBeats: HTMLElement;
   public baseBeatPicker: HTMLElement;
-  public baseBeatPickerContainer: HTMLElement;
+  public baseBeatPickerBeats: HTMLElement;
 
   constructor(public modal: Modal, public metronome: Metronome) {
     this.againstBeatPicker = document.querySelector(
       AGAINST_BEAT_PICKER_SELECTOR
     );
-    this.againstBeatPickerContainer = document.querySelector(
+    this.againstBeatPickerBeats = document.querySelector(
       AGAINST_BEAT_PICKER_BEATS_SELECTOR
     );
     this.baseBeatPicker = document.querySelector(BASE_BEAT_PICKER_SELECTOR);
-    this.baseBeatPickerContainer = document.querySelector(
+    this.baseBeatPickerBeats = document.querySelector(
       BASE_BEAT_PICKER_BEATS_SELECTOR
     );
 
@@ -35,48 +35,49 @@ class BeatsPicker {
     this.createElements(BEAT_MIN, BEAT_MAX, BASE_BEAT_PICKER_BEATS_SELECTOR);
     this.centerBeatOnLoad(
       this.metronome.againstBeat,
-      this.againstBeatPickerContainer
+      this.againstBeatPickerBeats
     );
-    this.centerBeatOnLoad(
-      this.metronome.baseBeat,
-      this.baseBeatPickerContainer
-    );
+    this.centerBeatOnLoad(this.metronome.baseBeat, this.baseBeatPickerBeats);
 
     this.addContainerEventListeners(
-      this.againstBeatPickerContainer,
       this.againstBeatPicker,
-      this.baseBeatPickerContainer,
+      this.againstBeatPickerBeats,
+      this.baseBeatPickerBeats,
       BEATS_PICKER_OPEN_CLASS
     );
     this.addContainerEventListeners(
-      this.baseBeatPickerContainer,
       this.baseBeatPicker,
-      this.againstBeatPickerContainer,
+      this.baseBeatPickerBeats,
+      this.againstBeatPickerBeats,
       BEATS_PICKER_OPEN_CLASS
     );
   }
 
   private addContainerEventListeners(
-    container: HTMLElement,
     picker: HTMLElement,
+    container: HTMLElement,
     otherContainer: HTMLElement,
     classToAdd: string
   ) {
-    container.addEventListener("scroll", () => {
-      this.getCenterBeat(picker);
+    let timeoutId: NodeJS.Timeout;
+    const DELAY_IN_MS = 200;
+
+    function handleScroll() {
+      clearTimeout(timeoutId);
+      this.updateBeatBasedOnCenter(picker);
+      swapClass();
+      timeoutId = setTimeout(() => {
+        this.modal.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
+      }, DELAY_IN_MS);
+    }
+
+    function swapClass() {
       container.classList.add(classToAdd);
       otherContainer.classList.remove(classToAdd);
-      this.modal.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
-    });
+    }
 
-    container.addEventListener("click", () => {
-      container.classList.add(classToAdd);
-      otherContainer.classList.remove(classToAdd);
-    });
-  }
-
-  private createBeatPickerItemSpan(beat: number): string {
-    return `<span class="beatPicker__item">${beat}</span>`;
+    container.addEventListener("scroll", handleScroll.bind(this));
+    container.addEventListener("click", swapClass.bind(this));
   }
 
   private createElements(
@@ -91,7 +92,9 @@ class BeatsPicker {
       ),
     ];
 
-    const spans = missingNumbers.map(this.createBeatPickerItemSpan).join("");
+    const spans = missingNumbers
+      .map((beat) => `<span class="beatPicker__item">${beat}</span>`)
+      .join("");
 
     const parentElement = document.querySelector(parentSelector);
     parentElement.innerHTML = spans;
@@ -101,32 +104,30 @@ class BeatsPicker {
     parentElement.appendChild(beatPickerAimSpan);
   }
 
-  public centerBeatOnLoad(num: number, pickerElement: HTMLElement): number {
-    const centerItemSelector = `${BEAT_PICKER_ITEM_SELECTOR}:nth-of-type(${
-      num - 1
-    })`;
-    const centerItem = pickerElement.querySelector(
-      centerItemSelector
+  public centerBeatOnLoad(
+    num: number,
+    pickerBeatsElement: HTMLElement
+  ): number {
+    const verticalCenterItem = pickerBeatsElement.querySelector(
+      `${BEAT_PICKER_ITEM_SELECTOR}:nth-of-type(${num - 1})`
     ) as HTMLElement;
 
-    if (!centerItem) {
-      return 0;
-    }
+    if (!verticalCenterItem) return 0;
 
     const centerItemPositionY =
-      centerItem.offsetTop -
-      pickerElement.offsetHeight / 2 +
-      centerItem.offsetHeight / 2;
+      verticalCenterItem.offsetTop -
+      pickerBeatsElement.offsetHeight / 2 +
+      verticalCenterItem.offsetHeight / 2;
 
     requestAnimationFrame(() => {
-      pickerElement.scrollTop = centerItemPositionY;
-      this.getCenterItem(pickerElement);
+      pickerBeatsElement.scrollTop = centerItemPositionY;
+      this.highlightCenterItem(pickerBeatsElement);
     });
 
     return centerItemPositionY;
   }
 
-  public getCenterItem(element: HTMLElement): HTMLElement | null {
+  public highlightCenterItem(element: HTMLElement): HTMLElement | null {
     const pickerBounds = element.getBoundingClientRect();
     const centerLineY =
       window.pageYOffset + pickerBounds.top + pickerBounds.height / 2;
@@ -140,29 +141,23 @@ class BeatsPicker {
       return itemTopY <= centerLineY && itemBottomY >= centerLineY;
     }) as HTMLElement | undefined;
 
-    element.querySelectorAll(BEAT_PICKER_ITEM_SELECTOR).forEach((item) => {
-      item.classList.remove("-center");
-    });
+    element
+      .querySelectorAll(BEAT_PICKER_ITEM_SELECTOR)
+      .forEach((item) => item.classList.remove(BEATS_PICKER_CENTER_CLASS));
 
-    if (centerItem) {
-      centerItem.classList.add("-center");
-    }
+    if (centerItem) centerItem.classList.add(BEATS_PICKER_CENTER_CLASS);
 
     return centerItem || null;
   }
 
-  private getCenterBeat(picker: HTMLElement): void {
-    const centerItem = this.getCenterItem(picker);
+  private updateBeatBasedOnCenter(picker: HTMLElement): void {
+    const centerItem = this.highlightCenterItem(picker);
     if (picker === this.againstBeatPicker) {
       this.metronome.againstBeat = Number(centerItem?.textContent) ?? 0;
-    } else if (picker === this.baseBeatPicker) {
+    } else {
       this.metronome.baseBeat = Number(centerItem?.textContent) ?? 0;
     }
   }
 }
 
 export default BeatsPicker;
-
-// 4. Fix E2E Tests (write new tests?)
-
-// Clean up (color, docs, SwitchBeatsChip, ect.)
