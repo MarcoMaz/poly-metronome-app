@@ -44,27 +44,27 @@ class SwitchBeatsChip {
       this.beatsPicker.againstBeatPicker,
     ];
     [
-      this.beatsPicker.againstBeatPickerContainer,
-      this.beatsPicker.baseBeatPickerContainer,
+      this.beatsPicker.againstBeatPickerBeats,
+      this.beatsPicker.baseBeatPickerBeats,
     ] = [
-      this.beatsPicker.baseBeatPickerContainer,
-      this.beatsPicker.againstBeatPickerContainer,
+      this.beatsPicker.baseBeatPickerBeats,
+      this.beatsPicker.againstBeatPickerBeats,
     ];
 
     // Swap the open classes
-    this.beatsPicker.againstBeatPickerContainer.classList.toggle("-open");
-    this.beatsPicker.baseBeatPickerContainer.classList.toggle("-open");
+    this.beatsPicker.againstBeatPickerBeats.classList.toggle("-open");
+    this.beatsPicker.baseBeatPickerBeats.classList.toggle("-open");
 
     // Center the previously centered items
     const againstBeat = this.metronome.againstBeat;
     const baseBeat = this.metronome.baseBeat;
     this.beatsPicker.centerBeatOnLoad(
       againstBeat,
-      this.beatsPicker.againstBeatPickerContainer
+      this.beatsPicker.againstBeatPickerBeats
     );
     this.beatsPicker.centerBeatOnLoad(
       baseBeat,
-      this.beatsPicker.baseBeatPickerContainer
+      this.beatsPicker.baseBeatPickerBeats
     );
   }
 }
