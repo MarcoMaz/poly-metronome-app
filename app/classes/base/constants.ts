@@ -90,6 +90,19 @@ export const MODAL_FIRST_MESSAGE_SELECTOR = ".Modal__supporting-text p:nth-child
 export const MODAL_SECOND_MESSAGE_SELECTOR = ".Modal__supporting-text p:nth-child(2)";
 export const MODAL_BUTTON_SELECTOR = ".Modal__button";
 
+// BeatsPicker
+export const AGAINST_BEAT_PICKER_SELECTOR = ".beatPicker--againstBeat";
+export const BASE_BEAT_PICKER_SELECTOR = ".beatPicker--baseBeat";
+export const AGAINST_BEAT_PICKER_BEATS_SELECTOR =
+  ".beatPicker--againstBeat > .beatPicker__beats";
+export const BASE_BEAT_PICKER_BEATS_SELECTOR =
+  ".beatPicker--baseBeat > .beatPicker__beats";
+export const BEAT_PICKER_ITEM_SELECTOR = ".beatPicker__item";
+export const BEATS_PICKER_CENTER_SELECTOR = ".-center";
+export const BEATS_PICKER_OPEN_CLASS = "-open";
+export const BEATS_PICKER_CENTER_CLASS = "-center";
+export const BEAT_PICKER_AIM_CLASS = "beatPicker__aim";
+
 // SwitchBeats
 export const SWITCH_BEATS_CHIP_SELECTOR = ".SwitchBeats";
 

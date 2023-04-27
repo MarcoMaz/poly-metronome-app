@@ -2,9 +2,10 @@ import BeatsPicker from "./BeatsPicker";
 import Metronome from "./Metronome";
 import Modal from "./Modal";
 
-const BEATS_PICKER_OPEN_CLASS = "-open";
-const BASE_BEAT_PICKER_BEATS_SELECTOR =
-  ".beatPicker--baseBeat > .beatPicker__beats";
+import {
+  BASE_BEAT_PICKER_BEATS_SELECTOR,
+  BEATS_PICKER_OPEN_CLASS,
+} from "./base/constants";
 
 class AgainstBeatPicker extends BeatsPicker {
   public otherPickerBeats: HTMLElement;

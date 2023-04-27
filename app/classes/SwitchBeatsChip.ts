@@ -2,12 +2,13 @@ import AgainstBeatPicker from "./AgainstBeatPicker";
 import BaseBeatPicker from "./BaseBeatPicker";
 import Metronome from "./Metronome";
 
-import { SWITCH_BEATS_CHIP_SELECTOR } from "./base/constants";
-
-const BEATS_PICKER_OPEN_CLASS = "-open";
-const BEATS_PICKER_CENTER_CLASS = "-center";
-const BEATS_PICKER_CENTER_SELECTOR = ".-center";
-const BEATS_PICKER_ITEM_SELECTOR = ".beatPicker__item";
+import {
+  SWITCH_BEATS_CHIP_SELECTOR,
+  BEAT_PICKER_ITEM_SELECTOR,
+  BEATS_PICKER_OPEN_CLASS,
+  BEATS_PICKER_CENTER_SELECTOR,
+  BEATS_PICKER_CENTER_CLASS,
+} from "./base/constants";
 
 /**
  * This class represents the UI controlling the switchBeats' chip.
@@ -91,7 +92,7 @@ class SwitchBeatsChip {
     picker: HTMLElement,
     centerNumber: number
   ): void {
-    const selector = `${BEATS_PICKER_ITEM_SELECTOR}:nth-of-type(${
+    const selector = `${BEAT_PICKER_ITEM_SELECTOR}:nth-of-type(${
       centerNumber - 1
     })`;
     const centerNode = picker.querySelector(selector);

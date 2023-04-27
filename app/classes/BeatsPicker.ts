@@ -1,16 +1,15 @@
 import Metronome from "./Metronome";
 import Modal from "./Modal";
 
-const BEAT_PICKER_ITEM_SELECTOR = ".beatPicker__item";
-const BEAT_PICKER_AIM_CLASS = "beatPicker__aim";
-const BEATS_PICKER_CENTER_CLASS = "-center";
-
-const AGAINST_BEAT_PICKER_BEATS_SELECTOR =
-  ".beatPicker--againstBeat > .beatPicker__beats";
-const BASE_BEAT_PICKER_BEATS_SELECTOR =
-  ".beatPicker--baseBeat > .beatPicker__beats";
-const AGAINST_BEAT_PICKER_SELECTOR = ".beatPicker--againstBeat";
-const BASE_BEAT_PICKER_SELECTOR = ".beatPicker--baseBeat";
+import {
+  AGAINST_BEAT_PICKER_SELECTOR,
+  BASE_BEAT_PICKER_SELECTOR,
+  AGAINST_BEAT_PICKER_BEATS_SELECTOR,
+  BASE_BEAT_PICKER_BEATS_SELECTOR,
+  BEAT_PICKER_ITEM_SELECTOR,
+  BEATS_PICKER_CENTER_CLASS,
+  BEAT_PICKER_AIM_CLASS,
+} from "./base/constants";
 
 class BeatsPicker {
   public picker: HTMLElement;
