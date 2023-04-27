@@ -53,7 +53,9 @@ class BeatsPicker {
     ];
 
     const spans = missingNumbers
-      .map((beat) => `<span class="beatPicker__item">${beat}</span>`)
+      .map(
+        (beat) => `<span class="${BEAT_PICKER_ITEM_SELECTOR}">${beat}</span>`
+      )
       .join("");
 
     this.pickerBeats.innerHTML = spans;
