@@ -4,16 +4,10 @@ import Metronome from "./Metronome";
 
 import { SWITCH_BEATS_CHIP_SELECTOR } from "./base/constants";
 
-const AGAINST_BEAT_PICKER_BEATS = document.querySelector(
-  ".beatPicker--againstBeat > .beatPicker__beats"
-);
-const BASE_BEAT_PICKER_BEATS = document.querySelector(
-  ".beatPicker--baseBeat > .beatPicker__beats"
-);
-
 const BEATS_PICKER_OPEN_CLASS = "-open";
 const BEATS_PICKER_CENTER_CLASS = "-center";
 const BEATS_PICKER_CENTER_SELECTOR = ".-center";
+const BEATS_PICKER_ITEM_SELECTOR = ".beatPicker__item";
 
 /**
  * This class represents the UI controlling the switchBeats' chip.
@@ -66,32 +60,42 @@ class SwitchBeatsChip {
     this.againstBeatPicker.centerNumber = centerYnum;
     this.baseBeatPicker.centerNumber = centerXnum;
 
-    document
-      .querySelector(
-        `.beatPicker--againstBeat > .beatPick
-        er__beats > .beatPicker__item:nth-of-type(${
-          this.againstBeatPicker.centerNumber - 1
-        })`
-      )
-      ?.classList.add(BEATS_PICKER_CENTER_CLASS);
-    document
-      .querySelector(
-        `.beatPicker--baseBeat > .beatPicker__beats > .beatPicker__item:nth-of-type(${
-          this.baseBeatPicker.centerNumber - 1
-        })`
-      )
-      ?.classList.add(BEATS_PICKER_CENTER_CLASS);
+    this.setPickerCenterClass(
+      this.againstBeatPicker.pickerBeats,
+      this.againstBeatPicker.centerNumber
+    );
+    this.setPickerCenterClass(
+      this.baseBeatPicker.pickerBeats,
+      this.baseBeatPicker.centerNumber
+    );
 
     this.againstBeatPicker.centerBeatOnLoad();
     this.baseBeatPicker.centerBeatOnLoad();
 
-    if (AGAINST_BEAT_PICKER_BEATS.classList.contains(BEATS_PICKER_OPEN_CLASS)) {
-      AGAINST_BEAT_PICKER_BEATS.classList.remove(BEATS_PICKER_OPEN_CLASS);
-      BASE_BEAT_PICKER_BEATS.classList.add(BEATS_PICKER_OPEN_CLASS);
+    if (
+      this.againstBeatPicker.pickerBeats.classList.contains(
+        BEATS_PICKER_OPEN_CLASS
+      )
+    ) {
+      this.againstBeatPicker.pickerBeats.classList.remove(
+        BEATS_PICKER_OPEN_CLASS
+      );
+      this.baseBeatPicker.pickerBeats.classList.add(BEATS_PICKER_OPEN_CLASS);
     } else {
-      AGAINST_BEAT_PICKER_BEATS.classList.add(BEATS_PICKER_OPEN_CLASS);
-      BASE_BEAT_PICKER_BEATS.classList.remove(BEATS_PICKER_OPEN_CLASS);
+      this.againstBeatPicker.pickerBeats.classList.add(BEATS_PICKER_OPEN_CLASS);
+      this.baseBeatPicker.pickerBeats.classList.remove(BEATS_PICKER_OPEN_CLASS);
     }
+  }
+
+  private setPickerCenterClass(
+    picker: HTMLElement,
+    centerNumber: number
+  ): void {
+    const selector = `${BEATS_PICKER_ITEM_SELECTOR}:nth-of-type(${
+      centerNumber - 1
+    })`;
+    const centerNode = picker.querySelector(selector);
+    centerNode?.classList.add(BEATS_PICKER_CENTER_CLASS);
   }
 }
 
