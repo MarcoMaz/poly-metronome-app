@@ -60,8 +60,8 @@ class View {
     // this.beatsPicker = new BeatsPicker("against", 2, 9, this.metronome.againstBeat, this.metronome);
     // this.beatsPicker = new BeatsPicker("base", 2, 9, this.metronome.baseBeat, this.metronome);
 
-    this.againstBeatPicker = new AgainstBeatPicker("against", 2, 9, this.metronome.againstBeat, this.metronome);
-    this.baseBeatPicker = new BaseBeatPicker("base", 2, 9, this.metronome.baseBeat, this.metronome);
+    this.againstBeatPicker = new AgainstBeatPicker("against", 2, 9, this.metronome.againstBeat, this.metronome, this.modal);
+    this.baseBeatPicker = new BaseBeatPicker("base", 2, 9, this.metronome.baseBeat, this.metronome, this.modal);
 
     this.switchBeatsChip = new SwitchBeatsChip(this.metronome, this.againstBeatPicker, this.baseBeatPicker);
     this.tapChip = new TapChip(this.metronome, this.bpm)

@@ -15,6 +15,7 @@ class BeatsPicker {
     public max: number,
     public centerNumber: number,
     public metronome: Metronome,
+    public modal: Modal
   ) {
     const PICKER_BEATS_SELECTOR =
       el === "against"
@@ -64,7 +65,7 @@ class BeatsPicker {
     clearTimeout(timeoutId);
     this.updateBeatBasedOnCenter();
     timeoutId = setTimeout(() => {
-      // this.modal.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
+      this.modal.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
     }, DELAY_IN_MS);
   }
 
@@ -125,3 +126,10 @@ class BeatsPicker {
 }
 
 export default BeatsPicker;
+
+// Cosa posso cancellare?
+// Cosa posso mettere opzionale?
+// Class name capital or not?
+
+// Unit
+// E2e

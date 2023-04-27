@@ -9,8 +9,9 @@ class AgainstBeatPicker extends BeatsPicker {
     max: number,
     centerNumber: number,
     metronome: Metronome,
+    modal: Modal,
   ) {
-    super(el, min, max, centerNumber, metronome);
+    super(el, min, max, centerNumber, metronome, modal);
 
     this.picker.addEventListener("wheel", this.handleWheel.bind(this));
     this.picker.addEventListener("click", this.handleClick.bind(this));
@@ -23,6 +24,7 @@ class AgainstBeatPicker extends BeatsPicker {
     document
       .querySelector(".beatPicker.beatPicker--baseBeat > .beatPicker__beats")
       .classList.remove("-open");
+
   }
 
   handleClick(): void {
@@ -33,6 +35,7 @@ class AgainstBeatPicker extends BeatsPicker {
         .classList.remove("-open");
     }
   }
+
 }
 
 export default AgainstBeatPicker;
