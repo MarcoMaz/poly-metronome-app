@@ -1,24 +1,19 @@
 import AgainstBeatPicker from "./AgainstBeatPicker";
 import BaseBeatPicker from "./BaseBeatPicker";
-import BeatsPicker from "./BeatsPicker";
 import Metronome from "./Metronome";
 
 import { SWITCH_BEATS_CHIP_SELECTOR } from "./base/constants";
 
-
-const AGAINST_BEATS = document.querySelector(
+const AGAINST_BEAT_PICKER_BEATS = document.querySelector(
   ".beatPicker--againstBeat > .beatPicker__beats"
 );
-
-const BASE_BEATS = document.querySelector(
+const BASE_BEAT_PICKER_BEATS = document.querySelector(
   ".beatPicker--baseBeat > .beatPicker__beats"
 );
 
-
-
 const BEATS_PICKER_OPEN_CLASS = "-open";
 const BEATS_PICKER_CENTER_CLASS = "-center";
-const BEAT_PICKER_ITEM_SELECTOR = ".beatPicker__item";
+const BEATS_PICKER_CENTER_SELECTOR = ".-center";
 
 /**
  * This class represents the UI controlling the switchBeats' chip.
@@ -55,15 +50,17 @@ class SwitchBeatsChip {
    *
    */
   public handleSwitchBeatsClick(): void {
-
-    [this.metronome.againstBeat, this.metronome.baseBeat] = [this.metronome.baseBeat, this.metronome.againstBeat];
+    [this.metronome.againstBeat, this.metronome.baseBeat] = [
+      this.metronome.baseBeat,
+      this.metronome.againstBeat,
+    ];
 
     const centerXnum = this.againstBeatPicker.centerNumber;
     const centerYnum = this.baseBeatPicker.centerNumber;
 
-    const nodes = document.querySelectorAll(".-center");
+    const nodes = document.querySelectorAll(BEATS_PICKER_CENTER_SELECTOR);
     nodes.forEach((node) => {
-      node.classList.remove("-center");
+      node.classList.remove(BEATS_PICKER_CENTER_CLASS);
     });
 
     this.againstBeatPicker.centerNumber = centerYnum;
@@ -85,17 +82,16 @@ class SwitchBeatsChip {
       )
       ?.classList.add(BEATS_PICKER_CENTER_CLASS);
 
-      this.againstBeatPicker.centerBeatOnLoad();
-      this.baseBeatPicker.centerBeatOnLoad();
+    this.againstBeatPicker.centerBeatOnLoad();
+    this.baseBeatPicker.centerBeatOnLoad();
 
-    if (AGAINST_BEATS.classList.contains("-open")) {
-      AGAINST_BEATS.classList.remove("-open");
-      BASE_BEATS.classList.add("-open");
+    if (AGAINST_BEAT_PICKER_BEATS.classList.contains(BEATS_PICKER_OPEN_CLASS)) {
+      AGAINST_BEAT_PICKER_BEATS.classList.remove(BEATS_PICKER_OPEN_CLASS);
+      BASE_BEAT_PICKER_BEATS.classList.add(BEATS_PICKER_OPEN_CLASS);
     } else {
-      AGAINST_BEATS.classList.add("-open");
-      BASE_BEATS.classList.remove("-open");
+      AGAINST_BEAT_PICKER_BEATS.classList.add(BEATS_PICKER_OPEN_CLASS);
+      BASE_BEAT_PICKER_BEATS.classList.remove(BEATS_PICKER_OPEN_CLASS);
     }
-
   }
 }
 

@@ -5,6 +5,13 @@ const BEAT_PICKER_ITEM_SELECTOR = ".beatPicker__item";
 const BEAT_PICKER_AIM_CLASS = "beatPicker__aim";
 const BEATS_PICKER_CENTER_CLASS = "-center";
 
+const AGAINST_BEAT_PICKER_BEATS_SELECTOR =
+  ".beatPicker--againstBeat > .beatPicker__beats";
+const BASE_BEAT_PICKER_BEATS_SELECTOR =
+  ".beatPicker--baseBeat > .beatPicker__beats";
+const AGAINST_BEAT_PICKER_SELECTOR = ".beatPicker--againstBeat";
+const BASE_BEAT_PICKER_SELECTOR = ".beatPicker--baseBeat";
+
 class BeatsPicker {
   public picker: HTMLElement;
   public pickerBeats: HTMLElement;
@@ -19,16 +26,14 @@ class BeatsPicker {
   ) {
     const PICKER_BEATS_SELECTOR =
       el === "against"
-        ? ".beatPicker.beatPicker--againstBeat > .beatPicker__beats"
-        : ".beatPicker.beatPicker--baseBeat > .beatPicker__beats";
+        ? AGAINST_BEAT_PICKER_BEATS_SELECTOR
+        : BASE_BEAT_PICKER_BEATS_SELECTOR;
 
     if (el === "against") {
-      this.picker = document.querySelector(
-        ".beatPicker.beatPicker--againstBeat"
-      );
+      this.picker = document.querySelector(AGAINST_BEAT_PICKER_SELECTOR);
       this.pickerBeats = document.querySelector(PICKER_BEATS_SELECTOR);
     } else {
-      this.picker = document.querySelector(".beatPicker.beatPicker--baseBeat");
+      this.picker = document.querySelector(BASE_BEAT_PICKER_SELECTOR);
       this.pickerBeats = document.querySelector(PICKER_BEATS_SELECTOR);
     }
 
@@ -114,10 +119,7 @@ class BeatsPicker {
 
   public updateBeatBasedOnCenter(): void {
     const centerItem = this.highlightCenterItem(this.picker);
-    if (
-      this.picker ===
-      document.querySelector(".beatPicker.beatPicker--againstBeat")
-    ) {
+    if (this.picker === document.querySelector(AGAINST_BEAT_PICKER_SELECTOR)) {
       this.metronome.againstBeat = Number(centerItem?.textContent) ?? 0;
     } else {
       this.metronome.baseBeat = Number(centerItem?.textContent) ?? 0;

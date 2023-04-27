@@ -2,6 +2,12 @@ import BeatsPicker from "./BeatsPicker";
 import Metronome from "./Metronome";
 import Modal from "./Modal";
 
+const BEATS_PICKER_OPEN_CLASS = "-open";
+
+const BASE_BEAT_PICKER_BEATS = document.querySelector(
+  ".beatPicker--baseBeat > .beatPicker__beats"
+);
+
 class AgainstBeatPicker extends BeatsPicker {
   constructor(
     el: string,
@@ -9,7 +15,7 @@ class AgainstBeatPicker extends BeatsPicker {
     max: number,
     centerNumber: number,
     metronome: Metronome,
-    modal: Modal,
+    modal: Modal
   ) {
     super(el, min, max, centerNumber, metronome, modal);
 
@@ -18,24 +24,19 @@ class AgainstBeatPicker extends BeatsPicker {
   }
 
   handleWheel(): void {
-    this.pickerBeats.classList.add("-open");
     this.centerNumber = this.metronome.againstBeat;
-
-    document
-      .querySelector(".beatPicker.beatPicker--baseBeat > .beatPicker__beats")
-      .classList.remove("-open");
-
+    this.pickerBeats.classList.add(BEATS_PICKER_OPEN_CLASS);
+    BASE_BEAT_PICKER_BEATS.classList.remove(BEATS_PICKER_OPEN_CLASS);
   }
 
   handleClick(): void {
-    if (!this.pickerBeats.classList.contains("-open")) {
-      this.pickerBeats.classList.add("-open");
-      document
-        .querySelector(".beatPicker.beatPicker--baseBeat > .beatPicker__beats")
-        .classList.remove("-open");
+    if (!this.pickerBeats.classList.contains(BEATS_PICKER_OPEN_CLASS)) {
+      this.pickerBeats.classList.add(BEATS_PICKER_OPEN_CLASS);
+      BASE_BEAT_PICKER_BEATS.classList.remove(BEATS_PICKER_OPEN_CLASS);
     }
   }
-
 }
 
 export default AgainstBeatPicker;
+
+/* handleWheel and handlClick has things in common */
