@@ -50,22 +50,24 @@ class SwitchBeatsChip {
       this.metronome.againstBeat,
     ];
 
-    const centerXnum = this.againstBeatPicker.centerNumber;
-    const centerYnum = this.baseBeatPicker.centerNumber;
+    const againstBeatPickerCenterNumber = this.againstBeatPicker.centerNumber;
+    const baseBeatPickerCenterNumber = this.baseBeatPicker.centerNumber;
 
-    const nodes = document.querySelectorAll(BEATS_PICKER_CENTER_SELECTOR);
-    nodes.forEach((node) => {
-      node.classList.remove(BEATS_PICKER_CENTER_CLASS);
+    const elementsWithCenterClass = document.querySelectorAll(
+      BEATS_PICKER_CENTER_SELECTOR
+    );
+    elementsWithCenterClass.forEach((element) => {
+      element.classList.remove(BEATS_PICKER_CENTER_CLASS);
     });
 
-    this.againstBeatPicker.centerNumber = centerYnum;
-    this.baseBeatPicker.centerNumber = centerXnum;
+    this.againstBeatPicker.centerNumber = baseBeatPickerCenterNumber;
+    this.baseBeatPicker.centerNumber = againstBeatPickerCenterNumber;
 
-    this.setPickerCenterClass(
+    this.setPickerBeatCenterClass(
       this.againstBeatPicker.pickerBeats,
       this.againstBeatPicker.centerNumber
     );
-    this.setPickerCenterClass(
+    this.setPickerBeatCenterClass(
       this.baseBeatPicker.pickerBeats,
       this.baseBeatPicker.centerNumber
     );
@@ -88,14 +90,14 @@ class SwitchBeatsChip {
     }
   }
 
-  private setPickerCenterClass(
+  private setPickerBeatCenterClass(
     picker: HTMLElement,
     centerNumber: number
   ): void {
-    const selector = `${BEAT_PICKER_ITEM_SELECTOR}:nth-of-type(${
+    const centerSelector = `${BEAT_PICKER_ITEM_SELECTOR}:nth-of-type(${
       centerNumber - 1
     })`;
-    const centerNode = picker.querySelector(selector);
+    const centerNode = picker.querySelector(centerSelector);
     centerNode?.classList.add(BEATS_PICKER_CENTER_CLASS);
   }
 }

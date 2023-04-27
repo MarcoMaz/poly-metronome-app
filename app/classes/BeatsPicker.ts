@@ -59,9 +59,9 @@ class BeatsPicker {
 
     this.pickerBeats.innerHTML = spans;
 
-    const beatPickerAimSpan = document.createElement("span");
-    beatPickerAimSpan.classList.add(BEAT_PICKER_AIM_CLASS);
-    this.pickerBeats.appendChild(beatPickerAimSpan);
+    const beatPickerAimElement = document.createElement("span");
+    beatPickerAimElement.classList.add(BEAT_PICKER_AIM_CLASS);
+    this.pickerBeats.appendChild(beatPickerAimElement);
   }
 
   public handleScroll(): void {
