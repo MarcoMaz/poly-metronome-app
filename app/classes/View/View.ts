@@ -12,6 +12,8 @@ import PlayButton from "../PlayButton";
 import MuteButton from "../MuteButton";
 
 import BeatsPicker from "../BeatsPicker";
+import AgainstBeatPicker from "../AgainstBeatPicker";
+import BaseBeatPicker from "../BaseBeatPicker";
 
 /** 
  * This class controls the DOM elements with user interactions.
@@ -40,6 +42,8 @@ class View {
   private playButton: PlayButton;
   private muteButton: MuteButton;
   private beatsPicker: BeatsPicker;
+  private againstBeatPicker: AgainstBeatPicker;
+  baseBeatPicker: AgainstBeatPicker;
 
   /**
   * Define DOM Elements
@@ -53,8 +57,13 @@ class View {
     this.beats = new BeatsUi(this.modal, this.metronome);
     this.bpm = new BpmUi(this.metronome);
 
-    this.beatsPicker = new BeatsPicker(this.modal, this.metronome);
-    this.switchBeatsChip = new SwitchBeatsChip(this.metronome, this.beatsPicker);
+    // this.beatsPicker = new BeatsPicker("against", 2, 9, this.metronome.againstBeat, this.metronome);
+    // this.beatsPicker = new BeatsPicker("base", 2, 9, this.metronome.baseBeat, this.metronome);
+
+    this.againstBeatPicker = new AgainstBeatPicker("against", 2, 9, this.metronome.againstBeat, this.metronome);
+    this.baseBeatPicker = new BaseBeatPicker("base", 2, 9, this.metronome.baseBeat, this.metronome);
+
+    this.switchBeatsChip = new SwitchBeatsChip(this.metronome, this.againstBeatPicker, this.baseBeatPicker);
     this.tapChip = new TapChip(this.metronome, this.bpm)
     this.muteButton = new MuteButton(this.engine);
     this.playButton = new PlayButton(this.muteButton, this.engine);
