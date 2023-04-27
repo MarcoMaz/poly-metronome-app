@@ -126,10 +126,3 @@ class BeatsPicker {
 }
 
 export default BeatsPicker;
-
-// Cosa posso cancellare?
-// Cosa posso mettere opzionale?
-// Class name capital or not?
-
-// Unit
-// E2e

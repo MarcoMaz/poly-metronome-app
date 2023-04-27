@@ -1,6 +1,6 @@
 import { htmlPage } from "./setup";
 
-const BEATS_PICKER_CONTAINER_SELECTOR = ".beatsPicker-container";
+const BEATS_PICKER_CONTAINER_SELECTOR = ".beatsPickers-container";
 const BEATS_PICKER_AGAINST_BEAT_SELECTOR =
   ".beatPicker.beatPicker--againstBeat";
 const BEATS_PICKER_BASE_BEAT_SELECTOR = ".beatPicker.beatPicker--baseBeat";
