@@ -22,7 +22,6 @@ class BaseBeatPicker extends BeatsPicker {
     this.otherPickerBeats = document.querySelector(
       AGAINST_BEAT_PICKER_BEATS_SELECTOR
     );
-
     this.picker.addEventListener("wheel", this.handleWheel.bind(this));
     this.picker.addEventListener("click", this.handleClick.bind(this));
   }
@@ -34,7 +33,7 @@ class BaseBeatPicker extends BeatsPicker {
 
   handleClick(): void {
     if (!this.pickerBeats.classList.contains(BEATS_PICKER_OPEN_CLASS))
-      this.handleClasses;
+      this.handleClasses();
   }
 
   handleClasses(): void {
