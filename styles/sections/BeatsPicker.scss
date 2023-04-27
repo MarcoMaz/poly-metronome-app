@@ -7,10 +7,7 @@
 }
 
 .beatPicker {
-  // border: 1px solid;
   position: relative;
-  width: fit-content;
-  z-index: 1;
 
   &::before,
   &::after {
@@ -22,25 +19,25 @@
   }
 
   &::before {
-    background: linear-gradient(to bottom, #ffffff 25%, transparent 100%);
+    background: linear-gradient(to bottom, $colorWhite 25%, transparent 100%);
   }
 
   &::after {
-    background: linear-gradient(to top, #ffffff 25%, transparent 100%);
+    background: linear-gradient(to top, $colorWhite 25%, transparent 100%);
     bottom: 0;
   }
 
   &__beats {
-    scrollbar-width: none; /* Firefox */
-    color: #000;
+    color: $colorBlack;
     font-size: 3.5rem;
     font-weight: lighter;
     max-block-size: 15rem;
     overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
     scroll-snap-type: y mandatory;
 
     &::-webkit-scrollbar {
-      display: none;
+      display: none; /* Chrome & Edge */
     }
   }
 
@@ -48,7 +45,6 @@
     align-items: center;
     display: flex;
     height: 3rem;
-    // outline: 1px dashed red;
     scroll-snap-align: center;
 
     &:nth-of-type(1) {
@@ -65,8 +61,7 @@
   }
 
   &__aim {
-    
-    border: 0.0625rem solid #d1d1d1;
+    border: 0.0625rem solid $colorGray200;
     border-radius: 0.375rem;
     box-sizing: content-box;
     display: none;
@@ -75,7 +70,6 @@
     position: absolute;
     top: calc(50% - 1.5rem);
     width: 3rem;
-    z-index: -1;
 
     .-open & {
       display: block;
@@ -83,11 +77,11 @@
 
     &::before,
     &::after {
+      background: $colorWhite;
       content: " ";
-      position: absolute;
-      background: white;
-      top: 0.25rem;
       height: 2.5rem;
+      position: absolute;
+      top: 0.25rem;
       width: 0.0625rem;
     }
 
