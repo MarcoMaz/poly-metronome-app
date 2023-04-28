@@ -12,6 +12,8 @@ import MuteButton from "../MuteButton";
 import AgainstBeatPicker from "../AgainstBeatPicker";
 import BaseBeatPicker from "../BaseBeatPicker";
 
+import { BEAT_MAX, BEAT_MIN } from "../base/constants";
+
 /**
  * This class controls the DOM elements with user interactions.
  *
@@ -50,16 +52,16 @@ class View {
     this.bpm = new BpmUi(this.metronome);
     this.againstBeatPicker = new AgainstBeatPicker(
       "against",
-      2,
-      9,
+      BEAT_MIN,
+      BEAT_MAX,
       this.metronome.againstBeat,
       this.metronome,
       this.modal
     );
     this.baseBeatPicker = new BaseBeatPicker(
       "base",
-      2,
-      9,
+      BEAT_MIN,
+      BEAT_MAX,
       this.metronome.baseBeat,
       this.metronome,
       this.modal

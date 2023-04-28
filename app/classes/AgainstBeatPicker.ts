@@ -20,14 +20,14 @@ class AgainstBeatPicker extends BeatPicker {
   public otherPickerBeats: HTMLElement;
 
   constructor(
-    el: string,
-    min: number,
-    max: number,
+    pickerType: "against",
+    beatMin: number,
+    beatMax: number,
     centerNumber: number,
     metronome: Metronome,
     modal: Modal
   ) {
-    super(el, min, max, centerNumber, metronome, modal);
+    super(pickerType, beatMin, beatMax, centerNumber, metronome, modal);
 
     this.otherPickerBeats = document.querySelector(
       BASE_BEAT_PICKER_BEATS_SELECTOR
@@ -45,7 +45,7 @@ class AgainstBeatPicker extends BeatPicker {
    *
    */
   handleWheel(): void {
-    this.centerNumber = this.metronome.againstBeat;
+    this.aimNumber = this.metronome.againstBeat;
     this.handleClasses();
   }
 

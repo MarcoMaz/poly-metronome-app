@@ -9,7 +9,7 @@ import {
   BEAT_PICKER_ITEM_SELECTOR,
   BEATS_PICKER_CENTER_CLASS,
   BEAT_PICKER_AIM_CLASS,
-  BEAT_PICKER_ITEM_CLASS
+  BEAT_PICKER_ITEM_CLASS,
 } from "./base/constants";
 
 /**
@@ -17,9 +17,12 @@ import {
  *
  * @name BeatPicker
  *
- * @param {HTMLElement} modal             - The modal element.
- * @param {HTMLElement} modalOverlay      - The modal overlay inside the modal.
- * @param {HTMLButtonElement} modalButton - The modal button inside the modal.
+ * @param {HTMLElement} picker      - The picker element.
+ * @param {HTMLElement} pickerBeats - The picker beats element.
+ * @param {string} pickerType       - The picker type. Either "base" or "against".
+ * @param {number} beatMin          - The minum beat of the picker.
+ * @param {number} beatMax          - The maximum beat of the picker.
+ * @param {number} aimNumber        - The number with aim.
  *
  */
 
@@ -27,20 +30,23 @@ class BeatPicker {
   public picker: HTMLElement;
   public pickerBeats: HTMLElement;
 
+  /**
+   * Define DOM Elements and Variables.
+   */
   constructor(
-    public el: string,
-    public min: number,
-    public max: number,
-    public centerNumber: number,
+    public pickerType: "against" | "base",
+    public beatMin: number,
+    public beatMax: number,
+    public aimNumber: number,
     public metronome: Metronome,
     public modal: Modal
   ) {
     const PICKER_BEATS_SELECTOR =
-      el === "against"
+      pickerType === "against"
         ? AGAINST_BEAT_PICKER_BEATS_SELECTOR
         : BASE_BEAT_PICKER_BEATS_SELECTOR;
 
-    if (el === "against") {
+    if (pickerType === "against") {
       this.picker = document.querySelector(AGAINST_BEAT_PICKER_SELECTOR);
       this.pickerBeats = document.querySelector(PICKER_BEATS_SELECTOR);
     } else {
@@ -51,22 +57,26 @@ class BeatPicker {
     this.createElements();
     this.centerBeatOnLoad();
 
-    // SCROLL
+    // Register events
     this.pickerBeats.addEventListener("scroll", this.handleScroll.bind(this));
   }
 
+  /**
+   * @name createElements
+   * @description
+   * Creates and populates the beat picker with SPAN elements.
+   *
+   */
   private createElements(): void {
     const missingNumbers: Array<number | null> = [
       ...Array.from(
-        { length: this.max - this.min + 1 },
-        (_, i) => i + this.min
+        { length: this.beatMax - this.beatMin + 1 },
+        (_, i) => i + this.beatMin
       ),
     ];
 
     const spans = missingNumbers
-      .map(
-        (beat) => `<span class="${BEAT_PICKER_ITEM_CLASS}">${beat}</span>`
-      )
+      .map((beat) => `<span class="${BEAT_PICKER_ITEM_CLASS}">${beat}</span>`)
       .join("");
 
     this.pickerBeats.innerHTML = spans;
@@ -76,6 +86,13 @@ class BeatPicker {
     this.pickerBeats.appendChild(beatPickerAimElement);
   }
 
+  /**
+   * @name handleScroll
+   * @description
+   * Handles the scroll event, updates the metronome beat based on the center item of the picker,
+   * and checks if the metronome is in polyrhythm mode after a delay.
+   *
+   */
   public handleScroll(): void {
     let timeoutId: NodeJS.Timeout;
     const DELAY_IN_MS = 200;
@@ -87,9 +104,15 @@ class BeatPicker {
     }, DELAY_IN_MS);
   }
 
+  /**
+   * @name centerBeatOnLoad
+   * @description
+   * Centers a specific beat item on the picker and highlights it.
+   *
+   */
   public centerBeatOnLoad(): number {
     const verticalCenterItem = this.pickerBeats.querySelector(
-      `${BEAT_PICKER_ITEM_SELECTOR}:nth-of-type(${this.centerNumber - 1})`
+      `${BEAT_PICKER_ITEM_SELECTOR}:nth-of-type(${this.aimNumber - 1})`
     ) as HTMLElement;
 
     if (!verticalCenterItem) return 0;
@@ -107,6 +130,12 @@ class BeatPicker {
     return centerItemPositionY;
   }
 
+  /**
+   * @name highlightCenterItem
+   * @description
+   * Highlight the item in the center of a picker and remove the highlighting from other items.
+   *
+   */
   public highlightCenterItem(element: HTMLElement): HTMLElement | null {
     const pickerBounds = element.getBoundingClientRect();
     const centerLineY =
@@ -130,6 +159,12 @@ class BeatPicker {
     return centerItem || null;
   }
 
+  /**
+   * @name updateBeatBasedOnCenter
+   * @description
+   * Update the metronome beat based on the aimed item of the picker.
+   *
+   */
   public updateBeatBasedOnCenter(): void {
     const centerItem = this.highlightCenterItem(this.picker);
     if (this.picker === document.querySelector(AGAINST_BEAT_PICKER_SELECTOR)) {

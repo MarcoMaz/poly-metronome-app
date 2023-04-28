@@ -23,14 +23,14 @@ class BaseBeatPicker extends BeatPicker {
    * Define DOM Elements and Variables.
    */
   constructor(
-    el: string,
-    min: number,
-    max: number,
+    pickerType: "base",
+    beatMin: number,
+    beatMax: number,
     centerNumber: number,
     metronome: Metronome,
     modal: Modal
   ) {
-    super(el, min, max, centerNumber, metronome, modal);
+    super(pickerType, beatMin, beatMax, centerNumber, metronome, modal);
 
     this.otherPickerBeats = document.querySelector(
       AGAINST_BEAT_PICKER_BEATS_SELECTOR
@@ -48,7 +48,7 @@ class BaseBeatPicker extends BeatPicker {
    *
    */
   handleWheel(): void {
-    this.centerNumber = this.metronome.baseBeat;
+    this.aimNumber = this.metronome.baseBeat;
     this.handleClasses();
   }
 
