@@ -100,8 +100,10 @@ export const AGAINST_BEAT_PICKER_BEATS_SELECTOR =
   ".beatPicker--againstBeat > .beatPicker__beats";
 export const BASE_BEAT_PICKER_BEATS_SELECTOR =
   ".beatPicker--baseBeat > .beatPicker__beats";
-export const BEAT_PICKER_DOTS_SELECTOR = ".beatPicker__dots";
 export const BEAT_PICKER_ITEM_SELECTOR = ".beatPicker__item";
+export const AGAINST_BEAT_PICKER_ITEM_CENTER_SELECTOR = `${AGAINST_BEAT_PICKER_BEATS_SELECTOR} ${BEAT_PICKER_ITEM_SELECTOR}.-center`;
+export const BASE_BEAT_PICKER_ITEM_CENTER_SELECTOR = `${BASE_BEAT_PICKER_BEATS_SELECTOR} ${BEAT_PICKER_ITEM_SELECTOR}.-center`;
+export const BEAT_PICKER_DOTS_SELECTOR = ".beatPicker__dots";
 export const BEAT_PICKER_ITEM_CLASS = "beatPicker__item";
 export const BEAT_PICKER_FOCUS_CLASS = "-focus";
 export const BEATS_PICKER_CENTER_CLASS = "-center";

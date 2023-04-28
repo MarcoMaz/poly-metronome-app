@@ -1,19 +1,13 @@
 import {
+  AGAINST_BEAT_PICKER_BEATS_SELECTOR,
+  AGAINST_BEAT_PICKER_ITEM_CENTER_SELECTOR,
+  BASE_BEAT_PICKER_BEATS_SELECTOR,
+  BASE_BEAT_PICKER_ITEM_CENTER_SELECTOR,
   PLAY_BUTTON_SELECTOR,
   URL,
 } from "../../../../app/classes/base/constants";
 
-const AGAINST_BEAT_PICKER_ITEM_CENTER_SELECTOR =
-  ".beatPicker.beatPicker--againstBeat .beatPicker__beats .beatPicker__item.-center";
-const BASE_BEAT_PICKER_ITEM_CENTER_SELECTOR =
-  ".beatPicker.beatPicker--baseBeat .beatPicker__beats .beatPicker__item.-center";
-
-const AGAINST_BEAT_PICKER_BEATS_SELECTOR =
-  ".beatPicker.beatPicker--againstBeat .beatPicker__beats";
-const BASE_BEAT_PICKER_BEATS_SELECTOR =
-  ".beatPicker.beatPicker--baseBeat .beatPicker__beats";
-
-describe("Against Beat Picker", () => {
+describe("AgainstBeat Picker", () => {
   describe("on app loading", () => {
     beforeEach(() => {
       cy.visit(URL);
@@ -25,7 +19,7 @@ describe("Against Beat Picker", () => {
     it("should have no visible picker", () => {
       cy.get(AGAINST_BEAT_PICKER_BEATS_SELECTOR).should(
         "not.have.class",
-        "-open"
+        "-focus"
       );
     });
     it(`should center "2" on scroll up`, () => {
@@ -77,7 +71,7 @@ describe("Against Beat Picker", () => {
   });
 });
 
-describe("Base Beat Picker", () => {
+describe("BaseBeat Picker", () => {
   describe("on app loading", () => {
     beforeEach(() => {
       cy.visit(URL);
@@ -88,7 +82,7 @@ describe("Base Beat Picker", () => {
       cy.get(BASE_BEAT_PICKER_ITEM_CENTER_SELECTOR).should("have.text", "4");
     });
     it("should have a visible picker", () => {
-      cy.get(BASE_BEAT_PICKER_BEATS_SELECTOR).should("have.class", "-open");
+      cy.get(BASE_BEAT_PICKER_BEATS_SELECTOR).should("have.class", "-focus");
     });
     it(`should center the number "2" on scroll up`, () => {
       cy.get(BASE_BEAT_PICKER_BEATS_SELECTOR).scrollTo("top");

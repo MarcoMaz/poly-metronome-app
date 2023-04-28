@@ -9,3 +9,5 @@ import "./tapChip.cy";
 
 import "./muteButton.cy";
 import "./playButton.cy";
+
+import "./beatPicker.cy";
