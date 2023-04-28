@@ -6,7 +6,6 @@ import {
   SWITCH_BEATS_CHIP_SELECTOR,
   BEAT_PICKER_ITEM_SELECTOR,
   BEATS_PICKER_OPEN_CLASS,
-  BEATS_PICKER_CENTER_SELECTOR,
   BEATS_PICKER_CENTER_CLASS,
 } from "./base/constants";
 
@@ -44,24 +43,15 @@ class SwitchBeatsChip {
    * Switch the beats on click.
    *
    */
-  public handleSwitchBeatsClick(): void {
+  private handleSwitchBeatsClick(): void {
     [this.metronome.againstBeat, this.metronome.baseBeat] = [
       this.metronome.baseBeat,
       this.metronome.againstBeat,
     ];
 
-    const againstBeatPickerCenterNumber = this.againstBeatPicker.centerNumber;
-    const baseBeatPickerCenterNumber = this.baseBeatPicker.centerNumber;
+    this.toggleBeatPickers();
 
-    const elementsWithCenterClass = document.querySelectorAll(
-      BEATS_PICKER_CENTER_SELECTOR
-    );
-    elementsWithCenterClass.forEach((element) => {
-      element.classList.remove(BEATS_PICKER_CENTER_CLASS);
-    });
-
-    this.againstBeatPicker.centerNumber = baseBeatPickerCenterNumber;
-    this.baseBeatPicker.centerNumber = againstBeatPickerCenterNumber;
+    this.updateBeatPickerCenterNumbers();
 
     this.setPickerBeatCenterClass(
       this.againstBeatPicker.pickerBeats,
@@ -72,9 +62,16 @@ class SwitchBeatsChip {
       this.baseBeatPicker.centerNumber
     );
 
-    this.againstBeatPicker.centerBeatOnLoad();
-    this.baseBeatPicker.centerBeatOnLoad();
+    this.centerBeatsOnLoad();
+  }
 
+  /**
+   * @name toggleBeatPickers
+   * @description
+   * Toggle the visibility of two beat picker elements.
+   *
+   */
+  private toggleBeatPickers(): void {
     if (
       this.againstBeatPicker.pickerBeats.classList.contains(
         BEATS_PICKER_OPEN_CLASS
@@ -90,6 +87,28 @@ class SwitchBeatsChip {
     }
   }
 
+  /**
+   * @name updateBeatPickerCenterNumbers
+   * @description
+   * Update the center numbers of the beat pickers based on the current beat settings.
+   *
+   */
+  private updateBeatPickerCenterNumbers(): void {
+    const againstBeatPickerCenterNumber = this.againstBeatPicker.centerNumber;
+    const baseBeatPickerCenterNumber = this.baseBeatPicker.centerNumber;
+
+    [this.againstBeatPicker.centerNumber, this.baseBeatPicker.centerNumber] = [
+      baseBeatPickerCenterNumber,
+      againstBeatPickerCenterNumber,
+    ];
+  }
+
+  /**
+   * @name setPickerBeatCenterClass
+   * @description
+   * Set the center class for the current beat picker.
+   *
+   */
   private setPickerBeatCenterClass(
     picker: HTMLElement,
     centerNumber: number
@@ -99,6 +118,17 @@ class SwitchBeatsChip {
     })`;
     const centerNode = picker.querySelector(centerSelector);
     centerNode?.classList.add(BEATS_PICKER_CENTER_CLASS);
+  }
+
+  /**
+   * @name centerBeatsOnLoad
+   * @description
+   * Center the selected beats when the page loads.
+   *
+   */
+  private centerBeatsOnLoad(): void {
+    this.againstBeatPicker.centerBeatOnLoad();
+    this.baseBeatPicker.centerBeatOnLoad();
   }
 }
 

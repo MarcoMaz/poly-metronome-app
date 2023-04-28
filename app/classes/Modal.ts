@@ -14,7 +14,6 @@ import {
  * @param {HTMLElement} modal             - The modal element.
  * @param {HTMLElement} modalOverlay      - The modal overlay inside the modal.
  * @param {HTMLButtonElement} modalButton - The modal button inside the modal.
- * @param {void} documentClickListener    - The function listener attached to the document.
  *
  */
 

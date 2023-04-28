@@ -11,7 +11,7 @@ class AgainstBeatPicker extends BeatsPicker {
   public otherPickerBeats: HTMLElement;
 
   constructor(
-    el: string,
+    el: string, 
     min: number,
     max: number,
     centerNumber: number,
