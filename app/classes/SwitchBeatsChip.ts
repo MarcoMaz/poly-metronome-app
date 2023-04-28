@@ -55,11 +55,11 @@ class SwitchBeatsChip {
 
     this.setPickerBeatCenterClass(
       this.againstBeatPicker.pickerBeats,
-      this.againstBeatPicker.centerNumber
+      this.againstBeatPicker.aimNumber
     );
     this.setPickerBeatCenterClass(
       this.baseBeatPicker.pickerBeats,
-      this.baseBeatPicker.centerNumber
+      this.baseBeatPicker.aimNumber
     );
 
     this.centerBeatsOnLoad();
@@ -94,10 +94,10 @@ class SwitchBeatsChip {
    *
    */
   private updateBeatPickerCenterNumbers(): void {
-    const againstBeatPickerCenterNumber = this.againstBeatPicker.centerNumber;
-    const baseBeatPickerCenterNumber = this.baseBeatPicker.centerNumber;
+    const againstBeatPickerCenterNumber = this.againstBeatPicker.aimNumber;
+    const baseBeatPickerCenterNumber = this.baseBeatPicker.aimNumber;
 
-    [this.againstBeatPicker.centerNumber, this.baseBeatPicker.centerNumber] = [
+    [this.againstBeatPicker.aimNumber, this.baseBeatPicker.aimNumber] = [
       baseBeatPickerCenterNumber,
       againstBeatPickerCenterNumber,
     ];
