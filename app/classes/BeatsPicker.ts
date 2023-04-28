@@ -9,6 +9,7 @@ import {
   BEAT_PICKER_ITEM_SELECTOR,
   BEATS_PICKER_CENTER_CLASS,
   BEAT_PICKER_AIM_CLASS,
+  BEAT_PICKER_ITEM_CLASS
 } from "./base/constants";
 
 class BeatsPicker {
@@ -53,7 +54,7 @@ class BeatsPicker {
 
     const spans = missingNumbers
       .map(
-        (beat) => `<span class="${BEAT_PICKER_ITEM_SELECTOR}">${beat}</span>`
+        (beat) => `<span class="${BEAT_PICKER_ITEM_CLASS}">${beat}</span>`
       )
       .join("");
 

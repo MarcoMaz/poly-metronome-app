@@ -99,6 +99,7 @@ export const BASE_BEAT_PICKER_BEATS_SELECTOR =
   ".beatPicker--baseBeat > .beatPicker__beats";
 export const BEAT_PICKER_ITEM_SELECTOR = ".beatPicker__item";
 export const BEATS_PICKER_CENTER_SELECTOR = ".-center";
+export const BEAT_PICKER_ITEM_CLASS = "beatPicker__item";
 export const BEATS_PICKER_OPEN_CLASS = "-open";
 export const BEATS_PICKER_CENTER_CLASS = "-center";
 export const BEAT_PICKER_AIM_CLASS = "beatPicker__aim";
