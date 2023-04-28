@@ -33,20 +33,6 @@ export const TAB_SELECTION_PIPELINES = '[data-gui-container-tab="pipelines"]';
 export const TAB_SELECTION_GRID = '[data-gui-container-tab="grid"]';
 export const TAB_SELECTION_DOTS = '[data-gui-container-tab="square"]';
 
-// BeatsUi
-export const BEATS_CONTAINER = ".gui-controllers__beats-container";
-export const BEATS = ".gui-controllers__beats";
-export const AGAINST_BEAT = ".gui-controllers__against-beat";
-export const AGAINST_BEAT_PLUS_SELECTOR = `${AGAINST_BEAT}.gui-controllers__beat-plus`;
-export const AGAINST_BEAT_VALUE_SELECTOR = `${AGAINST_BEAT}.gui-controllers__beat-value`;
-export const AGAINST_BEAT_MINUS_SELECTOR = `${AGAINST_BEAT}.gui-controllers__beat-minus`;
-export const DOTS = ".gui-controllers__dots";
-export const BASE_BEAT = ".gui-controllers__base-beat";
-export const BASE_BEAT_PLUS_SELECTOR = `${BASE_BEAT}.gui-controllers__beat-plus`;
-export const BASE_BEAT_VALUE_SELECTOR = `${BASE_BEAT}.gui-controllers__beat-value`;
-export const BASE_BEAT_MINUS_SELECTOR = `${BASE_BEAT}.gui-controllers__beat-minus`;
-export const BEAT_MIN = 2;
-export const BEAT_MAX = 9;
 
 // BpmUi
 export const BPM_SELECTOR = ".gui-controllers__bpm";
@@ -92,6 +78,8 @@ export const MODAL_SECOND_MESSAGE_SELECTOR =
 export const MODAL_BUTTON_SELECTOR = ".Modal__button";
 
 // BeatPicker
+export const BEAT_MIN = 2;
+export const BEAT_MAX = 9;
 export const BEAT_PICKERS_CONTAINER_SELECTOR = ".beatPickers-container";
 export const AGAINST_BEAT_PICKER_SELECTOR = ".beatPicker--againstBeat";
 export const BASE_BEAT_PICKER_SELECTOR = ".beatPicker--baseBeat";
