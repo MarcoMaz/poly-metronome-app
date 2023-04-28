@@ -1,4 +1,4 @@
-import BeatPickers from "./BeatPickers";
+import BeatPicker from "./BeatPicker";
 import Metronome from "./Metronome";
 import Modal from "./Modal";
 
@@ -8,7 +8,7 @@ import {
 } from "./base/constants";
 
 /**
- * This sub class of BeatPickers represents the UI controlling the AgainstBeatPicker.
+ * This sub class of BeatPicker represents the UI controlling the AgainstBeatPicker.
  *
  * @name AgainstBeatPicker
  *
@@ -16,7 +16,7 @@ import {
  *
  */
 
-class AgainstBeatPicker extends BeatPickers {
+class AgainstBeatPicker extends BeatPicker {
   public otherPickerBeats: HTMLElement;
 
   constructor(

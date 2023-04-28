@@ -12,7 +12,18 @@ import {
   BEAT_PICKER_ITEM_CLASS
 } from "./base/constants";
 
-class BeatPickers {
+/**
+ * This class represents the base class for creating BeatPicker.
+ *
+ * @name BeatPicker
+ *
+ * @param {HTMLElement} modal             - The modal element.
+ * @param {HTMLElement} modalOverlay      - The modal overlay inside the modal.
+ * @param {HTMLButtonElement} modalButton - The modal button inside the modal.
+ *
+ */
+
+class BeatPicker {
   public picker: HTMLElement;
   public pickerBeats: HTMLElement;
 
@@ -129,4 +140,4 @@ class BeatPickers {
   }
 }
 
-export default BeatPickers;
+export default BeatPicker;
