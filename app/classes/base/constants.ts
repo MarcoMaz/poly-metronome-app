@@ -33,7 +33,6 @@ export const TAB_SELECTION_PIPELINES = '[data-gui-container-tab="pipelines"]';
 export const TAB_SELECTION_GRID = '[data-gui-container-tab="grid"]';
 export const TAB_SELECTION_DOTS = '[data-gui-container-tab="square"]';
 
-
 // BeatsUi
 export const BEATS_CONTAINER = ".gui-controllers__beats-container";
 export const BEATS = ".gui-controllers__beats";
@@ -86,8 +85,10 @@ export const MODAL_CONTENT_SELECTOR = ".Modal__content";
 export const MODAL_TITLE_SELECTOR = ".Modal__title";
 export const MODAL_SUPPORTING_TEXT_SELECTOR = ".Modal__supporting-text";
 export const MODAL_MESSAGES_SELECTOR = ".Modal__supporting-text > p";
-export const MODAL_FIRST_MESSAGE_SELECTOR = ".Modal__supporting-text p:nth-child(1)";
-export const MODAL_SECOND_MESSAGE_SELECTOR = ".Modal__supporting-text p:nth-child(2)";
+export const MODAL_FIRST_MESSAGE_SELECTOR =
+  ".Modal__supporting-text p:nth-child(1)";
+export const MODAL_SECOND_MESSAGE_SELECTOR =
+  ".Modal__supporting-text p:nth-child(2)";
 export const MODAL_BUTTON_SELECTOR = ".Modal__button";
 
 // BeatPicker
@@ -100,7 +101,7 @@ export const BASE_BEAT_PICKER_BEATS_SELECTOR =
 export const BEAT_PICKER_ITEM_SELECTOR = ".beatPicker__item";
 export const BEATS_PICKER_CENTER_SELECTOR = ".-center";
 export const BEAT_PICKER_ITEM_CLASS = "beatPicker__item";
-export const BEATS_PICKER_OPEN_CLASS = "-open";
+export const BEATS_PICKER_FOCUS_CLASS = "-focus";
 export const BEATS_PICKER_CENTER_CLASS = "-center";
 export const BEAT_PICKER_AIM_CLASS = "beatPicker__aim";
 

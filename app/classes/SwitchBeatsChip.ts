@@ -5,7 +5,7 @@ import Metronome from "./Metronome";
 import {
   SWITCH_BEATS_CHIP_SELECTOR,
   BEAT_PICKER_ITEM_SELECTOR,
-  BEATS_PICKER_OPEN_CLASS,
+  BEATS_PICKER_FOCUS_CLASS,
   BEATS_PICKER_CENTER_CLASS,
 } from "./base/constants";
 
@@ -68,22 +68,26 @@ class SwitchBeatsChip {
   /**
    * @name toggleBeatPickers
    * @description
-   * Toggle the visibility of two beat picker elements.
+   * Toggle the focus of the beat pickers.
    *
    */
   private toggleBeatPickers(): void {
     if (
       this.againstBeatPicker.pickerBeats.classList.contains(
-        BEATS_PICKER_OPEN_CLASS
+        BEATS_PICKER_FOCUS_CLASS
       )
     ) {
       this.againstBeatPicker.pickerBeats.classList.remove(
-        BEATS_PICKER_OPEN_CLASS
+        BEATS_PICKER_FOCUS_CLASS
       );
-      this.baseBeatPicker.pickerBeats.classList.add(BEATS_PICKER_OPEN_CLASS);
+      this.baseBeatPicker.pickerBeats.classList.add(BEATS_PICKER_FOCUS_CLASS);
     } else {
-      this.againstBeatPicker.pickerBeats.classList.add(BEATS_PICKER_OPEN_CLASS);
-      this.baseBeatPicker.pickerBeats.classList.remove(BEATS_PICKER_OPEN_CLASS);
+      this.againstBeatPicker.pickerBeats.classList.add(
+        BEATS_PICKER_FOCUS_CLASS
+      );
+      this.baseBeatPicker.pickerBeats.classList.remove(
+        BEATS_PICKER_FOCUS_CLASS
+      );
     }
   }
 

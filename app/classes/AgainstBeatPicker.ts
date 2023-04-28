@@ -4,7 +4,7 @@ import Modal from "./Modal";
 
 import {
   BASE_BEAT_PICKER_BEATS_SELECTOR,
-  BEATS_PICKER_OPEN_CLASS,
+  BEATS_PICKER_FOCUS_CLASS,
 } from "./base/constants";
 
 /**
@@ -56,19 +56,19 @@ class AgainstBeatPicker extends BeatPicker {
    *
    */
   handleClick(): void {
-    if (!this.pickerBeats.classList.contains(BEATS_PICKER_OPEN_CLASS))
+    if (!this.pickerBeats.classList.contains(BEATS_PICKER_FOCUS_CLASS))
       this.handleClasses();
   }
 
   /**
    * @name handleClasses
    * @description
-   * Add the "-open" class to the current picker and removes it from the other one.
+   * Add the "-focus" class to the current picker and removes it from the other one.
    *
    */
   handleClasses(): void {
-    this.pickerBeats.classList.add(BEATS_PICKER_OPEN_CLASS);
-    this.otherPickerBeats.classList.remove(BEATS_PICKER_OPEN_CLASS);
+    this.pickerBeats.classList.add(BEATS_PICKER_FOCUS_CLASS);
+    this.otherPickerBeats.classList.remove(BEATS_PICKER_FOCUS_CLASS);
   }
 }
 
