@@ -90,7 +90,7 @@ export const MODAL_FIRST_MESSAGE_SELECTOR = ".Modal__supporting-text p:nth-child
 export const MODAL_SECOND_MESSAGE_SELECTOR = ".Modal__supporting-text p:nth-child(2)";
 export const MODAL_BUTTON_SELECTOR = ".Modal__button";
 
-// BeatsPicker
+// BeatPickers
 export const AGAINST_BEAT_PICKER_SELECTOR = ".beatPicker--againstBeat";
 export const BASE_BEAT_PICKER_SELECTOR = ".beatPicker--baseBeat";
 export const AGAINST_BEAT_PICKER_BEATS_SELECTOR =

@@ -12,7 +12,7 @@ import {
   BEAT_PICKER_ITEM_CLASS
 } from "./base/constants";
 
-class BeatsPicker {
+class BeatPickers {
   public picker: HTMLElement;
   public pickerBeats: HTMLElement;
 
@@ -129,4 +129,4 @@ class BeatsPicker {
   }
 }
 
-export default BeatsPicker;
+export default BeatPickers;
