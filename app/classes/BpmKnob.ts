@@ -7,7 +7,6 @@ let isDragging = false;
 // CSS Fix because the orig
 const CSSOriginFix = 90; // The Css Origins is different from the Trigonometry origin
 
-
 class BpmKnob {
   knobRange: any;
   knobElement: any;
@@ -25,11 +24,11 @@ class BpmKnob {
   knobContainer: any;
 
   constructor(){
-    this.knobRange = document.querySelector('.knob__range');
-    this.knobElement = document.querySelector('.knob');
-    this.knobTrack = document.querySelector(".knob__track");
-    this.knobBall = document.querySelector('.knob__ball');
-    this.knobContainer = document.querySelector(".knob-container");
+    this.knobRange = document.querySelector('.BpmKnob__range');
+    this.knobElement = document.querySelector('.BpmKnob');
+    this.knobTrack = document.querySelector(".BpmKnob__track");
+    this.knobBall = document.querySelector('.BpmKnob__ball');
+    this.knobContainer = document.querySelector(".BpmKnob-container");
 
     // Knob Element
     this.knobElementRect = this.knobElement.getBoundingClientRect();
@@ -82,7 +81,7 @@ class BpmKnob {
     this.knobBall.style.background = !isDragging ? inactiveColor : activeColor;
     
       // Update the knob text
-    const knobText = document.querySelector('.knob__text');
+    const knobText = document.querySelector('.BpmKnob__text');
     knobText.textContent = `${bpmValue} BPM`;
   }
     
