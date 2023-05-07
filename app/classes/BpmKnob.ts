@@ -1,72 +1,103 @@
-let xValue = 40;
-let startX: number;
-let startY: number;
-let startAngle: number;
-let isDragging = false;
+// CSS Fix because the Css Origins is different from the Trigonometry origin.
+const CSS_ORIGIN_FIX = 90;
 
-// CSS Fix because the Css Origins is different from the Trigonometry origin
-const CSSOriginFix = 90;
+const BPM_KNOB_CONTAINER_SELECTOR = ".BpmKnob-container";
+const BPM_KNOB_SELECTOR = ".BpmKnob";
+const BPM_KNOB_INNER_TRACK_SELECTOR = ".BpmKnob__track";
+const BPM_KNOB_BALL_SELECTOR = ".BpmKnob__ball";
+const BPM_KNOB_RANGE_SELECTOR = ".BpmKnob__range";
+const BPM_KNOB_TEXT_SELECTOR = ".BpmKnob__text";
 
 class BpmKnob {
-  knobContainer: any;
-  knobElement: any;
-  knobTrack: any;
-  knobBall: any;
-  knobRange: any;
-  knobText: any;
+  bpmKnobContainer: HTMLDivElement;
+  bpmKnobRange: HTMLDivElement;
+  bpmKnobTrack: HTMLDivElement;
+  bpmKnobBall: HTMLDivElement;
+  bpmKnobElement: HTMLDivElement;
+  bpmKnobText: HTMLDivElement;
+  isDragging: boolean;
+  xValue: number;
+  startX: number;
+  startY: number;
+  startAngle: number;
 
   constructor() {
-    this.knobContainer = document.querySelector(".BpmKnob-container");
-    this.knobElement = document.querySelector(".BpmKnob");
-    this.knobTrack = document.querySelector(".BpmKnob__track");
-    this.knobBall = document.querySelector(".BpmKnob__ball");
-    this.knobRange = document.querySelector(".BpmKnob__range");
-    this.knobText = document.querySelector(".BpmKnob__text");
+    this.bpmKnobContainer = document.querySelector(BPM_KNOB_CONTAINER_SELECTOR);
+    this.bpmKnobElement =
+      this.bpmKnobContainer.querySelector(BPM_KNOB_SELECTOR);
+    this.bpmKnobTrack = this.bpmKnobContainer.querySelector(
+      BPM_KNOB_INNER_TRACK_SELECTOR
+    );
+    this.bpmKnobBall = this.bpmKnobContainer.querySelector(
+      BPM_KNOB_BALL_SELECTOR
+    );
+    this.bpmKnobRange = this.bpmKnobContainer.querySelector(
+      BPM_KNOB_RANGE_SELECTOR
+    );
+    this.bpmKnobText = this.bpmKnobContainer.querySelector(
+      BPM_KNOB_TEXT_SELECTOR
+    );
+    this.isDragging = false;
+    this.xValue = 40;
+    this.startX = null;
+    this.startY = null;
+    this.startAngle = null;
 
     // Events
-    this.knobRange.addEventListener("change", (e: any) => {
-      xValue = e.target.value;
-      this.updateKnob();
-    });
+    this.bpmKnobRange.addEventListener("change", this.handleChange.bind(this));
+    this.bpmKnobContainer.addEventListener(
+      "touchstart",
+      this.handleTouchStart.bind(this)
+    );
+    this.bpmKnobContainer.addEventListener(
+      "touchmove",
+      this.handleTouchMove.bind(this)
+    );
+    this.bpmKnobContainer.addEventListener(
+      "touchend",
+      this.handleTouchEnd.bind(this)
+    );
+    this.bpmKnobContainer.addEventListener(
+      "keydown",
+      this.handleKeyDown.bind(this)
+    );
+    this.bpmKnobContainer.addEventListener(
+      "keyup",
+      this.handleKeyUp.bind(this)
+    );
 
-    this.knobContainer.addEventListener("touchstart", this.handleTouchStart);
-    this.knobContainer.addEventListener("touchmove", this.handleTouchMove);
-    this.knobContainer.addEventListener("touchend", this.handleTouchEnd);
-    this.knobContainer.addEventListener("keydown", this.handleKeyDown);
-    this.knobContainer.addEventListener("keyup", this.handleTouchEnd);
-
-    // Initialize the knob
+    // Initialize the component
     this.updateKnob();
   }
 
   private updateKnob() {
-    // Knob Element
-    const knobElementRect = this.knobElement.getBoundingClientRect();
-    const knobElementCenterX = knobElementRect.width / 2;
-    const knobElementCenterY = knobElementRect.height / 2;
-    const knobElementRadius = knobElementRect.width / 2;
-
     // Knob Ball
-    const knobBallRect = this.knobBall.getBoundingClientRect();
+    const knobBallRect = this.bpmKnobBall.getBoundingClientRect();
     const knobBallWidth = knobBallRect.width;
     const knobBallHeight = knobBallRect.height;
     const knobBallCenterX = knobBallWidth / 2;
     const knobBallCenterY = knobBallHeight / 2;
 
+    // Knob Element
+    const knobElementRect = this.bpmKnobElement.getBoundingClientRect();
+    const knobElementCenterX = knobElementRect.width / 2;
+    const knobElementCenterY = knobElementRect.height / 2;
+    const knobElementRadius = knobElementRect.width / 2;
+
     const inactiveColor = "lightseagreen";
     const activeColor = "blue";
 
-    const bpmValue = Math.round((xValue / 100) * 270) + 30;
+    const bpmValue = Math.round((this.xValue / 100) * 270) + 30;
 
-    this.knobRange.setAttribute("value", xValue);
-    this.knobTrack.style.backgroundImage = `conic-gradient(${
-      !isDragging ? inactiveColor : activeColor
-    } ${xValue}%, transparent ${xValue}%)`;
-    const valueInDegrees = (xValue * 360) / 100 - CSSOriginFix;
+    this.bpmKnobRange.setAttribute("value", String(this.xValue));
+    this.bpmKnobTrack.style.backgroundImage = `conic-gradient(${
+      !this.isDragging ? inactiveColor : activeColor
+    } ${this.xValue}%, transparent ${this.xValue}%)`;
+    const valueInDegrees = (this.xValue * 360) / 100 - CSS_ORIGIN_FIX;
     const angleInRadians = (valueInDegrees * Math.PI) / 180;
 
     // Ball (x, y)
-    let knobBallX =
+    const knobBallX =
       knobElementCenterX +
       knobElementRadius * Math.cos(angleInRadians) -
       knobBallCenterX;
@@ -76,73 +107,98 @@ class BpmKnob {
       knobBallCenterY;
 
     // Position The Ball
-    this.knobBall.style.left = `${knobBallX}px`;
-    this.knobBall.style.top = `${knobBallY}px`;
-    this.knobBall.style.background = !isDragging ? inactiveColor : activeColor;
+    this.bpmKnobBall.style.left = `${knobBallX}px`;
+    this.bpmKnobBall.style.top = `${knobBallY}px`;
+    this.bpmKnobBall.style.background = !this.isDragging
+      ? inactiveColor
+      : activeColor;
 
     // Update the knob text
-    this.knobText.textContent = `${bpmValue} BPM`;
+    this.bpmKnobText.textContent = `${bpmValue} BPM`;
   }
 
-  private handleTouchStart(event: any) {
+  private handleChange(event: Event) {
+    let eventTarget = event.target as HTMLInputElement;
+    this.xValue = Number(eventTarget.value);
+    this.updateKnob();
+  }
+
+  private handleTouchStart(event: TouchEvent) {
     // get the starting X and Y coordinates of the touch
-    startX = event.touches[0].clientX;
-    startY = event.touches[0].clientY;
+    this.startX = event.touches[0].clientX;
+    this.startY = event.touches[0].clientY;
 
     // calculate the initial angle between the touch and the knob
     let dx =
-      this.knobElement.offsetLeft + this.knobElement.offsetWidth / 2 - startX;
+      this.bpmKnobElement.offsetLeft +
+      this.bpmKnobElement.offsetWidth / 2 -
+      this.startX;
     let dy =
-      this.knobElement.offsetTop + this.knobElement.offsetHeight / 2 - startY;
-    startAngle = Math.atan2(dy, dx);
+      this.bpmKnobElement.offsetTop +
+      this.bpmKnobElement.offsetHeight / 2 -
+      this.startY;
+    this.startAngle = Math.atan2(dy, dx);
 
-    isDragging = true;
+    this.startDrag();
   }
 
-  private handleTouchMove(event: any) {
-    let knobRect = this.knobElement.getBoundingClientRect();
+  private handleTouchMove(event: TouchEvent) {
+    let knobRect = this.bpmKnobElement.getBoundingClientRect();
 
     let dx = knobRect.left + knobRect.width / 2 - event.touches[0].clientX;
     let dy = knobRect.top + knobRect.height / 2 - event.touches[0].clientY;
     let currentAngle = Math.atan2(dy, dx);
 
-    let deltaAngle = currentAngle - startAngle;
+    let deltaAngle = currentAngle - this.startAngle;
     let direction = deltaAngle > 0 ? "clockwise" : "anticlockwise";
 
     let knobRange = 101; // the range of values that the knob can take
     let deltaValue = (knobRange * deltaAngle) / (2 * Math.PI); // scale the change in angle to the knob range
 
     let newValue =
-      Number(xValue) +
+      this.xValue +
       (direction === "clockwise"
         ? Math.ceil(deltaValue)
         : Math.floor(deltaValue));
 
     if (newValue < 0) {
-      startAngle += 2 * Math.PI;
+      this.startAngle += 2 * Math.PI;
       newValue = 0;
     } else if (newValue >= knobRange) {
-      startAngle = startAngle + (direction === "clockwise" ? -2 : 2) * Math.PI;
+      this.startAngle =
+        this.startAngle + (direction === "clockwise" ? -2 : 2) * Math.PI;
       newValue = 100;
     } else {
-      xValue = newValue;
+      this.xValue = newValue;
     }
 
     this.updateKnob();
 
     // reset the starting X and Y coordinates and the initial angle for the next touch
-    startX = event.touches[0].clientX;
-    startY = event.touches[0].clientY;
-    startAngle = currentAngle;
+    this.startX = event.touches[0].clientX;
+    this.startY = event.touches[0].clientY;
+    this.startAngle = currentAngle;
   }
 
   private handleTouchEnd() {
-    isDragging = false;
-    this.updateKnob();
+    this.endDrag();
   }
 
   private handleKeyDown() {
-    isDragging = true;
+    this.startDrag();
+  }
+
+  private handleKeyUp() {
+    this.endDrag();
+  }
+
+  private startDrag() {
+    this.isDragging = true;
+  }
+
+  private endDrag() {
+    this.isDragging = false;
+    this.updateKnob();
   }
 }
 
