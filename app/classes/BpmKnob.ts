@@ -114,7 +114,7 @@ class BpmKnob {
       : BPM_KNOB_ACTIVE_COLOR;
 
     // Update the knob text
-    this.bpmKnobText.textContent = `${bpmValue} BPM`;
+    this.bpmKnobText.innerHTML = `${bpmValue} <span>BPM</span>`;
   }
 
   private handleChange(event: Event) {

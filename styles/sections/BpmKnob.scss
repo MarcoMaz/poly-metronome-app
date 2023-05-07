@@ -56,14 +56,18 @@ $bpmKnobTextSize: 6rem;
   &__text {
     align-items: center;
     display: flex;
+    flex-direction: column;
     font-size: 3rem;
     height: $bpmKnobTextSize;
     justify-content: center;
     left: calc(50% - $bpmKnobTextSize / 2);
-    line-height: 0.8;
+    line-height: .8;
     position: absolute;
-    text-align: center;
     top: calc(50% - $bpmKnobTextSize / 2);
     width: $bpmKnobTextSize;
+
+    span {
+      font-size: 2rem;
+    }
   }
 }
