@@ -8,6 +8,9 @@ const BPM_KNOB_BALL_SELECTOR = ".BpmKnob__ball";
 const BPM_KNOB_RANGE_SELECTOR = ".BpmKnob__range";
 const BPM_KNOB_TEXT_SELECTOR = ".BpmKnob__text";
 
+const BPM_KNOB_INACTIVE_COLOR = "#d1d1d1";
+const BPM_KNOB_ACTIVE_COLOR = "#151515";
+
 class BpmKnob {
   bpmKnobContainer: HTMLDivElement;
   bpmKnobRange: HTMLDivElement;
@@ -84,14 +87,11 @@ class BpmKnob {
     const knobElementCenterY = knobElementRect.height / 2;
     const knobElementRadius = knobElementRect.width / 2;
 
-    const inactiveColor = "lightseagreen";
-    const activeColor = "blue";
-
     const bpmValue = Math.round((this.xValue / 100) * 270) + 30;
 
     this.bpmKnobRange.setAttribute("value", String(this.xValue));
     this.bpmKnobTrack.style.backgroundImage = `conic-gradient(${
-      !this.isDragging ? inactiveColor : activeColor
+      !this.isDragging ? BPM_KNOB_INACTIVE_COLOR : BPM_KNOB_ACTIVE_COLOR
     } ${this.xValue}%, transparent ${this.xValue}%)`;
     const valueInDegrees = (this.xValue * 360) / 100 - CSS_ORIGIN_FIX;
     const angleInRadians = (valueInDegrees * Math.PI) / 180;
@@ -110,8 +110,8 @@ class BpmKnob {
     this.bpmKnobBall.style.left = `${knobBallX}px`;
     this.bpmKnobBall.style.top = `${knobBallY}px`;
     this.bpmKnobBall.style.background = !this.isDragging
-      ? inactiveColor
-      : activeColor;
+      ? BPM_KNOB_INACTIVE_COLOR
+      : BPM_KNOB_ACTIVE_COLOR;
 
     // Update the knob text
     this.bpmKnobText.textContent = `${bpmValue} BPM`;
