@@ -1,0 +1,59 @@
+.knob-container {
+  align-items: center;
+  display: flex;
+  height: 700px;
+  justify-content: center;
+  width: 500px;
+}
+
+input {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.knob {
+  border: 1px solid;
+  border-radius: 50%;
+  height: 300px;
+  position: relative;
+  width: 300px;
+  margin: 2rem;
+
+  &__range {
+    margin-top: 3rem;
+    width: 300px;
+  }
+
+  &__track {
+    box-sizing: border-box;
+    border-radius: 50%;
+    display: block;
+    height: 310px;
+    left: -5px;
+    position: relative;
+    top: -5px;
+    width: 310px;
+
+    &::after {
+      background: white;
+      border-radius: inherit;
+      content: "";
+      height: calc(100% - 20px);
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: calc(100% - 20px);
+    }
+  }
+
+  &__ball {
+    border-radius: 50%;
+    height: 1px;
+    position: absolute;
+    width: 1px;
+    padding: 12px;
+    z-index: 1;
+  }
+}

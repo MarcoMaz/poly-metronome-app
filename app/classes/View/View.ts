@@ -13,6 +13,7 @@ import AgainstBeatPicker from "../AgainstBeatPicker";
 import BaseBeatPicker from "../BaseBeatPicker";
 
 import { BEAT_MAX, BEAT_MIN } from "../base/constants";
+import BpmKnob from "../BpmKnob";
 
 /**
  * This class controls the DOM elements with user interactions.
@@ -42,6 +43,7 @@ class View {
   private muteButton: MuteButton;
   private againstBeatPicker: AgainstBeatPicker;
   private baseBeatPicker: AgainstBeatPicker;
+  bpmKnob: BpmKnob;
 
   /**
    * Define DOM Elements
@@ -71,6 +73,7 @@ class View {
       this.againstBeatPicker,
       this.baseBeatPicker
     );
+    this.bpmKnob = new BpmKnob();
     this.tapChip = new TapChip(this.metronome, this.bpm);
     this.muteButton = new MuteButton(this.engine);
     this.playButton = new PlayButton(this.muteButton, this.engine);
