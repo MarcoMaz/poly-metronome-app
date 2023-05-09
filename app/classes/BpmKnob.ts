@@ -1,25 +1,25 @@
-// CSS Fix because the Css Origins is different from the Trigonometry origin.
-const CSS_ORIGIN_FIX = 90;
-
+const CSS_ORIGIN_FIX = 90; // CSS Fix because the Css Origins is different from the Trigonometry origin.
 const BPM_KNOB_CONTAINER_SELECTOR = ".BpmKnob-container";
 const BPM_KNOB_SELECTOR = ".BpmKnob";
 const BPM_KNOB_INNER_TRACK_SELECTOR = ".BpmKnob__track";
 const BPM_KNOB_BALL_SELECTOR = ".BpmKnob__ball";
 const BPM_KNOB_RANGE_SELECTOR = ".BpmKnob__range";
 const BPM_KNOB_TEXT_SELECTOR = ".BpmKnob__text";
-
 const BPM_KNOB_INACTIVE_COLOR = "#d1d1d1";
 const BPM_KNOB_ACTIVE_COLOR = "#151515";
 
+const BPM_MIN = 30;
+const BPM_MAX = 300;
+
 class BpmKnob {
   bpmKnobContainer: HTMLDivElement;
-  bpmKnobRange: HTMLDivElement;
+  bpmKnobRange: HTMLInputElement;
   bpmKnobTrack: HTMLDivElement;
   bpmKnobBall: HTMLDivElement;
   bpmKnobElement: HTMLDivElement;
   bpmKnobText: HTMLDivElement;
   isDragging: boolean;
-  xValue: number;
+  bpmKnobValue: number;
   startX: number;
   startY: number;
   startAngle: number;
@@ -41,7 +41,7 @@ class BpmKnob {
       BPM_KNOB_TEXT_SELECTOR
     );
     this.isDragging = false;
-    this.xValue = 40;
+    this.bpmKnobValue = 120;
     this.startX = null;
     this.startY = null;
     this.startAngle = null;
@@ -87,13 +87,13 @@ class BpmKnob {
     const knobElementCenterY = knobElementRect.height / 2;
     const knobElementRadius = knobElementRect.width / 2;
 
-    const bpmValue = Math.round((this.xValue / 100) * 270) + 30;
+    const knobPercentageFilled =
+      (Number(this.bpmKnobValue) - BPM_MIN) / ((BPM_MAX - BPM_MIN) / 100);
 
-    this.bpmKnobRange.setAttribute("value", String(this.xValue));
     this.bpmKnobTrack.style.backgroundImage = `conic-gradient(${
       !this.isDragging ? BPM_KNOB_INACTIVE_COLOR : BPM_KNOB_ACTIVE_COLOR
-    } ${this.xValue}%, transparent ${this.xValue}%)`;
-    const valueInDegrees = (this.xValue * 360) / 100 - CSS_ORIGIN_FIX;
+    } ${knobPercentageFilled}%, transparent ${knobPercentageFilled}%)`;
+    const valueInDegrees = (knobPercentageFilled * 360) / 100 - CSS_ORIGIN_FIX;
     const angleInRadians = (valueInDegrees * Math.PI) / 180;
 
     // Ball (x, y)
@@ -114,12 +114,14 @@ class BpmKnob {
       : BPM_KNOB_ACTIVE_COLOR;
 
     // Update the knob text
-    this.bpmKnobText.innerHTML = `${bpmValue} <span>BPM</span>`;
+    this.bpmKnobText.innerHTML = `${this.bpmKnobValue} <span>BPM</span>`;
+    // Update the knob value attribute
+    this.bpmKnobRange.setAttribute("value", String(this.bpmKnobValue));
   }
 
   private handleChange(event: Event) {
     let eventTarget = event.target as HTMLInputElement;
-    this.xValue = Number(eventTarget.value);
+    this.bpmKnobValue = Number(eventTarget.value);
     this.updateKnob();
   }
 
@@ -152,24 +154,24 @@ class BpmKnob {
     let deltaAngle = currentAngle - this.startAngle;
     let direction = deltaAngle > 0 ? "clockwise" : "anticlockwise";
 
-    let knobRange = 101; // the range of values that the knob can take
+    let knobRange = BPM_MAX + 1; // the range of values that the knob can take
     let deltaValue = (knobRange * deltaAngle) / (2 * Math.PI); // scale the change in angle to the knob range
 
     let newValue =
-      this.xValue +
+      this.bpmKnobValue +
       (direction === "clockwise"
         ? Math.ceil(deltaValue)
         : Math.floor(deltaValue));
 
-    if (newValue < 0) {
+    if (newValue < BPM_MIN) {
       this.startAngle += 2 * Math.PI;
-      newValue = 0;
+      newValue = BPM_MIN;
     } else if (newValue >= knobRange) {
       this.startAngle =
         this.startAngle + (direction === "clockwise" ? -2 : 2) * Math.PI;
-      newValue = 100;
+      newValue = BPM_MAX;
     } else {
-      this.xValue = newValue;
+      this.bpmKnobValue = newValue;
     }
 
     this.updateKnob();
