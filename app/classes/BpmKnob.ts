@@ -20,7 +20,7 @@ class BpmKnob {
   bpmKnobRange: HTMLInputElement;
   bpmKnobText: HTMLDivElement;
   isDragging: boolean;
-  bpmKnobValue: number;
+  currentBPM: number;
   startX: number;
   startY: number;
   startAngle: number;
@@ -42,7 +42,7 @@ class BpmKnob {
       BPM_KNOB_TEXT_SELECTOR
     );
     this.isDragging = false;
-    this.bpmKnobValue = 120;
+    this.currentBPM = 120;
     this.startX = null;
     this.startY = null;
     this.startAngle = null;
@@ -89,7 +89,7 @@ class BpmKnob {
     const knobElementRadius = knobElementRect.width / 2;
 
     const knobPercentageFilled =
-      (Number(this.bpmKnobValue) - BPM_MIN) / ((BPM_MAX - BPM_MIN) / 100);
+      (Number(this.currentBPM) - BPM_MIN) / ((BPM_MAX - BPM_MIN) / 100);
 
     this.bpmKnobTrack.style.backgroundImage = `conic-gradient(${
       !this.isDragging ? BPM_KNOB_INACTIVE_COLOR : BPM_KNOB_ACTIVE_COLOR
@@ -117,14 +117,14 @@ class BpmKnob {
       : BPM_KNOB_ACTIVE_COLOR;
 
     // Update the knob text
-    this.bpmKnobText.innerHTML = `${this.bpmKnobValue} <span>BPM</span>`;
+    this.bpmKnobText.innerHTML = `${this.currentBPM} <span>BPM</span>`;
     // Update the knob value attribute
-    this.bpmKnobRange.setAttribute("value", String(this.bpmKnobValue));
+    this.bpmKnobRange.setAttribute("value", String(this.currentBPM));
   }
 
   private handleChange(event: Event) {
     let eventTarget = event.target as HTMLInputElement;
-    this.bpmKnobValue = Number(eventTarget.value);
+    this.currentBPM = Number(eventTarget.value);
     this.updateKnob();
   }
 
@@ -161,7 +161,7 @@ class BpmKnob {
     let deltaValue = (knobRange * deltaAngle) / (2 * Math.PI); // scale the change in angle to the knob range
 
     let newValue =
-      this.bpmKnobValue +
+      this.currentBPM +
       (direction === "clockwise"
         ? Math.ceil(deltaValue)
         : Math.floor(deltaValue));
@@ -174,7 +174,7 @@ class BpmKnob {
         this.startAngle + (direction === "clockwise" ? -2 : 2) * Math.PI;
       newValue = BPM_MAX;
     } else {
-      this.bpmKnobValue = newValue;
+      this.currentBPM = newValue;
     }
 
     this.updateKnob();
