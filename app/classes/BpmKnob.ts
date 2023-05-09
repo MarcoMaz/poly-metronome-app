@@ -1,22 +1,23 @@
-const CSS_ORIGIN_FIX = 90; // CSS Fix because the Css Origins is different from the Trigonometry origin.
-const BPM_KNOB_CONTAINER_SELECTOR = ".BpmKnob-container";
-const BPM_KNOB_SELECTOR = ".BpmKnob";
-const BPM_KNOB_INNER_TRACK_SELECTOR = ".BpmKnob__track";
-const BPM_KNOB_BALL_SELECTOR = ".BpmKnob__ball";
-const BPM_KNOB_RANGE_SELECTOR = ".BpmKnob__range";
-const BPM_KNOB_TEXT_SELECTOR = ".BpmKnob__text";
-const BPM_KNOB_INACTIVE_COLOR = "#d1d1d1";
-const BPM_KNOB_ACTIVE_COLOR = "#151515";
-
-const BPM_MIN = 30;
-const BPM_MAX = 300;
+import {
+  BPM_KNOB_CSS_ORIGIN_FIX,
+  BPM_KNOB_CONTAINER_SELECTOR,
+  BPM_KNOB_SELECTOR,
+  BPM_KNOB_INNER_TRACK_SELECTOR,
+  BPM_KNOB_BALL_SELECTOR,
+  BPM_KNOB_RANGE_SELECTOR,
+  BPM_KNOB_TEXT_SELECTOR,
+  BPM_KNOB_INACTIVE_COLOR,
+  BPM_KNOB_ACTIVE_COLOR,
+  BPM_MIN,
+  BPM_MAX,
+} from "../classes/base/constants";
 
 class BpmKnob {
   bpmKnobContainer: HTMLDivElement;
-  bpmKnobRange: HTMLInputElement;
+  bpmKnobElement: HTMLDivElement;
   bpmKnobTrack: HTMLDivElement;
   bpmKnobBall: HTMLDivElement;
-  bpmKnobElement: HTMLDivElement;
+  bpmKnobRange: HTMLInputElement;
   bpmKnobText: HTMLDivElement;
   isDragging: boolean;
   bpmKnobValue: number;
@@ -93,7 +94,9 @@ class BpmKnob {
     this.bpmKnobTrack.style.backgroundImage = `conic-gradient(${
       !this.isDragging ? BPM_KNOB_INACTIVE_COLOR : BPM_KNOB_ACTIVE_COLOR
     } ${knobPercentageFilled}%, transparent ${knobPercentageFilled}%)`;
-    const valueInDegrees = (knobPercentageFilled * 360) / 100 - CSS_ORIGIN_FIX;
+    // We need to align the Css Origin with the Trigonometry origin
+    const valueInDegrees =
+      (knobPercentageFilled * 360) / 100 - BPM_KNOB_CSS_ORIGIN_FIX;
     const angleInRadians = (valueInDegrees * Math.PI) / 180;
 
     // Ball (x, y)

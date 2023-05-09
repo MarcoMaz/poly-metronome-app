@@ -97,6 +97,17 @@ export const BEAT_PICKER_FOCUS_CLASS = "-focus";
 export const BEATS_PICKER_CENTER_CLASS = "-center";
 export const BEAT_PICKER_AIM_CLASS = "beatPicker__aim";
 
+// BpmKnob
+export const BPM_KNOB_CSS_ORIGIN_FIX = 90; 
+export const BPM_KNOB_CONTAINER_SELECTOR = ".BpmKnob-container";
+export const BPM_KNOB_SELECTOR = ".BpmKnob";
+export const BPM_KNOB_INNER_TRACK_SELECTOR = ".BpmKnob__track";
+export const BPM_KNOB_BALL_SELECTOR = ".BpmKnob__ball";
+export const BPM_KNOB_RANGE_SELECTOR = ".BpmKnob__range";
+export const BPM_KNOB_TEXT_SELECTOR = ".BpmKnob__text";
+export const BPM_KNOB_INACTIVE_COLOR = "#d1d1d1";
+export const BPM_KNOB_ACTIVE_COLOR = "#151515";
+
 // SwitchBeats
 export const SWITCH_BEATS_CHIP_SELECTOR = ".SwitchBeats";
 
