@@ -13,7 +13,7 @@ import {
 } from "../classes/base/constants";
 
 class BpmKnob {
-  bpmKnobContainer: HTMLDivElement;
+  el: HTMLDivElement;
   bpmKnobElement: HTMLDivElement;
   bpmKnobTrack: HTMLDivElement;
   bpmKnobBall: HTMLDivElement;
@@ -26,21 +26,12 @@ class BpmKnob {
   startAngle: number;
 
   constructor() {
-    this.bpmKnobContainer = document.querySelector(BPM_KNOB_CONTAINER_SELECTOR);
-    this.bpmKnobElement =
-      this.bpmKnobContainer.querySelector(BPM_KNOB_SELECTOR);
-    this.bpmKnobTrack = this.bpmKnobContainer.querySelector(
-      BPM_KNOB_INNER_TRACK_SELECTOR
-    );
-    this.bpmKnobBall = this.bpmKnobContainer.querySelector(
-      BPM_KNOB_BALL_SELECTOR
-    );
-    this.bpmKnobRange = this.bpmKnobContainer.querySelector(
-      BPM_KNOB_RANGE_SELECTOR
-    );
-    this.bpmKnobText = this.bpmKnobContainer.querySelector(
-      BPM_KNOB_TEXT_SELECTOR
-    );
+    this.el = document.querySelector(BPM_KNOB_CONTAINER_SELECTOR);
+    this.bpmKnobElement = this.el.querySelector(BPM_KNOB_SELECTOR);
+    this.bpmKnobTrack = this.el.querySelector(BPM_KNOB_INNER_TRACK_SELECTOR);
+    this.bpmKnobBall = this.el.querySelector(BPM_KNOB_BALL_SELECTOR);
+    this.bpmKnobRange = this.el.querySelector(BPM_KNOB_RANGE_SELECTOR);
+    this.bpmKnobText = this.el.querySelector(BPM_KNOB_TEXT_SELECTOR);
     this.isDragging = false;
     this.currentBPM = 120;
     this.startX = null;
@@ -48,27 +39,12 @@ class BpmKnob {
     this.startAngle = null;
 
     // Events
+    this.el.addEventListener("touchstart", this.handleTouchStart.bind(this));
+    this.el.addEventListener("touchmove", this.handleTouchMove.bind(this));
+    this.el.addEventListener("touchend", this.handleTouchEnd.bind(this));
+    this.el.addEventListener("keydown", this.handleKeyDown.bind(this));
+    this.el.addEventListener("keyup", this.handleKeyUp.bind(this));
     this.bpmKnobRange.addEventListener("change", this.handleChange.bind(this));
-    this.bpmKnobContainer.addEventListener(
-      "touchstart",
-      this.handleTouchStart.bind(this)
-    );
-    this.bpmKnobContainer.addEventListener(
-      "touchmove",
-      this.handleTouchMove.bind(this)
-    );
-    this.bpmKnobContainer.addEventListener(
-      "touchend",
-      this.handleTouchEnd.bind(this)
-    );
-    this.bpmKnobContainer.addEventListener(
-      "keydown",
-      this.handleKeyDown.bind(this)
-    );
-    this.bpmKnobContainer.addEventListener(
-      "keyup",
-      this.handleKeyUp.bind(this)
-    );
 
     // Initialize the component
     this.updateKnob();
