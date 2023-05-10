@@ -20,9 +20,9 @@ import {
  */
 
 class PlayButton {
-  playButton: HTMLButtonElement;
-  iconPlay: HTMLImageElement;
-  iconStop: HTMLImageElement;
+  private playButton: HTMLButtonElement;
+  private iconPlay: HTMLImageElement;
+  private iconStop: HTMLImageElement;
 
   /**
    * Define DOM Elements and Variables.

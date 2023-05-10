@@ -11,9 +11,7 @@
 
 class Metronome {
   public againstBeat: number;
-
   public baseBeat: number;
-
   public tempo: number;
 
   /**

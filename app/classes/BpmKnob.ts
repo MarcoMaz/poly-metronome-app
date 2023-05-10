@@ -32,16 +32,16 @@ import {
  */
 
 class BpmKnob {
-  el: HTMLDivElement;
-  bpmKnobElement: HTMLDivElement;
-  bpmKnobTrack: HTMLDivElement;
-  bpmKnobBall: HTMLDivElement;
-  bpmKnobRange: HTMLInputElement;
-  bpmKnobText: HTMLDivElement;
-  isDragging: boolean;
-  startX: number;
-  startY: number;
-  startAngle: number;
+  private el: HTMLDivElement;
+  private bpmKnobElement: HTMLDivElement;
+  private bpmKnobTrack: HTMLDivElement;
+  private bpmKnobBall: HTMLDivElement;
+  private bpmKnobRange: HTMLInputElement;
+  private bpmKnobText: HTMLDivElement;
+  private isDragging: boolean;
+  private startX: number;
+  private startY: number;
+  private startAngle: number;
 
   /**
    * Define DOM Elements and Variables.

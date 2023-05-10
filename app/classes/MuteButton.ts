@@ -17,8 +17,8 @@ import {
  */
 
 class MuteButton {
-  muteButton: HTMLButtonElement;
-  isSoundMuted: boolean;
+  private muteButton: HTMLButtonElement;
+  private isSoundMuted: boolean;
 
   /**
    * Define DOM Elements and Variables.

@@ -22,6 +22,7 @@ import BpmKnob from "../BpmKnob";
  *
  * @param {TabSelectionUi} tabSelection         - The UI controlling the tabs selection of the different type of metronome representation.
  * @param {BpmUi} bpm                           - The UI controlling the bpm of the metronome.
+ * @param {BpmKnob} BpmKnob                     - The UI controlling the bpm of the metronome.
  * @param {controllersContainerUi} controllers  - The UI controlling the app functionality.
  * @param {Modal} modal                         - The UI controlling the modal appearing when the user selects a combination which is not a polyrhythm.
  * @param {SwitchBeatsChip} switchBeatsChip     - The UI controlling the switchBeats chip.
@@ -43,7 +44,7 @@ class View {
   private muteButton: MuteButton;
   private againstBeatPicker: AgainstBeatPicker;
   private baseBeatPicker: AgainstBeatPicker;
-  bpmKnob: BpmKnob;
+  private bpmKnob: BpmKnob;
 
   /**
    * Define DOM Elements
