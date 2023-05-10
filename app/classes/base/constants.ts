@@ -104,6 +104,7 @@ export const BPM_KNOB_SELECTOR = ".BpmKnob";
 export const BPM_KNOB_INNER_TRACK_SELECTOR = ".BpmKnob__track";
 export const BPM_KNOB_BALL_SELECTOR = ".BpmKnob__ball";
 export const BPM_KNOB_RANGE_SELECTOR = ".BpmKnob__range";
+export const BPM_KNOB_LABEL_SELECTOR = ".BpmKnob__label";
 export const BPM_KNOB_TEXT_SELECTOR = ".BpmKnob__text";
 export const BPM_KNOB_INACTIVE_COLOR = "#d1d1d1";
 export const BPM_KNOB_ACTIVE_COLOR = "#151515";
