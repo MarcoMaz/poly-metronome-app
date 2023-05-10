@@ -42,7 +42,7 @@ class PlayButton {
    * Play or pause the app.
    *
    */
-  private togglePlay() {
+  private togglePlay(): void {
     app.isPlaying = !app.isPlaying;
 
     if (app.isPlaying) {
