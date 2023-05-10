@@ -28,17 +28,11 @@ interface NotesInQueue {
 
 class Engine {
   public current16thNote: number;
-
   public lookahead: number;
-
   private scheduleAheadTime: number;
-
   public nextNoteTime: number;
-
   private noteLength: number;
-
   public notesInQueue: NotesInQueue[];
-
   public gainNode: GainNode;
 
   /**
