@@ -1,3 +1,5 @@
+import Metronome from "./Metronome";
+
 import {
   BPM_KNOB_CSS_ORIGIN_FIX,
   BPM_KNOB_CONTAINER_SELECTOR,
@@ -20,12 +22,11 @@ class BpmKnob {
   bpmKnobRange: HTMLInputElement;
   bpmKnobText: HTMLDivElement;
   isDragging: boolean;
-  currentBPM: number;
   startX: number;
   startY: number;
   startAngle: number;
 
-  constructor() {
+  constructor(public metronome: Metronome) {
     this.el = document.querySelector(BPM_KNOB_CONTAINER_SELECTOR);
     this.bpmKnobElement = this.el.querySelector(BPM_KNOB_SELECTOR);
     this.bpmKnobTrack = this.el.querySelector(BPM_KNOB_INNER_TRACK_SELECTOR);
@@ -33,7 +34,6 @@ class BpmKnob {
     this.bpmKnobRange = this.el.querySelector(BPM_KNOB_RANGE_SELECTOR);
     this.bpmKnobText = this.el.querySelector(BPM_KNOB_TEXT_SELECTOR);
     this.isDragging = false;
-    this.currentBPM = 120;
     this.startX = null;
     this.startY = null;
     this.startAngle = null;
@@ -65,7 +65,7 @@ class BpmKnob {
     const knobElementRadius = knobElementRect.width / 2;
 
     const knobPercentageFilled =
-      (Number(this.currentBPM) - BPM_MIN) / ((BPM_MAX - BPM_MIN) / 100);
+      (Number(this.metronome.tempo) - BPM_MIN) / ((BPM_MAX - BPM_MIN) / 100);
 
     this.bpmKnobTrack.style.backgroundImage = `conic-gradient(${
       !this.isDragging ? BPM_KNOB_INACTIVE_COLOR : BPM_KNOB_ACTIVE_COLOR
@@ -93,14 +93,14 @@ class BpmKnob {
       : BPM_KNOB_ACTIVE_COLOR;
 
     // Update the knob text
-    this.bpmKnobText.innerHTML = `${this.currentBPM} <span>BPM</span>`;
+    this.bpmKnobText.innerHTML = `${this.metronome.tempo} <span>BPM</span>`;
     // Update the knob value attribute
-    this.bpmKnobRange.setAttribute("value", String(this.currentBPM));
+    this.bpmKnobRange.setAttribute("value", String(this.metronome.tempo));
   }
 
   private handleChange(event: Event) {
     let eventTarget = event.target as HTMLInputElement;
-    this.currentBPM = Number(eventTarget.value);
+    this.metronome.tempo = Number(eventTarget.value);
     this.updateKnob();
   }
 
@@ -137,7 +137,7 @@ class BpmKnob {
     let deltaValue = (knobRange * deltaAngle) / (2 * Math.PI); // scale the change in angle to the knob range
 
     let newValue =
-      this.currentBPM +
+      this.metronome.tempo +
       (direction === "clockwise"
         ? Math.ceil(deltaValue)
         : Math.floor(deltaValue));
@@ -150,7 +150,7 @@ class BpmKnob {
         this.startAngle + (direction === "clockwise" ? -2 : 2) * Math.PI;
       newValue = BPM_MAX;
     } else {
-      this.currentBPM = newValue;
+      this.metronome.tempo = newValue;
     }
 
     this.updateKnob();
