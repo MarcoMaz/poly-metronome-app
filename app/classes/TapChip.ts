@@ -1,3 +1,4 @@
+import BpmKnob from "./BpmKnob";
 import Metronome from "./Metronome";
 import BpmUi from "./View/GuiControllers/BpmUi";
 
@@ -32,7 +33,7 @@ class TapChip {
   /**
    * Define DOM Elements and Variables.
    */
-  constructor(public metronome: Metronome, public bpm: BpmUi) {
+  constructor(public metronome: Metronome, public bpmKnob: BpmKnob) {
     this.tapChip = document.querySelector(TAP_CHIP_SELECTOR);
     this.newTap = 0;
     this.lastTap = 0;
@@ -121,8 +122,9 @@ class TapChip {
    *
    */
   private updateBpmUi(): void {
-    this.bpm.bpmValue.value = this.metronome.tempo.toString();
-    this.bpm.bpmValue.setAttribute("value", this.metronome.tempo.toString());
+    this.bpmKnob.bpmKnobRange.value = this.metronome.tempo.toString();
+    this.bpmKnob.bpmKnobRange.setAttribute("value", this.metronome.tempo.toString());
+    this.bpmKnob.updateKnob();
   }
 }
 

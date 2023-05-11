@@ -75,7 +75,7 @@ class View {
       this.baseBeatPicker
     );
     this.bpmKnob = new BpmKnob(this.metronome);
-    this.tapChip = new TapChip(this.metronome, this.bpm);
+    this.tapChip = new TapChip(this.metronome, this.bpmKnob);
     this.muteButton = new MuteButton(this.engine);
     this.playButton = new PlayButton(this.muteButton, this.engine);
   }

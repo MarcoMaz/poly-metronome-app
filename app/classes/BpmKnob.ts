@@ -36,7 +36,7 @@ class BpmKnob {
   private bpmKnobElement: HTMLDivElement;
   private bpmKnobTrack: HTMLDivElement;
   private bpmKnobBall: HTMLDivElement;
-  private bpmKnobRange: HTMLInputElement;
+  public bpmKnobRange: HTMLInputElement;
   private bpmKnobText: HTMLDivElement;
   private isDragging: boolean;
   private startX: number;
@@ -76,7 +76,7 @@ class BpmKnob {
    * Update the position and appearance of the knob based on the current tempo value.
    *
    */
-  private updateKnob(): void {
+  public updateKnob(): void {
     // Knob Ball
     const knobBallRect = this.bpmKnobBall.getBoundingClientRect();
     const knobBallWidth = knobBallRect.width;
