@@ -67,6 +67,7 @@ export const MODAL_BUTTON_SELECTOR = ".Modal__button";
 
 // ControllerPanel
 export const CONTROLLER_PANEL_SELECTOR = ".ControllerPanel";
+export const CONTROLLER_PANEL_BUTTONS_SELECTOR = ".ControllerPanel__buttons";
 export const CONTROLLER_PANEL_BUTTON_SELECTOR = ".ControllerPanel__button";
 export const CONTROLLER_PANEL_PANE_SELECTOR = ".ControllerPanel__pane";
 export const CONTROLLER_PANEL_ACTIVE_SELECTOR = ".-active";
