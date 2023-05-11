@@ -1,6 +1,5 @@
 import Engine from "../Engine";
 import Metronome from "../Metronome";
-import BpmUi from "./GuiControllers/BpmUi";
 import TabSelectionUi from "./GuiContainer/TabSelectionUi";
 
 // Refactor styling
@@ -11,9 +10,9 @@ import PlayButton from "../PlayButton";
 import MuteButton from "../MuteButton";
 import AgainstBeatPicker from "../AgainstBeatPicker";
 import BaseBeatPicker from "../BaseBeatPicker";
+import BpmKnob from "../BpmKnob";
 
 import { BEAT_MAX, BEAT_MIN } from "../base/constants";
-import BpmKnob from "../BpmKnob";
 
 /**
  * This class controls the DOM elements with user interactions.
@@ -36,7 +35,6 @@ import BpmKnob from "../BpmKnob";
 
 class View {
   public tabSelection: TabSelectionUi;
-  private bpm: BpmUi;
   private modal: Modal;
   private switchBeatsChip: SwitchBeatsChip;
   private tapChip: TapChip;
@@ -52,7 +50,6 @@ class View {
   constructor(public metronome: Metronome, public engine: Engine) {
     this.tabSelection = new TabSelectionUi();
     this.modal = new Modal();
-    this.bpm = new BpmUi(this.metronome);
     this.againstBeatPicker = new AgainstBeatPicker(
       "against",
       BEAT_MIN,

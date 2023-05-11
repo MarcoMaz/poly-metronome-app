@@ -1,6 +1,5 @@
 import BpmKnob from "./BpmKnob";
 import Metronome from "./Metronome";
-import BpmUi from "./View/GuiControllers/BpmUi";
 
 import { BPM_MIN, TAP_CHIP_SELECTOR, SIXTY_SECONDS } from "./base/constants";
 

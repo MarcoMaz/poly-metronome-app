@@ -33,18 +33,6 @@ export const TAB_SELECTION_PIPELINES = '[data-gui-container-tab="pipelines"]';
 export const TAB_SELECTION_GRID = '[data-gui-container-tab="grid"]';
 export const TAB_SELECTION_DOTS = '[data-gui-container-tab="square"]';
 
-
-// BpmUi
-export const BPM_SELECTOR = ".gui-controllers__bpm";
-export const BPM_MINUS_1_SELECTOR = `${BPM_SELECTOR}.gui-controllers__bpm-minus--1`;
-export const BPM_MINUS_5_SELECTOR = `${BPM_SELECTOR}.gui-controllers__bpm-minus--5`;
-export const BPM_PLUS_1_SELECTOR = `${BPM_SELECTOR}.gui-controllers__bpm-plus--1`;
-export const BPM_PLUS_5_SELECTOR = `${BPM_SELECTOR}.gui-controllers__bpm-plus--5`;
-export const BPM_VALUE_SELECTOR = `${BPM_SELECTOR}.gui-controllers__bpm-value--number`;
-export const BPM_VALUE_SELECTOR_LABEL = `${BPM_SELECTOR}.gui-controllers__bpm-value > label`;
-export const BPM_MIN = 30;
-export const BPM_MAX = 300;
-
 // Engine
 export const ENGINE_SMALL_DELAY = 0.25;
 export const ENGINE_FREQUENCIES_BEAT_ONE = 880.0;
@@ -98,6 +86,8 @@ export const BEATS_PICKER_CENTER_CLASS = "-center";
 export const BEAT_PICKER_AIM_CLASS = "beatPicker__aim";
 
 // BpmKnob
+export const BPM_MIN = 30;
+export const BPM_MAX = 300;
 export const BPM_KNOB_CSS_ORIGIN_FIX = 90; 
 export const BPM_KNOB_CONTAINER_SELECTOR = ".BpmKnob-container";
 export const BPM_KNOB_SELECTOR = ".BpmKnob";
