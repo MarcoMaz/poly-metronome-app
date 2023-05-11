@@ -65,6 +65,14 @@ export const MODAL_SECOND_MESSAGE_SELECTOR =
   ".Modal__supporting-text p:nth-child(2)";
 export const MODAL_BUTTON_SELECTOR = ".Modal__button";
 
+// ControllerPanel
+export const CONTROLLER_PANEL_SELECTOR = ".ControllerPanel";
+export const CONTROLLER_PANEL_BUTTON_SELECTOR = ".ControllerPanel__button";
+export const CONTROLLER_PANEL_PANE_SELECTOR = ".ControllerPanel__pane";
+export const CONTROLLER_PANEL_ACTIVE_SELECTOR = ".-active";
+export const CONTROLLER_PANEL_ACTIVE_CLASS = "-active";
+export const CONTROLLER_PANEL_SHOW_CLASS = "-show";
+
 // BeatPicker
 export const BEAT_MIN = 2;
 export const BEAT_MAX = 9;
