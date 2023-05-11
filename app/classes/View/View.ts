@@ -11,6 +11,7 @@ import MuteButton from "../MuteButton";
 import AgainstBeatPicker from "../AgainstBeatPicker";
 import BaseBeatPicker from "../BaseBeatPicker";
 import BpmKnob from "../BpmKnob";
+import ControllerPanel from "../ControllerPanel";
 
 import { BEAT_MAX, BEAT_MIN } from "../base/constants";
 
@@ -30,6 +31,7 @@ import { BEAT_MAX, BEAT_MIN } from "../base/constants";
  * @param {MuteButton} muteButton               - The UI controlling the mute chip.
  * @param {AgainstBeatPicker} againstBeatPicker - The UI controlling the againstBeatPicker.
  * @param {BaseBeatPicker} baseBeatPicker       - The UI controlling the baseBeatPicker.
+ * @param {ControllerPanel} controllerPanel     - The UI controlling the controllerPanels.
  *
  */
 
@@ -43,6 +45,7 @@ class View {
   private againstBeatPicker: AgainstBeatPicker;
   private baseBeatPicker: AgainstBeatPicker;
   private bpmKnob: BpmKnob;
+  private controllerPanel: ControllerPanel;
 
   /**
    * Define DOM Elements
@@ -73,6 +76,7 @@ class View {
     );
     this.bpmKnob = new BpmKnob(this.metronome);
     this.tapChip = new TapChip(this.metronome, this.bpmKnob);
+    this.controllerPanel = new ControllerPanel();
     this.muteButton = new MuteButton(this.engine);
     this.playButton = new PlayButton(this.muteButton, this.engine);
   }

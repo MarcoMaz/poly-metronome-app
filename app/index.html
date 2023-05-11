@@ -59,35 +59,46 @@
         </ol>
         <canvas class="gui-container__canvas"></canvas>
       </div>
-      <div class="BpmKnob-container">
-        <div class="BpmKnob">
-          <div class="BpmKnob__track"></div>
-          <div class="BpmKnob__ball"></div>
-          <input
-            type="range"
-            id="BpmKnob__range"
-            class="BpmKnob__range"
-            name="bpm knob range"
-            min="30"
-            max="300"
-            value="120"
-            step="1"
-          />
-          <label for="bpm knob range" class="BpmKnob__label"></label>
-          <div class="BpmKnob__text"></div>
+      <div class="ControllerPanel">
+        <div class="ControllerPanel__buttons">
+          <button type="button" class="ControllerPanel__button ControllerPanel__button--bpm -active">Bpm</button>
+          <button type="button" class="ControllerPanel__button ControllerPanel__button--beats">Beats</button>
+        </div>
+        <div class="ControllerPanel__pane -show">
+          <div class="BpmKnob-container">
+            <div class="BpmKnob">
+              <div class="BpmKnob__track"></div>
+              <div class="BpmKnob__ball"></div>
+              <input
+                type="range"
+                id="BpmKnob__range"
+                class="BpmKnob__range"
+                name="bpm knob range"
+                min="30"
+                max="300"
+                value="120"
+                step="1"
+              />
+              <label for="bpm knob range" class="BpmKnob__label"></label>
+              <div class="BpmKnob__text"></div>
+            </div>
+          </div>
+          <button class="Chip Tap" type="button">TAP</button>
+        </div>
+        <div class="ControllerPanel__pane">
+          <div class="beatPickers-container">
+            <div class="beatPicker beatPicker--againstBeat">
+              <div class="beatPicker__beats"></div>
+            </div>
+            <span class="beatPicker__dots">:</span>
+            <div class="beatPicker beatPicker--baseBeat">
+              <div class="beatPicker__beats -focus"></div>
+            </div>
+          </div>
+          <button class="Chip SwitchBeats" type="button">SWITCH BEATS</button>
+        </div>
         </div>
       </div>
-      <div class="beatPickers-container">
-        <div class="beatPicker beatPicker--againstBeat">
-          <div class="beatPicker__beats"></div>
-        </div>
-        <span class="beatPicker__dots">:</span>
-        <div class="beatPicker beatPicker--baseBeat">
-          <div class="beatPicker__beats -focus"></div>
-        </div>
-      </div>
-      <button class="Chip SwitchBeats" type="button">SWITCH BEATS</button>
-      <button class="Chip Tap" type="button">TAP</button>
       <footer class="Footer">
         <button type="button" class="Mute">SOUND:</button>
         <button type="button" class="Play">
