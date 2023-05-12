@@ -50,8 +50,15 @@ class ControllerPanel {
       }
       button.classList.add(CONTROLLER_PANEL_ACTIVE_CLASS);
 
-      this.panels.forEach((panel: HTMLElement) => {
-        panel.classList.toggle(CONTROLLER_PANEL_SHOW_CLASS);
+      const buttonIndex = Array.from(button.parentNode.children).indexOf(
+        button
+      );
+      this.panels.forEach((panel: HTMLElement, i: number) => {
+        if (i === buttonIndex) {
+          panel.classList.add(CONTROLLER_PANEL_SHOW_CLASS);
+        } else {
+          panel.classList.remove(CONTROLLER_PANEL_SHOW_CLASS);
+        }
       });
     }
   }
