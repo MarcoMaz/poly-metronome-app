@@ -3,7 +3,7 @@ import {
   CANVAS_PICKER_BUTTON_SELECTOR,
   CANVAS_PICKER_SELECTED_CLASS,
   CANVAS_PICKER_SELECTED_DEFAULT,
-} from "../base/constants";
+} from "./base/constants";
 
 /**
  * This class represents the UI controlling the Canvas picker

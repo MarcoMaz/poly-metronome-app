@@ -1,6 +1,6 @@
 import Engine from "../Engine";
 import Metronome from "../Metronome";
-import CanvasPicker from "./CanvasPicker";
+import CanvasPicker from "../CanvasPicker";
 
 // Refactor styling
 import Modal from "../Modal";
