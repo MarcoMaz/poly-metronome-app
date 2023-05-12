@@ -1,6 +1,6 @@
 import Engine from "../Engine";
 import Metronome from "../Metronome";
-import TabSelectionUi from "./GuiContainer/TabSelectionUi";
+import TabSelectionUi from "./TabSelectionUi";
 
 // Refactor styling
 import Modal from "../Modal";

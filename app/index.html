@@ -18,63 +18,61 @@
       <header>
         <div class="Logo">Poly <span>Tock</span></div>
       </header>
-      <div class="gui-container">
-        <ol class="gui-container__tab-selection">
-          <li>
-            <button 
-              class="gui-container__tab -selected"
-              data-gui-container-tab="square"
-              type="button"
-            >
-              <img
-                src="./images/square-icon.svg"
-                alt="icon square"
-              />
-              <span>Square</span>
-            </button>
-          </li>
-          <li>
-            <button
-              class="gui-container__tab"
-              data-gui-container-tab="line"
-              type="button"
-            >
-              <img
-                src="./images/line-icon.svg"
-                alt="icon line"
-              />
-              <span>Line</span>
-            </button>
-          </li>
-          <li>
-            <button
-              class="gui-container__tab"
-              data-gui-container-tab="grid"
-              type="button"
-            >
-              <img
-                src="./images/grid-icon.svg"
-                alt="icon grid"
-              />
-              <span>Grid</span>
-            </button>
-          </li>
-          <li>
-            <button
-              class="gui-container__tab"
-              data-gui-container-tab="dot"
-              type="button"
-            >
-              <img
-                src="./images/dot-icon.svg"
-                alt="icon dot"
-              />
-              <span>Dot</span>
-            </button>
-          </li>
-        </ol>
-        <canvas class="gui-container__canvas"></canvas>
-      </div>
+      <ol class="CanvasPicker">
+        <li>
+          <button 
+            class="CanvasPicker__button -selected"
+            data-canvas-picker-button="square"
+            type="button"
+          >
+            <img
+              src="./images/square-icon.svg"
+              alt="icon square"
+            />
+            <span>Square</span>
+          </button>
+        </li>
+        <li>
+          <button
+            class="CanvasPicker__button"
+            data-canvas-picker-button="line"
+            type="button"
+          >
+            <img
+              src="./images/line-icon.svg"
+              alt="icon line"
+            />
+            <span>Line</span>
+          </button>
+        </li>
+        <li>
+          <button
+            class="CanvasPicker__button"
+            data-canvas-picker-button="grid"
+            type="button"
+          >
+            <img
+              src="./images/grid-icon.svg"
+              alt="icon grid"
+            />
+            <span>Grid</span>
+          </button>
+        </li>
+        <li>
+          <button
+            class="CanvasPicker__button"
+            data-canvas-picker-button="dot"
+            type="button"
+          >
+            <img
+              src="./images/dot-icon.svg"
+              alt="icon dot"
+            />
+            <span>Dot</span>
+          </button>
+        </li>
+      </ol>
+      <canvas class="gui-container__canvas"></canvas>
       <div class="ControllerPanel">
         <div class="ControllerPanel__buttons">
           <button type="button" class="ControllerPanel__button ControllerPanel__button--bpm -active">Bpm</button>

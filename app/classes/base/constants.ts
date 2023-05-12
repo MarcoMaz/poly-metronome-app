@@ -24,14 +24,14 @@ export const SHAPE_DOT_START_ANGLE = 0;
 export const SHAPE_DOT_END_ANGLE = 2 * Math.PI;
 
 // TabSelectionUi
-export const TAB_SELECTION_SELECTOR = ".gui-container__tab-selection";
-export const TAB_SELECTOR = ".gui-container__tab";
+export const TAB_SELECTION_SELECTOR = ".CanvasPicker";
+export const TAB_SELECTOR = ".CanvasPicker__button";
 export const TAB_SELECTED_CLASS = "-selected";
 export const TAB_SELECTED_DEFAULT = "square";
-export const TAB_SELECTION_SQUARE = '[data-gui-container-tab="square"]';
-export const TAB_SELECTION_PIPELINES = '[data-gui-container-tab="line"]';
-export const TAB_SELECTION_GRID = '[data-gui-container-tab="grid"]';
-export const TAB_SELECTION_DOTS = '[data-gui-container-tab="square"]';
+export const TAB_SELECTION_SQUARE = '[data-canvas-picker-button="square"]';
+export const TAB_SELECTION_PIPELINES = '[data-canvas-picker-button="line"]';
+export const TAB_SELECTION_GRID = '[data-canvas-picker-button="grid"]';
+export const TAB_SELECTION_DOTS = '[data-canvas-picker-button="dot"]';
 
 // Engine
 export const ENGINE_SMALL_DELAY = 0.25;

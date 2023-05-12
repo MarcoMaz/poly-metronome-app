@@ -3,7 +3,7 @@ import {
   TAB_SELECTOR,
   TAB_SELECTED_CLASS,
   TAB_SELECTED_DEFAULT,
-} from "../../base/constants";
+} from "../base/constants";
 /**
  * This class represents the UI controlling the Tab Selection
  *
@@ -33,7 +33,7 @@ class TabSelectionUi {
         if (!option.classList.contains(TAB_SELECTED_CLASS)) {
           this.deselectAllTabs();
           option.classList.add(TAB_SELECTED_CLASS);
-          this.selected = option.dataset.guiContainerTab;
+          this.selected = option.dataset.canvasPickerButton;
         }
       });
     });
