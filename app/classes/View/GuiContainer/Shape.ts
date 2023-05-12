@@ -128,7 +128,7 @@ class Shape {
         this.canvasContext.fillRect(rectX, rectY, rectWidth, rectHeight);
         this.canvasContext.fill();
         break;
-      case "pipelines":
+      case "line":
         rectX = (this.size + padding) * this.index;
         rectWidth = this.size / 2;
         rectHeight = this.size * 2;
@@ -145,7 +145,7 @@ class Shape {
         this.canvasContext.fill();
         this.canvasContext.stroke();
         break;
-      case "dots":
+      case "dot":
         dotX = (this.size + padding) * this.index + this.size;
         dotRadius = this.size;
 

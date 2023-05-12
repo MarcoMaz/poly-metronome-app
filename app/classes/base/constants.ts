@@ -29,7 +29,7 @@ export const TAB_SELECTOR = ".gui-container__tab";
 export const TAB_SELECTED_CLASS = "-selected";
 export const TAB_SELECTED_DEFAULT = "square";
 export const TAB_SELECTION_SQUARE = '[data-gui-container-tab="square"]';
-export const TAB_SELECTION_PIPELINES = '[data-gui-container-tab="pipelines"]';
+export const TAB_SELECTION_PIPELINES = '[data-gui-container-tab="line"]';
 export const TAB_SELECTION_GRID = '[data-gui-container-tab="grid"]';
 export const TAB_SELECTION_DOTS = '[data-gui-container-tab="square"]';
 

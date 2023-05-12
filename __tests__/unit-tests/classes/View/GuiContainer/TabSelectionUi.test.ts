@@ -40,19 +40,19 @@ describe("Gui Container", () => {
           '[data-gui-container-tab="square"]'
         );
         const button2 = htmlPage.querySelector(
-          '[data-gui-container-tab="pipelines"]'
+          '[data-gui-container-tab="line"]'
         );
         const button3 = htmlPage.querySelector(
           '[data-gui-container-tab="grid"]'
         );
         const button4 = htmlPage.querySelector(
-          '[data-gui-container-tab="dots"]'
+          '[data-gui-container-tab="dot"]'
         );
 
-        expect(button1.textContent.trim()).toBe("Squares");
-        expect(button2.textContent.trim()).toBe("Pipelines");
+        expect(button1.textContent.trim()).toBe("Square");
+        expect(button2.textContent.trim()).toBe("Line");
         expect(button3.textContent.trim()).toBe("Grid");
-        expect(button4.textContent.trim()).toBe("Dots");
+        expect(button4.textContent.trim()).toBe("Dot");
       });
 
       test("is selected, if first", () => {
