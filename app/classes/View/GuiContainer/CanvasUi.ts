@@ -86,7 +86,7 @@ class CanvasUi {
         this.metronome,
         i,
         "against",
-        this.view.tabSelection.selected
+        this.view.canvasPicker.selected
       );
       this.againstBeatSquare.renderShape();
     }
@@ -99,7 +99,7 @@ class CanvasUi {
         this.metronome,
         j,
         "base",
-        this.view.tabSelection.selected
+        this.view.canvasPicker.selected
       );
       this.baseBeatSquare.renderShape();
     }
@@ -131,7 +131,7 @@ class CanvasUi {
         this.metronome,
         i,
         "against",
-        this.view.tabSelection.selected,
+        this.view.canvasPicker.selected,
         this.currentNote
       );
       this.againstBeatSquare.animateShape();
@@ -144,7 +144,7 @@ class CanvasUi {
         this.metronome,
         j,
         "base",
-        this.view.tabSelection.selected,
+        this.view.canvasPicker.selected,
         this.currentNote
       );
       this.baseBeatSquare.animateShape();

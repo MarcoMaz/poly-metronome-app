@@ -23,16 +23,6 @@ export const SHAPE_SIZE_DESKTOP = 32;
 export const SHAPE_DOT_START_ANGLE = 0;
 export const SHAPE_DOT_END_ANGLE = 2 * Math.PI;
 
-// TabSelectionUi
-export const TAB_SELECTION_SELECTOR = ".CanvasPicker";
-export const TAB_SELECTOR = ".CanvasPicker__button";
-export const TAB_SELECTED_CLASS = "-selected";
-export const TAB_SELECTED_DEFAULT = "square";
-export const TAB_SELECTION_SQUARE = '[data-canvas-picker-button="square"]';
-export const TAB_SELECTION_PIPELINES = '[data-canvas-picker-button="line"]';
-export const TAB_SELECTION_GRID = '[data-canvas-picker-button="grid"]';
-export const TAB_SELECTION_DOTS = '[data-canvas-picker-button="dot"]';
-
 // Engine
 export const ENGINE_SMALL_DELAY = 0.25;
 export const ENGINE_FREQUENCIES_BEAT_ONE = 880.0;
@@ -109,6 +99,16 @@ export const BPM_KNOB_LABEL_SELECTOR = ".BpmKnob__label";
 export const BPM_KNOB_TEXT_SELECTOR = ".BpmKnob__text";
 export const BPM_KNOB_INACTIVE_COLOR = "#d1d1d1";
 export const BPM_KNOB_ACTIVE_COLOR = "#151515";
+
+// CanvasPicker
+export const CANVAS_PICKER_SELECTOR = ".CanvasPicker";
+export const CANVAS_PICKER_BUTTON_SELECTOR = ".CanvasPicker__button";
+export const CANVAS_PICKER_SELECTED_CLASS = "-selected";
+export const CANVAS_PICKER_SELECTED_DEFAULT = "square";
+export const CANVAS_SELECTION_SQUARE = '[data-canvas-picker-button="square"]';
+export const CANVAS_SELECTION_PIPELINES = '[data-canvas-picker-button="line"]';
+export const CANVAS_SELECTION_GRID = '[data-canvas-picker-button="grid"]';
+export const CANVAS_SELECTION_DOTS = '[data-canvas-picker-button="dot"]';
 
 // SwitchBeats
 export const SWITCH_BEATS_CHIP_SELECTOR = ".SwitchBeats";

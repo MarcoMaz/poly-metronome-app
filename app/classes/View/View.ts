@@ -1,6 +1,6 @@
 import Engine from "../Engine";
 import Metronome from "../Metronome";
-import TabSelectionUi from "./TabSelectionUi";
+import CanvasPicker from "./CanvasPicker";
 
 // Refactor styling
 import Modal from "../Modal";
@@ -20,7 +20,7 @@ import { BEAT_MAX, BEAT_MIN } from "../base/constants";
  *
  * @name View
  *
- * @param {TabSelectionUi} tabSelection         - The UI controlling the tabs selection of the different type of metronome representation.
+ * @param {CanvasPicker} canvasPicker           - The UI controlling the buttons selection of the different type of metronome representation.
  * @param {BpmUi} bpm                           - The UI controlling the bpm of the metronome.
  * @param {BpmKnob} BpmKnob                     - The UI controlling the bpm of the metronome.
  * @param {controllersContainerUi} controllers  - The UI controlling the app functionality.
@@ -36,7 +36,7 @@ import { BEAT_MAX, BEAT_MIN } from "../base/constants";
  */
 
 class View {
-  public tabSelection: TabSelectionUi;
+  public canvasPicker: CanvasPicker;
   private modal: Modal;
   private switchBeatsChip: SwitchBeatsChip;
   private tapChip: TapChip;
@@ -51,7 +51,7 @@ class View {
    * Define DOM Elements
    */
   constructor(public metronome: Metronome, public engine: Engine) {
-    this.tabSelection = new TabSelectionUi();
+    this.canvasPicker = new CanvasPicker();
     this.modal = new Modal();
     this.againstBeatPicker = new AgainstBeatPicker(
       "against",

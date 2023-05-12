@@ -14,8 +14,7 @@ $border: 5px solid $colorBlack;
 @import "./sections/BpmKnob.scss";
 @import './sections/BeatPicker.scss';
 @import "./sections/ControllerSelector.scss";
-
-@import './sections/guiContainer.scss';
+@import './sections/CanvasPicker.scss';
 
 ol {
   margin: 0;
