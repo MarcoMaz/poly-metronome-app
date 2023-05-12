@@ -106,9 +106,9 @@ export const CANVAS_PICKER_BUTTON_SELECTOR = ".CanvasPicker__button";
 export const CANVAS_PICKER_SELECTED_CLASS = "-selected";
 export const CANVAS_PICKER_SELECTED_DEFAULT = "square";
 export const CANVAS_SELECTION_SQUARE = '[data-canvas-picker-button="square"]';
-export const CANVAS_SELECTION_PIPELINES = '[data-canvas-picker-button="line"]';
+export const CANVAS_SELECTION_LINE = '[data-canvas-picker-button="line"]';
 export const CANVAS_SELECTION_GRID = '[data-canvas-picker-button="grid"]';
-export const CANVAS_SELECTION_DOTS = '[data-canvas-picker-button="dot"]';
+export const CANVAS_SELECTION_DOT = '[data-canvas-picker-button="dot"]';
 
 // SwitchBeats
 export const SWITCH_BEATS_CHIP_SELECTOR = ".SwitchBeats";

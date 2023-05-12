@@ -4,9 +4,9 @@ import {
   CANVAS_PICKER_SELECTOR,
   CANVAS_PICKER_SELECTED_CLASS,
   CANVAS_SELECTION_SQUARE,
-  CANVAS_SELECTION_PIPELINES,
+  CANVAS_SELECTION_LINE,
   CANVAS_SELECTION_GRID,
-  CANVAS_SELECTION_DOTS,
+  CANVAS_SELECTION_DOT,
 } from "../../app/classes/base/constants";
 
 describe("Canvas Picker", () => {
@@ -40,9 +40,9 @@ describe("Canvas Picker", () => {
 
     it("has the correct label", () => {
       const button1 = htmlPage.querySelector(CANVAS_SELECTION_SQUARE);
-      const button2 = htmlPage.querySelector(CANVAS_SELECTION_PIPELINES);
+      const button2 = htmlPage.querySelector(CANVAS_SELECTION_LINE);
       const button3 = htmlPage.querySelector(CANVAS_SELECTION_GRID);
-      const button4 = htmlPage.querySelector(CANVAS_SELECTION_DOTS);
+      const button4 = htmlPage.querySelector(CANVAS_SELECTION_DOT);
 
       expect(button1.textContent.trim()).toBe("Square");
       expect(button2.textContent.trim()).toBe("Line");
