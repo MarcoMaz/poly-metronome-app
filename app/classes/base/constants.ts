@@ -1,7 +1,7 @@
 // CanvasUi
 export const CANVAS_SELECTOR = ".Canvas";
 export const CANVAS_PIXEL_WIDTH_PHONE = 350;
-export const CANVAS_PIXEL_HEIGHT_PHONE = 100;
+export const CANVAS_PIXEL_HEIGHT_PHONE = 130;
 export const CANVAS_PIXEL_WIDTH_TABLET = 450;
 export const CANVAS_PIXEL_HEIGHT_TABLET = 100;
 export const CANVAS_PIXEL_WIDTH_DESKTOP = 600;
@@ -17,7 +17,7 @@ export const SHAPE_ACTIVE_BEAT_COLOR_OTHER = "#d1d1d1";
 export const SHAPE_ACTIVE_BEAT_COLOR_CURRENT = "#151515";
 export const SHAPE_INACTIVE_BEAT_COLOR = "#EEEEEE";
 export const SHAPE_GRID_BORDER_COLOR = "#151515";
-export const SHAPE_SIZE_MOBILE = 16;
+export const SHAPE_SIZE_MOBILE = 25;
 export const SHAPE_SIZE_TABLET = 20;
 export const SHAPE_SIZE_DESKTOP = 32;
 export const SHAPE_DOT_START_ANGLE = 0;
