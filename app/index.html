@@ -75,10 +75,22 @@
       <canvas class="gui-container__canvas"></canvas>
       <div class="ControllerPanel">
         <div class="ControllerPanel__buttons">
-          <button type="button" class="ControllerPanel__button ControllerPanel__button--bpm -active">Bpm</button>
-          <button type="button" class="ControllerPanel__button ControllerPanel__button--beats">Beats</button>
+          <button type="button" class="ControllerPanel__button ControllerPanel__button--beats -active">Beats</button>
+          <button type="button" class="ControllerPanel__button ControllerPanel__button--bpm">Bpm</button>
         </div>
         <div class="ControllerPanel__pane -show">
+          <div class="beatPickers-container">
+            <div class="beatPicker beatPicker--againstBeat">
+              <div class="beatPicker__beats"></div>
+            </div>
+            <span class="beatPicker__dots">:</span>
+            <div class="beatPicker beatPicker--baseBeat">
+              <div class="beatPicker__beats -focus"></div>
+            </div>
+          </div>
+          <button class="Chip SwitchBeats" type="button">SWITCH BEATS</button>
+        </div>
+        <div class="ControllerPanel__pane">
           <div class="BpmKnob-container">
             <div class="BpmKnob">
               <div class="BpmKnob__track"></div>
@@ -99,19 +111,7 @@
           </div>
           <button class="Chip Tap" type="button">TAP</button>
         </div>
-        <div class="ControllerPanel__pane">
-          <div class="beatPickers-container">
-            <div class="beatPicker beatPicker--againstBeat">
-              <div class="beatPicker__beats"></div>
-            </div>
-            <span class="beatPicker__dots">:</span>
-            <div class="beatPicker beatPicker--baseBeat">
-              <div class="beatPicker__beats -focus"></div>
-            </div>
-          </div>
-          <button class="Chip SwitchBeats" type="button">SWITCH BEATS</button>
-        </div>
-        </div>
+      </div>
       </div>
       <footer class="Footer">
         <button type="button" class="Mute">SOUND:</button>

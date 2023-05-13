@@ -111,6 +111,16 @@ class BeatPicker {
    *
    */
   public centerBeatOnLoad(): number {
+    const grandParentElement = this.picker.parentElement.parentElement;
+    const isPickerVisible = window.getComputedStyle(grandParentElement).display !== 'none';
+
+    if (!isPickerVisible) {
+      requestAnimationFrame(() => {
+        this.centerBeatOnLoad();
+      });
+      return 0;
+    }
+  
     const verticalCenterItem = this.pickerBeats.querySelector(
       `${BEAT_PICKER_ITEM_SELECTOR}:nth-of-type(${this.aimNumber - 1})`
     ) as HTMLElement;

@@ -12,6 +12,7 @@ import {
   BPM_KNOB_ACTIVE_COLOR,
   BPM_MIN,
   BPM_MAX,
+  CONTROLLER_PANEL_SHOW_CLASS
 } from "../classes/base/constants";
 
 /**
@@ -66,8 +67,22 @@ class BpmKnob {
     this.el.addEventListener("keyup", this.handleKeyUp.bind(this));
     this.bpmKnobRange.addEventListener("change", this.handleChange.bind(this));
 
-    // Initialize the component
-    this.updateKnob();
+    // Initalize the component
+    this.showBpmKnobIfPanelVisible();
+  }
+
+  /**
+   * @name showBpmKnobIfPanelVisible
+   * @description
+   * Show the BpmKnob if the panel is visible.
+   *
+   */
+  private showBpmKnobIfPanelVisible(): void {
+    const parentElement = this.el.parentElement;
+    if (parentElement.classList.contains(CONTROLLER_PANEL_SHOW_CLASS)) {
+      this.updateKnob();
+    }
+    requestAnimationFrame(() => this.showBpmKnobIfPanelVisible());
   }
 
   /**
