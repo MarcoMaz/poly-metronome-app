@@ -17,102 +17,105 @@
     <div class="app">
       <header>
         <div class="Logo">Poly <span>Tock</span></div>
-      </header>
-      <ol class="CanvasPicker">
-        <li>
-          <button 
-            class="CanvasPicker__button -selected"
-            data-canvas-picker-button="square"
-            type="button"
-          >
-            <img
-              src="./images/square-icon.svg"
-              alt="icon square"
-            />
-            <span>Square</span>
-          </button>
-        </li>
-        <li>
-          <button
-            class="CanvasPicker__button"
-            data-canvas-picker-button="line"
-            type="button"
-          >
-            <img
-              src="./images/line-icon.svg"
-              alt="icon line"
-            />
-            <span>Line</span>
-          </button>
-        </li>
-        <li>
-          <button
-            class="CanvasPicker__button"
-            data-canvas-picker-button="grid"
-            type="button"
-          >
-            <img
-              src="./images/grid-icon.svg"
-              alt="icon grid"
-            />
-            <span>Grid</span>
-          </button>
-        </li>
-        <li>
-          <button
-            class="CanvasPicker__button"
-            data-canvas-picker-button="dot"
-            type="button"
-          >
-            <img
-              src="./images/dot-icon.svg"
-              alt="icon dot"
-            />
-            <span>Dot</span>
-          </button>
-        </li>
-      </ol>
-      <canvas class="Canvas"></canvas>
-      <div class="ControllerPanel">
-        <div class="ControllerPanel__buttons">
-          <button type="button" class="ControllerPanel__button ControllerPanel__button--beats -active">Beats</button>
-          <button type="button" class="ControllerPanel__button ControllerPanel__button--bpm">Bpm</button>
-        </div>
-        <div class="ControllerPanel__pane -show">
-          <div class="BeatPickers">
-            <div class="BeatPicker BeatPicker--againstBeat">
-              <div class="BeatPicker__beats"></div>
-            </div>
-            <span class="BeatPicker__dots">:</span>
-            <div class="BeatPicker BeatPicker--baseBeat">
-              <div class="BeatPicker__beats -focus"></div>
-            </div>
-          </div>
-          <button class="Chip SwitchBeats" type="button">SWITCH BEATS</button>
-        </div>
-        <div class="ControllerPanel__pane">
-          <div class="BpmKnob-container">
-            <div class="BpmKnob">
-              <div class="BpmKnob__track"></div>
-              <div class="BpmKnob__ball"></div>
-              <input
-                type="range"
-                id="BpmKnob__range"
-                class="BpmKnob__range"
-                name="bpm knob range"
-                min="30"
-                max="300"
-                value="120"
-                step="1"
+        <ol class="CanvasPicker">
+          <li>
+            <button 
+              class="CanvasPicker__button -selected"
+              data-canvas-picker-button="square"
+              type="button"
+            >
+              <img
+                src="./images/square-icon.svg"
+                alt="icon square"
               />
-              <label for="bpm knob range" class="BpmKnob__label"></label>
-              <div class="BpmKnob__text"></div>
-            </div>
+              <span>Square</span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="CanvasPicker__button"
+              data-canvas-picker-button="line"
+              type="button"
+            >
+              <img
+                src="./images/line-icon.svg"
+                alt="icon line"
+              />
+              <span>Line</span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="CanvasPicker__button"
+              data-canvas-picker-button="grid"
+              type="button"
+            >
+              <img
+                src="./images/grid-icon.svg"
+                alt="icon grid"
+              />
+              <span>Grid</span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="CanvasPicker__button"
+              data-canvas-picker-button="dot"
+              type="button"
+            >
+              <img
+                src="./images/dot-icon.svg"
+                alt="icon dot"
+              />
+              <span>Dot</span>
+            </button>
+          </li>
+        </ol>
+      </header>
+      <main>
+        <section>
+          <canvas class="Canvas"></canvas>
+        </section>
+        <section class="ControllerPanel">
+          <div class="ControllerPanel__buttons">
+            <button type="button" class="ControllerPanel__button ControllerPanel__button--beats -active">Beats</button>
+            <button type="button" class="ControllerPanel__button ControllerPanel__button--bpm">Bpm</button>
           </div>
-          <button class="Chip Tap" type="button">TAP</button>
-        </div>
-      </div>
-      </div>
+          <div class="ControllerPanel__pane -show">
+            <div class="BeatPickers">
+              <div class="BeatPicker BeatPicker--againstBeat">
+                <div class="BeatPicker__beats"></div>
+              </div>
+              <span class="BeatPicker__dots">:</span>
+              <div class="BeatPicker BeatPicker--baseBeat">
+                <div class="BeatPicker__beats -focus"></div>
+              </div>
+            </div>
+            <button class="Chip SwitchBeats" type="button">SWITCH BEATS</button>
+          </div>
+          <div class="ControllerPanel__pane">
+            <div class="BpmKnob-container">
+              <div class="BpmKnob">
+                <div class="BpmKnob__track"></div>
+                <div class="BpmKnob__ball"></div>
+                <input
+                  type="range"
+                  id="BpmKnob__range"
+                  class="BpmKnob__range"
+                  name="bpm knob range"
+                  min="30"
+                  max="300"
+                  value="120"
+                  step="1"
+                />
+                <label for="bpm knob range" class="BpmKnob__label"></label>
+                <div class="BpmKnob__text"></div>
+              </div>
+            </div>
+            <button class="Chip Tap" type="button">TAP</button>
+          </div>
+        </section>
+      </main>
       <footer class="Footer">
         <button type="button" class="Mute">SOUND:</button>
         <button type="button" class="Play">
@@ -128,20 +131,20 @@
           />
         </button>
       </footer>
-    </div>
-    <div class="Modal">
-      <div class="Modal__overlay"></div>
-      <div class="Modal__content">
-        <h1 class="Modal__title">Are you sure?</h1>
-        <div class="Modal__supporting-text">
-          <p class="Modal__message">
-            This is not a polyrhythm, because there is no overlapping or
-            interlocking between the two rhythms.
-          </p>
-          <p class="Modal__message">Please select at least another rhythm.</p>
+      <div class="Modal">
+        <div class="Modal__overlay"></div>
+        <div class="Modal__content">
+          <h1 class="Modal__title">Are you sure?</h1>
+          <div class="Modal__supporting-text">
+            <p class="Modal__message">
+              This is not a polyrhythm, because there is no overlapping or
+              interlocking between the two rhythms.
+            </p>
+            <p class="Modal__message">Please select at least another rhythm.</p>
+          </div>
+          <button type="button" class="Modal__button">OK</button>
         </div>
-        <button type="button" class="Modal__button">OK</button>
-      </div>
+      </div>  
     </div>
   </body>
 </html>
