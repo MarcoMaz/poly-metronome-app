@@ -1,19 +1,19 @@
-import Engine from "../Engine";
-import Metronome from "../Metronome";
-import CanvasPicker from "../CanvasPicker";
+import Engine from "./Engine";
+import Metronome from "./Metronome";
+import CanvasPicker from "./CanvasPicker";
 
 // Refactor styling
-import Modal from "../Modal";
-import SwitchBeatsChip from "../SwitchBeatsChip";
-import TapChip from "../TapChip";
-import PlayButton from "../PlayButton";
-import MuteButton from "../MuteButton";
-import AgainstBeatPicker from "../AgainstBeatPicker";
-import BaseBeatPicker from "../BaseBeatPicker";
-import BpmKnob from "../BpmKnob";
-import ControllerPanel from "../ControllerPanel";
+import Modal from "./Modal";
+import SwitchBeatsChip from "./SwitchBeatsChip";
+import TapChip from "./TapChip";
+import PlayButton from "./PlayButton";
+import MuteButton from "./MuteButton";
+import AgainstBeatPicker from "./AgainstBeatPicker";
+import BaseBeatPicker from "./BaseBeatPicker";
+import BpmKnob from "./BpmKnob";
+import ControllerPanel from "./ControllerPanel";
 
-import { BEAT_MAX, BEAT_MIN } from "../base/constants";
+import { BEAT_MAX, BEAT_MIN } from "./base/constants";
 
 /**
  * This class controls the DOM elements with user interactions.

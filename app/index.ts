@@ -1,7 +1,7 @@
 import Engine from "./classes/Engine";
-import View from "./classes/View/View";
+import View from "./classes/View";
 import Metronome from "./classes/Metronome";
-import CanvasUi from "./classes/View/GuiContainer/CanvasUi";
+import Canvas from "./classes/Canvas";
 
 import {
   APP_SOUND_DELAY,
@@ -30,7 +30,7 @@ class App {
   private view: View;
   private audioContext: AudioContext;
   private timerWorker: Worker;
-  private canvas: CanvasUi;
+  private canvas: Canvas;
 
   /**
    * Define variables.
@@ -41,7 +41,7 @@ class App {
     this.audioContext = new AudioContext();
     this.engine = new Engine(this.metronome, this.audioContext);
     this.view = new View(this.metronome, this.engine);
-    this.canvas = new CanvasUi(
+    this.canvas = new Canvas(
       this.metronome,
       this.engine,
       this.view,

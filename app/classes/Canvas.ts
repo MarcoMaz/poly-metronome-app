@@ -1,6 +1,6 @@
-import Engine from "../../Engine";
-import Metronome from "../../Metronome";
-import View from "../View";
+import Engine from "./Engine";
+import Metronome from "./Metronome";
+import View from "./View";
 import Shape from "./Shape";
 
 import {
@@ -14,11 +14,11 @@ import {
   DESKTOP_VIEWPORT,
   MOBILE_VIEWPORT,
   TABLET_VIEWPORT,
-} from '../../base/constants'
+} from './base/constants'
 /**
  * This class represents the UI controlling the canvas.
  *
- * @name CanvasUi
+ * @name Canvas
  *
  * @param {number} animation          - The canvas' animation.
  * @param {number} currentNote        - The current (16th) note playing.
@@ -29,7 +29,7 @@ import {
  *
  */
 
-class CanvasUi {
+class Canvas {
   animation: number;
   currentNote: number;
   againstBeatSquare: Shape;
@@ -189,4 +189,4 @@ class CanvasUi {
   }
 }
 
-export default CanvasUi;
+export default Canvas;

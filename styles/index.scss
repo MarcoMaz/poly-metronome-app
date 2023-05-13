@@ -1,20 +1,21 @@
-@import './base/typography.scss';
+// Base
 @import './base/colors.scss';
 @import './base/normalize.scss';
+@import './base/typography.scss';
 @import './base/viewports.scss';
 
 $border: 5px solid $colorBlack;
 
-// Refactor styling
+// Sections
+@import './sections/BeatPicker.scss';
+@import "./sections/BpmKnob.scss";
+@import './sections/CanvasPicker.scss';
+@import './sections/Chip.scss';
+@import "./sections/ControllerSelector.scss";
 @import './sections/Logo.scss';
 @import './sections/Modal.scss';
-@import './sections/Chip.scss';
-@import './sections/Play.scss';
 @import './sections/Mute.scss';
-@import "./sections/BpmKnob.scss";
-@import './sections/BeatPicker.scss';
-@import "./sections/ControllerSelector.scss";
-@import './sections/CanvasPicker.scss';
+@import './sections/Play.scss';
 
 ol {
   margin: 0;
@@ -36,6 +37,11 @@ body {
   justify-content: space-between;
 }
 
+.Canvas-container {
+  display: flex;
+  justify-content: center;
+}
+
 .Canvas {
   border: 1px solid black;
 }
@@ -50,3 +56,7 @@ body {
     padding: 5rem;
   }
 }
+
+// Mixins
+// @centerX = display flex, justify content center
+// @centerXY = display flex, justify content center, align items center

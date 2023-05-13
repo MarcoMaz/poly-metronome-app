@@ -1,4 +1,4 @@
-import Metronome from "../../Metronome";
+import Metronome from "./Metronome";
 import {
   BORDER_RADIUS,
   DESKTOP_VIEWPORT,
@@ -13,7 +13,7 @@ import {
   SHAPE_SIZE_DESKTOP,
   SHAPE_DOT_START_ANGLE,
   SHAPE_DOT_END_ANGLE,
-} from "../../base/constants";
+} from "./base/constants";
 
 /**
  * This class represents the shape of the beats' sequence.
