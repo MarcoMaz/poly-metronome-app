@@ -37,6 +37,10 @@ body {
   padding: 2rem;
 }
 
+.Canvas {
+  border: 1px solid black;
+}
+
 .Footer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

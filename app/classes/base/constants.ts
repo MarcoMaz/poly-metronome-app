@@ -1,5 +1,5 @@
 // CanvasUi
-export const CANVAS_SELECTOR = ".gui-container__canvas";
+export const CANVAS_SELECTOR = ".Canvas";
 export const CANVAS_PIXEL_WIDTH_PHONE = 350;
 export const CANVAS_PIXEL_HEIGHT_PHONE = 100;
 export const CANVAS_PIXEL_WIDTH_TABLET = 450;
