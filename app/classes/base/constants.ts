@@ -133,3 +133,4 @@ export const ONE_MINUTE_IN_SECONDS = 60.0;
 
 // Shared constants
 export const SHOW_CLASS = "-show";
+export const BORDER_RADIUS = 6;

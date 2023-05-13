@@ -1,5 +1,6 @@
 import Metronome from "../../Metronome";
 import {
+  BORDER_RADIUS,
   DESKTOP_VIEWPORT,
   MOBILE_VIEWPORT,
   TABLET_VIEWPORT,
@@ -86,11 +87,12 @@ class Shape {
     // General
     let padding: number;
 
-    // Squares / Pipelines
+    // Square / Line
     let rectX: number;
     let rectY: number;
     let rectHeight: number;
     let rectWidth: number;
+    let radii: number;
 
     // Grid
     let gridX: number;
@@ -98,7 +100,7 @@ class Shape {
     let gridHeight: number;
     let gridWidth: number;
 
-    // Dots
+    // Dot
     let dotX: number;
     let dotY: number;
     let dotRadius: number;
@@ -124,16 +126,20 @@ class Shape {
         rectX = (this.size + padding) * this.index;
         rectWidth = this.size * 2;
         rectHeight = rectWidth;
+        radii = BORDER_RADIUS;
 
-        this.canvasContext.fillRect(rectX, rectY, rectWidth, rectHeight);
+        this.canvasContext.beginPath();
+        this.canvasContext.roundRect(rectX, rectY, rectWidth, rectHeight, radii);
         this.canvasContext.fill();
         break;
       case "line":
         rectX = (this.size + padding) * this.index;
         rectWidth = this.size / 2;
         rectHeight = this.size * 2;
+        radii = BORDER_RADIUS;
 
-        this.canvasContext.fillRect(rectX, rectY, rectWidth, rectHeight);
+        this.canvasContext.beginPath();
+        this.canvasContext.roundRect(rectX, rectY, rectWidth, rectHeight, radii);
         this.canvasContext.fill();
         break;
       case "grid":
