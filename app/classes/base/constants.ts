@@ -69,22 +69,22 @@ export const CONTROLLER_PANEL_SHOW_CLASS = "-show";
 // BeatPicker
 export const BEAT_MIN = 2;
 export const BEAT_MAX = 9;
-export const BEAT_PICKERS_CONTAINER_SELECTOR = ".beatPickers-container";
-export const AGAINST_BEAT_PICKER_SELECTOR = ".beatPicker--againstBeat";
-export const BASE_BEAT_PICKER_SELECTOR = ".beatPicker--baseBeat";
-export const BEAT_PICKER_BEATS_SELECTOR = ".beatPicker__beats";
+export const BEAT_PICKERS_CONTAINER_SELECTOR = ".BeatPickers";
+export const AGAINST_BEAT_PICKER_SELECTOR = ".BeatPicker--againstBeat";
+export const BASE_BEAT_PICKER_SELECTOR = ".BeatPicker--baseBeat";
+export const BEAT_PICKER_BEATS_SELECTOR = ".BeatPicker__beats";
 export const AGAINST_BEAT_PICKER_BEATS_SELECTOR =
-  ".beatPicker--againstBeat > .beatPicker__beats";
+  ".BeatPicker--againstBeat > .BeatPicker__beats";
 export const BASE_BEAT_PICKER_BEATS_SELECTOR =
-  ".beatPicker--baseBeat > .beatPicker__beats";
-export const BEAT_PICKER_ITEM_SELECTOR = ".beatPicker__item";
+  ".BeatPicker--baseBeat > .BeatPicker__beats";
+export const BEAT_PICKER_ITEM_SELECTOR = ".BeatPicker__item";
 export const AGAINST_BEAT_PICKER_ITEM_CENTER_SELECTOR = `${AGAINST_BEAT_PICKER_BEATS_SELECTOR} ${BEAT_PICKER_ITEM_SELECTOR}.-center`;
 export const BASE_BEAT_PICKER_ITEM_CENTER_SELECTOR = `${BASE_BEAT_PICKER_BEATS_SELECTOR} ${BEAT_PICKER_ITEM_SELECTOR}.-center`;
-export const BEAT_PICKER_DOTS_SELECTOR = ".beatPicker__dots";
-export const BEAT_PICKER_ITEM_CLASS = "beatPicker__item";
+export const BEAT_PICKER_DOTS_SELECTOR = ".BeatPicker__dots";
+export const BEAT_PICKER_ITEM_CLASS = "BeatPicker__item";
 export const BEAT_PICKER_FOCUS_CLASS = "-focus";
 export const BEATS_PICKER_CENTER_CLASS = "-center";
-export const BEAT_PICKER_AIM_CLASS = "beatPicker__aim";
+export const BEAT_PICKER_AIM_CLASS = "BeatPicker__aim";
 
 // BpmKnob
 export const BPM_MIN = 30;

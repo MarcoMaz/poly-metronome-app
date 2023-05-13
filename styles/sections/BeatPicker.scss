@@ -1,4 +1,4 @@
-.beatPickers-container {
+.BeatPickers {
   align-items: center;
   display: flex;
   justify-content: space-between;
@@ -6,7 +6,7 @@
   width: 10rem;
 }
 
-.beatPicker {
+.BeatPicker {
   position: relative;
 
   &::before,
