@@ -86,6 +86,7 @@ class Shape {
 
     // General
     let padding: number;
+    let offset: number;
 
     // Square / Line
     let rectX: number;
@@ -106,19 +107,45 @@ class Shape {
     let dotRadius: number;
 
     if (this.beatType === "against") {
-      padding = this.canvas.width / this.metronome.againstBeat - this.size;
-      rectY = 0;
-      dotY = this.size;
-      gridX = (this.canvas.width / this.metronome.againstBeat) * this.index;
-      gridY = 0;
-      gridWidth = this.canvas.width / this.metronome.againstBeat;
+      if (this.type === "square" || this.type === "line") {
+        padding = this.canvas.width / this.metronome.againstBeat - this.size;
+        rectY = 0;
+      } else if (this.type === "grid") {
+        padding = 10;
+        offset = 1;
+
+        gridX = (this.canvas.width / this.metronome.againstBeat) * this.index;
+        gridY = offset;
+
+        if (this.index !== this.metronome.againstBeat - 1) {
+          gridWidth = this.canvas.width / this.metronome.againstBeat - padding;
+        } else {
+          gridWidth = this.canvas.width / this.metronome.againstBeat;
+        }
+      } else {
+        padding = this.canvas.width / this.metronome.againstBeat - this.size;
+        dotY = this.size;
+      }
     } else {
-      padding = this.canvas.width / this.metronome.baseBeat - this.size;
-      rectY = this.canvas.height - this.size * 2;
-      dotY = this.canvas.height - this.size;
-      gridX = (this.canvas.width / this.metronome.baseBeat) * this.index;
-      gridY = this.canvas.height / 2;
-      gridWidth = this.canvas.width / this.metronome.baseBeat;
+      if (this.type === "square" || this.type === "line") {
+        padding = this.canvas.width / this.metronome.baseBeat - this.size;
+        rectY = this.canvas.height - this.size * 2;
+      } else if (this.type === "grid") {
+        padding = 10;
+        offset = 1;
+
+        gridX = (this.canvas.width / this.metronome.baseBeat) * this.index;
+        gridY = this.canvas.height / 2 + offset;
+
+        if (this.index !== this.metronome.baseBeat - 1) {
+          gridWidth = this.canvas.width / this.metronome.baseBeat - padding;
+        } else {
+          gridWidth = this.canvas.width / this.metronome.baseBeat;
+        }
+      } else {
+        padding = this.canvas.width / this.metronome.baseBeat - this.size;
+        dotY = this.canvas.height - this.size;
+      }
     }
 
     switch (this.type) {
@@ -129,7 +156,13 @@ class Shape {
         radii = BORDER_RADIUS;
 
         this.canvasContext.beginPath();
-        this.canvasContext.roundRect(rectX, rectY, rectWidth, rectHeight, radii);
+        this.canvasContext.roundRect(
+          rectX,
+          rectY,
+          rectWidth,
+          rectHeight,
+          radii
+        );
         this.canvasContext.fill();
         break;
       case "line":
@@ -139,14 +172,27 @@ class Shape {
         radii = BORDER_RADIUS;
 
         this.canvasContext.beginPath();
-        this.canvasContext.roundRect(rectX, rectY, rectWidth, rectHeight, radii);
+        this.canvasContext.roundRect(
+          rectX,
+          rectY,
+          rectWidth,
+          rectHeight,
+          radii
+        );
         this.canvasContext.fill();
         break;
       case "grid":
-        gridHeight = this.canvas.height / 2;
+        gridHeight = this.canvas.height / 2.5;
+        radii = BORDER_RADIUS;
 
         this.canvasContext.beginPath();
-        this.canvasContext.rect(gridX, gridY, gridWidth, gridHeight);
+        this.canvasContext.roundRect(
+          gridX,
+          gridY,
+          gridWidth,
+          gridHeight,
+          radii
+        );
         this.canvasContext.strokeStyle = SHAPE_GRID_BORDER_COLOR;
         this.canvasContext.fill();
         this.canvasContext.stroke();
