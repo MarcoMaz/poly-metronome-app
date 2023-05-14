@@ -8,6 +8,6 @@ describe("App", () => {
 
   it("should have a title", () => {
     const title = htmlPage.querySelector("title");
-    expect(title.textContent).toBe("Polyrhythmic Metronome PWA");
+    expect(title.textContent).toBe("Poly Tock");
   });
 });

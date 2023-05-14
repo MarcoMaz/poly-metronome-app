@@ -78,7 +78,7 @@ describe("Modal", () => {
           );
           expect(modalFirstParagraph.textContent.trim()).toBe(
             `This is not a polyrhythm, because there is no overlapping or
-            interlocking between the two rhythms.`
+              interlocking between the two rhythms.`
           );
         });
       });

@@ -16,7 +16,7 @@ describe("Controller panel", () => {
   });
   it("should be a DIV element", () => {
     const controllerPanel = htmlPage.querySelector(CONTROLLER_PANEL_SELECTOR);
-    expect(controllerPanel.tagName).toBe("DIV");
+    expect(controllerPanel.tagName).toBe("SECTION");
   });
   it("should have three children", () => {
     const controllerPanel = htmlPage.querySelector(CONTROLLER_PANEL_SELECTOR);
