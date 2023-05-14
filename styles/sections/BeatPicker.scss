@@ -7,7 +7,6 @@ $beatPickerAimOffset: rem(-1px);
 
   @include center-between;
 
-  margin: 0 auto;
   width: rem(160px);
 }
 
@@ -33,7 +32,6 @@ $beatPickerAimOffset: rem(-1px);
   }
 
   &__beats {
-    color: $colorBlack;
     font-size: rem(56px);
     font-weight: lighter;
     max-block-size: rem(240px);
@@ -76,7 +74,6 @@ $beatPickerAimOffset: rem(-1px);
     position: absolute;
     top: $beatPickerCenterElement;
     width: $beatPickerAimSize;
-    z-index: -1;
 
     .-focus & {
       display: block;
