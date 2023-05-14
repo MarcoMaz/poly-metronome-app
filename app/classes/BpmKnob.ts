@@ -12,7 +12,7 @@ import {
   BPM_KNOB_ACTIVE_COLOR,
   BPM_MIN,
   BPM_MAX,
-  CONTROLLER_PANEL_SHOW_CLASS,
+  SHOW_CLASS,
 } from "../classes/base/constants";
 
 /**
@@ -78,7 +78,7 @@ class BpmKnob {
    */
   private showBpmKnobIfPanelVisible(): void {
     const parentElement = this.el.parentElement;
-    if (parentElement.classList.contains(CONTROLLER_PANEL_SHOW_CLASS)) {
+    if (parentElement.classList.contains(SHOW_CLASS)) {
       this.updateKnob();
     }
     requestAnimationFrame(() => this.showBpmKnobIfPanelVisible());

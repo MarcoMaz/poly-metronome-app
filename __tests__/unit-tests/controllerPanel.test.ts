@@ -5,9 +5,8 @@ import {
   CONTROLLER_PANEL_BUTTONS_SELECTOR,
   CONTROLLER_PANEL_BUTTON_SELECTOR,
   CONTROLLER_PANEL_PANE_SELECTOR,
-  CONTROLLER_PANEL_ACTIVE_SELECTOR,
   CONTROLLER_PANEL_ACTIVE_CLASS,
-  CONTROLLER_PANEL_SHOW_CLASS,
+  SHOW_CLASS,
 } from "../../app/classes/base/constants";
 
 describe("Controller panel", () => {
@@ -74,9 +73,7 @@ describe("Controller panel", () => {
     });
     it("is shown, if first", () => {
       const panes = htmlPage.querySelectorAll(CONTROLLER_PANEL_PANE_SELECTOR);
-      const hasShowClass = panes[0].classList.contains(
-        CONTROLLER_PANEL_SHOW_CLASS
-      );
+      const hasShowClass = panes[0].classList.contains(SHOW_CLASS);
       expect(hasShowClass).toBe(true);
     });
   });
