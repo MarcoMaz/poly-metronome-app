@@ -63,7 +63,7 @@ export const CONTROLLER_PANEL_BUTTON_BPM_SELECTOR =
   ".ControllerPanel__button--bpm";
 export const CONTROLLER_PANEL_BUTTON_BEATS_SELECTOR =
   ".ControllerPanel__button--beats";
-export const CONTROLLER_PANEL_PANE_SELECTOR = ".ControllerPanel__pane";
+export const CONTROLLER_PANEL_PANE_SELECTOR = ".ControllerPanel__panel";
 export const CONTROLLER_PANEL_ACTIVE_SELECTOR = ".-active";
 export const CONTROLLER_PANEL_ACTIVE_CLASS = "-active";
 export const CONTROLLER_PANEL_SHOW_CLASS = "-show";
