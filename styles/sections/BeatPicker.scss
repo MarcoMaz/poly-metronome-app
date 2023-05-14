@@ -1,3 +1,8 @@
+$beatPickerCenterElement: calc(50% - rem(24px));
+$beatPickerItemMargin: rem(96px);
+$beatPickerAimSize: rem(48px);
+$beatPickerAimOffset: rem(-1px);
+
 .BeatPickers {
   align-items: center;
   display: flex;
@@ -12,7 +17,7 @@
   &::before,
   &::after {
     content: " ";
-    height: calc(50% - rem(24px));
+    height: $beatPickerCenterElement;
     pointer-events: none;
     position: absolute;
     width: 100%;
@@ -48,11 +53,11 @@
     scroll-snap-align: center;
 
     &:nth-of-type(1) {
-      margin-top: rem(96px);
+      margin-top: $beatPickerItemMargin;
     }
 
     &:nth-last-child(2) {
-      margin-bottom: rem(96px);
+      margin-bottom: $beatPickerItemMargin;
     }
   }
 
@@ -65,11 +70,11 @@
     border-radius: rem(6px);
     box-sizing: content-box;
     display: none;
-    height: rem(48px);
-    left: calc(50% - rem(24px));
+    height: $beatPickerAimSize;
+    left: $beatPickerCenterElement;
     position: absolute;
-    top: calc(50% - rem(24px));
-    width: rem(48px);
+    top: $beatPickerCenterElement;
+    width: $beatPickerAimSize;
     z-index: -1;
 
     .-focus & {
@@ -87,11 +92,11 @@
     }
 
     &::before {
-      left: rem(-1px);
+      left: $beatPickerAimOffset;
     }
 
     &::after {
-      right: rem(-1px);
+      right: $beatPickerAimOffset;
     }
   }
 }

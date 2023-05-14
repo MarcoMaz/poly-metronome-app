@@ -53,12 +53,10 @@ section {
 .Footer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  padding: 0 rem(24px);
-  padding-bottom: rem(32px);
+  padding: 0 rem(24px) rem(32px);
 }
-
-// Common code
 
 // Mixins
 // @centerX = display flex, justify content center
 // @centerXY = display flex, justify content center, align items center
+// border, borderRadius

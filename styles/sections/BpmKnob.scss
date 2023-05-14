@@ -1,9 +1,12 @@
 $bpmKnobSize: rem(250px);
 $bpmKnobInnerTrackSize: rem(260px);
 $bpmKnobTrackOffset: rem(-5px);
-$bpmKnobOuterTrackSize: rem(20px);
+$bpmKnobOuterTrackPosition: calc(100% - rem(20px));
+$bpmKnobOuterTrackOffset: 50%;
 $bpmKnobBallSize: rem(20px);
 $bpmKnobTextSize: rem(96px);
+$bpmKnobTextPosition: calc(50% - $bpmKnobTextSize / 2);
+$bpmBorderRadius: 50%;
 
 .BpmKnob-container {
   display: flex;
@@ -13,19 +16,13 @@ $bpmKnobTextSize: rem(96px);
 
 .BpmKnob {
   border: rem(1px) solid;
-  border-radius: 50%;
+  border-radius: $bpmBorderRadius;
   height: $bpmKnobSize;
   position: relative;
   width: $bpmKnobSize;
 
-  input {
-    height: 0;
-    opacity: 0;
-    width: 0;
-  }
-
   &__track {
-    border-radius: 50%;
+    border-radius: $bpmBorderRadius;
     height: $bpmKnobInnerTrackSize;
     left: $bpmKnobTrackOffset;
     position: relative;
@@ -36,17 +33,17 @@ $bpmKnobTextSize: rem(96px);
       background: $colorWhite;
       border-radius: inherit;
       content: "";
-      height: calc(100% - $bpmKnobOuterTrackSize);
-      left: 50%;
+      height: $bpmKnobOuterTrackPosition;
+      left: $bpmKnobOuterTrackOffset;
       position: absolute;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: calc(100% - $bpmKnobOuterTrackSize);
+      top: $bpmKnobOuterTrackOffset;
+      transform: translate(-$bpmKnobOuterTrackOffset, -$bpmKnobOuterTrackOffset);
+      width: $bpmKnobOuterTrackPosition;
     }
   }
 
   &__ball {
-    border-radius: 50%;
+    border-radius: $bpmBorderRadius;
     padding: $bpmKnobBallSize;
     position: absolute;
     z-index: 1;
@@ -59,10 +56,10 @@ $bpmKnobTextSize: rem(96px);
     font-size: rem(48px);
     height: $bpmKnobTextSize;
     justify-content: center;
-    left: calc(50% - $bpmKnobTextSize / 2);
+    left: $bpmKnobTextPosition;
     line-height: .8;
     position: absolute;
-    top: calc(50% - $bpmKnobTextSize / 2);
+    top: $bpmKnobTextPosition;
     width: $bpmKnobTextSize;
 
     span {

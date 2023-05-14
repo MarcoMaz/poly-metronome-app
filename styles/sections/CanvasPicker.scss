@@ -1,3 +1,7 @@
+$canvasPickerSize: rem(64px);
+$canvasPickerBorder: rem(2px);
+$canvasPickerMargin: rem(-2px);
+
 .CanvasPicker {
   display: flex;
   justify-content: space-between;
@@ -9,17 +13,17 @@
     display: flex;
     flex-direction: column;
     font-size: rem(12px);
-    height: rem(64px);
+    height: $canvasPickerSize;
     justify-content: center;
-    width: rem(64px);
+    width: $canvasPickerSize;
 
     img {
       margin-bottom: rem(8px);
     }
 
     &.-selected span {
-      border-bottom: rem(2px) solid $colorBlack;
-      margin-bottom: rem(-2px);
+      border-bottom: $canvasPickerBorder solid $colorBlack;
+      margin-bottom: $canvasPickerBorder;
     }
   }
 }

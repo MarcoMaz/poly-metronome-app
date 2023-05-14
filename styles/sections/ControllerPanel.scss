@@ -1,3 +1,6 @@
+$controllerPanelBorder: rem(5px);
+$controllerPanelMargin: rem(-5px);
+
 .ControllerPanel {
   margin: rem(16px) 0;
 
@@ -15,8 +18,8 @@
     text-transform: uppercase;
 
     &.-active {
-      border-bottom: rem(5px) solid $colorBlack;
-      margin-bottom: rem(-5px);
+      border-bottom: $controllerPanelBorder solid $colorBlack;
+      margin-bottom: $controllerPanelMargin;
     }
   }
 
