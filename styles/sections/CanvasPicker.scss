@@ -23,7 +23,7 @@ $canvasPickerMargin: rem(-2px);
 
     &.-selected span {
       border-bottom: $canvasPickerBorder solid $colorBlack;
-      margin-bottom: $canvasPickerBorder;
+      margin-bottom: $canvasPickerMargin;
     }
   }
 }
