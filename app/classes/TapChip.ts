@@ -122,7 +122,10 @@ class TapChip {
    */
   private updateBpmUi(): void {
     this.bpmKnob.bpmKnobRange.value = this.metronome.tempo.toString();
-    this.bpmKnob.bpmKnobRange.setAttribute("value", this.metronome.tempo.toString());
+    this.bpmKnob.bpmKnobRange.setAttribute(
+      "value",
+      this.metronome.tempo.toString()
+    );
     this.bpmKnob.updateKnob();
   }
 }

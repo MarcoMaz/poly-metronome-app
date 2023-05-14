@@ -15,8 +15,8 @@ import {
  * @name SwitchBeatsChip
  *
  * @param {HTMLButtonElement} switchBeatsChip - The chip switching the beats.
+ * 
  */
-
 class SwitchBeatsChip {
   private switchBeatsChip: HTMLButtonElement;
 

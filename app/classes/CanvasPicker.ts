@@ -14,7 +14,6 @@ import {
  * @param {NodeListOf<HTMLButtonElement>} options - The collections of selectable buttons.
  * @param {string} selected                       - The current selection.
  */
-
 class CanvasPicker {
   private el: HTMLOListElement;
   private options: NodeListOf<HTMLButtonElement>;
@@ -43,7 +42,7 @@ class CanvasPicker {
    * Updates the state when a canvas picker option is clicked.
    *
    */
-  private handleOptionClick(option: HTMLButtonElement) {
+  private handleOptionClick(option: HTMLButtonElement): void {
     if (!option.classList.contains(CANVAS_PICKER_SELECTED_CLASS)) {
       this.deselectAllTabs();
       option.classList.add(CANVAS_PICKER_SELECTED_CLASS);

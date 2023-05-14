@@ -27,13 +27,12 @@ import {
  * @param {string} type         - The shape's type. Square (default), pipelines, grid or dots.
  *
  */
-
 class Shape {
-  size: number;
-  index: number;
-  beatType: string;
-  currentNote: number;
-  type: string;
+  private size: number;
+  private index: number;
+  private beatType: string;
+  private currentNote: number;
+  private type: string;
 
   /**
    * Define DOM Elements and Variables.

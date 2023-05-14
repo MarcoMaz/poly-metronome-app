@@ -25,7 +25,6 @@ import {
  * @param {number} aimNumber        - The number with aim.
  *
  */
-
 class BeatPicker {
   public picker: HTMLElement;
   public pickerBeats: HTMLElement;
@@ -112,7 +111,8 @@ class BeatPicker {
    */
   public centerBeatOnLoad(): number {
     const grandParentElement = this.picker.parentElement.parentElement;
-    const isPickerVisible = window.getComputedStyle(grandParentElement).display !== 'none';
+    const isPickerVisible =
+      window.getComputedStyle(grandParentElement).display !== "none";
 
     if (!isPickerVisible) {
       requestAnimationFrame(() => {
@@ -120,7 +120,7 @@ class BeatPicker {
       });
       return 0;
     }
-  
+
     const verticalCenterItem = this.pickerBeats.querySelector(
       `${BEAT_PICKER_ITEM_SELECTOR}:nth-of-type(${this.aimNumber - 1})`
     ) as HTMLElement;

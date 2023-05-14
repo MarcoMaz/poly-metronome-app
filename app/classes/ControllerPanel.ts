@@ -14,8 +14,8 @@ import {
  *
  * @param {HTMLElement} el                  - The component itself.
  * @param {NodeListOf<HTMLElement>} panels  - The panels showing the controllers.
+ * 
  */
-
 class ControllerPanel {
   private el: HTMLElement;
   private panels: NodeListOf<HTMLElement>;

@@ -17,8 +17,8 @@ import {
  * @param {HTMLButtonElement} playButton  - The play button.
  * @param {HTMLImageElement} iconPlay     - The icon play.
  * @param {HTMLImageElement} iconStop     - The icon stop.
+ * 
  */
-
 class PlayButton {
   private playButton: HTMLButtonElement;
   private iconPlay: HTMLImageElement;

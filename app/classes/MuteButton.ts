@@ -14,8 +14,8 @@ import {
  *
  * @param {HTMLButtonElement} muteButton  - The mute button.
  * @param {boolean} isSoundMuted          - Wether the sound is muted or not.
+ * 
  */
-
 class MuteButton {
   private muteButton: HTMLButtonElement;
   private isSoundMuted: boolean;

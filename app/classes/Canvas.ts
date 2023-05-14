@@ -15,6 +15,7 @@ import {
   MOBILE_VIEWPORT,
   TABLET_VIEWPORT,
 } from './base/constants'
+
 /**
  * This class represents the UI controlling the canvas.
  *
@@ -28,7 +29,6 @@ import {
  * @param {any} canvasContext         - The canvas' context where the animation appears.
  *
  */
-
 class Canvas {
   animation: number;
   currentNote: number;

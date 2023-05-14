@@ -16,7 +16,6 @@ import {
  * @param {HTMLButtonElement} modalButton - The modal button inside the modal.
  *
  */
-
 class Modal {
   private modal: HTMLElement;
   private modalOverlay: HTMLElement;

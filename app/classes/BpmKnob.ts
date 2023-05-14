@@ -12,7 +12,7 @@ import {
   BPM_KNOB_ACTIVE_COLOR,
   BPM_MIN,
   BPM_MAX,
-  CONTROLLER_PANEL_SHOW_CLASS
+  CONTROLLER_PANEL_SHOW_CLASS,
 } from "../classes/base/constants";
 
 /**
@@ -31,7 +31,6 @@ import {
  * @param {number} startY                 - The starting y coordinate of the BpmKnob's ball.
  * @param {number} startAngle             - The starting angle's coordinate of the BpmKnob's ball.
  */
-
 class BpmKnob {
   private el: HTMLDivElement;
   private bpmKnobElement: HTMLDivElement;

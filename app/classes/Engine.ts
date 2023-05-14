@@ -1,4 +1,5 @@
 import Metronome from "./Metronome";
+
 import {
   ONE_MINUTE_IN_SECONDS,
   ENGINE_SMALL_DELAY,
@@ -6,6 +7,7 @@ import {
   ENGINE_FREQUENCIES_BASE_BEAT,
   ENGINE_FREQUENCIES_AGAINST_BEAT,
 } from "./base/constants";
+
 /**
  *  This class represents the math behind the metronome's calculations.
  *
