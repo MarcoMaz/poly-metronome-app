@@ -10,13 +10,14 @@ $border: 5px solid $colorBlack;
 // Sections
 @import './sections/BeatPicker.scss';
 @import "./sections/BpmKnob.scss";
+@import "./sections/Canvas.scss";
 @import './sections/CanvasPicker.scss';
 @import './sections/Chip.scss';
 @import "./sections/ControllerPanel.scss";
 @import './sections/Logo.scss';
 @import './sections/Modal.scss';
-@import './sections/Mute.scss';
-@import './sections/Play.scss';
+@import './sections/MuteButton.scss';
+@import './sections/PlayButton.scss';
 
 ol {
   margin: 0;
@@ -52,12 +53,6 @@ section {
   flex-direction: column;
   justify-content: center;
   padding: 0 rem(24px);
-}
-
-.Canvas-container {
-  display: flex;
-  justify-content: center;
-  padding: 0 rem(40px);
 }
 
 .Footer {
