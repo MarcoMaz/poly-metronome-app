@@ -34,6 +34,7 @@ body {
 .app {
   display: flex;
   flex-direction: column;
+  height: 100vh;
   justify-content: space-between;
 }
 
@@ -55,16 +56,14 @@ section {
 .Canvas-container {
   display: flex;
   justify-content: center;
-}
-
-.Canvas {
-  border: 1px solid black;
+  padding: 0 2.5rem;
 }
 
 .Footer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   padding: 0 1.5rem;
+  padding-bottom: 2rem;
 }
 
 @include tablet-viewport {

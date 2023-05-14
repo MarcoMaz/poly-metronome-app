@@ -1,21 +1,20 @@
-$bpmKnobSize: 15.625rem;
-$bpmKnobInnerTrackSize: 16.25rem;
-$bpmKnobTrackOffset: -0.3125rem;
+$bpmKnobSize: 250px;
+$bpmKnobInnerTrackSize: 260px;
+$bpmKnobTrackOffset: -5px;
 $bpmKnobOuterTrackSize: 1.25rem;
-$bpmKnobBallSize: 0.6875rem;
-$bpmKnobTextSize: 6rem;
+$bpmKnobBallSize: 20px;
+$bpmKnobTextSize: 96px;
 
 .BpmKnob-container {
   display: flex;
   justify-content: center;
-  width: 18.75rem;
+  width: 140px;
 }
 
 .BpmKnob {
   border: 0.0625rem solid;
   border-radius: 50%;
   height: $bpmKnobSize;
-  margin: 2rem 0;
   position: relative;
   width: $bpmKnobSize;
 
