@@ -1,12 +1,10 @@
-$base-font-size: 16px;
-
+// Transform Px to Rem
 @function rem($px) {
   $rem-value: calc($px / $base-font-size);
   @return #{$rem-value}rem;
 }
 
+// Set border color
 @function border($color) {
   @return rem(1px) solid $color;
 }
-
-$borderRadius: rem(6px);
