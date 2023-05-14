@@ -9,12 +9,6 @@ import {
   WORKER_STOP_MESSAGE,
 } from "./classes/base/constants";
 
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./serviceWorker.js");
-  });
-}
-
 /**
  *  This class represents the app itself.
  *
@@ -48,8 +42,13 @@ class App {
       this.audioContext
     );
 
-    // starts the app on load.
     this.init();
+
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./serviceWorker.js");
+      });
+    }    
   }
 
   /**
@@ -57,7 +56,6 @@ class App {
    * @description
    * Sets the initial setup of the app
    */
-
   public init(): void {
     this.canvas.playAnimation();
 
