@@ -1,9 +1,9 @@
 .Logo {
-  display: flex;
+  @include center;
+
   flex-direction: column;
   font-size: rem(32px);
   font-weight: bold;
-  text-align: center;
   text-transform: uppercase;
 
   span {

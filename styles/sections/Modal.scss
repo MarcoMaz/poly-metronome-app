@@ -1,8 +1,6 @@
 .Modal {
   display: none;
-  left: 0;
   position: absolute;
-  top: 0;
 
   &.-show,
   &.-show .Modal__overlay {
@@ -16,7 +14,6 @@
     opacity: 70%;
     position: absolute;
     width: 100vw;
-    z-index: 1;
   }
 
   &__content {
@@ -30,21 +27,9 @@
     height: 30vh;
     left: calc(50vw - 40vw);
     padding: rem(20px);
-    pointer-events: none;
     position: relative;
     top: calc(50vh - 15vh);
     width: 80vw;
-    z-index: 2;
-  }
-
-  &__title,
-  &__message {
-    margin: 0;
-  }
-
-  &__supporting-text {
-    display: flex;
-    flex-direction: column;
   }
 
   &__message {
@@ -62,8 +47,6 @@
     border-radius: $borderRadius;
     color: $colorWhite;
     padding: rem(4px) rem(20px);
-    pointer-events: auto;
     text-transform: uppercase;
-    width: max-content;
   }
 }
