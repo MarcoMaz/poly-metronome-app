@@ -1,6 +1,6 @@
 // Base
-@import './base/variables.scss';
 @import './base/utils.scss';
+@import './base/variables.scss';
 @import './base/colors.scss';
 @import './base/normalize.scss';
 @import './base/reset.scss';
@@ -28,11 +28,16 @@ body {
   }
 }
 
-.app {
-  display: flex;
+.app,
+section {
   flex-direction: column;
+}
+
+.app {
+
+  @include space-between;
+
   height: 100vh;
-  justify-content: space-between;
 }
 
 header {
@@ -45,9 +50,9 @@ header {
 }
 
 section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+
+  @include centerX;
+
   padding: 0 rem(24px);
 }
 
