@@ -1,3 +1,7 @@
+const colorGray100 = getComputedStyle(document.documentElement).getPropertyValue('--color-gray-100');
+const colorGray200 = getComputedStyle(document.documentElement).getPropertyValue('--color-gray-200');
+const colorBlack = getComputedStyle(document.documentElement).getPropertyValue('--color-black');
+
 ///////////////////
 // Classes
 ///////////////////
@@ -33,8 +37,8 @@ export const BPM_KNOB_BALL_SELECTOR = ".BpmKnob__ball";
 export const BPM_KNOB_RANGE_SELECTOR = ".BpmKnob__range";
 export const BPM_KNOB_LABEL_SELECTOR = ".BpmKnob__label";
 export const BPM_KNOB_TEXT_SELECTOR = ".BpmKnob__text";
-export const BPM_KNOB_INACTIVE_COLOR = "#d1d1d1";
-export const BPM_KNOB_ACTIVE_COLOR = "#151515";
+export const BPM_KNOB_INACTIVE_COLOR = colorGray200;
+export const BPM_KNOB_ACTIVE_COLOR = colorBlack;
 
 // Canvas
 export const CANVAS_SELECTOR = ".Canvas";
@@ -98,10 +102,10 @@ export const PLAY_ICON_PLAY_SELECTOR = ".Play__icon-play";
 export const PLAY_ICON_STOP_SELECTOR = ".Play__icon-stop";
 
 // Shape
-export const SHAPE_ACTIVE_BEAT_COLOR_OTHER = "#d1d1d1";
-export const SHAPE_ACTIVE_BEAT_COLOR_CURRENT = "#151515";
-export const SHAPE_INACTIVE_BEAT_COLOR = "#EEEEEE";
-export const SHAPE_GRID_BORDER_COLOR = "#151515";
+export const SHAPE_ACTIVE_BEAT_COLOR_OTHER = colorGray200;
+export const SHAPE_ACTIVE_BEAT_COLOR_CURRENT = colorBlack;
+export const SHAPE_INACTIVE_BEAT_COLOR = colorGray100;
+export const SHAPE_GRID_BORDER_COLOR = colorBlack;
 export const SHAPE_SIZE_MOBILE = 25;
 export const SHAPE_SIZE_TABLET = 20;
 export const SHAPE_SIZE_DESKTOP = 32;

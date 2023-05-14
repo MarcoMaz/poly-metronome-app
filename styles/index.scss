@@ -20,6 +20,12 @@
 @import './sections/MuteButton.scss';
 @import './sections/PlayButton.scss';
 
+:root {
+  --color-gray-100: #{$colorGray100};
+  --color-gray-200: #{$colorGray200};
+  --color-black: #{$colorBlack};
+}
+
 body {
   font-family: $font;
 
