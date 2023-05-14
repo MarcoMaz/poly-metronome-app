@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
-  width: 10rem;
+  width: rem(160px);
 }
 
 .BeatPicker {
@@ -12,7 +12,7 @@
   &::before,
   &::after {
     content: " ";
-    height: calc(50% - 1.5rem);
+    height: calc(50% - rem(24px));
     pointer-events: none;
     position: absolute;
     width: 100%;
@@ -29,9 +29,9 @@
 
   &__beats {
     color: $colorBlack;
-    font-size: 3.5rem;
+    font-size: rem(56px);
     font-weight: lighter;
-    max-block-size: 15rem;
+    max-block-size: rem(240px);
     overflow-y: auto;
     scrollbar-width: none; /* Firefox */
     scroll-snap-type: y mandatory;
@@ -44,32 +44,32 @@
   &__item {
     align-items: center;
     display: flex;
-    height: 3rem;
+    height: rem(48px);
     scroll-snap-align: center;
 
     &:nth-of-type(1) {
-      margin-top: 6rem;
+      margin-top: rem(96px);
     }
 
     &:nth-last-child(2) {
-      margin-bottom: 6rem;
+      margin-bottom: rem(96px);
     }
   }
 
   &__dots {
-    font-size: 3rem;
+    font-size: rem(48px);
   }
 
   &__aim {
-    border: 0.0625rem solid $colorGray200;
-    border-radius: 0.375rem;
+    border: rem(1px) solid $colorGray200;
+    border-radius: rem(6px);
     box-sizing: content-box;
     display: none;
-    height: 3rem;
-    left: calc(50% - 1.5rem);
+    height: rem(48px);
+    left: calc(50% - rem(24px));
     position: absolute;
-    top: calc(50% - 1.5rem);
-    width: 3rem;
+    top: calc(50% - rem(24px));
+    width: rem(48px);
     z-index: -1;
 
     .-focus & {
@@ -80,18 +80,18 @@
     &::after {
       background: $colorWhite;
       content: " ";
-      height: 2.5rem;
+      height: rem(40px);
       position: absolute;
-      top: 0.25rem;
-      width: 0.0625rem;
+      top: rem(4px);
+      width: rem(2px);
     }
 
     &::before {
-      left: -0.0625rem;
+      left: rem(-1px);
     }
 
     &::after {
-      right: -0.0625rem;
+      right: rem(-1px);
     }
   }
 }

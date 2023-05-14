@@ -1,9 +1,9 @@
 .Chip {
   background-color: $colorGray100;
   border: 0;
-  border-radius: .375rem;
+  border-radius: rem(6px);
   color: $colorGray300;
   cursor: pointer;
-  padding: .25rem 1rem;
+  padding: rem(4px) rem(16px);
   width: fit-content;
 }

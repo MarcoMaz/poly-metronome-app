@@ -1,22 +1,22 @@
 .ControllerPanel {
-  margin: 1rem 0;
+  margin: rem(16px) 0;
 
   &__buttons {
     display: flex;
     justify-content: space-evenly;
-    margin-bottom: 1rem;
+    margin-bottom: rem(16px);
   }
 
   &__button {
     background: $colorWhite;
     border: 0;
-    min-width: 5rem;
-    padding: 0.5rem 1rem;
+    min-width: rem(80px);
+    padding: rem(8px) rem(16px);
     text-transform: uppercase;
 
     &.-active {
-      border-bottom: .3125rem solid $colorBlack;
-      margin-bottom: -0.3125rem;
+      border-bottom: rem(5px) solid $colorBlack;
+      margin-bottom: rem(-5px);
     }
   }
 
@@ -27,7 +27,7 @@
       align-items: center;
       display: flex;
       flex-direction: column;
-      height: 23rem;
+      height: rem(368px);
       justify-content: space-evenly;
     }
   }

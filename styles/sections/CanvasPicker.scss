@@ -8,18 +8,18 @@
     border: 0;
     display: flex;
     flex-direction: column;
-    font-size: .75rem;
-    height: 4rem;
+    font-size: rem(12px);
+    height: rem(64px);
     justify-content: center;
-    width: 4rem;
+    width: rem(64px);
 
     img {
-      margin-bottom: .5rem;
+      margin-bottom: rem(8px);
     }
 
     &.-selected span {
-      border-bottom: 0.125rem solid $colorBlack;
-      margin-bottom: -0.125rem;
+      border-bottom: rem(2px) solid $colorBlack;
+      margin-bottom: rem(-2px);
     }
   }
 }

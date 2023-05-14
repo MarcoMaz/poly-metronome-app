@@ -1,3 +1,5 @@
+$buttonSize: rem(64px);
+
 .Play {
   align-items: center;
   background: $colorBlack;
@@ -5,15 +7,15 @@
   border-radius: 50%;
   cursor: pointer;
   display: flex;
-  height: 4rem;
+  height: $buttonSize;
   justify-content: center;
   justify-self: center;
-  width: 4rem;
+  width: $buttonSize;
 
   &__icon-play,
   &__icon-stop {
     display: none;
-    width: 1.5rem;
+    width: rem(24px);
 
     &.-show {
       display: flex;

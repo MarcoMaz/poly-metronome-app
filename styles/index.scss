@@ -1,4 +1,5 @@
 // Base
+@import './base/utils.scss';
 @import './base/colors.scss';
 @import './base/normalize.scss';
 @import './base/typography.scss';
@@ -39,47 +40,36 @@ body {
 }
 
 header {
-  border-bottom: .0625rem solid $colorBlack;
-  border-radius: 0px 0px .375rem .375rem;
-  box-shadow: 0px .0625rem .25rem rgba(0, 0, 0, 0.25);
-  margin-bottom: 2rem;
-  padding: 1rem 1.5rem;
+  border-bottom: rem(1px) solid $colorBlack;
+  border-radius: 0 0 rem(6px) rem(6px);
+  box-shadow: 0 rem(1px) rem(4px) rgba(0, 0, 0, 0.25);
+  margin-bottom: rem(32px);
+  padding: rem(16px) rem(24px);
 }
 
 section {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 1.5rem;
+  padding: 0 rem(24px);
 }
 
 .Canvas-container {
   display: flex;
   justify-content: center;
-  padding: 0 2.5rem;
+  padding: 0 rem(40px);
 }
 
 .Footer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  padding: 0 1.5rem;
-  padding-bottom: 2rem;
-}
-
-@include tablet-viewport {
-  .app {
-    padding: 5rem;
-  }
+  padding: 0 rem(24px);
+  padding-bottom: rem(32px);
 }
 
 // Mixins
 // @centerX = display flex, justify content center
 // @centerXY = display flex, justify content center, align items center
 
-// helper function
-// rem(48px)
-
-// utils functions
 // reset file
-
 // naming css

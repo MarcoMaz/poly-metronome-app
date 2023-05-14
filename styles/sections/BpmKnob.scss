@@ -1,9 +1,9 @@
-$bpmKnobSize: 250px;
-$bpmKnobInnerTrackSize: 260px;
-$bpmKnobTrackOffset: -5px;
-$bpmKnobOuterTrackSize: 1.25rem;
-$bpmKnobBallSize: 20px;
-$bpmKnobTextSize: 96px;
+$bpmKnobSize: rem(250px);
+$bpmKnobInnerTrackSize: rem(260px);
+$bpmKnobTrackOffset: rem(-5px);
+$bpmKnobOuterTrackSize: rem(20px);
+$bpmKnobBallSize: rem(20px);
+$bpmKnobTextSize: rem(96px);
 
 .BpmKnob-container {
   display: flex;
@@ -12,7 +12,7 @@ $bpmKnobTextSize: 96px;
 }
 
 .BpmKnob {
-  border: 0.0625rem solid;
+  border: rem(1px) solid;
   border-radius: 50%;
   height: $bpmKnobSize;
   position: relative;
@@ -56,7 +56,7 @@ $bpmKnobTextSize: 96px;
     align-items: center;
     display: flex;
     flex-direction: column;
-    font-size: 3rem;
+    font-size: rem(48px);
     height: $bpmKnobTextSize;
     justify-content: center;
     left: calc(50% - $bpmKnobTextSize / 2);
@@ -66,7 +66,7 @@ $bpmKnobTextSize: 96px;
     width: $bpmKnobTextSize;
 
     span {
-      font-size: 2rem;
+      font-size: rem(32px);
     }
   }
 }
