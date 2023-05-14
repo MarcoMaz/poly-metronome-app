@@ -4,7 +4,7 @@ import {
   CONTROLLER_PANEL_SELECTOR,
   CONTROLLER_PANEL_BUTTONS_SELECTOR,
   CONTROLLER_PANEL_BUTTON_SELECTOR,
-  CONTROLLER_PANEL_PANE_SELECTOR,
+  CONTROLLER_PANEL_PANEL_SELECTOR,
   CONTROLLER_PANEL_ACTIVE_CLASS,
   SHOW_CLASS,
 } from "../../app/classes/base/constants";
@@ -64,15 +64,15 @@ describe("Controller panel", () => {
     });
   });
 
-  describe("Pane", () => {
+  describe("Panel", () => {
     it("is a DIV element", () => {
-      const panes = htmlPage.querySelectorAll(CONTROLLER_PANEL_PANE_SELECTOR);
+      const panes = htmlPage.querySelectorAll(CONTROLLER_PANEL_PANEL_SELECTOR);
       panes.forEach((element: HTMLElement) => {
         expect(element.tagName).toBe("DIV");
       });
     });
     it("is shown, if first", () => {
-      const panes = htmlPage.querySelectorAll(CONTROLLER_PANEL_PANE_SELECTOR);
+      const panes = htmlPage.querySelectorAll(CONTROLLER_PANEL_PANEL_SELECTOR);
       const hasShowClass = panes[0].classList.contains(SHOW_CLASS);
       expect(hasShowClass).toBe(true);
     });

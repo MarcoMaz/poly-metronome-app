@@ -12,6 +12,7 @@ describe("SwitchBeats chip", () => {
       cy.visit(URL);
       cy.get(SWITCH_BEATS_CHIP_SELECTOR).click();
     });
+    
     it("should switch the beats on click", () => {
       cy.get(AGAINST_BEAT_PICKER_ITEM_CENTER_SELECTOR).should("have.text", "4");
       cy.get(BASE_BEAT_PICKER_ITEM_CENTER_SELECTOR).should("have.text", "3");

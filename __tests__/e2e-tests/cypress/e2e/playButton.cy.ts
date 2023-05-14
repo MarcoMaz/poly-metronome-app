@@ -1,6 +1,6 @@
 import {
-  PLAY_BUTTON_SELECTOR,
   MUTE_BUTTON_SELECTOR,
+  PLAY_BUTTON_SELECTOR,
   PLAY_ICON_PLAY_SELECTOR,
   PLAY_ICON_STOP_SELECTOR,
   URL,
@@ -11,6 +11,7 @@ describe("Play button", () => {
     beforeEach(() => {
       cy.visit(URL);
     });
+
     it("should have icon play visible", () => {
       cy.get(PLAY_ICON_PLAY_SELECTOR).should("have.class", "-show");
     });
@@ -23,6 +24,7 @@ describe("Play button", () => {
       cy.visit(URL);
       cy.get(PLAY_BUTTON_SELECTOR).click();
     });
+
     it("should have icon stop visible", () => {
       cy.get(PLAY_ICON_STOP_SELECTOR).should("have.class", "-show");
     });
@@ -37,6 +39,7 @@ describe("Play button", () => {
       cy.get(MUTE_BUTTON_SELECTOR);
       cy.get(PLAY_BUTTON_SELECTOR).click();
     });
+    
     it("should have icon play visible", () => {
       cy.get(PLAY_ICON_PLAY_SELECTOR).should("have.class", "-show");
     });

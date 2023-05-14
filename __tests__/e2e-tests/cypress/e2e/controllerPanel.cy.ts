@@ -1,7 +1,7 @@
 import {
   CONTROLLER_PANEL_BUTTON_BEATS_SELECTOR,
   CONTROLLER_PANEL_BUTTON_BPM_SELECTOR,
-  CONTROLLER_PANEL_PANE_SELECTOR,
+  CONTROLLER_PANEL_PANEL_SELECTOR,
   PLAY_BUTTON_SELECTOR,
   URL,
 } from "../../../../app/classes/base/constants";
@@ -11,6 +11,7 @@ describe("Controller panel", () => {
     beforeEach(() => {
       cy.visit(URL);
     });
+
     it("should only highlight Controller Button Beats, if beats selector is clicked", () => {
       cy.get(CONTROLLER_PANEL_BUTTON_BEATS_SELECTOR)
         .click()
@@ -22,10 +23,10 @@ describe("Controller panel", () => {
     });
     it("should only show Controller Pane Beats, if beats selector is clicked", () => {
       cy.get(CONTROLLER_PANEL_BUTTON_BEATS_SELECTOR).click();
-      cy.get(CONTROLLER_PANEL_PANE_SELECTOR)
+      cy.get(CONTROLLER_PANEL_PANEL_SELECTOR)
         .first()
         .should("have.class", "-show");
-      cy.get(CONTROLLER_PANEL_PANE_SELECTOR)
+      cy.get(CONTROLLER_PANEL_PANEL_SELECTOR)
         .eq(1)
         .should("not.have.class", "-show");
     });
@@ -40,10 +41,10 @@ describe("Controller panel", () => {
     });
     it("should only show Controller Pane Bpm, if bpm selector is clicked", () => {
       cy.get(CONTROLLER_PANEL_BUTTON_BPM_SELECTOR).click();
-      cy.get(CONTROLLER_PANEL_PANE_SELECTOR)
+      cy.get(CONTROLLER_PANEL_PANEL_SELECTOR)
         .first()
         .should("not.have.class", "-show");
-      cy.get(CONTROLLER_PANEL_PANE_SELECTOR)
+      cy.get(CONTROLLER_PANEL_PANEL_SELECTOR)
         .eq(1)
         .should("have.class", "-show");
     });
@@ -53,6 +54,7 @@ describe("Controller panel", () => {
       cy.visit(URL);
       cy.get(PLAY_BUTTON_SELECTOR).click();
     });
+
     it("should only highlight Controller Button Beats, if beats selector is clicked", () => {
       cy.get(CONTROLLER_PANEL_BUTTON_BEATS_SELECTOR)
         .click()
@@ -64,10 +66,10 @@ describe("Controller panel", () => {
     });
     it("should only show Controller Pane Beats, if beats selector is clicked", () => {
       cy.get(CONTROLLER_PANEL_BUTTON_BEATS_SELECTOR).click();
-      cy.get(CONTROLLER_PANEL_PANE_SELECTOR)
+      cy.get(CONTROLLER_PANEL_PANEL_SELECTOR)
         .first()
         .should("have.class", "-show");
-      cy.get(CONTROLLER_PANEL_PANE_SELECTOR)
+      cy.get(CONTROLLER_PANEL_PANEL_SELECTOR)
         .eq(1)
         .should("not.have.class", "-show");
     });
@@ -82,10 +84,10 @@ describe("Controller panel", () => {
     });
     it("should only show Controller Pane Bpm, if bpm selector is clicked", () => {
       cy.get(CONTROLLER_PANEL_BUTTON_BPM_SELECTOR).click();
-      cy.get(CONTROLLER_PANEL_PANE_SELECTOR)
+      cy.get(CONTROLLER_PANEL_PANEL_SELECTOR)
         .first()
         .should("not.have.class", "-show");
-      cy.get(CONTROLLER_PANEL_PANE_SELECTOR)
+      cy.get(CONTROLLER_PANEL_PANEL_SELECTOR)
         .eq(1)
         .should("have.class", "-show");
     });
@@ -96,6 +98,7 @@ describe("Controller panel", () => {
       cy.get(PLAY_BUTTON_SELECTOR).click();
       cy.get(PLAY_BUTTON_SELECTOR).click();
     });
+    
     it("should only highlight Controller Button Beats, if beats selector is clicked", () => {
       cy.get(CONTROLLER_PANEL_BUTTON_BEATS_SELECTOR)
         .click()
@@ -107,10 +110,10 @@ describe("Controller panel", () => {
     });
     it("should only show Controller Pane Beats, if beats selector is clicked", () => {
       cy.get(CONTROLLER_PANEL_BUTTON_BEATS_SELECTOR).click();
-      cy.get(CONTROLLER_PANEL_PANE_SELECTOR)
+      cy.get(CONTROLLER_PANEL_PANEL_SELECTOR)
         .first()
         .should("have.class", "-show");
-      cy.get(CONTROLLER_PANEL_PANE_SELECTOR)
+      cy.get(CONTROLLER_PANEL_PANEL_SELECTOR)
         .eq(1)
         .should("not.have.class", "-show");
     });
@@ -125,10 +128,10 @@ describe("Controller panel", () => {
     });
     it("should only show Controller Pane Bpm, if bpm selector is clicked", () => {
       cy.get(CONTROLLER_PANEL_BUTTON_BPM_SELECTOR).click();
-      cy.get(CONTROLLER_PANEL_PANE_SELECTOR)
+      cy.get(CONTROLLER_PANEL_PANEL_SELECTOR)
         .first()
         .should("not.have.class", "-show");
-      cy.get(CONTROLLER_PANEL_PANE_SELECTOR)
+      cy.get(CONTROLLER_PANEL_PANEL_SELECTOR)
         .eq(1)
         .should("have.class", "-show");
     });

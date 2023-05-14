@@ -9,6 +9,7 @@ describe("Mute button", () => {
     beforeEach(() => {
       cy.visit(URL);
     });
+
     it("should be disabled", () => {
       cy.get(MUTE_BUTTON_SELECTOR).should("be.disabled");
     });
@@ -25,6 +26,7 @@ describe("Mute button", () => {
       cy.visit(URL);
       cy.get(PLAY_BUTTON_SELECTOR).click();
     });
+
     it("should be enabled", () => {
       cy.get(MUTE_BUTTON_SELECTOR).should("be.enabled");
     });
@@ -48,6 +50,7 @@ describe("Mute button", () => {
       cy.get(MUTE_BUTTON_SELECTOR);
       cy.get(PLAY_BUTTON_SELECTOR).click();
     });
+    
     it("should be disabled", () => {
       cy.get(MUTE_BUTTON_SELECTOR).should("be.disabled");
     });

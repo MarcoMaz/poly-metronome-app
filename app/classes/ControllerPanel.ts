@@ -1,7 +1,7 @@
 import {
   CONTROLLER_PANEL_SELECTOR,
   CONTROLLER_PANEL_BUTTON_SELECTOR,
-  CONTROLLER_PANEL_PANE_SELECTOR,
+  CONTROLLER_PANEL_PANEL_SELECTOR,
   CONTROLLER_PANEL_ACTIVE_SELECTOR,
   CONTROLLER_PANEL_ACTIVE_CLASS,
   SHOW_CLASS,
@@ -25,7 +25,7 @@ class ControllerPanel {
    */
   constructor() {
     this.el = document.querySelector(CONTROLLER_PANEL_SELECTOR);
-    this.panels = this.el.querySelectorAll(CONTROLLER_PANEL_PANE_SELECTOR);
+    this.panels = this.el.querySelectorAll(CONTROLLER_PANEL_PANEL_SELECTOR);
 
     // Register events
     this.el.addEventListener("click", this.togglePanel.bind(this));

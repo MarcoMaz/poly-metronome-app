@@ -1,6 +1,35 @@
+///////////////////
+// Constants
+///////////////////
+
+// App
+export const APP_SOUND_DELAY = 0.01;
+export const URL: string = "http://192.168.0.56:3000/";
+
+// Colors
 const colorGray100 = getComputedStyle(document.documentElement).getPropertyValue('--color-gray-100');
 const colorGray200 = getComputedStyle(document.documentElement).getPropertyValue('--color-gray-200');
 const colorBlack = getComputedStyle(document.documentElement).getPropertyValue('--color-black');
+
+// KeyCodes
+export const ESC_KEY_CODE = 27;
+
+// Shared constants
+export const SHOW_CLASS = "-show";
+export const BORDER_RADIUS = 6;
+
+// Time constants
+export const SIXTY_SECONDS = 60000;
+export const ONE_MINUTE_IN_SECONDS = 60.0;
+
+// Viewports
+export const MOBILE_VIEWPORT = 0;
+export const TABLET_VIEWPORT = 700;
+export const DESKTOP_VIEWPORT = 1000;
+
+// Workers
+export const WORKER_START_MESSAGE = "start";
+export const WORKER_STOP_MESSAGE = "stop";
 
 ///////////////////
 // Classes
@@ -67,7 +96,7 @@ export const CONTROLLER_PANEL_BUTTON_BPM_SELECTOR =
   ".ControllerPanel__button--bpm";
 export const CONTROLLER_PANEL_BUTTON_BEATS_SELECTOR =
   ".ControllerPanel__button--beats";
-export const CONTROLLER_PANEL_PANE_SELECTOR = ".ControllerPanel__panel";
+export const CONTROLLER_PANEL_PANEL_SELECTOR = ".ControllerPanel__panel";
 export const CONTROLLER_PANEL_ACTIVE_SELECTOR = ".-active";
 export const CONTROLLER_PANEL_ACTIVE_CLASS = "-active";
 
@@ -118,30 +147,4 @@ export const SWITCH_BEATS_CHIP_SELECTOR = ".SwitchBeats";
 // Tap
 export const TAP_CHIP_SELECTOR = ".Tap";
 
-///////////////////
-// Constants
-///////////////////
 
-// App
-export const APP_SOUND_DELAY = 0.01;
-export const URL: string = "http://192.168.0.56:3000/";
-
-// KeyCodes
-export const ESC_KEY_CODE = 27;
-
-// Shared constants
-export const SHOW_CLASS = "-show";
-export const BORDER_RADIUS = 6;
-
-// Time constants
-export const SIXTY_SECONDS = 60000;
-export const ONE_MINUTE_IN_SECONDS = 60.0;
-
-// Viewports
-export const MOBILE_VIEWPORT = 0;
-export const TABLET_VIEWPORT = 700;
-export const DESKTOP_VIEWPORT = 1000;
-
-// Workers
-export const WORKER_START_MESSAGE = "start";
-export const WORKER_STOP_MESSAGE = "stop";

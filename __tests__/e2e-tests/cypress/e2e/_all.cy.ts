@@ -1,5 +1,4 @@
-// Refactor styling
-import "./beatPicker.cy";
+import "./beatPickers.cy";
 import "./bpmKnob.cy";
 import "./canvasPicker.cy";
 import "./controllerPanel.cy";

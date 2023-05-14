@@ -1,6 +1,7 @@
 import {
-  PLAY_BUTTON_SELECTOR,
   BPM_KNOB_RANGE_SELECTOR,
+  CONTROLLER_PANEL_BUTTON_BPM_SELECTOR,
+  PLAY_BUTTON_SELECTOR,
   URL,
 } from "../../../../app/classes/base/constants";
 
@@ -8,9 +9,10 @@ describe("BpmKnob", () => {
   describe("on app loading", () => {
     beforeEach(() => {
       cy.visit(URL);
+      cy.get(CONTROLLER_PANEL_BUTTON_BPM_SELECTOR).click();
       cy.get(BPM_KNOB_RANGE_SELECTOR).then(($input) => {
-        $input.css("width", "100px"); // Set the width to a non-zero value
-        $input.css("height", "20px"); // Set the height to a non-zero value
+        $input.css("width", "100px");
+        $input.css("height", "20px");
         $input.css("opacity", "1");
       });
     });
@@ -50,12 +52,14 @@ describe("BpmKnob", () => {
     beforeEach(() => {
       cy.visit(URL);
       cy.get(PLAY_BUTTON_SELECTOR).click();
+      cy.get(CONTROLLER_PANEL_BUTTON_BPM_SELECTOR).click();
       cy.get(BPM_KNOB_RANGE_SELECTOR).then(($input) => {
         $input.css("width", "100px"); // Set the width to a non-zero value
         $input.css("height", "20px"); // Set the height to a non-zero value
         $input.css("opacity", "1");
       });
     });
+
     it("should set value to 30 after inputting a number < 30", () => {
       cy.get(BPM_KNOB_RANGE_SELECTOR)
         .invoke("val", 29)
@@ -91,6 +95,7 @@ describe("BpmKnob", () => {
     beforeEach(() => {
       cy.visit(URL);
       cy.get(PLAY_BUTTON_SELECTOR).click();
+      cy.get(CONTROLLER_PANEL_BUTTON_BPM_SELECTOR).click();
       cy.get(BPM_KNOB_RANGE_SELECTOR).then(($input) => {
         $input.css("width", "100px"); // Set the width to a non-zero value
         $input.css("height", "20px"); // Set the height to a non-zero value
@@ -98,6 +103,7 @@ describe("BpmKnob", () => {
       });
       cy.get(PLAY_BUTTON_SELECTOR).click();
     });
+    
     it("should set value to 30 after inputting a number < 30", () => {
       cy.get(BPM_KNOB_RANGE_SELECTOR)
         .invoke("val", 29)
