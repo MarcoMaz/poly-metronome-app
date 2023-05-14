@@ -15,7 +15,7 @@ $bpmBorderRadius: 50%;
 }
 
 .BpmKnob {
-  border: rem(1px) solid;
+  border: border($colorBlack);
   border-radius: $bpmBorderRadius;
   height: $bpmKnobSize;
   position: relative;

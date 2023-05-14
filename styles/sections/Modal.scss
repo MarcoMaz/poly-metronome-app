@@ -57,7 +57,7 @@
   &__button {
     align-self: flex-end;
     background-color: inherit;
-    border: rem(1px) solid $colorWhite;
+    border: border($colorWhite);
     border-radius: $borderRadius;
     color: $colorWhite;
     padding: rem(4px) rem(20px);
