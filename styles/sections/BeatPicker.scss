@@ -67,7 +67,7 @@ $beatPickerAimOffset: rem(-1px);
 
   &__aim {
     border: rem(1px) solid $colorGray200;
-    border-radius: rem(6px);
+    border-radius: $borderRadius;
     box-sizing: content-box;
     display: none;
     height: $beatPickerAimSize;

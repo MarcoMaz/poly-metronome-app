@@ -37,7 +37,8 @@ body {
 
 header {
   border-bottom: rem(1px) solid $colorBlack;
-  border-radius: 0 0 rem(6px) rem(6px);
+  border-bottom-left-radius: $borderRadius;
+  border-bottom-right-radius: $borderRadius;
   box-shadow: 0 rem(1px) rem(4px) rgba(0, 0, 0, 0.25);
   margin-bottom: rem(32px);
   padding: rem(16px) rem(24px);
@@ -59,4 +60,4 @@ section {
 // Mixins
 // @centerX = display flex, justify content center
 // @centerXY = display flex, justify content center, align items center
-// border, borderRadius
+// border
