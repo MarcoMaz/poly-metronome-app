@@ -37,7 +37,7 @@ class BaseBeatPicker extends BeatPicker {
     );
 
     // Register events
-    this.picker.addEventListener("wheel", this.handleWheel.bind(this));
+    this.picker.addEventListener("wheel", this.handleWheel.bind(this), {passive: true});
     this.picker.addEventListener("click", this.handleClick.bind(this));
   }
 

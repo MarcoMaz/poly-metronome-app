@@ -59,8 +59,8 @@ class BpmKnob {
     this.startAngle = null;
 
     // Register events
-    this.el.addEventListener("touchstart", this.handleTouchStart.bind(this));
-    this.el.addEventListener("touchmove", this.handleTouchMove.bind(this));
+    this.el.addEventListener("touchstart", this.handleTouchStart.bind(this), {passive: true});
+    this.el.addEventListener("touchmove", this.handleTouchMove.bind(this), {passive: true});
     this.el.addEventListener("touchend", this.handleTouchEnd.bind(this));
     this.el.addEventListener("keydown", this.handleKeyDown.bind(this));
     this.el.addEventListener("keyup", this.handleKeyUp.bind(this));
