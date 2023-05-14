@@ -20,13 +20,14 @@
   }
 
   &__content {
+
+    @include space-between;
+
     background: $colorWarning;
     border-radius: $borderRadius;
     color: $colorWhite;
-    display: flex;
     flex-direction: column;
     height: 30vh;
-    justify-content: space-between;
     left: calc(50vw - 40vw);
     padding: rem(20px);
     pointer-events: none;

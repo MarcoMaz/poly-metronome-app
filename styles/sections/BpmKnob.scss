@@ -9,9 +9,10 @@ $bpmKnobTextPosition: calc(50% - $bpmKnobTextSize / 2);
 $bpmBorderRadius: 50%;
 
 .BpmKnob-container {
-  display: flex;
-  justify-content: center;
-  width: 140px;
+
+  @include centerX;
+
+  width: rem(140px);
 }
 
 .BpmKnob {
@@ -50,12 +51,12 @@ $bpmBorderRadius: 50%;
   }
 
   &__text {
-    align-items: center;
-    display: flex;
+
+    @include center;
+
     flex-direction: column;
     font-size: rem(48px);
     height: $bpmKnobTextSize;
-    justify-content: center;
     left: $bpmKnobTextPosition;
     line-height: .8;
     position: absolute;

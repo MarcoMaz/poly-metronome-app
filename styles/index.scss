@@ -6,6 +6,7 @@
 @import './base/reset.scss';
 @import './base/typography.scss';
 @import './base/viewports.scss';
+@import './base/mixins.scss';
 
 // Sections
 @import './sections/BeatPicker.scss';
@@ -55,7 +56,3 @@ section {
   grid-template-columns: repeat(3, 1fr);
   padding: 0 rem(24px) rem(32px);
 }
-
-// Mixins
-// @centerX = display flex, justify content center
-// @centerXY = display flex, justify content center, align items center

@@ -3,17 +3,17 @@ $canvasPickerBorder: rem(2px);
 $canvasPickerMargin: rem(-2px);
 
 .CanvasPicker {
-  display: flex;
-  justify-content: space-between;
+
+  @include space-between;
 
   &__button {
-    align-items: center;
+
+    @include center;
+
     background: $colorWhite;
-    display: flex;
     flex-direction: column;
     font-size: rem(12px);
     height: $canvasPickerSize;
-    justify-content: center;
     width: $canvasPickerSize;
 
     img {

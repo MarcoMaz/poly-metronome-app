@@ -1,12 +1,11 @@
 $buttonSize: rem(64px);
 
 .Play {
-  align-items: center;
+  @include center;
+
   background: $colorBlack;
   border-radius: 50%;
-  display: flex;
   height: $buttonSize;
-  justify-content: center;
   justify-self: center;
   width: $buttonSize;
 

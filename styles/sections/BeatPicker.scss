@@ -4,9 +4,9 @@ $beatPickerAimSize: rem(48px);
 $beatPickerAimOffset: rem(-1px);
 
 .BeatPickers {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
+
+  @include center-between;
+
   margin: 0 auto;
   width: rem(160px);
 }
@@ -47,8 +47,9 @@ $beatPickerAimOffset: rem(-1px);
   }
 
   &__item {
-    align-items: center;
-    display: flex;
+
+    @include centerY;
+    
     height: rem(48px);
     scroll-snap-align: center;
 

@@ -1,0 +1,37 @@
+@mixin center() {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+@mixin centerX() {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin centerY() {
+  align-items: center;
+  display: flex;
+}
+
+@mixin space-between() {
+  display: flex;
+  justify-content: space-between;
+}
+
+@mixin center-between() {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+@mixin space-evenly() {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+@mixin center-evenly() {
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+}

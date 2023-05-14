@@ -1,6 +1,7 @@
 .Canvas-container {
-  display: flex;
-  justify-content: center;
+
+  @include centerX;
+
   padding: 0 rem(40px);
 }
   
