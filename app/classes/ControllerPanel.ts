@@ -4,7 +4,7 @@ import {
   CONTROLLER_PANEL_PANE_SELECTOR,
   CONTROLLER_PANEL_ACTIVE_SELECTOR,
   CONTROLLER_PANEL_ACTIVE_CLASS,
-  CONTROLLER_PANEL_SHOW_CLASS,
+  SHOW_CLASS,
 } from "../classes/base/constants";
 
 /**
@@ -14,7 +14,7 @@ import {
  *
  * @param {HTMLElement} el                  - The component itself.
  * @param {NodeListOf<HTMLElement>} panels  - The panels showing the controllers.
- * 
+ *
  */
 class ControllerPanel {
   private el: HTMLElement;
@@ -55,9 +55,9 @@ class ControllerPanel {
       );
       this.panels.forEach((panel: HTMLElement, i: number) => {
         if (i === buttonIndex) {
-          panel.classList.add(CONTROLLER_PANEL_SHOW_CLASS);
+          panel.classList.add(SHOW_CLASS);
         } else {
-          panel.classList.remove(CONTROLLER_PANEL_SHOW_CLASS);
+          panel.classList.remove(SHOW_CLASS);
         }
       });
     }

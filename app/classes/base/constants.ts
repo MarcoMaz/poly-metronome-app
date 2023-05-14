@@ -66,7 +66,6 @@ export const CONTROLLER_PANEL_BUTTON_BEATS_SELECTOR =
 export const CONTROLLER_PANEL_PANE_SELECTOR = ".ControllerPanel__panel";
 export const CONTROLLER_PANEL_ACTIVE_SELECTOR = ".-active";
 export const CONTROLLER_PANEL_ACTIVE_CLASS = "-active";
-export const CONTROLLER_PANEL_SHOW_CLASS = "-show";
 
 // Engine
 export const ENGINE_SMALL_DELAY = 0.25;
