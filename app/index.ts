@@ -15,8 +15,8 @@ import {
  * @name  App
  *
  * @param {boolean} isPlaying - Wheter of not the app is playing.
+ * 
  */
-
 class App {
   public isPlaying: boolean;
   private metronome: Metronome;
