@@ -7,8 +7,6 @@
 @import './base/typography.scss';
 @import './base/viewports.scss';
 
-$border: 5px solid $colorBlack;
-
 // Sections
 @import './sections/BeatPicker.scss';
 @import "./sections/BpmKnob.scss";
