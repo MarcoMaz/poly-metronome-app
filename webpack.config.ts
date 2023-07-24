@@ -79,7 +79,7 @@ export const commonConfig: webpack.Configuration = {
           to: "",
         },
         {
-          from: "/workers/worker.js",
+          from: "./workers/worker.js",
           to: "workers",
         },
       ],
