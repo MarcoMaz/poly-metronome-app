@@ -59,7 +59,8 @@ class App {
   public init(): void {
     this.canvas.playAnimation();
 
-    this.timerWorker = new Worker("../workers/worker.js");
+    this.timerWorker = new Worker("./workers/worker.js");
+    console.log("QUI", this.timerWorker)
 
     this.canvas.render();
     this.timerWorker.onmessage = (e: { data: string }) =>
