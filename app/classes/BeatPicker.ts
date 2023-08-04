@@ -93,6 +93,8 @@ class BeatPicker {
    *
    */
   public handleScroll(): void {
+    console.log("baseBeat", this.metronome.baseBeat, " - againstBeat", this.metronome.againstBeat)
+
     let timeoutId: NodeJS.Timeout;
     const DELAY_IN_MS = 200;
 
