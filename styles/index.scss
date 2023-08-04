@@ -1,24 +1,24 @@
 // Base
-@import './base/utils.scss';
-@import './base/variables.scss';
-@import './base/colors.scss';
-@import './base/normalize.scss';
-@import './base/reset.scss';
-@import './base/typography.scss';
-@import './base/viewports.scss';
-@import './base/mixins.scss';
+@import "./base/utils.scss";
+@import "./base/variables.scss";
+@import "./base/colors.scss";
+@import "./base/normalize.scss";
+@import "./base/reset.scss";
+@import "./base/typography.scss";
+@import "./base/viewports.scss";
+@import "./base/mixins.scss";
 
 // Sections
-@import './sections/BeatPicker.scss';
+@import "./sections/BeatPicker.scss";
 @import "./sections/BpmKnob.scss";
 @import "./sections/Canvas.scss";
-@import './sections/CanvasPicker.scss';
-@import './sections/Chip.scss';
+@import "./sections/CanvasPicker.scss";
+@import "./sections/Chip.scss";
 @import "./sections/ControllerPanel.scss";
-@import './sections/Logo.scss';
-@import './sections/Modal.scss';
-@import './sections/MuteButton.scss';
-@import './sections/PlayButton.scss';
+@import "./sections/Logo.scss";
+@import "./sections/Modal.scss";
+@import "./sections/MuteButton.scss";
+@import "./sections/PlayButton.scss";
 
 :root {
   --color-gray-100: #{$colorGray100};
@@ -40,10 +40,10 @@ section {
 }
 
 .app {
-
   @include space-between;
 
   height: 100vh;
+  overflow-y: hidden;
 }
 
 header {
@@ -53,10 +53,18 @@ header {
   box-shadow: 0 rem(1px) rem(4px) rgba(0, 0, 0, 0.25);
   margin-bottom: rem(32px);
   padding: rem(16px) rem(24px);
+  display: none;
+}
+
+.ControllerPanel__buttons {
+  display: none;
+}
+
+.ControllerPanel__panel {
+  outline: 1px solid;
 }
 
 section {
-
   @include centerX;
 
   padding: 0 rem(24px);
