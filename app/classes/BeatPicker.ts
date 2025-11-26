@@ -1,5 +1,5 @@
-import Metronome from "./Metronome";
-import Modal from "./Modal";
+import Metronome from './Metronome';
+import Modal from './Modal';
 
 import {
   AGAINST_BEAT_PICKER_SELECTOR,
@@ -10,7 +10,7 @@ import {
   BEATS_PICKER_CENTER_CLASS,
   BEAT_PICKER_AIM_CLASS,
   BEAT_PICKER_ITEM_CLASS,
-} from "./base/constants";
+} from './base/constants';
 
 /**
  * This class represents the base class for creating BeatPicker.
@@ -28,12 +28,12 @@ import {
 class BeatPicker {
   public picker: HTMLElement;
   public pickerBeats: HTMLElement;
-
+  private scrollTimeoutId: NodeJS.Timeout | null = null;
   /**
    * Define DOM Elements and Variables.
    */
   constructor(
-    public pickerType: "against" | "base",
+    public pickerType: 'against' | 'base',
     public beatMin: number,
     public beatMax: number,
     public aimNumber: number,
@@ -41,11 +41,11 @@ class BeatPicker {
     public modal: Modal
   ) {
     const PICKER_BEATS_SELECTOR =
-      pickerType === "against"
+      pickerType === 'against'
         ? AGAINST_BEAT_PICKER_BEATS_SELECTOR
         : BASE_BEAT_PICKER_BEATS_SELECTOR;
 
-    if (pickerType === "against") {
+    if (pickerType === 'against') {
       this.picker = document.querySelector(AGAINST_BEAT_PICKER_SELECTOR);
       this.pickerBeats = document.querySelector(PICKER_BEATS_SELECTOR);
     } else {
@@ -57,7 +57,7 @@ class BeatPicker {
     this.centerBeatOnLoad();
 
     // Register events
-    this.pickerBeats.addEventListener("scroll", this.handleScroll.bind(this));
+    this.pickerBeats.addEventListener('scroll', this.handleScroll.bind(this));
   }
 
   /**
@@ -76,11 +76,11 @@ class BeatPicker {
 
     const spans = missingNumbers
       .map((beat) => `<span class="${BEAT_PICKER_ITEM_CLASS}">${beat}</span>`)
-      .join("");
+      .join('');
 
     this.pickerBeats.innerHTML = spans;
 
-    const beatPickerAimElement = document.createElement("span");
+    const beatPickerAimElement = document.createElement('span');
     beatPickerAimElement.classList.add(BEAT_PICKER_AIM_CLASS);
     this.pickerBeats.appendChild(beatPickerAimElement);
   }
@@ -93,15 +93,21 @@ class BeatPicker {
    *
    */
   public handleScroll(): void {
-    console.log("baseBeat", this.metronome.baseBeat, " - againstBeat", this.metronome.againstBeat)
-
-    let timeoutId: NodeJS.Timeout;
     const DELAY_IN_MS = 200;
 
-    clearTimeout(timeoutId);
+    // clear previous debounce timeout
+    if (this.scrollTimeoutId) {
+      clearTimeout(this.scrollTimeoutId);
+      this.scrollTimeoutId = null;
+    }
+
+    // update metronome and aimNumber from center item immediately
     this.updateBeatBasedOnCenter();
-    timeoutId = setTimeout(() => {
+
+    // debounce modal check
+    this.scrollTimeoutId = setTimeout(() => {
       this.modal.isPoly(this.metronome.againstBeat, this.metronome.baseBeat);
+      this.scrollTimeoutId = null;
     }, DELAY_IN_MS);
   }
 
@@ -114,7 +120,7 @@ class BeatPicker {
   public centerBeatOnLoad(): number {
     const grandParentElement = this.picker.parentElement.parentElement;
     const isPickerVisible =
-      window.getComputedStyle(grandParentElement).display !== "none";
+      window.getComputedStyle(grandParentElement).display !== 'none';
 
     if (!isPickerVisible) {
       requestAnimationFrame(() => {
@@ -179,10 +185,14 @@ class BeatPicker {
    */
   public updateBeatBasedOnCenter(): void {
     const centerItem = this.highlightCenterItem(this.picker);
+    const value = Number(centerItem?.textContent) || 0;
+    // keep the picker own aimNumber in sync with what is centered
+    this.aimNumber = value;
+
     if (this.picker === document.querySelector(AGAINST_BEAT_PICKER_SELECTOR)) {
-      this.metronome.againstBeat = Number(centerItem?.textContent) ?? 0;
+      this.metronome.againstBeat = value;
     } else {
-      this.metronome.baseBeat = Number(centerItem?.textContent) ?? 0;
+      this.metronome.baseBeat = value;
     }
   }
 }
